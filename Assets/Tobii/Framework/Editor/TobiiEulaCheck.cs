@@ -14,11 +14,6 @@ namespace Tobii.Gaming
 
 		static TobiiEulaCheck()
 		{
-			if (TobiiEulaFile.IsEulaAccepted() == false)
-			{
-				EditorApplication.update += Update;
-				EditorApplication.playmodeStateChanged += HandleOnPlayModeChanged;
-			}
 		}
 
 		private static void HandleOnPlayModeChanged()
@@ -75,12 +70,8 @@ namespace Tobii.Gaming
 
 			EditorGUILayout.BeginHorizontal(EditorStyles.label);
 
-			if (GUILayout.Button("Accept", EditorStyles.miniButtonRight))
-			{
-				EditorApplication.playmodeStateChanged -= HandleOnPlayModeChanged;
-				TobiiEulaFile.SetEulaAccepted();
-				_window.Close();
-			}
+
+			TobiiEulaFile.SetEulaAccepted();
 
 			GUILayout.Button("", EditorStyles.miniBoldLabel);
 

@@ -42,8 +42,6 @@ public class EyeTrackingClientLibraryDeployer
         if (EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneLinux ||
             EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneLinux64 ||
             EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneLinuxUniversal ||
-            EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneOSXIntel ||
-            EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneOSXIntel64 ||
             EditorUserBuildSettings.activeBuildTarget == BuildTarget.StandaloneOSX)
         {
             Debug.LogWarning("Tobii Unity SDK can only provide eye-gaze data on the Windows platform. Change platform in build settings to make the Eye Tracking features work.");

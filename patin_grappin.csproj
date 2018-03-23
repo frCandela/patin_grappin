@@ -240,6 +240,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\script\EyeTracker.cs" />
     <Compile Include="Assets\Tobii\Framework\DisplayInfo.cs" />
     <Compile Include="Assets\Tobii\Framework\GazeAware.cs" />
     <Compile Include="Assets\Tobii\Framework\GazePoint.cs" />
