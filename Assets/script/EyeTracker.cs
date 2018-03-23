@@ -59,11 +59,12 @@ public class EyeTracker : MonoBehaviour
                 TobiiAPI.SubscribeGazePointData();
                 m_skipFrame = false;
             }
-            else
+            else 
             {
                 image.enabled = true;
                 Vector2 pos = GetGazeViewport();
-                recTrans.position = new Vector3(Screen.width * pos.x, Screen.height * pos.y, 0);
+                if( ! float.IsNaN(pos.x)  )
+                    recTrans.position = new Vector3(Screen.width * pos.x, Screen.height * pos.y, 0);
             }
         }
         else
