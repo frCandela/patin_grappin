@@ -242,6 +242,7 @@
   <ItemGroup>
     <Compile Include="Assets\script\EyeTracker.cs" />
     <Compile Include="Assets\script\EyeTrackerSnap.cs" />
+    <Compile Include="Assets\script\HeadPose.cs" />
     <Compile Include="Assets\script\HighlightBlock.cs" />
     <Compile Include="Assets\script\MouseLook.cs" />
     <Compile Include="Assets\script\MoveBlockFixedSpeed.cs" />

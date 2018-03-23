@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
 
-public class SquachStrech : MonoBehaviour
+public class HeadPose : MonoBehaviour
 {
 
     [Header("RealSpeedPeerFrame = speedRatio * distance(eyePoint, cube)")]
@@ -27,16 +27,8 @@ public class SquachStrech : MonoBehaviour
     {
         SetObjectMaterial(targetObject, moving);
 
-        Vector2 lookAtScreen = TobiiAPI.GetGazePoint().Screen;
-        if (lookAtScreen.x >= 0 && lookAtScreen.x <= Screen.width && lookAtScreen.y >= 0 && lookAtScreen.y <= Screen.height)
-        {
-            Vector3 scale = targetObject.transform.localScale;
-            float ratioX = 0.5f + lookAtScreen.x / Screen.width;
-            float ratioY = 0.5f + 
-                lookAtScreen.y / Screen.height;
-            targetObject.transform.localScale = new Vector3(ratioX, ratioY, scale.z);
-        }
-
+        Tobii.Gaming.HeadPose pose =  TobiiAPI.GetHeadPose();
+        targetObject.transform.rotation = pose.Rotation;
     }
 
     private void SetObjectMaterial(GameObject obj, Material material)
