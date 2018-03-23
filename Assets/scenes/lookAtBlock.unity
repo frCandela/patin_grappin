@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 14456417}
   - component: {fileID: 14456416}
   m_Layer: 0
-  m_Name: Gaze
+  m_Name: SCRIPT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -13,6 +13,8 @@ public class EyeTracker : MonoBehaviour
     private Queue<GazePoint> m_samples;
     public int nbSamples = 100;
 
+    private bool m_skipFrame = true;
+
     private void Awake()
     {
         //Set references
@@ -21,9 +23,6 @@ public class EyeTracker : MonoBehaviour
 
         //Create objects
         m_samples = new Queue<GazePoint>();
-
-        //Init tobii
-        TobiiAPI.SubscribeGazePointData();
 
     }
 
@@ -53,17 +52,23 @@ public class EyeTracker : MonoBehaviour
         }
         
 
-
         if (TobiiAPI.GetUserPresence() == UserPresence.Present)
         {
-            image.enabled = true;
-           // Vector2 pos = TobiiAPI.GetGazePoint().Viewport;
-            Vector2 pos = GetGazeViewport();
-            recTrans.position = new Vector3( Screen.width * pos.x, Screen.height * pos.y, 0);
-            
+            if(m_skipFrame)
+            {
+                TobiiAPI.SubscribeGazePointData();
+                m_skipFrame = false;
+            }
+            else
+            {
+                image.enabled = true;
+                Vector2 pos = GetGazeViewport();
+                recTrans.position = new Vector3(Screen.width * pos.x, Screen.height * pos.y, 0);
+            }
         }
         else
         {
+            m_skipFrame = true;
             image.enabled = false;
         }
 

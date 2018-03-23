@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
 
-public class Test_moveBlock : MonoBehaviour
+public class HighlightBlock : MonoBehaviour
 {
     public Material seen;
     public Material notSeen;
@@ -37,17 +37,12 @@ public class Test_moveBlock : MonoBehaviour
                 SetObjectMaterial(lastFocused, notSeen);
             lastFocused = null;
         }
-
-
     }
 
     private void SetObjectMaterial(GameObject obj, Material material)
     {
         MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
         if( renderer )
-        {
             renderer.material = material;
-        }
-    
     }
 }
