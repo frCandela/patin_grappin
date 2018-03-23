@@ -243,8 +243,10 @@
     <Compile Include="Assets\script\EyeTracker.cs" />
     <Compile Include="Assets\script\EyeTrackerSnap.cs" />
     <Compile Include="Assets\script\HighlightBlock.cs" />
+    <Compile Include="Assets\script\MouseLook.cs" />
     <Compile Include="Assets\script\MoveBlockFixedSpeed.cs" />
     <Compile Include="Assets\script\MoveBlockRelativeSpeed.cs" />
+    <Compile Include="Assets\script\SquachStrech.cs" />
     <Compile Include="Assets\Tobii\Framework\DisplayInfo.cs" />
     <Compile Include="Assets\Tobii\Framework\GazeAware.cs" />
     <Compile Include="Assets\Tobii\Framework\GazePoint.cs" />
