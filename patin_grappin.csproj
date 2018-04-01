@@ -240,6 +240,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\script\gazeAware\GazeObject.cs" />
+    <Compile Include="Assets\script\gazeAware\GOChangeColor.cs" />
     <Compile Include="Assets\script\GazeManager.cs" />
     <Compile Include="Assets\script\GazeTrace.cs" />
     <Compile Include="Assets\script\PlayerCameraController.cs" />
