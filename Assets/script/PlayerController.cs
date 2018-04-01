@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+[RequireComponent( typeof( Rigidbody))]
 
-	// Use this for initialization
-	void Start ()
+public class PlayerController : MonoBehaviour
+{
+
+    public float forwardSpeed = 10f;
+
+
+    //Components references
+    private Rigidbody m_rb;
+
+
+	void Awake ()
     {
-		
-	}
+        m_rb = GetComponent<Rigidbody>();
+        Util.EditorAssert(m_rb != null, "PlayerController.Awake(): No rigidbody set");
+    }
 	
-	// Update is called once per frame
+
 	void Update ()
     {
 		
@@ -19,5 +29,11 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate()
     {
         
+        float vertical = Input.GetAxisRaw("Vertical");
+        
+        if (vertical != 0f)
+        {
+            m_rb.AddForce(forwardSpeed * vertical * transform.forward, ForceMode.Acceleration);
+        }
     }
 }

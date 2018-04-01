@@ -240,6 +240,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\script\PlayerCameraController.cs" />
     <Compile Include="Assets\script\PlayerController.cs" />
     <Compile Include="Assets\script\trash\EyeTracker.cs" />
     <Compile Include="Assets\script\trash\EyeTrackerSnap.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Assets\script\trash\MoveBlockFixedSpeed.cs" />
     <Compile Include="Assets\script\trash\MoveBlockRelativeSpeed.cs" />
     <Compile Include="Assets\script\trash\SquachStrech.cs" />
+    <Compile Include="Assets\script\Util.cs" />
     <Compile Include="Assets\Tobii\Framework\DisplayInfo.cs" />
     <Compile Include="Assets\Tobii\Framework\GazeAware.cs" />
     <Compile Include="Assets\Tobii\Framework\GazePoint.cs" />

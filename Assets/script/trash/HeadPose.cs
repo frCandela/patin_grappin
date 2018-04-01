@@ -14,11 +14,8 @@ public class HeadPose : MonoBehaviour
     public Material notMoving;
     public GameObject targetObject = null;
 
-    Camera m_camera;
-
     private void Awake()
     {
-        m_camera = GetComponent<Camera>();
         TobiiAPI.SubscribeGazePointData();
     }
 
