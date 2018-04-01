@@ -37,6 +37,8 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Awake()
     {
+        Util.EditorAssert(playerGameObject != null, "PlayerCameraController.Awake(): playerGameObject not set");
+
         //Set variables
         previousTranslation = transform.position - playerGameObject.transform.position;
 
@@ -84,7 +86,9 @@ public class PlayerCameraController : MonoBehaviour
         userScrollTarget = Mathf.Clamp(userScrollTarget - scrollDelta * Input.mouseScrollDelta.y, minScrollDistance, maxScrollDistance);
 
         //usefull Data
-        Vector3 dir = transform.position - playerGameObject.transform.position;
+        Vector3 dir = 
+            transform.position - 
+            playerGameObject.transform.position;
         Vector3 hDir = new Vector3(dir.x, 0, dir.z);
         Vector3 rightDir = Vector3.Cross(Vector3.up, transform.position - playerGameObject.transform.position).normalized;
 

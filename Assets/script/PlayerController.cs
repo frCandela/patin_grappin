@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     //Components references
     private Rigidbody m_rb;
 
-
 	void Awake ()
     {
         //Get references
@@ -57,6 +56,11 @@ public class PlayerController : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(direction, raycastHit.normal);
             transform.rotation = Quaternion.Lerp(transform.rotation,  rotation, lerpSpeed);
         }
+        else
+        {
+            Quaternion rotation = Quaternion.LookRotation(cameraController.transform.forward, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 0.02f);
+        }
 
 
         //Moves the player in the requested direction
@@ -67,7 +71,6 @@ public class PlayerController : MonoBehaviour
         Vector3 forwardDir = cameraController.transform.forward;
         forwardDir.y = 0;
         forwardDir.Normalize();
-        Vector3 rightDir = Vector3.Cross(Vector3.up, forwardDir);
 
         //Moving force 
         Vector3 force = boostSpeed * (forwardAcceleration * vertical * transform.forward + lateralAcceleration * horizontal * transform.right);
