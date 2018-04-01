@@ -47,17 +47,36 @@ public class PlayerCameraController : MonoBehaviour
         scrollSpeed = lowScrollSpeed;
 
         maxScrollDistance = previousTranslation.magnitude;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void LateUpdate()
     {
-        RotateCamera();
+        //Lock / unlock the cursor when pressing escape
+        if( Input.GetButtonDown("Cancel"))
+        {
+            if(Cursor.visible)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+
+        if( ! Cursor.visible )
+            SetCamera();
     }
 
     /// <summary>
     /// Rotates the camera with the mouse input
     /// </summary>
-    private void RotateCamera()
+    private void SetCamera()
     {
         //Input
         float mouseX = Input.GetAxis("Mouse X");
