@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 118799915}
   - component: {fileID: 118799917}
   - component: {fileID: 118799916}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,8 +363,8 @@ GameObject:
   - component: {fileID: 352880873}
   - component: {fileID: 352880872}
   - component: {fileID: 352880871}
-  - component: {fileID: 352880874}
   - component: {fileID: 352880875}
+  - component: {fileID: 352880874}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -383,7 +383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1985687280}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &352880871
 MeshRenderer:
@@ -446,16 +446,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 352880869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe6399eded89098428f658665b78f4ff, type: 3}
+  m_Script: {fileID: 11500000, guid: c097da355dec1674b9fcc930db92abef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraController: {fileID: 1989778882}
-  forwardAcceleration: 10
-  lateralAcceleration: 10
-  maximumVelocityNormal: 15
-  maximumVelocityBoosting: 30
-  boostSpeedFactor: 4
-  boostDuration: 2
+  velocity: 2
+  boostForce: 15
+  turningSpeed: 0.01
 --- !u!54 &352880875
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -464,7 +461,7 @@ Rigidbody:
   m_GameObject: {fileID: 352880869}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.3
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -2120,8 +2117,8 @@ Transform:
   m_LocalPosition: {x: 2.4366841, y: 2.8408563, z: -9.32622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 352880870}
   - {fileID: 1989778881}
+  - {fileID: 352880870}
   - {fileID: 118799915}
   - {fileID: 2023895439}
   - {fileID: 574797375}
@@ -2144,8 +2141,8 @@ GameObject:
   - component: {fileID: 1989778880}
   - component: {fileID: 1989778879}
   - component: {fileID: 1989778878}
-  - component: {fileID: 1989778882}
   - component: {fileID: 1989778883}
+  - component: {fileID: 1989778882}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2209,13 +2206,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1989778877}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 170.3, z: 23.9}
+  m_LocalRotation: {x: 0.049119666, y: -0, z: -0, w: 0.9987929}
+  m_LocalPosition: {x: 0, y: 171.17, z: 23.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1985687280}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 5.631, y: 0, z: 0}
 --- !u!114 &1989778882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2224,17 +2221,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1989778877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab5d4dfa135a82a4e84b683b43146601, type: 3}
+  m_Script: {fileID: 11500000, guid: 6332aa0bf36ac044c95fe3ea827ac646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerGameObject: {fileID: 352880869}
-  sensitivityX: 5
-  sensitivityY: 5
-  minimumY: -80
-  maximumY: 30
-  highScrollSpeed: 0.2
-  lowScrollSpeed: 0.05
-  minScrollDistance: 2
+  lerpSpeedRotation: 0.1
+  lerpSpeedPosition: 0.1
+  headRotation: 1
 --- !u!114 &1989778883
 MonoBehaviour:
   m_ObjectHideFlags: 0

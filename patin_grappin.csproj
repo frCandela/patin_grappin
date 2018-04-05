@@ -244,6 +244,9 @@
     <Compile Include="Assets\script\gazeAware\GOChangeColor.cs" />
     <Compile Include="Assets\script\GazeManager.cs" />
     <Compile Include="Assets\script\GazeTrace.cs" />
+    <Compile Include="Assets\script\HeadCameraController.cs" />
+    <Compile Include="Assets\script\HeadPlayerController.cs" />
+    <Compile Include="Assets\script\KeepRelativePosition.cs" />
     <Compile Include="Assets\script\PlayerCameraController.cs" />
     <Compile Include="Assets\script\PlayerController.cs" />
     <Compile Include="Assets\script\trash\EyeTracker.cs" />
