@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
         Util.EditorAssert(m_rb != null, "PlayerController.Awake(): No rigidbody set");
         Util.EditorAssert(cameraController != null, "PlayerController.Awake(): No cameraController set");
 
-        Physics.gravity = new Vector3( 0, -20f, 0);
     }
 
     private void Start()

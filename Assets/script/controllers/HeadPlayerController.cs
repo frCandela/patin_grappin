@@ -6,9 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HeadPlayerController : MonoBehaviour
 {
-    [Header("References:")]
-    [SerializeField] private HeadCameraController cameraController = null;
-
+    [Header("Movement paremeters:")]
     [SerializeField] private float velocity = 2f;
     [SerializeField] private float boostForce = 15f;
     [SerializeField] private float turningSpeed = 30f;
@@ -23,16 +21,23 @@ public class HeadPlayerController : MonoBehaviour
     void Awake ()
     {
         m_rb = GetComponent<Rigidbody>();
+
+
+        Physics.gravity = new Vector3(0, -20, 0);
     }
 
     private void Start()
     {
+        //Looks for every boosts and connects the events
         object[] objArray = GameObject.FindObjectsOfType(typeof(GOChangeColor));
         foreach (object obj in objArray)
         {
             GOChangeColor boost = (GOChangeColor)obj;
             boost.onColorChanged.AddListener(StartBoost);
         }
+
+        //Initial parameters
+        m_rb.velocity = 5f * Vector3.forward;
     }
 
     private void Update()
@@ -55,19 +60,10 @@ public class HeadPlayerController : MonoBehaviour
             m_rb.velocity = new Vector3(turningSpeed * (pose.Rotation.y), m_rb.velocity.y, m_rb.velocity.z);
         }
 
-        print(m_boostMultiplier);
         m_rb.AddForce(m_boostMultiplier * velocity * Vector3.forward, ForceMode.Acceleration);
 
-        //Sets rotation to match the curve of the terrain
-        RaycastHit raycastHit;
-        if (Physics.Raycast(transform.position, Vector3.down, out raycastHit, 100f, LayerMask.GetMask("Terrain")))
-        {
-            Vector3 direction = Vector3.Cross(cameraController.transform.right, raycastHit.normal);
-            Quaternion rotation = Quaternion.LookRotation(direction, raycastHit.normal);
-            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 1f);
-        }
-
         //rotates the model depending on his speed
-        transform.rotation = Quaternion.LookRotation(m_rb.velocity);
+        if(m_rb.velocity.magnitude > 1f)
+            transform.rotation = Quaternion.LookRotation(m_rb.velocity);
     }
 }

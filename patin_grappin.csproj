@@ -240,15 +240,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\script\controllers\HeadCameraController.cs" />
+    <Compile Include="Assets\script\controllers\HeadPlayerController.cs" />
     <Compile Include="Assets\script\gazeAware\GazeObject.cs" />
     <Compile Include="Assets\script\gazeAware\GOChangeColor.cs" />
-    <Compile Include="Assets\script\GazeManager.cs" />
-    <Compile Include="Assets\script\GazeTrace.cs" />
-    <Compile Include="Assets\script\HeadCameraController.cs" />
-    <Compile Include="Assets\script\HeadPlayerController.cs" />
-    <Compile Include="Assets\script\KeepRelativePosition.cs" />
-    <Compile Include="Assets\script\PlayerCameraController.cs" />
-    <Compile Include="Assets\script\PlayerController.cs" />
+    <Compile Include="Assets\script\grapple\Grapple.cs" />
+    <Compile Include="Assets\script\grapple\GrapplePoint.cs" />
+    <Compile Include="Assets\script\grapple\GrapplePointEditor.cs" />
+    <Compile Include="Assets\script\grapple\Rope.cs" />
+    <Compile Include="Assets\script\managers\GazeManager.cs" />
+    <Compile Include="Assets\script\other\Blink.cs" />
+    <Compile Include="Assets\script\other\KeepRelativePosition.cs" />
+    <Compile Include="Assets\script\other\Util.cs" />
     <Compile Include="Assets\script\trash\EyeTracker.cs" />
     <Compile Include="Assets\script\trash\EyeTrackerSnap.cs" />
     <Compile Include="Assets\script\trash\HeadPose.cs" />
@@ -256,8 +259,10 @@
     <Compile Include="Assets\script\trash\MouseLook.cs" />
     <Compile Include="Assets\script\trash\MoveBlockFixedSpeed.cs" />
     <Compile Include="Assets\script\trash\MoveBlockRelativeSpeed.cs" />
+    <Compile Include="Assets\script\trash\PlayerCameraController.cs" />
+    <Compile Include="Assets\script\trash\PlayerController.cs" />
     <Compile Include="Assets\script\trash\SquachStrech.cs" />
-    <Compile Include="Assets\script\Util.cs" />
+    <Compile Include="Assets\script\ui\GazeTrace.cs" />
     <Compile Include="Assets\Tobii\Framework\DisplayInfo.cs" />
     <Compile Include="Assets\Tobii\Framework\GazeAware.cs" />
     <Compile Include="Assets\Tobii\Framework\GazePoint.cs" />

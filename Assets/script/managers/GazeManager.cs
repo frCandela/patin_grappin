@@ -17,8 +17,8 @@ public class GazeManager : MonoBehaviour
     //Private
     private static GazeManager m_instance = null;
     private static Queue<GazePoint> m_samples;
-    private GazePoint m_lastHandledPoint = GazePoint.Invalid;
-    private Camera m_camera = null;
+    private static GazePoint m_lastHandledPoint = GazePoint.Invalid;
+    private static Camera m_camera = null;
 
     // Use this for initialization
     private void Awake()
@@ -66,31 +66,55 @@ public class GazeManager : MonoBehaviour
             Ray ray = m_camera.ScreenPointToRay(screenPoint);
             RaycastHit raycastHit;
             if (Physics.Raycast(ray, out raycastHit, 100f, LayerMask.GetMask("GazeObject")))
+            {
                 currendGazedObject = raycastHit.collider.gameObject;
+            }
         }
 
         //Gaze at nothing
         if(!currendGazedObject)
         {
+            //Reset previous gazed abject
             if (GazedObject)
             {
-                GazedObject.GetComponent<GazeObject>().SetNotGazed();
+                GazeObject gaze = GazedObject.GetComponent<GazeObject>();
+                gaze.SetNotGazed();
             }
             GazedObject = null;
         }
         //Gaze at something
         else
         {
+
             if (currendGazedObject != GazedObject)
             {
+                //Reset previous gazed object
                 if (GazedObject)
                 {
+                    GazeObject gaze = GazedObject.GetComponent<GazeObject>();
                     GazedObject.GetComponent<GazeObject>().SetNotGazed();
                 }
+
+                //Set new gazed object
                 GazedObject = currendGazedObject;
                 GazedObject.GetComponent<GazeObject>().SetGazed();
             }
         }
-
     }
+
+
+    public static Vector3 GetGazeWorldPoint()
+    {
+        //Gets the gazed object
+        if (AverageGazePoint.x >= 0 && AverageGazePoint.x <= 1 && AverageGazePoint.y >= 0 && AverageGazePoint.y <= 1)
+        {
+            Vector2 screenPoint = new Vector2(Screen.width * AverageGazePoint.x, Screen.height * AverageGazePoint.y);
+            Ray ray = m_camera.ScreenPointToRay(screenPoint);
+            RaycastHit raycastHit;
+            if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
+                return raycastHit.point;
+        }
+        return Vector3.zero;
+    }
+
 }
