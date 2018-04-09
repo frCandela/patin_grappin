@@ -13,6 +13,7 @@ public class HeadPlayerController : MonoBehaviour
 
     //Components references
     private Rigidbody m_rb;
+    private Grapple m_grapple;
 
     private float m_boostMultiplier = 1f;
 
@@ -21,7 +22,7 @@ public class HeadPlayerController : MonoBehaviour
     void Awake ()
     {
         m_rb = GetComponent<Rigidbody>();
-
+        m_grapple = GetComponent<Grapple>();
 
         Physics.gravity = new Vector3(0, -20, 0);
     }
@@ -55,9 +56,11 @@ public class HeadPlayerController : MonoBehaviour
     void FixedUpdate ()
     {
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
-        if (pose.IsValid)
+        if (pose.IsValid)// && ! m_grapple.m_grappling)
         {
-            m_rb.velocity = new Vector3(turningSpeed * (pose.Rotation.y), m_rb.velocity.y, m_rb.velocity.z);
+            m_rb.AddForce(100 * Vector3.right * pose.Rotation.y, ForceMode.Acceleration);
+
+            //m_rb.velocity = new Vector3(turningSpeed * (pose.Rotation.y), m_rb.velocity.y, m_rb.velocity.z);
         }
 
         m_rb.AddForce(m_boostMultiplier * velocity * Vector3.forward, ForceMode.Acceleration);

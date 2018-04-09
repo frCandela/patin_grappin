@@ -17,7 +17,6 @@ public class GOChangeColor : GazeObject
     public UnityEvent onColorChanged;
 
     //Private
-    private float m_fadeDelta = 0.01f;
     private float m_ratio = 0f;
     private bool m_fixed = false;
     private Color m_baseColor;
@@ -54,10 +53,10 @@ public class GOChangeColor : GazeObject
     //Coroutine for fading thhe color in
     IEnumerator FadeIn()
     {
-        float delta = m_fadeDelta * duration ;
-        while(m_ratio < 1f)
+        float delta = duration / 10f;
+        while (m_ratio < 1f)
         {
-            m_ratio += m_fadeDelta;
+            m_ratio += 0.1f;
             m_material.color = Color.Lerp(m_baseColor, fadeColor, m_ratio);
             yield return new WaitForSeconds(delta);
         }
@@ -69,10 +68,10 @@ public class GOChangeColor : GazeObject
     //Coroutine for fading thhe color out
     IEnumerator FadeOut()
     {
-        float delta = m_fadeDelta * duration;
+        float delta = duration / 10f;
         while (m_ratio > 0f)
         {
-            m_ratio -= m_fadeDelta;
+            m_ratio -= 0.1f;
             m_material.color = Color.Lerp(m_baseColor, fadeColor, m_ratio);
             yield return new WaitForSeconds(delta);
         }
