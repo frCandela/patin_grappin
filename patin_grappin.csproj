@@ -238,6 +238,7 @@
     <Compile Include="Assets\script\controllers\HeadPlayerController.cs" />
     <Compile Include="Assets\script\gazeAware\GazeObject.cs" />
     <Compile Include="Assets\script\gazeAware\GOChangeColor.cs" />
+    <Compile Include="Assets\script\grapple\BestGrapple.cs" />
     <Compile Include="Assets\script\grapple\Grapple.cs" />
     <Compile Include="Assets\script\grapple\GrapplePoint.cs" />
     <Compile Include="Assets\script\grapple\GrapplePointEditor.cs" />

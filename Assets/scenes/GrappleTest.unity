@@ -389,8 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486786fe9c5168142bad15298fa21993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BeginRope: {fileID: 1149060597}
-  EndRope: {fileID: 1799249504}
+  beginRope: {fileID: 0}
+  endRope: {fileID: 0}
 --- !u!23 &1529454916
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -644,25 +644,16 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1799249504}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!145 &1799249510
-SpringJoint:
+--- !u!114 &1799249510
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1799249504}
-  m_ConnectedBody: {fileID: 1149060599}
-  m_Anchor: {x: 0, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 0
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  serializedVersion: 2
-  m_Spring: 10
-  m_Damper: 0.2
-  m_MinDistance: 1
-  m_MaxDistance: 0
-  m_Tolerance: 0.025
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 1
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc864ea29b8f3a4fa26eee7e87c73bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  attractionForce: 1.6094434e+37
