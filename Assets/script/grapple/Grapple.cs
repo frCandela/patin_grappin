@@ -23,7 +23,7 @@ public class Grapple : MonoBehaviour
     private Rope m_rope = null;
 
 
-    private bool m_grappling = false;
+    public bool m_grappling = false;
 
     private void Awake()
     {

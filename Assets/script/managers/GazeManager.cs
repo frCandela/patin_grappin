@@ -91,7 +91,6 @@ public class GazeManager : MonoBehaviour
                 //Reset previous gazed object
                 if (GazedObject)
                 {
-                    GazeObject gaze = GazedObject.GetComponent<GazeObject>();
                     GazedObject.GetComponent<GazeObject>().SetNotGazed();
                 }
 
