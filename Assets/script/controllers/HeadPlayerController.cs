@@ -12,7 +12,6 @@ public class HeadPlayerController : MonoBehaviour
 
     //Components references
     private Rigidbody m_rb;
-    private Grapple m_grapple;
 
     private float m_boostMultiplier = 1f;
 
@@ -20,7 +19,6 @@ public class HeadPlayerController : MonoBehaviour
     void Awake ()
     {
         m_rb = GetComponent<Rigidbody>();
-        m_grapple = GetComponent<Grapple>();
 
         Physics.gravity = new Vector3(0, -20, 0);
     }

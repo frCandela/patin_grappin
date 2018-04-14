@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
 
+
 public class EyeTrackerSnap : MonoBehaviour
 {
     public Camera cameraRef;
 
 
     RectTransform recTrans;
-    UnityEngine.UI.Image image;
+    //UnityEngine.UI image;
 
     private void Awake()
     {
         //Set references
         recTrans = GetComponent<RectTransform>();
-        image = GetComponent<UnityEngine.UI.Image>();
+        //image = GetComponent<UnityEngine.UI.Image>();
 
     }
 
@@ -25,7 +26,7 @@ public class EyeTrackerSnap : MonoBehaviour
     {
         if (TobiiAPI.GetUserPresence() == UserPresence.Present)
         {
-            image.enabled = true;
+            //image.enabled = true;
             GameObject focusedObject = TobiiAPI.GetFocusedObject();
             if (focusedObject != null)
             {
@@ -43,7 +44,7 @@ public class EyeTrackerSnap : MonoBehaviour
         }
         else
         {
-            image.enabled = false;
+            //image.enabled = false;
         }
     }
 }

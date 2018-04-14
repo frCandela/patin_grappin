@@ -7,7 +7,7 @@ public class EyeTracker : MonoBehaviour
 {
 
     RectTransform recTrans;
-    UnityEngine.UI.Image image;
+    //UnityEngine.UI.Image image;
 
     private GazePoint m_lastHandledPoint = GazePoint.Invalid;
     private Queue<GazePoint> m_samples;
@@ -19,7 +19,7 @@ public class EyeTracker : MonoBehaviour
     {
         //Set references
         recTrans = GetComponent<RectTransform>();
-        image = GetComponent<UnityEngine.UI.Image>();
+        //image = GetComponent<UnityEngine.UI.Image>();
 
         //Create objects
         m_samples = new Queue<GazePoint>();
@@ -61,7 +61,7 @@ public class EyeTracker : MonoBehaviour
             }
             else 
             {
-                image.enabled = true;
+                //image.enabled = true;
                 Vector2 pos = GetGazeViewport();
                 if( ! float.IsNaN(pos.x)  )
                     recTrans.position = new Vector3(Screen.width * pos.x, Screen.height * pos.y, 0);
@@ -70,7 +70,7 @@ public class EyeTracker : MonoBehaviour
         else
         {
             m_skipFrame = true;
-            image.enabled = false;
+            //image.enabled = false;
         }
 
         
