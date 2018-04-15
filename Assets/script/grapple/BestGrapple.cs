@@ -23,7 +23,7 @@ public class BestGrapple : MonoBehaviour
     private Rope m_rope = null;
 
 
-    private float m_distance = -1f;
+    //private float m_distance = -1f;
     private bool m_grappling = false;
     private Vector3 m_target;
 
@@ -60,7 +60,7 @@ public class BestGrapple : MonoBehaviour
                 m_rope.enabled = true;
                 m_target = newTarget;
                 m_grappleTarget.transform.position = m_target;
-                m_distance = Vector3.Distance(m_target, transform.position);
+               // m_distance = Vector3.Distance(m_target, transform.position);
             }
 
 
