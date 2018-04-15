@@ -193,33 +193,6 @@
     <Reference Include="UnityEngine.WindModule">
       <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Timeline">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIAutomation">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GoogleAudioSpatializer">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.HoloLens">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpatialTracking">
-      <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -234,10 +207,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\script\controllers\BetterHeadPlayerController.cs" />
     <Compile Include="Assets\script\controllers\HeadCameraController.cs" />
     <Compile Include="Assets\script\controllers\HeadPlayerController.cs" />
     <Compile Include="Assets\script\gazeAware\GazeObject.cs" />
     <Compile Include="Assets\script\gazeAware\GOChangeColor.cs" />
+    <Compile Include="Assets\script\grapple\BestGrapple.cs" />
     <Compile Include="Assets\script\grapple\Grapple.cs" />
     <Compile Include="Assets\script\grapple\GrapplePoint.cs" />
     <Compile Include="Assets\script\grapple\GrapplePointEditor.cs" />
@@ -257,6 +232,16 @@
     <Compile Include="Assets\script\trash\PlayerController.cs" />
     <Compile Include="Assets\script\trash\SquachStrech.cs" />
     <Compile Include="Assets\script\ui\GazeTrace.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Bezier\CubicBezierCurve.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Bezier\MeshBender.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Bezier\Spline.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Bezier\SplineNode.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Exemple\ExempleFollowSpline.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Exemple\ExemplePipe.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Exemple\ExempleRailling.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Exemple\ExempleSower.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Exemple\ExempleTentacle.cs" />
+    <Compile Include="Assets\SplineMesh\Scripts\Exemple\SplineExtrusion.cs" />
     <Compile Include="Assets\Tobii\Framework\DisplayInfo.cs" />
     <Compile Include="Assets\Tobii\Framework\GazeAware.cs" />
     <Compile Include="Assets\Tobii\Framework\GazePoint.cs" />
@@ -298,6 +283,8 @@
     <Compile Include="Assets\Tobii\Plugins\SimpleJSON.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\PatinGrappin\UnityTutoToonPG.shader" />
+    <None Include="Assets\SplineMesh\Doc.txt" />
     <None Include="Assets\Tobii\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

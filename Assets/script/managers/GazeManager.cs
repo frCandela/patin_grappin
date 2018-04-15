@@ -58,12 +58,15 @@ public class GazeManager : MonoBehaviour
             AverageGazePoint += point.Viewport;
         AverageGazePoint /= m_samples.Count;
 
+
+        Rect rect = m_camera.pixelRect;
+        AverageGazePoint = new Vector2(rect.width * AverageGazePoint.x, rect.height * AverageGazePoint.y);
+
         GameObject currendGazedObject = null;
         //Gets the gazed object
-        if (AverageGazePoint.x >= 0 && AverageGazePoint.x <= 1 && AverageGazePoint.y >= 0 && AverageGazePoint.y <= 1)
+        if (AverageGazePoint.x >= 0 && AverageGazePoint.x <= Screen.width && AverageGazePoint.y >= 0 && AverageGazePoint.y <= Screen.height)
         {
-            Vector2 screenPoint = new Vector2(Screen.width * AverageGazePoint.x, Screen.height * AverageGazePoint.y);
-            Ray ray = m_camera.ScreenPointToRay(screenPoint);
+            Ray ray = m_camera.ScreenPointToRay(AverageGazePoint);
             RaycastHit raycastHit;
             if (Physics.Raycast(ray, out raycastHit, 100f, LayerMask.GetMask("GazeObject")))
             {
@@ -105,10 +108,9 @@ public class GazeManager : MonoBehaviour
     public static Vector3 GetGazeWorldPoint()
     {
         //Gets the gazed object
-        if (AverageGazePoint.x >= 0 && AverageGazePoint.x <= 1 && AverageGazePoint.y >= 0 && AverageGazePoint.y <= 1)
+        if (AverageGazePoint.x >= 0 && AverageGazePoint.x <= Screen.width && AverageGazePoint.y >= 0 && AverageGazePoint.y <= Screen.height)
         {
-            Vector2 screenPoint = new Vector2(Screen.width * AverageGazePoint.x, Screen.height * AverageGazePoint.y);
-            Ray ray = m_camera.ScreenPointToRay(screenPoint);
+            Ray ray = m_camera.ScreenPointToRay(AverageGazePoint);
             RaycastHit raycastHit;
             if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
                 return raycastHit.point;
