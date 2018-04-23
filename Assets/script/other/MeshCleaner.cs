@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public class MeshCleaner : MonoBehaviour {
@@ -15,7 +18,7 @@ public class MeshCleaner : MonoBehaviour {
 		
 	}
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(MeshCleaner))]
 public class MeshCleanerEditor : Editor
 {
@@ -37,3 +40,4 @@ public class MeshCleanerEditor : Editor
         }
     }
 }
+#endif

@@ -89,6 +89,9 @@ public class Spline : MonoBehaviour {
         }
     }
 
+
+
+
     /// <summary>
     /// Returns the point on spline at time. Time must be between 0 and the nodes count.
     /// </summary>
