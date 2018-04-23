@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/scenes/proto4_newRope.unity
-  isLoaded: 1
-  isActive: 1

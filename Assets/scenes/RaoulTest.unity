@@ -1100,7 +1100,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &352880876
 MonoBehaviour:
@@ -2783,6 +2783,22 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.30121964
       objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 60561116cf699a34d93dff926ddb92e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7152954
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 60561116cf699a34d93dff926ddb92e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6254461
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 60561116cf699a34d93dff926ddb92e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.18247373
+      objectReference: {fileID: 0}
+    - target: {fileID: 400056, guid: 60561116cf699a34d93dff926ddb92e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.25273123
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60561116cf699a34d93dff926ddb92e4, type: 3}
   m_IsPrefabParent: 0
@@ -4083,6 +4099,12 @@ MonoBehaviour:
   ikActive: 0
   rightHandObj: {fileID: 588778978}
   lookObj: {fileID: 588778978}
+  isLookAt: 0
+  rayCastOffset: 5
+  raycastDistance: 100
+  leftFootAtGround: 1
+  isGrappine: 0
+  lookOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &1604063088 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4207225441269036, guid: b17e87a3f72c2ba4aaa2690c69519fbd,

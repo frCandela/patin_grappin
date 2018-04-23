@@ -193,6 +193,9 @@
     <Reference Include="UnityEngine.WindModule">
       <HintPath>C:/Program Files/Unity2017.4.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityFbxPrefab">
+      <HintPath>Assets/FbxExporters/UnityFbxPrefab.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -220,6 +223,7 @@
     <Compile Include="Assets\script\managers\GazeManager.cs" />
     <Compile Include="Assets\script\other\Blink.cs" />
     <Compile Include="Assets\script\other\KeepRelativePosition.cs" />
+    <Compile Include="Assets\script\other\MeshCleaner.cs" />
     <Compile Include="Assets\script\other\Util.cs" />
     <Compile Include="Assets\script\trash\EyeTracker.cs" />
     <Compile Include="Assets\script\trash\EyeTrackerSnap.cs" />
@@ -283,6 +287,11 @@
     <Compile Include="Assets\Tobii\Plugins\SimpleJSON.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\FbxExporters\Editor\FbxSdk\LICENSE.txt" />
+    <None Include="Assets\FbxExporters\Editor\FbxSdk\README.txt" />
+    <None Include="Assets\FbxExporters\LICENSE.txt" />
+    <None Include="Assets\FbxExporters\README.txt" />
+    <None Include="Assets\PatinGrappin\UnityTutoToonGround.shader" />
     <None Include="Assets\PatinGrappin\UnityTutoToonPG.shader" />
     <None Include="Assets\SplineMesh\Doc.txt" />
     <None Include="Assets\Tobii\Readme.txt" />
