@@ -16,3 +16,4 @@ Tobii.GameIntegration.dll
 *.csproj
 *.sln
 sh.exe.stackdump
+.vscode
