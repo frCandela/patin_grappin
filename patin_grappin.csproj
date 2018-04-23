@@ -237,6 +237,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PatinGrappin\AnimatorController.cs" />
+    <Compile Include="Assets\PatinGrappin\anime\IKhandling.cs" />
+    <Compile Include="Assets\PatinGrappin\CamToShaderData.cs" />
     <Compile Include="Assets\script\controllers\BetterHeadPlayerController.cs" />
     <Compile Include="Assets\script\controllers\HeadCameraController.cs" />
     <Compile Include="Assets\script\controllers\HeadPlayerController.cs" />
@@ -320,6 +323,7 @@
     <None Include="Assets\FbxExporters\Editor\FbxSdk\README.txt" />
     <None Include="Assets\FbxExporters\LICENSE.txt" />
     <None Include="Assets\FbxExporters\README.txt" />
+    <None Include="Assets\PatinGrappin\ToonEnviro.shader" />
     <None Include="Assets\PatinGrappin\UnityTutoToonGround.shader" />
     <None Include="Assets\PatinGrappin\UnityTutoToonPG.shader" />
     <None Include="Assets\SplineMesh\Doc.txt" />
