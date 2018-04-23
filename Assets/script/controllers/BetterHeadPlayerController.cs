@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class BetterHeadPlayerController : MonoBehaviour
 {
-    [Header("Movement paremeters:")]
+    [Header("Movement parameters:")]
     [SerializeField] private float velocity = 2f;
     [SerializeField] private float boostForce = 15f;
+    [SerializeField] private float turnForce = 150f;
+
 
     //Components references
     private Rigidbody m_rb;
@@ -53,21 +55,27 @@ public class BetterHeadPlayerController : MonoBehaviour
     private void StartBoost()
     {
         m_rb.AddForce(boostForce * m_rb.velocity.normalized, ForceMode.Impulse);
+
+
+
     }
 
     // Update is called once per frame
     void FixedUpdate ()
     {
+        Quaternion trackRot = Quaternion.LookRotation(TrackSection.trackDir);
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
         if (pose.IsValid)// && ! m_grapple.m_grappling)
         {
-            m_rb.AddForce(100 * Vector3.right * pose.Rotation.y, ForceMode.Acceleration);
+            m_rb.AddForce(trackRot *  Vector3.right * turnForce * pose.Rotation.y, ForceMode.Acceleration);
         }
 
-        m_rb.AddForce(m_boostMultiplier * velocity * Vector3.forward, ForceMode.Acceleration);
+        Quaternion headRot = Quaternion.Euler(0, pose.Rotation.eulerAngles.y, 0);
+
+        m_rb.AddForce(headRot * trackRot * Vector3.forward * m_boostMultiplier * velocity, ForceMode.Acceleration);
 
         //rotates the model depending on his speed
-        if(m_rb.velocity.magnitude > 1f)
+        if( m_rb.velocity.magnitude > 1f )
             transform.rotation = Quaternion.LookRotation(m_rb.velocity);
     }
 }
