@@ -11,3 +11,5 @@ UnityPlayer.dll
 build/
 Build/
 UnityPlayer.dll
+export/
+Tobii.GameIntegration.dll
