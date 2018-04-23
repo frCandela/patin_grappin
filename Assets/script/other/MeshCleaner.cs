@@ -34,7 +34,6 @@ public class MeshCleanerEditor : Editor
             MeshFilter mesh = m_meshCleaner.GetComponent<MeshFilter>();
             mesh.sharedMesh.RecalculateNormals();
             mesh.sharedMesh.RecalculateTangents();
-            mesh.sharedMesh.
         }
     }
 }
