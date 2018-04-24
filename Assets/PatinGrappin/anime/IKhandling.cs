@@ -24,9 +24,13 @@ public class IKhandling : MonoBehaviour {
     public Vector3 lookOffset, baseSpineRotation;
     Quaternion spineRotation;
 
+    Quaternion localRotation;
+
     void Start () 
     {
         animator = GetComponent<Animator>();
+
+        localRotation = animator.GetBoneTransform(HumanBodyBones.Spine).localRotation;
     }
     
     //a callback for calculating IK
@@ -85,7 +89,7 @@ public class IKhandling : MonoBehaviour {
                 Quaternion objRotation = Quaternion.LookRotation(pos - bonePos) * Quaternion.Euler(0,180,0);
                 objRotation = Quaternion.Inverse(rotation) * objRotation;
 
-
+                animator.SetBoneLocalRotation(HumanBodyBones.Spine, localRotation * objRotation);
             }
         }
     }    
