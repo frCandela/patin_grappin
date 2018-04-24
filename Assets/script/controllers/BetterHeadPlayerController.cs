@@ -55,9 +55,6 @@ public class BetterHeadPlayerController : MonoBehaviour
     private void StartBoost()
     {
         m_rb.AddForce(boostForce * m_rb.velocity.normalized, ForceMode.Impulse);
-
-
-
     }
 
     // Update is called once per frame
