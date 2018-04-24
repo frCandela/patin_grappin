@@ -22,7 +22,7 @@ public class IKhandling : MonoBehaviour {
     public bool leftFootAtGround = false;
     public bool isGrappine = false;
     public Vector3 lookOffset, baseSpineRotation;
-    Quaternion spineRotation;    
+    Quaternion spineRotation;
 
     void Start () 
     {
@@ -77,15 +77,16 @@ public class IKhandling : MonoBehaviour {
             }
             else animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot,1);
 
-           /* if(isGrappine)
+            if(isGrappine)
             {
-                	spine = animator.GetBoneTransform(HumanBodyBones.Spine);
-                    baseSpineRotation = spine.rotation.eulerAngles;
-                    lookOffset = Vector3.forward - baseSpineRotation;
-                    spineRotation = Quaternion.Euler(lookOffset.x, lookOffset.y, lookOffset.z);
-                    animator.SetBoneLocalRotation(HumanBodyBones.Spine, spineRotation);
-                    
-            }*/
+                Quaternion rotation = animator.GetBoneTransform(HumanBodyBones.Spine).rotation;
+                Vector3 pos = lookObj.transform.position;
+                Vector3 bonePos = animator.GetBoneTransform(HumanBodyBones.Spine).position;
+                Quaternion objRotation = Quaternion.LookRotation(pos - bonePos) * Quaternion.Euler(0,180,0);
+                objRotation = Quaternion.Inverse(rotation) * objRotation;
+
+
+            }
         }
     }    
 }
