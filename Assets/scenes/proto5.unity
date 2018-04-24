@@ -665,8 +665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodes:
-  - position: {x: 0.55513, y: 0, z: -59.86969}
-    direction: {x: -0.04434204, y: 0, z: -40.83384}
+  - position: {x: -2.8063812, y: 0, z: -59.86969}
+    direction: {x: -3.4058533, y: 0, z: -40.83384}
     Changed:
       m_PersistentCalls:
         m_Calls: []
@@ -744,8 +744,8 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   curves:
   - n1:
-      position: {x: 0.55513, y: 0, z: -59.86969}
-      direction: {x: -0.04434204, y: 0, z: -40.83384}
+      position: {x: -2.8063812, y: 0, z: -59.86969}
+      direction: {x: -3.4058533, y: 0, z: -40.83384}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -953,7 +953,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  Length: 662.884
+  Length: 663.07404
   NodeCountChanged:
     m_PersistentCalls:
       m_Calls: []
