@@ -72,7 +72,7 @@ public class IKhandling : MonoBehaviour {
             	lFoot = animator.GetBoneTransform(HumanBodyBones.LeftFoot);
 
             	if (Physics.Raycast(
-                    Vector3.up,
+                    (Vector3.up * rayCastOffset) + lFoot.position,
                     Vector3.down,out leftHit, raycastDistance))
             	{
             			animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot,1);
