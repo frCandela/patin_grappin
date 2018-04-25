@@ -60,7 +60,25 @@ public class BestGrapple : MonoBehaviour
                 m_rope.enabled = true;
                 m_target = newTarget;
                 m_grappleTarget.transform.position = m_target;
-               // m_distance = Vector3.Distance(m_target, transform.position);
+            }
+            else
+            {
+                
+                if (Input.mousePosition.x >= 0 && Input.mousePosition.x <= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit raycastHit;
+                    if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
+                    {
+                        m_grappling = true;
+                        m_rope.enabled = true;
+                        m_target = raycastHit.point;
+                        m_grappleTarget.transform.position = m_target;
+                    }
+                }
+
+
+
             }
 
 

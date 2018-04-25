@@ -6,13 +6,12 @@ using UnityEngine;
 [RequireComponent( typeof(Spline))]
 public class TrackSection : MonoBehaviour
 {
-
-
     [SerializeField] private List<float> searchDeltas = new List<float>();
 
+    Vector3 pos = Vector3.zero;
 
     //Components references
-    private Spline spline;
+    [SerializeField]  private Spline spline;
 
     private void Awake()
     {
@@ -21,28 +20,24 @@ public class TrackSection : MonoBehaviour
 
         //Set search deltas if needed
         if (searchDeltas.Count == 0)
-            searchDeltas.Add(1f);
-    }
-
-
-    public void AlignWith( Track track )
-    {
-
+        {
+            searchDeltas.Add(0.1f);
+        } 
     }
 
     //Returns the tangent on the track spline at the closest position from "target"
     public Vector3 GetTrackTangent(Vector3 target)
     {
         float bestT = 0f;
-        float bestDistannce = float.MaxValue;
+        float bestDistance = float.MaxValue;
 
         //First search on the whole spline
         for (float t = 0; t < spline.Length; t += searchDeltas[0])
         {
             float dist = Vector3.SqrMagnitude(target - spline.GetLocationAlongSplineAtDistance(t) - spline.transform.position);
-            if (dist < bestDistannce)
+            if (dist < bestDistance)
             {
-                bestDistannce = dist;
+                bestDistance = dist;
                 bestT = t;
             }
         }
@@ -53,14 +48,21 @@ public class TrackSection : MonoBehaviour
             for (float t = Mathf.Clamp(bestT - searchDeltas[i - 1], 0, spline.Length); t < Mathf.Clamp(bestT + searchDeltas[i - 1], 0, spline.Length); t += searchDeltas[i])
             {
                 float dist = Vector3.SqrMagnitude(target - spline.GetLocationAlongSplineAtDistance(t) - spline.transform.position);
-                if (dist < bestDistannce)
+                if (dist < bestDistance)
                 {
-                    bestDistannce = dist;
+                    bestDistance = dist;
                     bestT = t;
                 }
             }
         }
 
+        pos = spline.GetLocationAlongSplineAtDistance(bestT);
+
         return spline.transform.position + spline.GetLocationAlongSplineAtDistance(bestT);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(pos, 2f);
     }
 }

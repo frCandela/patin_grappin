@@ -8,7 +8,7 @@ using UnityEngine;
 public class HeadCameraController : MonoBehaviour
 {
     [Header("Linked Instances:")]
-    [SerializeField] private GameObject playerGameObject = null;
+    [SerializeField] private Rigidbody playerRb = null;
     [SerializeField] private Track track = null;
 
 
@@ -18,20 +18,24 @@ public class HeadCameraController : MonoBehaviour
     [SerializeField] private bool headRotation = true;
     [SerializeField] private float headRotationMultiplier = 2f;
 
-    private Vector3 previousTranslation;
-    private Quaternion previousRotation;
+    private Vector3 initialTranslation;
+    private Quaternion initialRotation;
 
     // Use this for initialization
     void Awake ()
     {
-        previousTranslation = transform.position - playerGameObject.transform.position;
-        previousRotation = transform.rotation;
+        //Backup camera position relative to the player
+        initialTranslation = transform.position - playerRb.transform.position;
+        initialRotation = transform.rotation;
+
+        Util.EditorAssert(track != null, "HeadCameraController.Awake(): no track set");
     }
 
     // Update is called once per frame
     void FixedUpdate ()
     {
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
+        //Tobii camera control
         if (pose.IsValid)
         {
             //Saves current position and rotation
@@ -39,20 +43,42 @@ public class HeadCameraController : MonoBehaviour
             Vector3 position = transform.position;
 
             //Reset position and rotation
-            transform.position = playerGameObject.transform.position + previousTranslation;
-            transform.rotation = previousRotation;
+            transform.position = playerRb.transform.position + initialTranslation;
+            transform.rotation = initialRotation;
 
-            Quaternion trackRot = Quaternion.LookRotation(track.trackDirection);
-            //Apply wanted transformation
-            /* if (headRotation)
-                 transform.RotateAround(playerGameObject.transform.position, Vector3.up, pose.Rotation.eulerAngles.y);*/
+            //Apply transformation
+            Quaternion trackRot = Quaternion.LookRotation( track.trackDirection );
             if (headRotation)
-                transform.RotateAround(playerGameObject.transform.position, Vector3.up, trackRot.eulerAngles.y + headRotationMultiplier * pose.Rotation.eulerAngles.y);
+                transform.RotateAround(playerRb.transform.position, Vector3.up, trackRot.eulerAngles.y + headRotationMultiplier * pose.Rotation.eulerAngles.y);
+            else
+                transform.RotateAround(playerRb.transform.position, Vector3.up, trackRot.eulerAngles.y);
 
 
             //Lerp between current position/rotation and the wanted position/rotation
             transform.position = Vector3.Lerp(position, transform.position, lerpSpeedPosition);
             transform.rotation = Quaternion.Lerp(rotation, transform.rotation, lerpSpeedRotation);
         }
+        //Auto control
+        else
+        {
+            //Saves current position and rotation
+            Vector3 position = transform.position;
+            Quaternion rotation = transform.rotation;
+
+            //Reset position and rotation
+            transform.position = playerRb.transform.position + initialTranslation;
+            transform.rotation = initialRotation;
+
+            //Apply transformation
+            //Quaternion trackRot = Quaternion.LookRotation(track.trackDirection);
+            Quaternion trackRot = Quaternion.LookRotation(playerRb.velocity);
+            transform.RotateAround(playerRb.transform.position, Vector3.up, trackRot.eulerAngles.y);
+
+            //Lerp between current position/rotation and the wanted position/rotation
+            transform.position = Vector3.Lerp(position, transform.position, lerpSpeedPosition);
+            transform.rotation = Quaternion.Lerp(rotation, transform.rotation, lerpSpeedRotation);
+        }
     }
+
+
 }
