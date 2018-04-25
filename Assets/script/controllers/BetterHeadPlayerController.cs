@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class BetterHeadPlayerController : MonoBehaviour
 {
+    [Header("Linked Instances:")]
+    [SerializeField] private Track track = null;
+
     [Header("Movement parameters:")]
     [SerializeField] private float velocity = 2f;
     [SerializeField] private float boostForce = 15f;
@@ -25,6 +28,8 @@ public class BetterHeadPlayerController : MonoBehaviour
         m_grapple = GetComponent<BestGrapple>();
 
         Physics.gravity = new Vector3(0, -20, 0);
+
+        Util.EditorAssert(track != null, "BetterHeadPlayerController.Awake(): no track set");
     }
 
     private void Start()
@@ -46,36 +51,55 @@ public class BetterHeadPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
+
         if (Input.GetButtonDown("Grapple"))
-        {
             m_grapple.Toogle();
-        }
+        
+
+
+
     }
 
     private void StartBoost()
     {
         m_rb.AddForce(boostForce * m_rb.velocity.normalized, ForceMode.Impulse);
-
-
-
     }
 
     // Update is called once per frame
     void FixedUpdate ()
     {
-        Quaternion trackRot = Quaternion.LookRotation(TrackSection.trackDir);
+        Quaternion trackRot = Quaternion.LookRotation(track.trackDirection);
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
-        if (pose.IsValid)// && ! m_grapple.m_grappling)
+        
+        //Eye tracker control
+        if (pose.IsValid)
         {
             m_rb.AddForce(trackRot *  Vector3.right * turnForce * pose.Rotation.y, ForceMode.Acceleration);
+            Quaternion headRot = Quaternion.Euler(0, pose.Rotation.eulerAngles.y, 0);
+            m_rb.AddForce(headRot * trackRot * Vector3.forward * m_boostMultiplier * velocity, ForceMode.Acceleration);
+        }
+        //Keyboard control
+        else
+        {
+            m_rb.AddForce( trackRot * Vector3.right * turnForce * Input.GetAxis("Horizontal"), ForceMode.Acceleration);
+            m_rb.AddForce( trackRot * Vector3.forward * m_boostMultiplier * velocity, ForceMode.Acceleration);
         }
 
-        Quaternion headRot = Quaternion.Euler(0, pose.Rotation.eulerAngles.y, 0);
 
-        m_rb.AddForce(headRot * trackRot * Vector3.forward * m_boostMultiplier * velocity, ForceMode.Acceleration);
 
         //rotates the model depending on his speed
         if( m_rb.velocity.magnitude > 1f )
             transform.rotation = Quaternion.LookRotation(m_rb.velocity);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (track.trackDirection != Vector3.zero)
+        {
+            Quaternion trackRot = Quaternion.LookRotation(track.trackDirection);
+            Debug.DrawLine(transform.position, transform.position + trackRot * Vector3.right * turnForce * Input.GetAxis("Horizontal"));
+            Debug.DrawLine(transform.position, transform.position + track.trackDirection);
+        }
+
     }
 }
