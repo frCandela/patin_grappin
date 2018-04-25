@@ -14,6 +14,7 @@ public class HeadCameraController : MonoBehaviour
     [SerializeField] private float lerpSpeedRotation = 0.2f;
     [SerializeField] private float lerpSpeedPosition = 0.2f;
     [SerializeField] private bool headRotation = true;
+    [SerializeField] private float headRotationMultiplier = 2f;
 
     private Vector3 previousTranslation;
     private Quaternion previousRotation;
@@ -39,9 +40,13 @@ public class HeadCameraController : MonoBehaviour
             transform.position = playerGameObject.transform.position + previousTranslation;
             transform.rotation = previousRotation;
 
+            Quaternion trackRot = Quaternion.LookRotation(TrackSection.trackDir);
             //Apply wanted transformation
-            if(headRotation)
-                transform.RotateAround(playerGameObject.transform.position, Vector3.up, pose.Rotation.eulerAngles.y);
+            /* if (headRotation)
+                 transform.RotateAround(playerGameObject.transform.position, Vector3.up, pose.Rotation.eulerAngles.y);*/
+            if (headRotation)
+                transform.RotateAround(playerGameObject.transform.position, Vector3.up, trackRot.eulerAngles.y + headRotationMultiplier * pose.Rotation.eulerAngles.y);
+
 
             //Lerp between current position/rotation and the wanted position/rotation
             transform.position = Vector3.Lerp(position, transform.position, lerpSpeedPosition);
