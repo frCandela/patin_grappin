@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class BetterHeadPlayerController : MonoBehaviour
 {
+    [Header("Linked Instances:")]
+    [SerializeField] private Track track = null;
+
     [Header("Movement parameters:")]
     [SerializeField] private float velocity = 2f;
     [SerializeField] private float boostForce = 15f;
@@ -63,7 +66,7 @@ public class BetterHeadPlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate ()
     {
-        Quaternion trackRot = Quaternion.LookRotation(TrackSection.trackDir);
+        Quaternion trackRot = Quaternion.LookRotation(track.trackDirection);
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
         if (pose.IsValid)// && ! m_grapple.m_grappling)
         {

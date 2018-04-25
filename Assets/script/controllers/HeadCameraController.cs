@@ -9,6 +9,8 @@ public class HeadCameraController : MonoBehaviour
 {
     [Header("Linked Instances:")]
     [SerializeField] private GameObject playerGameObject = null;
+    [SerializeField] private Track track = null;
+
 
     [Header("Parameters:")]
     [SerializeField] private float lerpSpeedRotation = 0.2f;
@@ -40,7 +42,7 @@ public class HeadCameraController : MonoBehaviour
             transform.position = playerGameObject.transform.position + previousTranslation;
             transform.rotation = previousRotation;
 
-            Quaternion trackRot = Quaternion.LookRotation(TrackSection.trackDir);
+            Quaternion trackRot = Quaternion.LookRotation(track.trackDirection);
             //Apply wanted transformation
             /* if (headRotation)
                  transform.RotateAround(playerGameObject.transform.position, Vector3.up, pose.Rotation.eulerAngles.y);*/
