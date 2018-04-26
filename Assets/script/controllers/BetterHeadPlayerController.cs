@@ -16,7 +16,6 @@ public class BetterHeadPlayerController : MonoBehaviour
     [SerializeField] private float maxTurnForce = 0.5f;
     [SerializeField] private float maxRightSpeed = 20f;
 
-
     //Components references
     private Rigidbody m_rb;
     private BestGrapple m_grapple;
@@ -56,10 +55,8 @@ public class BetterHeadPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-
         if (Input.GetButtonDown("Grapple"))
             m_grapple.Toogle();
-
     }
 
     private void StartBoost()
@@ -82,38 +79,24 @@ public class BetterHeadPlayerController : MonoBehaviour
         {
             //forward speed
             m_rb.AddForce(track.GetCurrentTrackSection().trackDirection * velocity, ForceMode.Acceleration);
-
+            
             //Calculates right speed
             Vector3 right = (trackRot * Vector3.right).normalized;
             float rightMagnitude = Vector3.Dot(m_rb.velocity, right);
             
-
+            //Lerp the player velocity yo align it with the track direction
+            if( ! m_grapple.isGrappling)
             m_rb.velocity -= 0.3f * right * rightMagnitude;
 
-
-
-            //Turn right and left
-
+            //Calculates head input
             float headAxis = pose.Rotation.eulerAngles.y;
             if (headAxis > 180)
                 headAxis -= 360;
             headAxis /= 90;
             headAxis = Mathf.Clamp(headAxis, -maxTurnForce, maxTurnForce);
-
-
-
-            m_rb.transform.position = m_rb.transform.position + headAxis * turnForce * right;
-
-
-
-
             
-
-            //m_rb.velocity = velocity * track.trackDirection;
-
-            //m_rb.AddForce(trackRot *  Vector3.right * turnForce * pose.Rotation.y, ForceMode.Acceleration);
-            //Quaternion headRot = Quaternion.Euler(0, pose.Rotation.eulerAngles.y, 0);
-            //m_rb.AddForce(headRot * trackRot * Vector3.forward * m_boostMultiplier * velocity, ForceMode.Acceleration);
+            // Turn right and left
+            m_rb.transform.position = m_rb.transform.position + headAxis * turnForce * right;
         }
         //Keyboard control
         else

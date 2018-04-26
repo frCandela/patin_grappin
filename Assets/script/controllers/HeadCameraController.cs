@@ -48,8 +48,7 @@ public class HeadCameraController : MonoBehaviour
 
             //Apply transformation
             Quaternion trackRot = Quaternion.LookRotation(track.GetCurrentTrackSection().trackDirection );
-            transform.RotateAround(playerRb.transform.position, Vector3.up, trackRot.eulerAngles.y /*+ headRotationMultiplier * pose.Rotation.eulerAngles.y*/);
-
+            transform.RotateAround(playerRb.transform.position, Vector3.up, trackRot.eulerAngles.y + headRotationMultiplier * pose.Rotation.eulerAngles.y);
 
             //Lerp between current position/rotation and the wanted position/rotation
             transform.position = Vector3.Lerp(position, transform.position, lerpSpeedPosition);

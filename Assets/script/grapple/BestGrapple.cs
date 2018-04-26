@@ -15,6 +15,12 @@ public class BestGrapple : MonoBehaviour
     [SerializeField, Range(0f, 1000f)] private float maxDistance = float.MaxValue;
     [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
 
+    public bool isGrappling
+    {
+        get         { return m_grappling;  }
+        private set { m_grappling = value; }
+    }
+
     private Rigidbody m_rigidbody;
 
     private GameObject m_grappleTarget;
