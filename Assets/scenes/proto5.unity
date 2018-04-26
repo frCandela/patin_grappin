@@ -118,6 +118,52 @@ Transform:
   m_PrefabParentObject: {fileID: 4100367229764408, guid: 7cd4ee116d74b1844a6d3de1f1a51bee,
     type: 2}
   m_PrefabInternal: {fileID: 500713491}
+--- !u!1 &182987870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 182987872}
+  - component: {fileID: 182987871}
+  m_Layer: 0
+  m_Name: Track
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &182987871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 182987870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06147b651b7cfc4468df5c3efe6910cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackSections:
+  - {fileID: 2074966459}
+  currentTrackIndex: 0
+  trackLenght: 3
+  cameraAnticipation: 3
+--- !u!4 &182987872
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 182987870}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.89, z: -9.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2074966458}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &500713491
 Prefab:
   m_ObjectHideFlags: 0
@@ -127,15 +173,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4100367229764408, guid: 7cd4ee116d74b1844a6d3de1f1a51bee, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 40.51
       objectReference: {fileID: 0}
     - target: {fileID: 4100367229764408, guid: 7cd4ee116d74b1844a6d3de1f1a51bee, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.89
+      value: 16.7
       objectReference: {fileID: 0}
     - target: {fileID: 4100367229764408, guid: 7cd4ee116d74b1844a6d3de1f1a51bee, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9.5
+      value: -7.4
       objectReference: {fileID: 0}
     - target: {fileID: 4100367229764408, guid: 7cd4ee116d74b1844a6d3de1f1a51bee, type: 2}
       propertyPath: m_LocalRotation.x
@@ -157,6 +203,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114911715630470902, guid: 7cd4ee116d74b1844a6d3de1f1a51bee,
+        type: 2}
+      propertyPath: track
+      value: 
+      objectReference: {fileID: 182987871}
+    - target: {fileID: 114203386494894542, guid: 7cd4ee116d74b1844a6d3de1f1a51bee,
+        type: 2}
+      propertyPath: playerRb
+      value: 
+      objectReference: {fileID: 772523126}
+    - target: {fileID: 114203386494894542, guid: 7cd4ee116d74b1844a6d3de1f1a51bee,
+        type: 2}
+      propertyPath: track
+      value: 
+      objectReference: {fileID: 182987871}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cd4ee116d74b1844a6d3de1f1a51bee, type: 2}
   m_IsPrefabParent: 0
@@ -354,14 +415,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &709963856
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1792730728}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4207225441269036, guid: b17e87a3f72c2ba4aaa2690c69519fbd, type: 2}
       propertyPath: m_LocalPosition.x
@@ -410,11 +471,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b17e87a3f72c2ba4aaa2690c69519fbd, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &810557058 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4207225441269036, guid: b17e87a3f72c2ba4aaa2690c69519fbd,
+--- !u!54 &772523126 stripped
+Rigidbody:
+  m_PrefabParentObject: {fileID: 54316072172545776, guid: 7cd4ee116d74b1844a6d3de1f1a51bee,
     type: 2}
-  m_PrefabInternal: {fileID: 709963856}
+  m_PrefabInternal: {fileID: 500713491}
 --- !u!1 &850370447
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,18 +833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cec6f6ce8a8bd844b1a60b75766b425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  searchDeltas: []
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
-  m_EditorHideFlags: 0
-  m_Enabled: 1
-  m_GameObject: {fileID: 850370447}
---- !u!114 &850370454
-  m_PrefabInternal: {fileID: 0}
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
 --- !u!64 &850370455
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -824,10 +873,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 27871624}
-  - {fileID: 2074966458}
-  - {fileID: 1792730728}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2007198220
 GameObject:
@@ -892,7 +939,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 71.5, y: 19.830002, z: 73.95901}
 --- !u!1 &2074966457
 GameObject:
@@ -902,9 +949,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2074966458}
-  - component: {fileID: 2074966459}
-  - component: {fileID: 2074966461}
   - component: {fileID: 2074966460}
+  - component: {fileID: 2074966459}
   m_Layer: 0
   m_Name: TrackSection
   m_TagString: Untagged
@@ -923,8 +969,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 850370448}
-  m_Father: {fileID: 1985687280}
-  m_RootOrder: 1
+  m_Father: {fileID: 182987872}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2074966459
 MonoBehaviour:
@@ -934,8 +980,66 @@ MonoBehaviour:
   m_GameObject: {fileID: 2074966457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06147b651b7cfc4468df5c3efe6910cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackSections: []
-  trackCount: 5
+  spline: {fileID: 850370452}
+--- !u!114 &2074966460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2074966457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a85c5879d519aa4ab2ebbf42591149a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - position: {x: 5, y: 0, z: 0}
+    direction: {x: 5, y: 0, z: -3}
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - position: {x: 10, y: 0, z: 0}
+    direction: {x: 10, y: 0, z: 3}
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  curves:
+  - n1:
+      position: {x: 5, y: 0, z: 0}
+      direction: {x: 5, y: 0, z: -3}
+      Changed:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    n2:
+      position: {x: 10, y: 0, z: 0}
+      direction: {x: 10, y: 0, z: 3}
+      Changed:
+        m_PersistentCalls:
+          m_Calls: []
+        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  Length: 7.5348897
+  NodeCountChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  CurveChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

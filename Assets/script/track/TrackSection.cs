@@ -6,7 +6,8 @@ using UnityEngine;
 [RequireComponent( typeof(Spline))]
 public class TrackSection : MonoBehaviour
 {
-    [SerializeField] private List<float> searchDeltas = new List<float>();
+    public Vector3 trackDirection { get; private set; }
+    public Vector3 trackPosition { get; private set; }
 
     Vector3 pos = Vector3.zero;
 
@@ -17,19 +18,16 @@ public class TrackSection : MonoBehaviour
     {
         //Get components references
         spline = GetComponent<Spline>();
-
-        //Set search deltas if needed
-        if (searchDeltas.Count == 0)
-        {
-            searchDeltas.Add(0.1f);
-        } 
     }
 
     //Returns the tangent on the track spline at the closest position from "target"
-    public Vector3 GetTrackTangent(Vector3 target)
+    public void UpdateTrack(Vector3 target)
     {
         float bestT = 0f;
         float bestDistance = float.MaxValue;
+
+
+        float[] searchDeltas = new float[] { 5f, 1f, 0.1f};
 
         //First search on the whole spline
         for (float t = 0; t < spline.Length; t += searchDeltas[0])
@@ -43,7 +41,7 @@ public class TrackSection : MonoBehaviour
         }
 
         //Second search around the last best distance
-        for (int i = 1; i < searchDeltas.Count; ++i)
+        for (int i = 1; i < searchDeltas.Length; ++i)
         {
             for (float t = Mathf.Clamp(bestT - searchDeltas[i - 1], 0, spline.Length); t < Mathf.Clamp(bestT + searchDeltas[i - 1], 0, spline.Length); t += searchDeltas[i])
             {
@@ -56,13 +54,13 @@ public class TrackSection : MonoBehaviour
             }
         }
 
-        pos = spline.GetLocationAlongSplineAtDistance(bestT);
-
-        return spline.transform.position + spline.GetLocationAlongSplineAtDistance(bestT);
+        trackDirection = spline.GetTangentAlongSplineAtDistance(bestT);
+        trackPosition = spline.GetLocationAlongSplineAtDistance(bestT);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(pos, 2f);
+        Gizmos.DrawSphere(trackPosition, 2f);
+
     }
 }

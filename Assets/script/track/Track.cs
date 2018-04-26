@@ -5,7 +5,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Track : MonoBehaviour
 {
-    public Vector3 trackDirection { get; private set; }
+
+
 
 
     //Editor parameters
@@ -20,16 +21,18 @@ public class Track : MonoBehaviour
         Util.EditorAssert(trackSections.Count != 0, "Track.Awake: no track set");
     }
 
+
+
     private void Start()
     {
         if (trackSections.Count > 0)
-            trackDirection = trackSections[currentTrackIndex].GetTrackTangent(Camera.main.transform.position + cameraAnticipation * Camera.main.transform.forward);
+            trackSections[currentTrackIndex].UpdateTrack(Camera.main.transform.position + cameraAnticipation * Camera.main.transform.forward);
     }
 
     private void Update()
     {
         if (trackSections.Count > 0)
-             trackDirection = trackSections[currentTrackIndex].GetTrackTangent(Camera.main.transform.position + cameraAnticipation * Camera.main.transform.forward );
+             trackSections[currentTrackIndex].UpdateTrack(Camera.main.transform.position + cameraAnticipation * Camera.main.transform.forward );
     }
 
     private void OnValidate()
@@ -37,6 +40,10 @@ public class Track : MonoBehaviour
         //SetCurrentTrack(currentTrackIndex);
     }
 
+    public TrackSection GetCurrentTrackSection()
+    {
+        return trackSections[currentTrackIndex];
+    }
 
     public void SetCurrentTrack( int value )
     {

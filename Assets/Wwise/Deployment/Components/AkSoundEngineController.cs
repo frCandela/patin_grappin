@@ -145,7 +145,7 @@ public class AkSoundEngineController
 			return;
 #endif
 
-		UnityEngine.Debug.Log("WwiseUnity: Initialize sound engine ...");
+		//UnityEngine.Debug.Log("WwiseUnity: Initialize sound engine ...");
 		basePath = akInitializer.basePath;
 		language = akInitializer.language;
 
@@ -243,7 +243,7 @@ public class AkSoundEngineController
 
 		AkBankManager.Reset();
 
-		UnityEngine.Debug.Log("WwiseUnity: Sound engine initialized.");
+		//UnityEngine.Debug.Log("WwiseUnity: Sound engine initialized.");
 
 		//Load the init bank right away.  Errors will be logged automatically.
 		result = AkSoundEngine.LoadBank("Init.bnk", AkSoundEngine.AK_DEFAULT_POOL_ID, out BankID);
