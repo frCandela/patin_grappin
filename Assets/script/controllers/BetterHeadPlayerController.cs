@@ -16,6 +16,8 @@ public class BetterHeadPlayerController : MonoBehaviour
     [SerializeField] private float maxTurnForce = 0.5f;
     [SerializeField] private float maxRightSpeed = 20f;
 
+    [SerializeField] private float gravity = -20;
+
     //Components references
     private Rigidbody m_rb;
     private BestGrapple m_grapple;
@@ -30,7 +32,7 @@ public class BetterHeadPlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody>();
         m_grapple = GetComponent<BestGrapple>();
 
-        Physics.gravity = new Vector3(0, -20, 0);
+        Physics.gravity = new Vector3(0, gravity, 0);
 
         Util.EditorAssert(track != null, "BetterHeadPlayerController.Awake(): no track set");
     }
