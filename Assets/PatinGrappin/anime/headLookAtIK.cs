@@ -10,7 +10,6 @@ public class headLookAtIK : MonoBehaviour {
 	Animator animator;
 
 	public bool isLookAt;
-	public float lookAtWeight;
 
 
 	// Use this for initialization
@@ -21,11 +20,11 @@ public class headLookAtIK : MonoBehaviour {
 	// Update is called once per frame
 	void OnAnimatorIK () {
 		
-		if(isLookAt && lookTarget != null && lookAtWeight != 0f)
-			{
-				animator.SetLookAtWeight(lookAtWeight);
-				animator.SetLookAtPosition(lookTarget.transform.position);
-			}
+		if(isLookAt && lookTarget != null)
+		{
+			animator.SetLookAtWeight(1);
+			animator.SetLookAtPosition(lookTarget.transform.position);
+		} else animator.SetLookAtWeight(0);
 
 	}
 }

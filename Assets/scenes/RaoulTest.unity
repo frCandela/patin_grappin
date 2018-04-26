@@ -4246,7 +4246,7 @@ MonoBehaviour:
   target: {fileID: 0}
   rayCastOffset: 1
   raycastDistance: 3
-  groundOffset: 0.4
+  groundOffset: 0.35
   leftFootAtGround: 0
 --- !u!136 &1593508785
 CapsuleCollider:
@@ -4267,7 +4267,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1593508783}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63d610085666cc94391d19893953770d, type: 3}
   m_Name: 
@@ -4288,14 +4288,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1593508783}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa1ff2564d634e241adf6ce2507b1e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 588778974}
   isLookAt: 1
-  lookAtWeight: 1
 --- !u!114 &1593508789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4309,6 +4308,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spineTarget: {fileID: 588778974}
   isOriented: 1
+--- !u!114 &1593508790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1593508783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca119e9c9915c94ebbd0e52e6f922e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetIK: {fileID: 588778974}
+  isIK: 0
+  wichHand: 
 --- !u!4 &1604063088 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4207225441269036, guid: b17e87a3f72c2ba4aaa2690c69519fbd,
