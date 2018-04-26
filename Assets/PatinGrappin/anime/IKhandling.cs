@@ -86,7 +86,7 @@ public class IKhandling : MonoBehaviour {
                 Quaternion rotation = animator.GetBoneTransform(HumanBodyBones.Spine).rotation;
                 Vector3 pos = lookObj.transform.position;
                 Vector3 bonePos = animator.GetBoneTransform(HumanBodyBones.Spine).position;
-                Quaternion objRotation = Quaternion.LookRotation(pos - bonePos) * Quaternion.Euler(0,180,0);
+                Quaternion objRotation = Quaternion.LookRotation(pos - bonePos, transform.up) * Quaternion.Euler(0,180,0);
                 objRotation = Quaternion.Inverse(rotation) * objRotation;
 
                 animator.SetBoneLocalRotation(HumanBodyBones.Spine, localRotation * objRotation);
