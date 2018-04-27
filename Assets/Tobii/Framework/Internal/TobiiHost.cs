@@ -34,22 +34,13 @@ namespace Tobii.Gaming.Internal
 
 		public static ITobiiHost GetInstance()
 		{
-			if (_isShuttingDown || !TobiiEulaFile.IsEulaAccepted())
-			{
-				if (!TobiiEulaFile.IsEulaAccepted() && !HasDisplayedEulaError)
-				{
-					Debug.LogError("You need to accept EULA to be able to use Tobii Unity SDK.");
-					HasDisplayedEulaError = true;
-				}
-				return new Stubs.TobiiHostStub();
-			}
 
 			if (_instance != null) return _instance;
 
 			var newGameObject = new GameObject("TobiiHost");
-			DontDestroyOnLoad(newGameObject);
 			_instance = newGameObject.AddComponent<TobiiHost>();
-			return _instance;
+            DontDestroyOnLoad(newGameObject);
+            return _instance;
 		}
 
 
