@@ -110,7 +110,7 @@ public class BetterHeadPlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (track && track.GetCurrentTrackSection().trackDirection != Vector3.zero)
+        /*if (track && track.GetCurrentTrackSection().trackDirection != Vector3.zero)
         {
             Quaternion trackRot = Quaternion.LookRotation(track.GetCurrentTrackSection().trackDirection);
             Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
@@ -118,7 +118,6 @@ public class BetterHeadPlayerController : MonoBehaviour
             Debug.DrawLine(transform.position, transform.position + headRot * trackRot * Vector3.right * turnForce);
 
             Debug.DrawLine(transform.position, transform.position + 20 * track.GetCurrentTrackSection().trackDirection);
-        }
-
+        }*/
     }
 }
