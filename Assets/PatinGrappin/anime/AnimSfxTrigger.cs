@@ -4,12 +4,37 @@ using UnityEngine;
 
 public class AnimSfxTrigger : MonoBehaviour {
 
-	// Use this for initialization
-	void OnTriggerSFX (AnimationEvent animEvent) {
-		Debug.Log("Event");
+	Animator animator;
+	private float isLeftGrounded, isRightGrounded;
 
-		//float floatParam = animEvent.floatParameter;
-		//int intParam = animEvent.intParameter;
+	[SerializeField, Range(0f,1f)] private float footGroundedThreshold = 0.7f;
+	
+
+	void Start ()
+	{
+		animator = GetComponent<Animator>();
+	}
+
+	void Update ()
+	{
+		isLeftGrounded = animator.GetFloat("leftIK");
+		isRightGrounded = animator.GetFloat("rightIK");
+		
+		if (isLeftGrounded >= footGroundedThreshold || isRightGrounded >= footGroundedThreshold)
+		{
+			// play le son de patin
+			// /!\ SAUF SI IL SE JOUE DEJA /!\
+			// mais ya une fonction Wwise pour ça lol
+		}
+		else if (isLeftGrounded < footGroundedThreshold && isRightGrounded < footGroundedThreshold)
+		{
+			// arreter le son de patin
+		}
+	}
+
+	// Function called at every animation event
+	void OnTriggerSFX (AnimationEvent animEvent)
+	{
 		string stringParam = animEvent.stringParameter;
 
 		if(stringParam == "softContact")
@@ -17,21 +42,19 @@ public class AnimSfxTrigger : MonoBehaviour {
 			//do
 		}
 
-		if(stringParam == "hardContact")
+		else if(stringParam == "hardContact")
 		{
 			//do
 		}
 
-		if(stringParam == "softPush")
+		else if(stringParam == "softPush")
 		{
 			AkSoundEngine.PostEvent("Play_Ice_skate_move", gameObject);
 		}
 
-		if(stringParam == "hardPush")
+		else if(stringParam == "hardPush")
 		{
 			//do
 		}
-
-
 	}
 }
