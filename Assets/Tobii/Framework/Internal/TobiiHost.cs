@@ -34,6 +34,7 @@ namespace Tobii.Gaming.Internal
 
 		public static ITobiiHost GetInstance()
 		{
+
 			if (_instance != null) return _instance;
 
 			var newGameObject = new GameObject("TobiiHost");
