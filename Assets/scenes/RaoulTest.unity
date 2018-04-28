@@ -337,7 +337,7 @@ Terrain:
   m_GameObject: {fileID: 118799914}
   m_Enabled: 1
   serializedVersion: 3
-  m_TerrainData: {fileID: 15600000, guid: 23daec917e2ac4e4482b18b8bb74ce8a, type: 2}
+  m_TerrainData: {fileID: 0}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -4246,7 +4246,7 @@ MonoBehaviour:
   target: {fileID: 0}
   rayCastOffset: 1
   raycastDistance: 3
-  groundOffset: 0.35
+  groundOffset: 0.45
   leftFootAtGround: 0
 --- !u!136 &1593508785
 CapsuleCollider:
@@ -4322,6 +4322,29 @@ MonoBehaviour:
   targetIK: {fileID: 588778974}
   isIK: 0
   wichHand: 
+--- !u!114 &1593508791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1593508783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cc4e8cd95adbd43b05afd8ba23dfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footGroundedThreshold: 0.7
+--- !u!114 &1593508792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1593508783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8d9bb45ef592cc40a5a7f5f152b8b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1604063088 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4207225441269036, guid: b17e87a3f72c2ba4aaa2690c69519fbd,
@@ -5419,6 +5442,7 @@ GameObject:
   - component: {fileID: 1989778884}
   - component: {fileID: 1989778885}
   - component: {fileID: 1989778878}
+  - component: {fileID: 1989778886}
   m_Layer: 0
   m_Name: main Camera
   m_TagString: MainCamera
@@ -5555,6 +5579,25 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!114 &1989778886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1989778877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930bc97ef207e2e48838e5f617660c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  bankName: soundbank
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  valueGuid: f1ae1732672a734e81b5460347d99e19
 --- !u!1 &1990170974
 GameObject:
   m_ObjectHideFlags: 0
