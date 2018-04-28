@@ -4,17 +4,17 @@ using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BetterHeadPlayerController : MonoBehaviour
+public class HeadPlayerController1 : MonoBehaviour
 {
     [Header("Linked Instances:")]
     [SerializeField]private Track track = null;
 
     [Header("Movement:")]
-    [SerializeField] private float velocity = 2f;
+    [SerializeField] private float velocity = 50f;
     [SerializeField] private float boostForce = 15f;
-    [SerializeField] private float turnForce = 150f;
+    [SerializeField] private float turnForce = 2.5f;
     [SerializeField] private float maxTurnForce = 0.5f;
-    [SerializeField] private float maxRightSpeed = 20f;
+    [SerializeField] private float maxRightSpeed = 15f;
 
     [Header("Other:")]
     [SerializeField] private float gravity = -20;
@@ -27,6 +27,8 @@ public class BetterHeadPlayerController : MonoBehaviour
     private float m_boostMultiplier = 1f;
     private Vector3 m_previousPosition;
 
+    private Quaternion m_previousRot;
+
     // Use this for initialization
     void Awake ()
     {
@@ -36,6 +38,8 @@ public class BetterHeadPlayerController : MonoBehaviour
         Physics.gravity = new Vector3(0, gravity, 0);
 
         Util.EditorAssert(track != null, "BetterHeadPlayerController.Awake(): no track set");
+
+        m_previousRot = transform.rotation;
     }
 
     private void Start()
@@ -59,7 +63,11 @@ public class BetterHeadPlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (Input.GetButtonDown("Grapple"))
+        {
             m_grapple.Toogle();
+            AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
+        }
+            
     }
 
     private void StartBoost()
@@ -67,49 +75,60 @@ public class BetterHeadPlayerController : MonoBehaviour
         m_rb.AddForce(boostForce * m_rb.velocity.normalized, ForceMode.Impulse);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        //rotates the model depending on his speed
-        transform.rotation = Quaternion.LookRotation(transform.position - m_previousPosition);
-        m_previousPosition = transform.position;
-
-        Quaternion trackRot = Quaternion.LookRotation(track.GetCurrentTrackSection().trackDirection);
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
 
         //Eye tracker control
 
-        //forward speed
-        m_rb.AddForce(track.GetCurrentTrackSection().trackDirection * velocity, ForceMode.Acceleration);
-
-        //Calculates right speed
-        Vector3 right = (trackRot * Vector3.right).normalized;
-        float rightMagnitude = Vector3.Dot(m_rb.velocity, right);
-
-        //Lerp the player velocity yo align it with the track direction
-        if (!m_grapple.isGrappling)
-            m_rb.velocity -= 0.3f * right * rightMagnitude;
-
         //Tobii  control
         if (pose.IsValid)
         {
+
+
+
+            //headAxis = Mathf.Clamp(headAxis, -maxTurnForce, maxTurnForce);
+
+
+            /*transform.Rotate(Vector3.up, turnForce * headAxis);
+
+            Vector3 vel = m_rb.velocity.magnitude * transform.forward;
+            //m_rb.velocity = new Vector3(vel.x, m_rb.velocity.y, vel.z);
+
+            //forward speed
+            m_rb.AddForce(transform.forward * velocity, ForceMode.Acceleration);
+
+            m_previousRot = transform.rotation;*/
+
+            //Quaternion rot = Quaternion.Euler(0, pose.Rotation.eulerAngles.y, 0);
+            //transform.rotation = m_previousRot * rot;
+
+
+            //transform.Rotate(Vector3.up, turnForce * headAxis);
+
+            
+            
             //Calculates head input
             float headAxis = pose.Rotation.eulerAngles.y;
             if (headAxis > 180)
                 headAxis -= 360;
             headAxis /= 90;
-            headAxis = Mathf.Clamp(headAxis, -maxTurnForce, maxTurnForce);
 
-            // Turn right and left
-            m_rb.transform.position = m_rb.transform.position + headAxis * turnForce * right;
-        }
-        //else
-        {
-            float horizontal = 0.5f * Input.GetAxis("Horizontal");
-            horizontal = Mathf.Clamp(horizontal, -maxTurnForce, maxTurnForce);
+            float sign = headAxis > 0 ? 1: -1;
+                 
+           
 
-            // Turn right and left
-            m_rb.transform.position = m_rb.transform.position + horizontal * turnForce * right;
+
+
+            //headAxis = Mathf.Clamp(headAxis, -maxTurnForce, maxTurnForce);
+            //print(headAxis);
+
+
+            transform.Rotate(Vector3.up, turnForce * headAxis);
+
+            float yVel = m_rb.velocity.y;
+            m_rb.velocity = velocity * transform.forward;
+            m_rb.velocity = new Vector3(m_rb.velocity.x, yVel, m_rb.velocity.z);
         }
     }
 

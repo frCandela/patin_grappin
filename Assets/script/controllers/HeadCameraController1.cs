@@ -5,12 +5,11 @@ using UnityEngine;
 
 
 [RequireComponent( typeof(  Camera ))]
-public class HeadCameraController : MonoBehaviour
+public class HeadCameraController1 : MonoBehaviour
 {
     [Header("Linked Instances:")]
     [SerializeField] private Rigidbody playerRb = null;
     [SerializeField] private Track track = null;
-
 
     [Header("Parameters:")]
     [SerializeField] private float lerpSpeedRotation = 0.1f;
@@ -34,7 +33,7 @@ public class HeadCameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate ()
     {
-        Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
+       /* Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
         //Tobii camera control
         if (pose.IsValid)
         {
@@ -73,7 +72,7 @@ public class HeadCameraController : MonoBehaviour
             //Lerp between current position/rotation and the wanted position/rotation
             transform.position = Vector3.Lerp(position, transform.position, lerpSpeedPosition);
             transform.rotation = Quaternion.Lerp(rotation, transform.rotation, lerpSpeedRotation);
-        }
+        }*/
     }
 
 

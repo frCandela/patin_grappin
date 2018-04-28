@@ -6,21 +6,36 @@ using UnityEngine.SceneManagement;
 
 public class HeadPlayerController : MonoBehaviour
 {
-    [Header("Movement paremeters:")]
+    [Header("Linked Instances:")]
+    [SerializeField]private Track track = null;
+
+    [Header("Movement:")]
     [SerializeField] private float velocity = 2f;
     [SerializeField] private float boostForce = 15f;
+    [SerializeField] private float turnForce = 150f;
+    [SerializeField] private float maxTurnForce = 0.5f;
+    [SerializeField] private float maxRightSpeed = 20f;
+
+    [Header("Other:")]
+    [SerializeField] private float gravity = -20;
 
     //Components references
     private Rigidbody m_rb;
+    private BestGrapple m_grapple;
+
 
     private float m_boostMultiplier = 1f;
+    private Vector3 m_previousPosition;
 
     // Use this for initialization
     void Awake ()
     {
         m_rb = GetComponent<Rigidbody>();
+        m_grapple = GetComponent<BestGrapple>();
 
-        Physics.gravity = new Vector3(0, -20, 0);
+        Physics.gravity = new Vector3(0, gravity, 0);
+
+        Util.EditorAssert(track != null, "BetterHeadPlayerController.Awake(): no track set");
     }
 
     private void Start()
@@ -35,12 +50,16 @@ public class HeadPlayerController : MonoBehaviour
 
         //Initial parameters
         m_rb.velocity = 5f * Vector3.forward;
+        m_previousPosition = transform.position - transform.forward;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if (Input.GetButtonDown("Grapple"))
+            m_grapple.Toogle();
     }
 
     private void StartBoost()
@@ -49,20 +68,65 @@ public class HeadPlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate ()
+    void FixedUpdate()
     {
-        Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
-        if (pose.IsValid)// && ! m_grapple.m_grappling)
-        {
-            m_rb.AddForce(100 * Vector3.right * pose.Rotation.y, ForceMode.Acceleration);
-
-            //m_rb.velocity = new Vector3(turningSpeed * (pose.Rotation.y), m_rb.velocity.y, m_rb.velocity.z);
-        }
-
-        m_rb.AddForce(m_boostMultiplier * velocity * Vector3.forward, ForceMode.Acceleration);
-
         //rotates the model depending on his speed
-        if(m_rb.velocity.magnitude > 1f)
-            transform.rotation = Quaternion.LookRotation(m_rb.velocity);
+        transform.rotation = Quaternion.LookRotation(transform.position - m_previousPosition);
+        m_previousPosition = transform.position;
+
+        Quaternion trackRot = Quaternion.LookRotation(track.GetCurrentTrackSection().trackDirection);
+        Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
+
+        //Eye tracker control
+
+        //forward speed
+        m_rb.AddForce(track.GetCurrentTrackSection().trackDirection * velocity, ForceMode.Acceleration);
+
+        //Calculates right speed
+        Vector3 right = (trackRot * Vector3.right).normalized;
+        float rightMagnitude = Vector3.Dot(m_rb.velocity, right);
+
+        //Lerp the player velocity yo align it with the track direction
+        if (!m_grapple.isGrappling)
+            m_rb.velocity -= 0.3f * right * rightMagnitude;
+
+        //Tobii  control
+        if (pose.IsValid)
+        {
+            //Calculates head input
+            float headAxis = pose.Rotation.eulerAngles.y;
+            if (headAxis > 180)
+                headAxis -= 360;
+            headAxis /= 90;
+            headAxis = Mathf.Clamp(headAxis, -maxTurnForce, maxTurnForce);
+
+            // Turn right and left
+            m_rb.transform.position = m_rb.transform.position + headAxis * turnForce * right;
+        }
+        //else
+        {
+            float horizontal = 0.5f * Input.GetAxis("Horizontal");
+            horizontal = Mathf.Clamp(horizontal, -maxTurnForce, maxTurnForce);
+
+            // Turn right and left
+            m_rb.transform.position = m_rb.transform.position + horizontal * turnForce * right;
+        }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+
+
+
+        /*if (track && track.GetCurrentTrackSection().trackDirection != Vector3.zero)
+        {
+            Quaternion trackRot = Quaternion.LookRotation(track.GetCurrentTrackSection().trackDirection);
+            Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
+            Quaternion headRot = Quaternion.Euler(0, pose.Rotation.eulerAngles.y, 0);
+            Debug.DrawLine(transform.position, transform.position + headRot * trackRot * Vector3.right * turnForce);
+
+            Debug.DrawLine(transform.position, transform.position + 20 * track.GetCurrentTrackSection().trackDirection);
+        }*/
     }
 }
