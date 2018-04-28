@@ -25,6 +25,7 @@ public class AnimSfxTrigger : MonoBehaviour {
 			// play le son de patin
 			// /!\ SAUF SI IL SE JOUE DEJA /!\
 			// mais ya une fonction Wwise pour ça lol
+			AkSoundEngine.PostEvent("Play_Granular_Ice", gameObject);
 		}
 		else if (isLeftGrounded < footGroundedThreshold && isRightGrounded < footGroundedThreshold)
 		{
