@@ -15,6 +15,12 @@ public class BestGrapple : MonoBehaviour
     [SerializeField, Range(0f, 1000f)] private float maxDistance = float.MaxValue;
     [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
 
+    public bool isGrappling
+    {
+        get         { return m_grappling;  }
+        private set { m_grappling = value; }
+    }
+
     private Rigidbody m_rigidbody;
 
     private GameObject m_grappleTarget;
@@ -60,7 +66,25 @@ public class BestGrapple : MonoBehaviour
                 m_rope.enabled = true;
                 m_target = newTarget;
                 m_grappleTarget.transform.position = m_target;
-               // m_distance = Vector3.Distance(m_target, transform.position);
+            }
+            else
+            {
+                
+                if (Input.mousePosition.x >= 0 && Input.mousePosition.x <= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)
+                {
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit raycastHit;
+                    if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
+                    {
+                        m_grappling = true;
+                        m_rope.enabled = true;
+                        m_target = raycastHit.point;
+                        m_grappleTarget.transform.position = m_target;
+                    }
+                }
+
+
+
             }
 
 
