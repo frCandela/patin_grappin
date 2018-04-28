@@ -208,8 +208,8 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{21482B35-49C5-492A-9258-62C92B85A1C6}'
-    m_lastTimePart2: -1999262655
-    m_lastTimePsrt1: 1332218284
+    m_lastTimePart2: -1999262457
+    m_lastTimePsrt1: -214508030
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
@@ -237,6 +237,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 2.038771
       minDuration: 2.038771
+    - Guid: 2a89626a0ef74d4a962e2817e25f066e
+      ID: 1534258330
+      Name: Play_Granular_Ice
+      Path: Default Work Unit\Play_Granular_Ice
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Granular_Ice
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: f2d3323f9ff0e34794e418be62835faa
       ID: -1858779148
       Name: Play_Ice_Skate_Dirt
@@ -299,6 +311,8 @@ MonoBehaviour:
       minDuration: 1.229167
   ExpandedItems:
   - /Patin Grappin Wwise
+  - /Patin Grappin Wwise/Events
+  - /Patin Grappin Wwise/Events/Default Work Unit
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
