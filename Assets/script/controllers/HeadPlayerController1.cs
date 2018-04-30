@@ -14,8 +14,7 @@ public class HeadPlayerController1 : MonoBehaviour
     [SerializeField] private float boostForce = 15f;
     [SerializeField] private float turnForce = 2.5f;
     [SerializeField] private float maxTurnForce = 0.5f;
-    [SerializeField] private float maxRightSpeed = 15f;
-
+    [SerializeField] private float powerTurn = 1f;
     [Header("Other:")]
     [SerializeField] private float gravity = -20;
 
@@ -115,8 +114,11 @@ public class HeadPlayerController1 : MonoBehaviour
             headAxis /= 90;
 
             float sign = headAxis > 0 ? 1: -1;
-                 
-           
+
+            headAxis = sign * Mathf.Abs( Mathf.Pow(Mathf.Abs(headAxis), powerTurn));
+
+
+            headAxis = Mathf.Clamp(headAxis, -maxTurnForce, maxTurnForce);
 
 
 
