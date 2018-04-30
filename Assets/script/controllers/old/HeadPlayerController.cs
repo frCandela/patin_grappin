@@ -74,13 +74,13 @@ public class HeadPlayerController : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(transform.position - m_previousPosition);
         m_previousPosition = transform.position;
 
-        Quaternion trackRot = Quaternion.LookRotation(track.GetCurrentTrackSection().trackDirection);
+        Quaternion trackRot = Quaternion.LookRotation(track.trackSection.trackDirection);
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
 
         //Eye tracker control
 
         //forward speed
-        m_rb.AddForce(track.GetCurrentTrackSection().trackDirection * velocity, ForceMode.Acceleration);
+        m_rb.AddForce(track.trackSection.trackDirection * velocity, ForceMode.Acceleration);
 
         //Calculates right speed
         Vector3 right = (trackRot * Vector3.right).normalized;

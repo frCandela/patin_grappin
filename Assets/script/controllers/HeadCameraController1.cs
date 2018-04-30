@@ -8,72 +8,74 @@ using UnityEngine;
 public class HeadCameraController1 : MonoBehaviour
 {
     [Header("Linked Instances:")]
-    [SerializeField] private Rigidbody playerRb = null;
+    [SerializeField] private Rigidbody targetRb = null;
     [SerializeField] private Track track = null;
 
     [Header("Parameters:")]
-    [SerializeField] private float lerpSpeedRotation = 0.1f;
-    [SerializeField] private float lerpSpeedPosition = 0.1f;
+    [SerializeField, Range(0f, 1f)] private float headRotLerpX = 0.1f;
+    [SerializeField, Range(0f, 1f)] private float headRotLerpY = 0.1f;
+    [SerializeField, Range(0f, 1f)] private float headRotLerpZ = 0.1f;
+
+    [SerializeField, Range(0f, 2f)] private float headRotMultiX = 1f;
+    [SerializeField, Range(0f, 2f)] private float headRotMultiY = 1f;
+    [SerializeField, Range(0f, 2f)] private float headRotMultiZ = 1f;
+
     [SerializeField] private float headRotationMultiplier = 1f;
 
-    private Vector3 initialTranslation;
-    private Quaternion initialRotation;
+    private Vector3 m_initialTranslation;
+    private float m_initialDistance;
+    private Quaternion m_initialRotation;
+
+    private float m_prevPoseX = 0;
+    private float m_prevPoseY = 0;
+    private float m_prevPoseZ = 0;
 
     // Use this for initialization
     void Awake ()
     {
-        //Backup camera position relative to the player
-        initialTranslation = transform.position - playerRb.transform.position;
-        initialRotation = transform.rotation;
-
         Util.EditorAssert(track != null, "HeadCameraController.Awake(): no track set");
-        Util.EditorAssert(playerRb != null, "HeadCameraController.Awake(): no playerRb set");
+        Util.EditorAssert(targetRb != null, "HeadCameraController.Awake(): no playerRb set");
+
+        //Backup camera position relative to the player
+        m_initialTranslation = transform.position - targetRb.transform.position;
+        m_initialRotation = transform.rotation;
+        m_initialDistance = m_initialTranslation.magnitude;
     }
 
     // Update is called once per frame
-    void FixedUpdate ()
+    void LateUpdate ()
     {
-       /* Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
-        //Tobii camera control
+        //Backup
+        Quaternion prevRot = transform.rotation;
+        Vector3 prevPos = transform.position;
+
+        //Rotation
+        Vector3 direction = new Vector3(targetRb.velocity.x, 0, targetRb.velocity.z).normalized;
+        transform.position = targetRb.transform.position - m_initialDistance * direction + 0 * Vector3.up;
+        transform.LookAt(targetRb.transform.position);
+
+        transform.RotateAround(targetRb.transform.position, transform.right, 30);
+        transform.RotateAround(transform.position, transform.right, -20);
+
+        Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
+        //Tobii  control
         if (pose.IsValid)
         {
-            //Saves current position and rotation
-            Quaternion rotation = transform.rotation;
-            Vector3 position = transform.position;
+            m_prevPoseX = Mathf.LerpAngle(m_prevPoseX, pose.Rotation.eulerAngles.x, headRotLerpX);
+            transform.RotateAround(transform.position, transform.right, headRotMultiX * m_prevPoseX);
 
-            //Reset position and rotation
-            transform.position = playerRb.transform.position + initialTranslation;
-            transform.rotation = initialRotation;
+            m_prevPoseY = Mathf.LerpAngle(m_prevPoseY, pose.Rotation.eulerAngles.y, headRotLerpY);
+            transform.RotateAround(transform.position, transform.up, headRotMultiY * m_prevPoseY);
 
-            //Apply transformation
-            Quaternion trackRot = Quaternion.LookRotation(track.GetCurrentTrackSection().trackDirection );
-            transform.RotateAround(playerRb.transform.position, Vector3.up, trackRot.eulerAngles.y + headRotationMultiplier * pose.Rotation.eulerAngles.y);
-
-            //Lerp between current position/rotation and the wanted position/rotation
-            transform.position = Vector3.Lerp(position, transform.position, lerpSpeedPosition);
-            transform.rotation = Quaternion.Lerp(rotation, transform.rotation, lerpSpeedRotation);
+            m_prevPoseZ = Mathf.LerpAngle(m_prevPoseZ, pose.Rotation.eulerAngles.z, headRotLerpZ);
+            transform.RotateAround(transform.position, transform.forward, headRotMultiZ * m_prevPoseZ);
         }
-        //Auto control
-        else
-        {
-            //Saves current position and rotation
-            Vector3 position = transform.position;
-            Quaternion rotation = transform.rotation;
 
-            //Reset position and rotation
-            transform.position = playerRb.transform.position + initialTranslation;
-            transform.rotation = initialRotation;
-
-            //Apply transformation
-            //Quaternion trackRot = Quaternion.LookRotation(track.trackDirection);
-            Quaternion trackRot = Quaternion.LookRotation(playerRb.velocity);
-            transform.RotateAround(playerRb.transform.position, Vector3.up, trackRot.eulerAngles.y);
-
-            //Lerp between current position/rotation and the wanted position/rotation
-            transform.position = Vector3.Lerp(position, transform.position, lerpSpeedPosition);
-            transform.rotation = Quaternion.Lerp(rotation, transform.rotation, lerpSpeedRotation);
-        }*/
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(track.trackSection.trackPosition, 1);
+        Gizmos.DrawLine(track.trackSection.trackPosition, track.trackSection.trackPosition + track.trackSection.trackDirection);
+    }
 }

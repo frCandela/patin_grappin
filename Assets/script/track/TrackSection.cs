@@ -17,10 +17,13 @@ public class TrackSection : MonoBehaviour
     private void Awake()
     {
         //Get components references
-        spline = GetComponent<Spline>();
+        //spline = GetComponent<Spline>();
+
+        trackDirection = Vector3.zero;
+        trackPosition = Vector3.zero;
     }
 
-    //Returns the tangent on the track spline at the closest position from "target"
+    //Updates the tangent on the track spline at the closest position from "target"
     public void UpdateTrack(Vector3 target)
     {
         float bestT = 0f;
@@ -54,7 +57,7 @@ public class TrackSection : MonoBehaviour
             }
         }
 
-        trackDirection = spline.GetTangentAlongSplineAtDistance(bestT);
+        trackDirection = spline.GetTangentAlongSplineAtDistance(bestT).normalized;
         trackPosition = spline.GetLocationAlongSplineAtDistance(bestT);
     }
 
