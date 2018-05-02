@@ -188,8 +188,8 @@ MonoBehaviour:
     List: []
   BankWwu:
   - Guid: '{C0465CA0-3063-4D2A-9E15-CDA23CF82C27}'
-    m_lastTimePart2: -1999263237
-    m_lastTimePsrt1: 2094522037
+    m_lastTimePart2: -1999263282
+    m_lastTimePsrt1: -454540785
     ParentPhysicalPath: 
     PhysicalPath: SoundBanks\Default Work Unit.wwu
     List:
@@ -208,83 +208,11 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{21482B35-49C5-492A-9258-62C92B85A1C6}'
-    m_lastTimePart2: -1999262457
-    m_lastTimePsrt1: -214508030
+    m_lastTimePart2: -1999263282
+    m_lastTimePsrt1: -456122909
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
-    - Guid: abde9e8ce6c920478103ab542847143a
-      ID: -655090743
-      Name: Play_Grab_Impact
-      Path: Default Work Unit\Play_Grab_Impact
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Grab_Impact
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 2.049479
-      minDuration: 2.049479
-    - Guid: 2c4e919d1f78e449801f0fba566d9339
-      ID: -921118884
-      Name: Play_Grab_Speed
-      Path: Default Work Unit\Play_Grab_Speed
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Grab_Speed
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 2.038771
-      minDuration: 2.038771
-    - Guid: 2a89626a0ef74d4a962e2817e25f066e
-      ID: 1534258330
-      Name: Play_Granular_Ice
-      Path: Default Work Unit\Play_Granular_Ice
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Granular_Ice
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - Guid: f2d3323f9ff0e34794e418be62835faa
-      ID: -1858779148
-      Name: Play_Ice_Skate_Dirt
-      Path: Default Work Unit\Play_Ice_Skate_Dirt
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Ice_Skate_Dirt
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0.719271
-      minDuration: 0.719271
-    - Guid: 13240842d7c5e94f8a1a4d9406a585ed
-      ID: -1850916304
-      Name: Play_Ice_Skate_Move
-      Path: Default Work Unit\Play_Ice_Skate_Move
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Ice_Skate_Move
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0.833333
-      minDuration: 0.833333
-    - Guid: 7843402f9828ed478d6559e0b81ac63b
-      ID: -1989852346
-      Name: Play_Impact_flap
-      Path: Default Work Unit\Play_Impact_flap
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_Impact_flap
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 1.447937
-      minDuration: 1.447937
     - Guid: b78d78d3a484b8438604a1c5e4e28fe0
       ID: 249738436
       Name: Play_UI_Move
@@ -295,24 +223,13 @@ MonoBehaviour:
       - ElementName: Play_UI_Move
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 1.229167
-      minDuration: 1.229167
-    - Guid: 92a993d44a33d847865c5e1baa77b125
-      ID: 999807850
-      Name: Play_UI_Move_01
-      Path: Default Work Unit\Play_UI_Move_01
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Play_UI_Move_01
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 1.229167
-      minDuration: 1.229167
+      maxDuration: 0
+      minDuration: 0
   ExpandedItems:
   - /Patin Grappin Wwise
   - /Patin Grappin Wwise/Events
   - /Patin Grappin Wwise/Events/Default Work Unit
+  - /Patin Grappin Wwise/Virtual Acoustics
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
