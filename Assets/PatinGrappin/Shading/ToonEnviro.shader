@@ -5,6 +5,7 @@
 		_shadowColor ("Shadow toon Color", Color) = (0,0,0,0)
 		_Color ("Main Color", Color) = (0,0,0,0)
 		_OverColor ("Over Color", Color) = (0,0,0,0)
+		_VolumeInfo ("Color of volume (Lambert)", Color) = (0,0,0,0)
 		_shadowFactor ("Factor of toon shadow", float) = 0
 		_depthFactor ("Factor of depth color", float) = 0
 		_maxDepth ("MAX distance of depth", float) = 0
@@ -16,6 +17,7 @@
 		_BlueColor ("Color of Blue Variation", Color) = (0,0,0,0)
 		_BobbyVector ("Bobby Variation Vector", Vector) = (0,0,0,0)
 		_BobbyColor ("Color of Bobby Variation", Color) = (0,0,0,0)
+		_ReflectIntensity ("Intensity of reflect", float) = 0
 	}
 	SubShader {
 
@@ -51,10 +53,17 @@
 		float3 _BobbyVector;
 		fixed4 _BobbyColor;
 
+		//PlayerReflect
+		float _ReflectIntensity;
+		float4 _PlayerPosition;
+
+		// volume Information color
+		fixed4 _VolumeInfo;
+
 
 		//Fresnel
 		float _FresnelValue, _FresnelIntensity;
-		float3 _camWorldDir;
+		//float3 _camWorldDir;
 		sampler2D _FresnelToonTex;
 
 		struct vertInput
@@ -89,6 +98,10 @@
 			float3 diffDir = normalize (_WorldSpaceLightPos0.xyz);
 			float diffIntensity = dot(diffDir, psIn.normal);
 
+			fixed3 volumeInfo = fixed3(clamp(_VolumeInfo.r + diffIntensity, 0,1),
+				clamp(_VolumeInfo.g + diffIntensity, 0,1),
+				clamp(_VolumeInfo.b + diffIntensity, 0,1));
+
 			//Fresnel
 			float3 toCamVector = normalize(_WorldSpaceCameraPos - psIn.worldPos);
 			//float3 camOrient = UNITY_MATRIX_V[2].xyz;
@@ -116,9 +129,21 @@
 			_camDist = distance(psIn.worldPos, _WorldSpaceCameraPos);
 			float depth = 1 - ( (clamp(_camDist, _minDepth, _maxDepth) - _minDepth) / (_maxDepth - _minDepth) );
 
+			//Reflet Perso
+			float3 toPlayerVector = normalize(_PlayerPosition.xyz - psIn.worldPos);
+			float3 halfVector = normalize(toPlayerVector + toCamVector);
+			float NdotH = clamp(dot(psIn.normal, halfVector), -1, 1);
+			float playerReflect = 1 - pow((NdotH / 2) + 0.5, _ReflectIntensity);
+
+			//Ombre Perso
+			float playerDist = distance(_PlayerPosition.xyz, psIn.worldPos);
+			// float gpasltemps = clamp(playerDist,0, maxDist); ///////////////////////////////////////// A FINIR !!!!!!!!!!!!!!!!!!!!
+
+
 			//Return
 			fixed3 col = (toonCol.rgb * finalColor.rgb * depth) + toonFresnel;
-			return float4(col * _OverColor.xyz, 1.0);
+			//col *= playerReflect;
+			return float4(col * _OverColor.xyz * volumeInfo, 1.0);
 		}
 
 

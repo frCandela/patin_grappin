@@ -18,7 +18,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: launchGrappin
     m_Type: 9
@@ -133,6 +133,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: landing
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: side
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isGrounded
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102100874811463162}
   m_Solo: 0
@@ -238,6 +244,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: landing
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: side
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isGrounded
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102230183504985280}
   m_Solo: 0
@@ -289,7 +301,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: launchGrappin
     m_EventTreshold: 0
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: side
     m_EventTreshold: 0
   - m_ConditionMode: 1
@@ -319,7 +331,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: launchGrappin
     m_EventTreshold: 0
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: side
     m_EventTreshold: 0
   - m_ConditionMode: 1
@@ -516,6 +528,56 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &1102465338841289316
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Armature|AirDown_P
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400018, guid: 60561116cf699a34d93dff926ddb92e4, type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &1102526345707473674
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Armature|AirUp_P
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400020, guid: 60561116cf699a34d93dff926ddb92e4, type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &1102662835939476512
 AnimatorState:
   serializedVersion: 5
@@ -619,13 +681,19 @@ AnimatorStateMachine:
     m_Position: {x: 204, y: -336, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102230183504985280}
-    m_Position: {x: 492, y: -264, z: 0}
+    m_Position: {x: 624, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102100874811463162}
-    m_Position: {x: 612, y: -216, z: 0}
+    m_Position: {x: 624, y: -132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102662835939476512}
     m_Position: {x: 0, y: -288, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102526345707473674}
+    m_Position: {x: 516, y: -324, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102465338841289316}
+    m_Position: {x: 564, y: -276, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 1101171612184819384}
@@ -640,7 +708,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 372, y: -84, z: 0}
+  m_AnyStatePosition: {x: 372, y: -132, z: 0}
   m_EntryPosition: {x: 312, y: 180, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
