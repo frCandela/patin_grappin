@@ -19,7 +19,7 @@ public class HeadPlayerController1 : MonoBehaviour
 
     //Components references
     private Rigidbody m_rb;
-    private BestGrapple m_grapple;
+    private Grapple m_grapple;
 
     // Use this for initialization
     void Awake ()
@@ -27,7 +27,7 @@ public class HeadPlayerController1 : MonoBehaviour
         Util.EditorAssert(track != null, "BetterHeadPlayerController.Awake(): no track set");
 
         m_rb = GetComponent<Rigidbody>();
-        m_grapple = GetComponent<BestGrapple>();
+        m_grapple = GetComponent<Grapple>();
 
         Physics.gravity = new Vector3(0, gravity, 0);
     }

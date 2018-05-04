@@ -208,12 +208,12 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{21482B35-49C5-492A-9258-62C92B85A1C6}'
-    m_lastTimePart2: -1999263268
-    m_lastTimePsrt1: -1193137188
+    m_lastTimePart2: -1999261237
+    m_lastTimePsrt1: 146313896
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
-    - Guid: 73a7de1ad8a795428ce8cb4bb03861a4
+    - Guid: abde9e8ce6c920478103ab542847143a
       ID: -655090743
       Name: Play_Grab_Impact
       Path: Default Work Unit\Play_Grab_Impact
@@ -223,8 +223,8 @@ MonoBehaviour:
       - ElementName: Play_Grab_Impact
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 2.049479
+      minDuration: 2.049479
     - Guid: 2c4e919d1f78e449801f0fba566d9339
       ID: -921118884
       Name: Play_Grab_Speed
@@ -235,8 +235,32 @@ MonoBehaviour:
       - ElementName: Play_Grab_Speed
         ObjectType: 3
       maxAttenuation: 0
+      maxDuration: 2.038771
+      minDuration: 2.038771
+    - Guid: 2a89626a0ef74d4a962e2817e25f066e
+      ID: 1534258330
+      Name: Play_Granular_Ice
+      Path: Default Work Unit\Play_Granular_Ice
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Granular_Ice
+        ObjectType: 3
+      maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: f2d3323f9ff0e34794e418be62835faa
+      ID: -1858779148
+      Name: Play_Ice_Skate_Dirt
+      Path: Default Work Unit\Play_Ice_Skate_Dirt
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ice_Skate_Dirt
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0.377513
+      minDuration: 0.298941
     - Guid: 13240842d7c5e94f8a1a4d9406a585ed
       ID: -1850916304
       Name: Play_Ice_Skate_Move
@@ -245,6 +269,30 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: Play_Ice_Skate_Move
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0.28094
+      minDuration: 0.222468
+    - Guid: a5c861cf0751f44895e34ac3668156cd
+      ID: -21784722
+      Name: Play_Ice_Skate_Reception
+      Path: Default Work Unit\Play_Ice_Skate_Reception
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ice_Skate_Reception
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0.754
+      minDuration: 0.754
+    - Guid: 5018359e60c5964abfb9a783f7ba6612
+      ID: -1693291564
+      Name: Play_Ice_Skate_Slow
+      Path: Default Work Unit\Play_Ice_Skate_Slow
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ice_Skate_Slow
         ObjectType: 3
       maxAttenuation: 0
       maxDuration: 0
@@ -259,8 +307,8 @@ MonoBehaviour:
       - ElementName: Play_Impact_flap
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 1.447937
+      minDuration: 1.447937
     - Guid: b78d78d3a484b8438604a1c5e4e28fe0
       ID: 249738436
       Name: Play_UI_Move
@@ -271,8 +319,8 @@ MonoBehaviour:
       - ElementName: Play_UI_Move
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 1.229167
+      minDuration: 1.229167
     - Guid: 92a993d44a33d847865c5e1baa77b125
       ID: 999807850
       Name: Play_UI_Move_01
@@ -283,13 +331,24 @@ MonoBehaviour:
       - ElementName: Play_UI_Move_01
         ObjectType: 3
       maxAttenuation: 0
+      maxDuration: 1.229167
+      minDuration: 1.229167
+    - Guid: e8039925a6a08a4eaaeb9c602af5d72d
+      ID: -1062360728
+      Name: Stop_Granular_Ice
+      Path: Default Work Unit\Stop_Granular_Ice
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stop_Granular_Ice
+        ObjectType: 3
+      maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
   ExpandedItems:
   - /Patin Grappin Wwise
   - /Patin Grappin Wwise/Events
   - /Patin Grappin Wwise/Events/Default Work Unit
-  - /Patin Grappin Wwise/SoundBanks
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0

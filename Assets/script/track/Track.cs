@@ -11,7 +11,6 @@ public class Track : MonoBehaviour
     [SerializeField] private int currentTrackIndex;
     [SerializeField] private float cameraAnticipation = 3;
 
-
     public TrackSection trackSection
     {
         get { return trackSections[currentTrackIndex]; }

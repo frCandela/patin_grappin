@@ -1177,34 +1177,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.59
   m_Center: {x: 0, y: 0.51, z: 0.09}
---- !u!1 &348635335
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 348635336}
-  m_Layer: 0
-  m_Name: TobiiAPI_UniqueId
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &348635336
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 348635335}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377497420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,13 +1653,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 563637638}
-  m_LocalRotation: {x: 0.1587123, y: -0, z: -0, w: 0.9873249}
-  m_LocalPosition: {x: 0, y: 7.83, z: -7.8}
+  m_LocalRotation: {x: 0.16096255, y: -0, z: -0, w: 0.9869605}
+  m_LocalPosition: {x: 0, y: 3.93, z: -4.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 578082954}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 18.264, y: 0, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 18.526001, y: 0, z: 0}
 --- !u!114 &563637640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,12 +1788,12 @@ MonoBehaviour:
   headRotLerpX: 0.1
   headRotLerpY: 0.1
   headRotLerpZ: 0.1
-  headRotMultiX: 1
-  headRotMultiY: 1
+  headRotMultiX: 0.5
+  headRotMultiY: 0.5
   headRotMultiZ: 0
   lerpPosition: 0.2
   lerpRotationY: 0.5
-  lerpRotationXZ: 0.01
+  lerpRotationXZ: 0.1
 --- !u!1 &567576158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,10 +1852,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 2.7, z: -33.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1252013032}
   - {fileID: 563637639}
+  - {fileID: 1252013032}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &586614016
 GameObject:
@@ -2929,7 +2901,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4132177133933036, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4132177133933036, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
       propertyPath: m_LocalRotation.y
@@ -2937,7 +2909,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4132177133933036, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4132177133933036, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
       propertyPath: m_LocalRotation.w
@@ -3271,7 +3243,7 @@ Transform:
   m_Children:
   - {fileID: 680256750}
   m_Father: {fileID: 578082954}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1261258462
 GameObject:
@@ -5598,46 +5570,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2034139812}
   m_Mesh: {fileID: 4300004, guid: 9149b010c2de52f49ad44dee5494fd00, type: 3}
---- !u!1 &2056201331
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2056201333}
-  - component: {fileID: 2056201332}
-  m_Layer: 0
-  m_Name: TobiiHost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2056201332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2056201331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa46e71b24e4dcd438dda7da20e4f6d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2056201333
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2056201331}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2077043093
 GameObject:
   m_ObjectHideFlags: 0

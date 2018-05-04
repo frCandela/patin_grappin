@@ -55,7 +55,7 @@ public class AnimSfxTrigger : MonoBehaviour {
 
 		else if(stringParam == "hardPush")
 		{
-			//do
-		}
+            AkSoundEngine.PostEvent("Play_Ice_Skate_Dirt", gameObject);
+        }
 	}
 }
