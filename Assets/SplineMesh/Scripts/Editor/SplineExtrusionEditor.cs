@@ -158,10 +158,7 @@ public class SplineExtrusionEditor : Editor
             se.GenerateMesh();
         }
 
-
-
         GUI.enabled = true;
-
 
         // Properties
         EditorGUILayout.PropertyField(textureScale, true);
