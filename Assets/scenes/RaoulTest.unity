@@ -1026,7 +1026,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 352880869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.120932505, y: 166.44, z: 30.53573}
+  m_LocalPosition: {x: 0.120932505, y: 166.54, z: 30.53573}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1288245623}
@@ -1039,7 +1039,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 352880869}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1075,12 +1075,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 352880869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48f5dde24f2915449b8a347fbbb2c79d, type: 3}
+  m_Script: {fileID: 11500000, guid: 98181a0da75cd394b812ac56c514476f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 8
-  boostForce: 15
-  turnForce: 150
 --- !u!33 &352880873
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2794,7 +2791,19 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114741857907666794, guid: 0e657f307cb4c324895dfeeefab46c01,
+        type: 2}
+      propertyPath: lookTarget
+      value: 
+      objectReference: {fileID: 588778974}
+    m_RemovedComponents:
+    - {fileID: 114672804214670324, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
+    - {fileID: 114056226196018954, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
+    - {fileID: 114708570755301328, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
+    - {fileID: 114351982871912200, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
+    - {fileID: 114431711160367280, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
+    - {fileID: 114530789687428694, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
+    - {fileID: 114371821118127762, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1110180463
@@ -5223,11 +5232,10 @@ GameObject:
   - component: {fileID: 1989778880}
   - component: {fileID: 1989778879}
   - component: {fileID: 1989778883}
-  - component: {fileID: 1989778882}
-  - component: {fileID: 1989778884}
   - component: {fileID: 1989778885}
   - component: {fileID: 1989778878}
   - component: {fileID: 1989778886}
+  - component: {fileID: 1989778887}
   m_Layer: 0
   m_Name: main Camera
   m_TagString: MainCamera
@@ -5304,22 +5312,6 @@ Transform:
   m_Father: {fileID: 1985687280}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5.631, y: 0, z: 0}
---- !u!114 &1989778882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1989778877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6332aa0bf36ac044c95fe3ea827ac646, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerGameObject: {fileID: 352880869}
-  lerpSpeedRotation: 0.1
-  lerpSpeedPosition: 0.1
-  headRotation: 1
-  headRotationMultiplier: 2
 --- !u!114 &1989778883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5332,17 +5324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbSamples: 10
---- !u!114 &1989778884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1989778877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a09052d7d550f42a754357791b33c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1989778885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5383,6 +5364,21 @@ MonoBehaviour:
   saveDecodedBank: 0
   unloadTriggerList: 958ca0ea
   valueGuid: f1ae1732672a734e81b5460347d99e19
+--- !u!54 &1989778887
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1989778877}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1990170974
 GameObject:
   m_ObjectHideFlags: 0

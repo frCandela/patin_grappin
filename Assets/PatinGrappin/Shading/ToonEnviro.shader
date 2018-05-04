@@ -18,6 +18,7 @@
 		_BobbyVector ("Bobby Variation Vector", Vector) = (0,0,0,0)
 		_BobbyColor ("Color of Bobby Variation", Color) = (0,0,0,0)
 		_ReflectIntensity ("Intensity of reflect", float) = 0
+		_MaxShadowDist ("Max Player Shadow Distance", float) = 1
 	}
 	SubShader {
 
@@ -59,6 +60,9 @@
 
 		// volume Information color
 		fixed4 _VolumeInfo;
+
+		// Shadow
+		float _MaxShadowDist;
 
 
 		//Fresnel
@@ -137,12 +141,15 @@
 
 			//Ombre Perso
 			float playerDist = distance(_PlayerPosition.xyz, psIn.worldPos);
-			// float gpasltemps = clamp(playerDist,0, maxDist); ///////////////////////////////////////// A FINIR !!!!!!!!!!!!!!!!!!!!
+			float shadowValue = clamp(playerDist / _MaxShadowDist, 0, 1);
+
+			
 
 
 			//Return
 			fixed3 col = (toonCol.rgb * finalColor.rgb * depth) + toonFresnel;
 			//col *= playerReflect;
+			col *= shadowValue;
 			return float4(col * _OverColor.xyz * volumeInfo, 1.0);
 		}
 
