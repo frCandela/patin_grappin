@@ -208,8 +208,8 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{21482B35-49C5-492A-9258-62C92B85A1C6}'
-    m_lastTimePart2: -1999262457
-    m_lastTimePsrt1: -214508030
+    m_lastTimePart2: -1999261635
+    m_lastTimePsrt1: 1487079945
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
@@ -259,8 +259,8 @@ MonoBehaviour:
       - ElementName: Play_Ice_Skate_Dirt
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 0.719271
-      minDuration: 0.719271
+      maxDuration: 0.377513
+      minDuration: 0.298941
     - Guid: 13240842d7c5e94f8a1a4d9406a585ed
       ID: -1850916304
       Name: Play_Ice_Skate_Move
@@ -271,8 +271,20 @@ MonoBehaviour:
       - ElementName: Play_Ice_Skate_Move
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 0.833333
-      minDuration: 0.833333
+      maxDuration: 0.28094
+      minDuration: 0.222468
+    - Guid: a5c861cf0751f44895e34ac3668156cd
+      ID: -21784722
+      Name: Play_Ice_Skate_Reception
+      Path: Default Work Unit\Play_Ice_Skate_Reception
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ice_Skate_Reception
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0.754
+      minDuration: 0.754
     - Guid: 7843402f9828ed478d6559e0b81ac63b
       ID: -1989852346
       Name: Play_Impact_flap
@@ -309,6 +321,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1.229167
       minDuration: 1.229167
+    - Guid: e8039925a6a08a4eaaeb9c602af5d72d
+      ID: -1062360728
+      Name: Stop_Granular_Ice
+      Path: Default Work Unit\Stop_Granular_Ice
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stop_Granular_Ice
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
   ExpandedItems:
   - /Patin Grappin Wwise
   - /Patin Grappin Wwise/Events

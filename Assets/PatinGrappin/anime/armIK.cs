@@ -27,10 +27,10 @@ public class armIK : MonoBehaviour {
 	// Update is called once per frame
 	void OnAnimatorIK () {
 
-		targetPos = targetIK.transform.position;
-
-		if(isIK)
+		if(isIK && targetIK)
 		{
+			targetPos = targetIK.transform.position;
+
 			if(wichHand == "left")
 			{
 				animator.SetIKPositionWeight(leftHand, 1f);

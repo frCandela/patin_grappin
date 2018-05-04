@@ -11,7 +11,7 @@ AnimatorController:
   - m_Name: animationControl
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 2
+    m_DefaultInt: 3
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: side
@@ -133,6 +133,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: landing
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: side
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102100874811463162}
   m_Solo: 0
@@ -238,6 +241,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: landing
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: side
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102230183504985280}
   m_Solo: 0
@@ -289,7 +295,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: launchGrappin
     m_EventTreshold: 0
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: side
     m_EventTreshold: 0
   - m_ConditionMode: 1
@@ -319,7 +325,7 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: launchGrappin
     m_EventTreshold: 0
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: side
     m_EventTreshold: 0
   - m_ConditionMode: 1
