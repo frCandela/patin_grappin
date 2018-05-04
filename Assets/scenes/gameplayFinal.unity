@@ -3155,9 +3155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   track: {fileID: 152303353}
   initialVelocity: 2
-  forwardForce: 100
-  maxTurnForce: 0.5
-  turnForce: 10
+  forwardForce: 30
+  turnForce: 300
+  maxheadYAngle: 20
   gravity: -20
 --- !u!114 &1252013029
 MonoBehaviour:

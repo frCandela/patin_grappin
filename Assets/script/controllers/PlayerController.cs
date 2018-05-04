@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement:")]
     [SerializeField] private float initialVelocity = 2f;
-    [SerializeField] private float forwardForce = 2f;
-    [SerializeField] private float turnForce = 150f;
+    [SerializeField] private float forwardForce = 30f;
+    [SerializeField] private float turnForce = 300f;
 
     [SerializeField] private float maxheadYAngle = 20f;
     /* [SerializeField] private float boostForce = 15f;
