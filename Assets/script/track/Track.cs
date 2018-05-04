@@ -5,23 +5,23 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Track : MonoBehaviour
 {
-
-
-
-
     //Editor parameters
     [Header("Track: ")]
     [SerializeField] private List<TrackSection> trackSections = new List<TrackSection>();
     [SerializeField] private int currentTrackIndex;
-    [SerializeField, Range( 1,10)] private int trackLenght = 3;
     [SerializeField] private float cameraAnticipation = 3;
+
+
+    public TrackSection trackSection
+    {
+        get { return trackSections[currentTrackIndex]; }
+        set { }
+    }
 
     private void Awake()
     {
-        Util.EditorAssert(trackSections.Count != 0, "Track.Awake: no track set");
+        Util.EditorAssert(trackSections.Count != 0, "Track.Awake: no track set"); 
     }
-
-
 
     private void Start()
     {
@@ -33,16 +33,6 @@ public class Track : MonoBehaviour
     {
         if (trackSections.Count > 0)
              trackSections[currentTrackIndex].UpdateTrack(Camera.main.transform.position + cameraAnticipation * Camera.main.transform.forward );
-    }
-
-    private void OnValidate()
-    {
-        //SetCurrentTrack(currentTrackIndex);
-    }
-
-    public TrackSection GetCurrentTrackSection()
-    {
-        return trackSections[currentTrackIndex];
     }
 
     public void SetCurrentTrack( int value )

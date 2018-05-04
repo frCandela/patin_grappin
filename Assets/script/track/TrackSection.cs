@@ -9,18 +9,20 @@ public class TrackSection : MonoBehaviour
     public Vector3 trackDirection { get; private set; }
     public Vector3 trackPosition { get; private set; }
 
-    Vector3 pos = Vector3.zero;
-
     //Components references
     [SerializeField]  private Spline spline;
+    [SerializeField] bool invertDirection = false;
 
     private void Awake()
     {
         //Get components references
-        spline = GetComponent<Spline>();
+        //spline = GetComponent<Spline>();
+
+        trackDirection = Vector3.zero;
+        trackPosition = Vector3.zero;
     }
 
-    //Returns the tangent on the track spline at the closest position from "target"
+    //Updates the tangent on the track spline at the closest position from "target"
     public void UpdateTrack(Vector3 target)
     {
         float bestT = 0f;
@@ -54,7 +56,13 @@ public class TrackSection : MonoBehaviour
             }
         }
 
-        trackDirection = spline.GetTangentAlongSplineAtDistance(bestT);
+        //Set direction
+        if(invertDirection)
+            trackDirection = - spline.GetTangentAlongSplineAtDistance(bestT).normalized;
+        else
+            trackDirection = spline.GetTangentAlongSplineAtDistance(bestT).normalized;
+
+        //Set position
         trackPosition = spline.GetLocationAlongSplineAtDistance(bestT);
     }
 
