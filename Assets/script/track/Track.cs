@@ -9,7 +9,6 @@ public class Track : MonoBehaviour
     [Header("Track: ")]
     [SerializeField] private List<TrackSection> trackSections = new List<TrackSection>();
     [SerializeField] private int currentTrackIndex;
-    [SerializeField, Range( 1,10)] private int trackLenght = 3;
     [SerializeField] private float cameraAnticipation = 3;
 
 

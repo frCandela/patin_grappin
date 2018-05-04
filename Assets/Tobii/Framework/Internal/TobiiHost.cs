@@ -16,7 +16,6 @@ namespace Tobii.Gaming.Internal
 	{
 		private static bool _isConnected;
 		private static TobiiHost _instance;
-		private static bool _isShuttingDown;
 
 		private GameViewBoundsProvider _gameViewBoundsProvider;
 		private GameViewInfo _gameViewInfo = GameViewInfo.DefaultGameViewInfo;
@@ -46,8 +45,6 @@ namespace Tobii.Gaming.Internal
 
 		public void Shutdown()
 		{
-			_isShuttingDown = true;
-
 			Disconnect();
 		}
 

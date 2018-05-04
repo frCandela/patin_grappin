@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [RequireComponent( typeof(  Camera ))]
-public class HeadCameraController1 : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [Header("Linked Instances:")]
     [SerializeField] private Rigidbody targetRb = null;
@@ -20,11 +20,8 @@ public class HeadCameraController1 : MonoBehaviour
     [SerializeField, Range(0f, 2f)] private float headRotMultiY = 1f;
     [SerializeField, Range(0f, 2f)] private float headRotMultiZ = 1f;
 
-    [SerializeField] private float headRotationMultiplier = 1f;
-
     private Vector3 m_initialTranslation;
     private float m_initialDistance;
-    private Quaternion m_initialRotation;
 
     private float m_prevPoseX = 0;
     private float m_prevPoseY = 0;
@@ -38,7 +35,6 @@ public class HeadCameraController1 : MonoBehaviour
 
         //Backup camera position relative to the player
         m_initialTranslation = transform.position - targetRb.transform.position;
-        m_initialRotation = transform.rotation;
         m_initialDistance = m_initialTranslation.magnitude;
     }
 

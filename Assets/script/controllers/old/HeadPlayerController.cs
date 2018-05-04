@@ -14,7 +14,6 @@ public class HeadPlayerController : MonoBehaviour
     [SerializeField] private float boostForce = 15f;
     [SerializeField] private float turnForce = 150f;
     [SerializeField] private float maxTurnForce = 0.5f;
-    [SerializeField] private float maxRightSpeed = 20f;
 
     [Header("Other:")]
     [SerializeField] private float gravity = -20;
@@ -23,8 +22,6 @@ public class HeadPlayerController : MonoBehaviour
     private Rigidbody m_rb;
     private BestGrapple m_grapple;
 
-
-    private float m_boostMultiplier = 1f;
     private Vector3 m_previousPosition;
 
     // Use this for initialization
@@ -36,6 +33,7 @@ public class HeadPlayerController : MonoBehaviour
         Physics.gravity = new Vector3(0, gravity, 0);
 
         Util.EditorAssert(track != null, "BetterHeadPlayerController.Awake(): no track set");
+
     }
 
     private void Start()

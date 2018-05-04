@@ -11,7 +11,6 @@ public class HeadPlayerController1 : MonoBehaviour
 
     [Header("Movement:")]
     [SerializeField] private float velocity = 50f;
-    [SerializeField] private float boostForce = 15f;
     [SerializeField] private float turnForce = 2.5f;
     [SerializeField] private float maxTurnForce = 0.5f;
     [SerializeField] private float powerTurn = 1f;

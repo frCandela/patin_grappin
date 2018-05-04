@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 [RequireComponent( typeof( Rigidbody))]
 
-public class PlayerController : MonoBehaviour
+public class RemPlayerController : MonoBehaviour
 {
     [Header("References:")]
     [SerializeField] private PlayerCameraController cameraController = null;
