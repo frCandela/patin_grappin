@@ -9,10 +9,9 @@ public class TrackSection : MonoBehaviour
     public Vector3 trackDirection { get; private set; }
     public Vector3 trackPosition { get; private set; }
 
-    Vector3 pos = Vector3.zero;
-
     //Components references
     [SerializeField]  private Spline spline;
+    [SerializeField] bool invertDirection = false;
 
     private void Awake()
     {
@@ -57,7 +56,13 @@ public class TrackSection : MonoBehaviour
             }
         }
 
-        trackDirection = spline.GetTangentAlongSplineAtDistance(bestT).normalized;
+        //Set direction
+        if(invertDirection)
+            trackDirection = - spline.GetTangentAlongSplineAtDistance(bestT).normalized;
+        else
+            trackDirection = spline.GetTangentAlongSplineAtDistance(bestT).normalized;
+
+        //Set position
         trackPosition = spline.GetLocationAlongSplineAtDistance(bestT);
     }
 
