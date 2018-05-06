@@ -13,9 +13,9 @@ public class HeadCameraController : MonoBehaviour
 
 
     [Header("Parameters:")]
-    [SerializeField] private float lerpSpeedRotation = 0.2f;
-    [SerializeField] private float lerpSpeedPosition = 0.2f;
-    [SerializeField] private float headRotationMultiplier = 2f;
+    [SerializeField] private float lerpSpeedRotation = 0.1f;
+    [SerializeField] private float lerpSpeedPosition = 0.1f;
+    [SerializeField] private float headRotationMultiplier = 1f;
 
     private Vector3 initialTranslation;
     private Quaternion initialRotation;
@@ -23,12 +23,12 @@ public class HeadCameraController : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
+        Util.EditorAssert(track != null, "HeadCameraController.Awake(): no track set");
+        Util.EditorAssert(playerRb != null, "HeadCameraController.Awake(): no playerRb set");
+
         //Backup camera position relative to the player
         initialTranslation = transform.position - playerRb.transform.position;
         initialRotation = transform.rotation;
-
-        Util.EditorAssert(track != null, "HeadCameraController.Awake(): no track set");
-        Util.EditorAssert(playerRb != null, "HeadCameraController.Awake(): no playerRb set");
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class HeadCameraController : MonoBehaviour
             transform.rotation = initialRotation;
 
             //Apply transformation
-            Quaternion trackRot = Quaternion.LookRotation(track.GetCurrentTrackSection().trackDirection );
+            Quaternion trackRot = Quaternion.LookRotation(track.trackSection.trackDirection );
             transform.RotateAround(playerRb.transform.position, Vector3.up, trackRot.eulerAngles.y + headRotationMultiplier * pose.Rotation.eulerAngles.y);
 
             //Lerp between current position/rotation and the wanted position/rotation
