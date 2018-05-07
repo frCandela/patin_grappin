@@ -49,7 +49,6 @@ public class armIK : MonoBehaviour {
 		{
 			animator.SetIKPositionWeight(leftHand, 0f);
 			animator.SetIKPositionWeight(rightHand, 0f);
-		}*/
-		
+		}	
 	}
 }
