@@ -11,7 +11,6 @@ public class HeadCameraController : MonoBehaviour
     [SerializeField] private Rigidbody playerRb = null;
     [SerializeField] private Track track = null;
 
-
     [Header("Parameters:")]
     [SerializeField] private float lerpSpeedRotation = 0.1f;
     [SerializeField] private float lerpSpeedPosition = 0.1f;
