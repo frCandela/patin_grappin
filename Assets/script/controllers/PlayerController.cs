@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -16,20 +17,30 @@ public class PlayerController : MonoBehaviour
     [Header("Other:")]
     [SerializeField] private float gravity = -20;
 
+    [Header("Events:")]
+    public UnityEvent onGrappleLaunch;
+    public UnityEvent onGrappleReset;
+
     //Components references
     private Rigidbody m_rb;
     private Grapple m_grapple;
     private Track m_track = null;
+    
 
     // Use this for initialization
     void Awake ()
     {
+        //Set references
         m_track = FindObjectOfType<Track>();
-
         m_rb = GetComponent<Rigidbody>();
         m_grapple = GetComponent<Grapple>();
+        onGrappleLaunch = new UnityEvent();
 
         Physics.gravity = new Vector3(0, gravity, 0);
+
+        //Set events
+        onGrappleLaunch = new UnityEvent();
+        onGrappleReset = new UnityEvent();
     }
 
     private void Start()
@@ -42,12 +53,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (Input.GetButtonDown("Grapple") && m_grapple.Throw())
+            onGrappleLaunch.Invoke();
 
-        if (Input.GetButtonDown("Grapple"))
-            m_grapple.Toogle( true );
-        if (Input.GetButtonUp("Grapple"))
-            m_grapple.Toogle(false);
-            
+        if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
+            onGrappleReset.Invoke();
     }
 
     // Update is called once per frame

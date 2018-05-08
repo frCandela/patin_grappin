@@ -50,47 +50,46 @@ public class Grapple : MonoBehaviour
         m_rope.enabled = false;
     }
 
-    public void Toogle( bool state )
+    public bool Throw()
     {
-        if ( m_grappling && ! state)
+        if (!m_grappling)
         {
-            m_grappling = false;
-            m_rope.enabled = false;
-        }
-        else if ( ! m_grappling  && state )
-        {
-            Vector3 newTarget = GazeManager.GetGazeWorldPoint();
-            if(newTarget != Vector3.zero)
-            {
-                AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
-
-                m_grappling = true;
-                m_rope.enabled = true;
-                m_target = newTarget;
-                m_grappleTarget.transform.position = m_target;
-            }
-            else
+            //Get the grapple target : first with the GetGazeWorldPoint else with the mouse position
+            m_target = GazeManager.GetGazeWorldPoint();
+            if (m_target == Vector3.zero)
             {
                 if (Input.mousePosition.x >= 0 && Input.mousePosition.x <= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit raycastHit;
                     if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
-                    {
-                        AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
-                        m_grappling = true;
-                        m_rope.enabled = true;
                         m_target = raycastHit.point;
-                        m_grappleTarget.transform.position = m_target;
-                    }
                 }
-
-
-
             }
 
+            //Launche the grapple if the target is valid
+            if (m_target != Vector3.zero)
+            {
+                AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
 
+                m_grappling = true;
+                m_rope.enabled = true;
+                m_grappleTarget.transform.position = m_target;
+                return true;
+            }
         }
+        return false;
+    }
+
+    public bool Cancel()
+    {
+        if (m_grappling)
+        {
+            m_grappling = false;
+            m_rope.enabled = false;
+            return true;
+        }
+        return false;
     }
 
     private void Update()
