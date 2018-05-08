@@ -9,9 +9,7 @@ public class Track : MonoBehaviour
     [Header("Track: ")]
     [SerializeField] private List<TrackSection> trackSections = new List<TrackSection>();
     [SerializeField] private int currentTrackIndex;
-    [SerializeField, Range( 1,10)] private int trackLenght = 3;
     [SerializeField] private float cameraAnticipation = 3;
-
 
     public TrackSection trackSection
     {
@@ -32,6 +30,11 @@ public class Track : MonoBehaviour
 
     private void Update()
     {
+        //if end track reached go to the next track
+        if (trackSections[currentTrackIndex].endTrackReached)
+            currentTrackIndex = (currentTrackIndex + 1) % trackSections.Count;
+
+        //Update track
         if (trackSections.Count > 0)
              trackSections[currentTrackIndex].UpdateTrack(Camera.main.transform.position + cameraAnticipation * Camera.main.transform.forward );
     }
@@ -48,5 +51,13 @@ public class Track : MonoBehaviour
             else
                 trackSections[i].gameObject.SetActive(false);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+
+
+        Gizmos.DrawSphere(trackSections[currentTrackIndex].trackPosition, 2f);
+
     }
 }

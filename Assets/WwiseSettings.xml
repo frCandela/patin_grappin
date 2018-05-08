@@ -6,7 +6,7 @@
   <CreateWwiseListener>true</CreateWwiseListener>
   <GenerateSoundBanksAsPreBuildStep>false</GenerateSoundBanksAsPreBuildStep>
   <ShowMissingRigidBodyWarning>true</ShowMissingRigidBodyWarning>
-  <SoundbankPath>Audio/GeneratedSoundBanks</SoundbankPath>
+  <SoundbankPath>Audio/</SoundbankPath>
   <WwiseInstallationPathMac />
   <WwiseInstallationPathWindows>C:\Program Files (x86)\Audiokinetic\Wwise 2017.2.3.6575</WwiseInstallationPathWindows>
   <WwiseProjectPath>../../patin-grappin-wwise/Patin Grappin Wwise.wproj</WwiseProjectPath>

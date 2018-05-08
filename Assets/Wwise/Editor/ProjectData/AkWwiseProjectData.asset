@@ -13,14 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AcousticTextureWwu:
   - Guid: '{EF91EE93-6789-400C-AF60-86279B4B8F8F}'
-    m_lastTimePart2: -1999263282
-    m_lastTimePsrt1: -454430472
+    m_lastTimePart2: -1999263237
+    m_lastTimePsrt1: 2094597236
     ParentPhysicalPath: 
     PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
     List: []
   - Guid: '{463D666B-3CA8-4FA5-8B4A-5FEF12B883F6}'
-    m_lastTimePart2: -1999263282
-    m_lastTimePsrt1: -454400401
+    m_lastTimePart2: -1999263237
+    m_lastTimePsrt1: 2094607268
     ParentPhysicalPath: 
     PhysicalPath: Virtual Acoustics\Factory Reflect Acoustic Textures.wwu
     List:
@@ -181,8 +181,8 @@ MonoBehaviour:
   autoPopulateEnabled: 1
   AuxBusWwu:
   - Guid: '{BE0D8A64-9D86-44BD-BD23-F83C3E6F2572}'
-    m_lastTimePart2: -1999263282
-    m_lastTimePsrt1: -456016935
+    m_lastTimePart2: -1999263237
+    m_lastTimePsrt1: 2088390740
     ParentPhysicalPath: 
     PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     List: []
@@ -208,12 +208,12 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{21482B35-49C5-492A-9258-62C92B85A1C6}'
-    m_lastTimePart2: -1999263268
-    m_lastTimePsrt1: -1193137188
+    m_lastTimePart2: -1999261237
+    m_lastTimePsrt1: 146313896
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
-    - Guid: 73a7de1ad8a795428ce8cb4bb03861a4
+    - Guid: abde9e8ce6c920478103ab542847143a
       ID: -655090743
       Name: Play_Grab_Impact
       Path: Default Work Unit\Play_Grab_Impact
@@ -223,8 +223,8 @@ MonoBehaviour:
       - ElementName: Play_Grab_Impact
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 2.049479
+      minDuration: 2.049479
     - Guid: 2c4e919d1f78e449801f0fba566d9339
       ID: -921118884
       Name: Play_Grab_Speed
@@ -235,8 +235,32 @@ MonoBehaviour:
       - ElementName: Play_Grab_Speed
         ObjectType: 3
       maxAttenuation: 0
+      maxDuration: 2.038771
+      minDuration: 2.038771
+    - Guid: 2a89626a0ef74d4a962e2817e25f066e
+      ID: 1534258330
+      Name: Play_Granular_Ice
+      Path: Default Work Unit\Play_Granular_Ice
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Granular_Ice
+        ObjectType: 3
+      maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: f2d3323f9ff0e34794e418be62835faa
+      ID: -1858779148
+      Name: Play_Ice_Skate_Dirt
+      Path: Default Work Unit\Play_Ice_Skate_Dirt
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ice_Skate_Dirt
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0.377513
+      minDuration: 0.298941
     - Guid: 13240842d7c5e94f8a1a4d9406a585ed
       ID: -1850916304
       Name: Play_Ice_Skate_Move
@@ -247,8 +271,33 @@ MonoBehaviour:
       - ElementName: Play_Ice_Skate_Move
         ObjectType: 3
       maxAttenuation: 0
+      maxDuration: 0.28094
+      minDuration: 0.222468
+    - Guid: a5c861cf0751f44895e34ac3668156cd
+      ID: -21784722
+      Name: Play_Ice_Skate_Reception
+      Path: Default Work Unit\Play_Ice_Skate_Reception
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ice_Skate_Reception
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0.754
+      minDuration: 0.754
+    - Guid: 5018359e60c5964abfb9a783f7ba6612
+      ID: -1693291564
+      Name: Play_Ice_Skate_Slow
+      Path: Default Work Unit\Play_Ice_Skate_Slow
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Ice_Skate_Slow
+        ObjectType: 3
+      maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+>>>>>>> dev
     - Guid: 7843402f9828ed478d6559e0b81ac63b
       ID: -1989852346
       Name: Play_Impact_flap
@@ -259,8 +308,8 @@ MonoBehaviour:
       - ElementName: Play_Impact_flap
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 1.447937
+      minDuration: 1.447937
     - Guid: b78d78d3a484b8438604a1c5e4e28fe0
       ID: 249738436
       Name: Play_UI_Move
@@ -271,8 +320,8 @@ MonoBehaviour:
       - ElementName: Play_UI_Move
         ObjectType: 3
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 1.229167
+      minDuration: 1.229167
     - Guid: 92a993d44a33d847865c5e1baa77b125
       ID: 999807850
       Name: Play_UI_Move_01
@@ -283,10 +332,24 @@ MonoBehaviour:
       - ElementName: Play_UI_Move_01
         ObjectType: 3
       maxAttenuation: 0
+      maxDuration: 1.229167
+      minDuration: 1.229167
+    - Guid: e8039925a6a08a4eaaeb9c602af5d72d
+      ID: -1062360728
+      Name: Stop_Granular_Ice
+      Path: Default Work Unit\Stop_Granular_Ice
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stop_Granular_Ice
+        ObjectType: 3
+      maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
   ExpandedItems:
   - /Patin Grappin Wwise
+  - /Patin Grappin Wwise/Events
+  - /Patin Grappin Wwise/Events/Default Work Unit
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
@@ -295,14 +358,14 @@ MonoBehaviour:
   preparePoolSize: 0
   RtpcWwu:
   - Guid: '{D68EE52A-5695-4F6F-996B-84D0B0E5D342}'
-    m_lastTimePart2: -1999263282
-    m_lastTimePsrt1: -456096106
+    m_lastTimePart2: -1999263237
+    m_lastTimePsrt1: 2087022101
     ParentPhysicalPath: 
     PhysicalPath: Game Parameters\Default Work Unit.wwu
     List: []
   - Guid: '{3B167755-FB42-458B-98BF-96F557AFB3B9}'
-    m_lastTimePart2: -1999263282
-    m_lastTimePsrt1: -456066049
+    m_lastTimePart2: -1999263237
+    m_lastTimePsrt1: 2087032130
     ParentPhysicalPath: 
     PhysicalPath: Game Parameters\Factory SoundSeed Air Game Syncs.wwu
     List:
@@ -398,23 +461,23 @@ MonoBehaviour:
         ObjectType: 13
   StateWwu:
   - Guid: '{3C81AD0E-2795-4DE0-ACB4-9CDD94ABB382}'
-    m_lastTimePart2: -1999263282
-    m_lastTimePsrt1: -454510704
+    m_lastTimePart2: -1999263237
+    m_lastTimePsrt1: 2094552122
     ParentPhysicalPath: 
     PhysicalPath: States\Default Work Unit.wwu
     List: []
   streamingPoolSize: 1024
   SwitchWwu:
   - Guid: '{CB3C1780-7043-44FC-8EB1-6A577B9767F8}'
-    m_lastTimePart2: -1999263282
-    m_lastTimePsrt1: -454480330
+    m_lastTimePart2: -1999263237
+    m_lastTimePsrt1: 2094567158
     ParentPhysicalPath: 
     PhysicalPath: Switches\Default Work Unit.wwu
     List: []
   TriggerWwu:
   - Guid: '{5A6BE1AE-4F9B-457E-9F0A-513E0FDA6B9C}'
-    m_lastTimePart2: -1999263282
-    m_lastTimePsrt1: -454470593
+    m_lastTimePart2: -1999263237
+    m_lastTimePsrt1: 2094582226
     ParentPhysicalPath: 
     PhysicalPath: Triggers\Default Work Unit.wwu
     List: []

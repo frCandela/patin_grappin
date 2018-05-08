@@ -14,28 +14,26 @@ public class HeadPlayerController : MonoBehaviour
     [SerializeField] private float boostForce = 15f;
     [SerializeField] private float turnForce = 150f;
     [SerializeField] private float maxTurnForce = 0.5f;
-    [SerializeField] private float maxRightSpeed = 20f;
 
     [Header("Other:")]
     [SerializeField] private float gravity = -20;
 
     //Components references
     private Rigidbody m_rb;
-    private BestGrapple m_grapple;
+    private Grapple m_grapple;
 
-
-    private float m_boostMultiplier = 1f;
     private Vector3 m_previousPosition;
 
     // Use this for initialization
     void Awake ()
     {
         m_rb = GetComponent<Rigidbody>();
-        m_grapple = GetComponent<BestGrapple>();
+        m_grapple = GetComponent<Grapple>();
 
         Physics.gravity = new Vector3(0, gravity, 0);
 
         Util.EditorAssert(track != null, "BetterHeadPlayerController.Awake(): no track set");
+
     }
 
     private void Start()
@@ -59,7 +57,9 @@ public class HeadPlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (Input.GetButtonDown("Grapple"))
-            m_grapple.Toogle();
+            m_grapple.Toogle( true );
+        if (Input.GetButtonUp("Grapple"))
+            m_grapple.Toogle(false);
     }
 
     private void StartBoost()
