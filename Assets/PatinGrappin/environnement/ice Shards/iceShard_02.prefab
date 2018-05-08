@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1673137369890862}
+  m_RootGameObject: {fileID: 1448902131387496}
   m_IsPrefabParent: 1
---- !u!1 &1673137369890862
+--- !u!1 &1448902131387496
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4270626978929552}
-  - component: {fileID: 33748240680704558}
-  - component: {fileID: 23773121277314824}
+  - component: {fileID: 4594795911704008}
+  - component: {fileID: 33893512845638918}
+  - component: {fileID: 23394707834418082}
   m_Layer: 0
   m_Name: iceShard_02
   m_TagString: Untagged
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4270626978929552
+--- !u!4 &4594795911704008
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1673137369890862}
+  m_GameObject: {fileID: 1448902131387496}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 100, y: 99.99997, z: 99.99997}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!23 &23773121277314824
+--- !u!23 &23394707834418082
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1673137369890862}
+  m_GameObject: {fileID: 1448902131387496}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -75,10 +75,10 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33748240680704558
+--- !u!33 &33893512845638918
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1673137369890862}
-  m_Mesh: {fileID: 4300006, guid: 1f3a116abea7ee2409e32a4c4ea725b6, type: 3}
+  m_GameObject: {fileID: 1448902131387496}
+  m_Mesh: {fileID: 4300006, guid: 1b2b8a2fd21fdb04682a7fade6fe1f90, type: 3}
