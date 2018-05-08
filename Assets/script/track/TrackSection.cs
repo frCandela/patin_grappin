@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-[RequireComponent( typeof(Spline))]
 public class TrackSection : MonoBehaviour
 {
     public Vector3 trackDirection { get; private set; }
     public Vector3 trackPosition { get; private set; }
+    public bool endTrackReached { get; private set; }
 
     //Components references
     [SerializeField]  private Spline spline;
@@ -16,7 +15,9 @@ public class TrackSection : MonoBehaviour
     private void Awake()
     {
         //Get components references
-        //spline = GetComponent<Spline>();
+        if( ! spline)
+            spline = GetComponent<Spline>();
+
 
         trackDirection = Vector3.zero;
         trackPosition = Vector3.zero;
@@ -27,7 +28,6 @@ public class TrackSection : MonoBehaviour
     {
         float bestT = 0f;
         float bestDistance = float.MaxValue;
-
 
         float[] searchDeltas = new float[] { 5f, 1f, 0.1f};
 
@@ -56,19 +56,19 @@ public class TrackSection : MonoBehaviour
             }
         }
 
+        //End of the track reached
+        if(bestT + 0.1f > spline.Length)
+            endTrackReached = true;
+        else
+            endTrackReached = false;
+
         //Set direction
-        if(invertDirection)
+        if (invertDirection)
             trackDirection = - spline.GetTangentAlongSplineAtDistance(bestT).normalized;
         else
             trackDirection = spline.GetTangentAlongSplineAtDistance(bestT).normalized;
 
         //Set position
-        trackPosition = spline.GetLocationAlongSplineAtDistance(bestT);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(trackPosition, 2f);
-
+        trackPosition = transform.position + spline.GetLocationAlongSplineAtDistance(bestT);
     }
 }

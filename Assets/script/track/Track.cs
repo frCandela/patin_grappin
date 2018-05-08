@@ -30,6 +30,11 @@ public class Track : MonoBehaviour
 
     private void Update()
     {
+        //if end track reached go to the next track
+        if (trackSections[currentTrackIndex].endTrackReached)
+            currentTrackIndex = (currentTrackIndex + 1) % trackSections.Count;
+
+        //Update track
         if (trackSections.Count > 0)
              trackSections[currentTrackIndex].UpdateTrack(Camera.main.transform.position + cameraAnticipation * Camera.main.transform.forward );
     }
@@ -46,5 +51,13 @@ public class Track : MonoBehaviour
             else
                 trackSections[i].gameObject.SetActive(false);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+
+
+        Gizmos.DrawSphere(trackSections[currentTrackIndex].trackPosition, 2f);
+
     }
 }

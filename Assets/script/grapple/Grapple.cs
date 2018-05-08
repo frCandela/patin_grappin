@@ -50,14 +50,14 @@ public class Grapple : MonoBehaviour
         m_rope.enabled = false;
     }
 
-    public void Toogle()
+    public void Toogle( bool state )
     {
-        if ( m_grappling)
+        if ( m_grappling && ! state)
         {
             m_grappling = false;
             m_rope.enabled = false;
         }
-        else
+        else if ( ! m_grappling  && state )
         {
             Vector3 newTarget = GazeManager.GetGazeWorldPoint();
             if(newTarget != Vector3.zero)
