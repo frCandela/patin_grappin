@@ -2308,7 +2308,7 @@ MonoBehaviour:
   landingVelocityChangeThreshold: 18
   velocityDelta: 5
   MinXYVelocityIdle: 48
-  MaxXYVelocityIdle: 60
+  MaxXYVelocityIdle: 65
 --- !u!4 &1252013032
 Transform:
   m_ObjectHideFlags: 0
