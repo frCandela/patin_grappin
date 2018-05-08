@@ -15,22 +15,15 @@ public class Grapple : MonoBehaviour
     [SerializeField, Range(0f, 1000f)] private float maxDistance = float.MaxValue;
     [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
 
-    public bool isGrappling
-    {
-        get         { return m_grappling;  }
-        private set { m_grappling = value; }
-    }
+    //Public properties
+    public bool grappling { get; private set; }
+    public GameObject grappleTarget { get; private set; }
 
     private Rigidbody m_rigidbody;
 
-    private GameObject m_grappleTarget;
+    
     private GameObject m_aimTarget;
-
     private Rope m_rope = null;
-
-
-    //private float m_distance = -1f;
-    private bool m_grappling = false;
     private Vector3 m_target;
 
     private void Awake()
@@ -39,20 +32,20 @@ public class Grapple : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
 
         //Target world point
-        m_grappleTarget = GameObject.Instantiate(targetPrefab);
+        grappleTarget = GameObject.Instantiate(targetPrefab);
         m_aimTarget = GameObject.Instantiate(targetPrefab);
 
-        //Rope
+        //Set Rope
         Util.EditorAssert(ropePrefab != null, "Grapple.Awake: ropePrefab not set");
-        GameObject tmpRope = Instantiate(ropePrefab);
-        m_rope = tmpRope.GetComponent<Rope>();
-        m_rope.SetRope(gameObject, m_grappleTarget);
+        m_rope = Instantiate(ropePrefab).GetComponent<Rope>();
         m_rope.enabled = false;
+
+        grappling = false;
     }
 
-    public bool Throw()
+    public bool Throw( Transform origin )
     {
-        if (!m_grappling)
+        if (!grappling)
         {
             //Get the grapple target : first with the GetGazeWorldPoint else with the mouse position
             m_target = GazeManager.GetGazeWorldPoint();
@@ -67,14 +60,14 @@ public class Grapple : MonoBehaviour
                 }
             }
 
-            //Launche the grapple if the target is valid
+            //Launch the grapple if the target is valid
             if (m_target != Vector3.zero)
             {
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
-
-                m_grappling = true;
+                m_rope.SetRope(origin, grappleTarget.transform);
+                grappling = true;
                 m_rope.enabled = true;
-                m_grappleTarget.transform.position = m_target;
+                grappleTarget.transform.position = m_target;
                 return true;
             }
         }
@@ -83,9 +76,9 @@ public class Grapple : MonoBehaviour
 
     public bool Cancel()
     {
-        if (m_grappling)
+        if (grappling)
         {
-            m_grappling = false;
+            grappling = false;
             m_rope.enabled = false;
             return true;
         }
@@ -99,7 +92,7 @@ public class Grapple : MonoBehaviour
 
     void FixedUpdate ()
     {
-        if(m_grappling)
+        if(grappling)
         {
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
             if(sqrDist > minDistance * minDistance && sqrDist < maxDistance*maxDistance)

@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     //Components references
     private Rigidbody m_rb;
     private Grapple m_grapple;
+    private AnimationController m_animationController;
     private Track m_track = null;
-    
 
     // Use this for initialization
     void Awake ()
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         m_track = FindObjectOfType<Track>();
         m_rb = GetComponent<Rigidbody>();
         m_grapple = GetComponent<Grapple>();
-        onGrappleLaunch = new UnityEvent();
+        m_animationController = GetComponent<AnimationController>();
 
         Physics.gravity = new Vector3(0, gravity, 0);
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        if (Input.GetButtonDown("Grapple") && m_grapple.Throw())
+        if (Input.GetButtonDown("Grapple") && m_grapple.Throw(m_animationController.rightHand))
             onGrappleLaunch.Invoke();
 
         if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())

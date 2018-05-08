@@ -45,7 +45,7 @@ public class HeadPlayerController1 : MonoBehaviour
 
         if (Input.GetButtonDown("Grapple"))
         {
-            m_grapple.Throw( );
+            m_grapple.Throw(transform);
             AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
         }
         else if (Input.GetButtonUp("Grapple"))

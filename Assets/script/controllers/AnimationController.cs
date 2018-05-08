@@ -12,11 +12,15 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private float MinXYVelocityIdle = 50;
     [SerializeField] private float MaxXYVelocityIdle = 60;
 
+    //Public properties
+    public Transform leftHand { get; private set; }
+    public Transform rightHand { get; private set; }
 
     //private references
     private PlayerController m_playerController = null;
     private Rigidbody m_playerRb = null;
     private Animator m_animator = null;
+    private armIK m_armIK = null;
 
     //privates members
     private float prevYVelocity = 0f;
@@ -39,6 +43,13 @@ public class AnimationController : MonoBehaviour
 
         //Init values
         prevYVelocity = m_playerRb.velocity.y;
+        leftHand = m_animator.GetBoneTransform(HumanBodyBones.LeftHand);
+        rightHand = m_animator.GetBoneTransform(HumanBodyBones.RightHand);
+
+        //Set IKanim scipts
+        m_armIK = GetComponentInChildren<armIK>();
+        m_armIK.targetIK = GetComponent<Grapple>().grappleTarget.transform;
+        m_armIK.isIK = false;
     }
 
     private void Update()
@@ -82,12 +93,14 @@ public class AnimationController : MonoBehaviour
     {
         m_animator.SetTrigger("launchGrappin");
         m_animator.SetBool("isGrounded", false);
+        m_armIK.isIK = true;
     }
 
 
     private void ResetGrapple()
     {
         m_animator.SetBool("isGrounded", true);
+        m_armIK.isIK = false;
     }
 
 }
