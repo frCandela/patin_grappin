@@ -57,7 +57,9 @@ public class HeadPlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (Input.GetButtonDown("Grapple"))
-            m_grapple.Toogle();
+            m_grapple.Throw( transform );
+        if (Input.GetButtonUp("Grapple"))
+            m_grapple.Cancel();
     }
 
     private void StartBoost()
@@ -85,7 +87,7 @@ public class HeadPlayerController : MonoBehaviour
         float rightMagnitude = Vector3.Dot(m_rb.velocity, right);
 
         //Lerp the player velocity yo align it with the track direction
-        if (!m_grapple.isGrappling)
+        if (!m_grapple.grappling)
             m_rb.velocity -= 0.3f * right * rightMagnitude;
 
         //Tobii  control

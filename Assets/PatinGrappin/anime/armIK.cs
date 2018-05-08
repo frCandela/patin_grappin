@@ -8,7 +8,7 @@ public class armIK : MonoBehaviour {
 
 	Animator animator;
 
-	public GameObject targetIK;
+	public Transform targetIK;
 	Vector3 targetPos;
 	public bool isIK;
 	public string wichHand;
@@ -30,7 +30,7 @@ public class armIK : MonoBehaviour {
 
 		if(isIK && targetIK)
 		{
-			targetPos = targetIK.transform.position;
+			targetPos = targetIK.position;
 
 			if(wichHand == "left")
 			{

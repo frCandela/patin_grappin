@@ -17,3 +17,4 @@ Tobii.GameIntegration.dll
 *.sln
 sh.exe.stackdump
 .vscode
+Assets/Wwise/Editor/
