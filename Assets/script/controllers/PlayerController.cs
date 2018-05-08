@@ -88,4 +88,13 @@ public class PlayerController : MonoBehaviour
         m_rb.AddForce(headAxis * turnForce * right);
 
     }
+
+    private void OnGUI()
+    {
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.black;
+
+        Vector3 XZVelocity = new Vector3( m_rb.velocity.x,0, m_rb.velocity.z);
+        GUI.Label(new Rect(0, 20, 100, 10), "XZ velocity: " + XZVelocity.magnitude, style);
+    }
 }

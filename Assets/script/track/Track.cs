@@ -122,6 +122,5 @@ public class Track : MonoBehaviour
         style.normal.textColor = Color.black;
 
         GUI.Label(new Rect(0, 0, 100, 10), "Spline update ms: " + splineUpdateMs, style);
-
     }
 }
