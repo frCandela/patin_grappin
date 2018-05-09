@@ -6,17 +6,23 @@ using UnityEngine;
 
 public class armIK : MonoBehaviour {
 
+    public enum Hands { right, left };
+
 	Animator animator;
 
 	public Transform targetIK;
 	Vector3 targetPos;
 	public bool isIK;
+
 	public string wichHand;
+    public Hands whichHand = Hands.left;
+
 
 	AvatarIKGoal leftHand, rightHand;
 
 	// Use this for initialization
 	void Start () {
+
 
 		animator = GetComponent<Animator>();
 		leftHand = AvatarIKGoal.LeftHand;
