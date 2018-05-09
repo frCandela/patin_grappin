@@ -1093,13 +1093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc864ea29b8f3a4fa26eee7e87c73bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ropePrefab: {fileID: 1693350964795942, guid: 3d15b4131ff3d864680348bbfecd8ea4, type: 2}
-  targetPrefab: {fileID: 1386341600016514, guid: 827e4a84c9c39c640b3e3d3b04bbf41b,
-    type: 2}
-  attractionForce: 45
-  minDistance: 5
-  maxDistance: 3.4028235e+38
-  elasticity: 1
 --- !u!1001 &388355823
 Prefab:
   m_ObjectHideFlags: 0
@@ -2731,7 +2724,7 @@ Prefab:
         type: 2}
       propertyPath: targetIK
       value: 
-      objectReference: {fileID: 588778974}
+      objectReference: {fileID: 588778978}
     - target: {fileID: 114093701032103848, guid: 0e657f307cb4c324895dfeeefab46c01,
         type: 2}
       propertyPath: m_Enabled
@@ -2742,6 +2735,11 @@ Prefab:
       propertyPath: lookTarget
       value: 
       objectReference: {fileID: 588778974}
+    - target: {fileID: 114186835767876972, guid: 0e657f307cb4c324895dfeeefab46c01,
+        type: 2}
+      propertyPath: isIK
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114672804214670324, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
     - {fileID: 114056226196018954, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
