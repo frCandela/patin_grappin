@@ -17,7 +17,9 @@ public class feetOnGroundIK : MonoBehaviour {
     float lFootRotWeight, rFootRotWeight;
     GameObject player;
 
-    public float rayCastOffset, raycastDistance, groundOffset;
+    public float rayCastOffset = 1f;
+    public float raycastDistance = 3f;
+    public float groundOffset = 0.45f;
     public bool leftFootAtGround = false;
 
     void Start () 
