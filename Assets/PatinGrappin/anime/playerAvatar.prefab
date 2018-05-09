@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 114530789687428694}
   - component: {fileID: 114979403047450914}
   m_Layer: 0
-  m_Name: chara_anim_test01
+  m_Name: playerAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1798,9 +1798,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca119e9c9915c94ebbd0e52e6f922e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whichHand: 1
   targetIK: {fileID: 0}
   isIK: 0
-  wichHand: 
 --- !u!114 &114351982871912200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1880,9 +1880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca119e9c9915c94ebbd0e52e6f922e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whichHand: 1
   targetIK: {fileID: 0}
   isIK: 0
-  wichHand: 
 --- !u!114 &114546024443236260
 MonoBehaviour:
   m_ObjectHideFlags: 1
