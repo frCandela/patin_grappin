@@ -158,17 +158,10 @@ GameObject:
   - component: {fileID: 95124315619096576}
   - component: {fileID: 136281255637374636}
   - component: {fileID: 114397589522258564}
-  - component: {fileID: 114351982871912200}
   - component: {fileID: 114708570755301328}
   - component: {fileID: 114093701032103848}
   - component: {fileID: 114186835767876972}
-  - component: {fileID: 114056226196018954}
-  - component: {fileID: 114672804214670324}
-  - component: {fileID: 114371821118127762}
   - component: {fileID: 114546024443236260}
-  - component: {fileID: 114741857907666794}
-  - component: {fileID: 114431711160367280}
-  - component: {fileID: 114530789687428694}
   - component: {fileID: 114979403047450914}
   m_Layer: 0
   m_Name: playerAvatar
@@ -1762,18 +1755,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114056226196018954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089519092516284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6cc4e8cd95adbd43b05afd8ba23dfa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  footGroundedThreshold: 0.7
 --- !u!114 &114093701032103848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1786,7 +1767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spineTarget: {fileID: 0}
-  isOriented: 1
+  isOriented: 0
 --- !u!114 &114186835767876972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1801,40 +1782,6 @@ MonoBehaviour:
   whichHand: 1
   targetIK: {fileID: 0}
   isIK: 0
---- !u!114 &114351982871912200
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089519092516284}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63d610085666cc94391d19893953770d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ikActive: 0
-  rightHandObj: {fileID: 0}
-  lookObj: {fileID: 0}
-  isLookAt: 0
-  rayCastOffset: 1
-  raycastDistance: 5
-  leftFootAtGround: 1
-  isGrappine: 1
-  lookOffset: {x: 0, y: 0, z: 0}
-  baseSpineRotation: {x: 0, y: 0, z: 0}
---- !u!114 &114371821118127762
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089519092516284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 711107fe1a9db7645b6519ce773c8c1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spineTarget: {fileID: 0}
-  isOriented: 0
 --- !u!114 &114397589522258564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1852,49 +1799,7 @@ MonoBehaviour:
   raycastDistance: 3
   groundOffset: 0.45
   leftFootAtGround: 0
---- !u!114 &114431711160367280
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089519092516284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2ade3d5c9d82b04c8a42690361eabfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ikActive: 1
-  target: {fileID: 0}
-  rayCastOffset: 0
-  raycastDistance: 0
-  groundOffset: 0
-  leftFootAtGround: 0
---- !u!114 &114530789687428694
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089519092516284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca119e9c9915c94ebbd0e52e6f922e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whichHand: 1
-  targetIK: {fileID: 0}
-  isIK: 0
 --- !u!114 &114546024443236260
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089519092516284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8d9bb45ef592cc40a5a7f5f152b8b5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114672804214670324
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1918,19 +1823,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 0}
   isLookAt: 1
---- !u!114 &114741857907666794
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1089519092516284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1ff2564d634e241adf6ce2507b1e91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookTarget: {fileID: 0}
-  isLookAt: 0
 --- !u!114 &114979403047450914
 MonoBehaviour:
   m_ObjectHideFlags: 1
