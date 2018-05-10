@@ -11,10 +11,11 @@ public class Track : MonoBehaviour
 
     [Header("Track parameters: ")]
     [SerializeField, Tooltip("If false use camera position instead")] private bool usePlayerPosition = true;
+    [SerializeField] private float fallFromTrackHeight = 50;
+    [SerializeField] private float respawnHeight = 100f;
 
-    [Header("Track Section: ")]
+    [Header("Track Sections Tree: ")]
     [SerializeField] private TrackSection currentSection = null;
-
     [SerializeField] private bool checkPreviousSections = true;
     [SerializeField] private bool checkParallelSections = true;
 
@@ -54,9 +55,7 @@ public class Track : MonoBehaviour
         UpdateClosestSection();
         splineUpdateMs = 1000 * (Time.realtimeSinceStartup - t1);
 
-        //Update track
-        if (currentSection)
-            currentSection.UpdateTrack(targetTransform.position);
+        DetectPlayerFall();
     }
 
     private void SetupTarget()
@@ -66,6 +65,14 @@ public class Track : MonoBehaviour
         else
             targetTransform = Camera.main.transform;
     }
+
+    private void DetectPlayerFall()
+    {
+        Vector3 diff = currentSection.trackPosition - targetTransform.transform.position;
+        if (diff.y > fallFromTrackHeight)
+            targetTransform.parent.transform.position = targetTransform.parent.transform.position + diff + respawnHeight * Vector3.up;   
+    }
+
 
     public void UpdateClosestSection()
     {
