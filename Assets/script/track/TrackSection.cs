@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TrackSection : MonoBehaviour
@@ -7,17 +8,18 @@ public class TrackSection : MonoBehaviour
     public Vector3 trackDirection { get; private set; }
     public Vector3 trackPosition { get; private set; }
     public bool endTrackReached { get; private set; }
-
-
+   
     [Header("Track tree")]
     public List<TrackSection> prevSections = new List<TrackSection>();
     public List<TrackSection> nextSections = new List<TrackSection>();
-    
 
     //Components references
-    [Header("Section parameters")]
-    [SerializeField]  private Spline spline;
-    [SerializeField] bool invertDirection = false;
+    [Header("Parameters")]
+    [SerializeField] private Spline spline;
+
+    [Header("Respawn")]
+    [SerializeField] public TrackSection respawnTrackSection = null;
+    [SerializeField] public Transform respawnTransform = null;
 
     private void Awake()
     {
@@ -85,14 +87,9 @@ public class TrackSection : MonoBehaviour
             endTrackReached = false;
 
         //Set direction
-        if (invertDirection)
-            trackDirection = - spline.GetTangentAlongSplineAtDistance(bestT).normalized;
-        else
-            trackDirection = spline.GetTangentAlongSplineAtDistance(bestT).normalized;
+        trackDirection = spline.GetTangentAlongSplineAtDistance(bestT).normalized;
 
         //Set position
         trackPosition = transform.position + spline.GetLocationAlongSplineAtDistance(bestT);
     }
-
-
 }

@@ -10,17 +10,19 @@ public class Track : MonoBehaviour
     //Editor parameters
 
     [Header("Track parameters: ")]
-    [SerializeField, Tooltip("If false use camera position instead")] private bool usePlayerPosition = true;
     [SerializeField] private float fallFromTrackHeight = 50;
     [SerializeField] private float respawnHeight = 100f;
+    [SerializeField] private bool alignVelocityOnRespawn = false;
 
     [Header("Track Sections Tree: ")]
     [SerializeField] private TrackSection currentSection = null;
     [SerializeField] private bool checkPreviousSections = true;
     [SerializeField] private bool checkParallelSections = true;
 
+
+
     //Private members
-    Transform targetTransform = null;
+    private Rigidbody m_targetRb = null;
 
     //Debug
     float splineUpdateMs = 0f;
@@ -31,16 +33,13 @@ public class Track : MonoBehaviour
         private set { }
     }
 
-    private void Awake()
-    {
-    }
-
     private void Start()
     {
-        if (currentSection)
-            currentSection.UpdateTrack(Camera.main.transform.position);    
-
         SetupTarget();
+        if (currentSection)
+            currentSection.UpdateTrack(m_targetRb.position);    
+
+        
     }
 
     private void OnValidate()
@@ -60,17 +59,33 @@ public class Track : MonoBehaviour
 
     private void SetupTarget()
     {
-        if (usePlayerPosition)
-            targetTransform = FindObjectOfType<PlayerController>().transform;
-        else
-            targetTransform = Camera.main.transform;
+        m_targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
     }
 
     private void DetectPlayerFall()
     {
-        Vector3 diff = currentSection.trackPosition - targetTransform.transform.position;
+        //Detects the player fall
+        Vector3 diff = currentSection.trackPosition - m_targetRb.transform.position;
         if (diff.y > fallFromTrackHeight)
-            targetTransform.parent.transform.position = targetTransform.parent.transform.position + diff + respawnHeight * Vector3.up;   
+        {
+            TrackSection respawnTrack = currentSection.respawnTrackSection ? currentSection.respawnTrackSection : currentSection;
+
+            //If respawn set, change the respawn point
+            if ( respawnTrack.respawnTransform)
+                diff = currentSection.respawnTrackSection.respawnTransform.position - m_targetRb.transform.position;
+
+            //Translate the player
+            m_targetRb.transform.parent.transform.position = m_targetRb.transform.parent.transform.position + diff + respawnHeight * Vector3.up;
+
+            //Changes his velocity to match the direction of the track
+            if(alignVelocityOnRespawn)
+            {
+                respawnTrack.UpdateTrack(m_targetRb.position);
+                float prevVelY = m_targetRb.velocity.y;
+                float prevVelXZ = new Vector2(m_targetRb.velocity.x, m_targetRb.velocity.z).magnitude;
+                m_targetRb.velocity = prevVelXZ * new Vector3(respawnTrack.trackDirection.x, 0, respawnTrack.trackDirection.z) + new Vector3(0, prevVelY, 0);
+            }
+        }
     }
 
 
@@ -81,8 +96,8 @@ public class Track : MonoBehaviour
         float bestDistance = float.MaxValue;
         Action<TrackSection> LookupSection = (section) =>
         {
-            section.UpdateTrack(targetTransform.position);
-            float dist = Vector3.SqrMagnitude(targetTransform.position - section.trackPosition);
+            section.UpdateTrack(m_targetRb.position);
+            float dist = Vector3.SqrMagnitude(m_targetRb.position - section.trackPosition);
             if (dist < bestDistance)
             {
                 bestDistance = dist;
