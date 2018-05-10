@@ -970,7 +970,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 563637638}
   m_LocalRotation: {x: 0.16096255, y: -0, z: -0, w: 0.9869605}
-  m_LocalPosition: {x: -2, y: 5.3, z: -7}
+  m_LocalPosition: {x: 0, y: 5.3, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 578082954}
@@ -1198,7 +1198,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 578082953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 245, y: 19.1, z: -264}
+  m_LocalPosition: {x: 256, y: 19.1, z: -156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 563637639}
@@ -1922,7 +1922,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usePlayerPosition: 1
-  currentSection: {fileID: 35999941}
+  fallFromTrackHeight: 50
+  currentSection: {fileID: 1862464146}
   checkPreviousSections: 1
   checkParallelSections: 1
 --- !u!1 &940626022
@@ -2508,7 +2509,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1252013027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 680256750}
@@ -2962,14 +2963,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - position: {x: 244.48857, y: 0, z: 90.37734}
-    direction: {x: 284.90195, y: 0, z: 89.72697}
+    direction: {x: 271.25763, y: 0, z: 75.490555}
     Changed:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  - position: {x: 313.03763, y: 0, z: 69.79098}
-    direction: {x: 332.64496, y: 0, z: 52.934044}
+  - position: {x: 290.49658, y: 0, z: 56.148407}
+    direction: {x: 310.10394, y: 0, z: 39.291473}
     Changed:
       m_PersistentCalls:
         m_Calls: []
@@ -2985,15 +2986,15 @@ MonoBehaviour:
   curves:
   - n1:
       position: {x: 244.48857, y: 0, z: 90.37734}
-      direction: {x: 284.90195, y: 0, z: 89.72697}
+      direction: {x: 271.25763, y: 0, z: 75.490555}
       Changed:
         m_PersistentCalls:
           m_Calls: []
         m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
     n2:
-      position: {x: 313.03763, y: 0, z: 69.79098}
-      direction: {x: 332.64496, y: 0, z: 52.934044}
+      position: {x: 290.49658, y: 0, z: 56.148407}
+      direction: {x: 310.10394, y: 0, z: 39.291473}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -3005,8 +3006,8 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   - n1:
-      position: {x: 313.03763, y: 0, z: 69.79098}
-      direction: {x: 332.64496, y: 0, z: 52.934044}
+      position: {x: 290.49658, y: 0, z: 56.148407}
+      direction: {x: 310.10394, y: 0, z: 39.291473}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -3025,7 +3026,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  Length: 139.49857
+  Length: 118.687294
   NodeCountChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3354,6 +3355,7 @@ MonoBehaviour:
   prevSections:
   - {fileID: 35999941}
   nextSections:
+  - {fileID: 1350896474}
   - {fileID: 1910485859}
   spline: {fileID: 1638834252}
   invertDirection: 0
@@ -3813,21 +3815,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - position: {x: -1.4307709, y: 0, z: 8.76709}
-    direction: {x: -1.2460663, y: 0, z: 42.903}
+    direction: {x: 7.4480286, y: 0, z: 32.03421}
     Changed:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  - position: {x: 13.488002, y: 0, z: 68.21868}
-    direction: {x: 27.577515, y: 0, z: 82.001884}
+  - position: {x: 28.704575, y: 0, z: 56.805878}
+    direction: {x: 42.794083, y: 0, z: 70.58908}
     Changed:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  - position: {x: 80.70527, y: 0, z: 89.42811}
-    direction: {x: 105.31915, y: 0, z: 87.5377}
+  - position: {x: 80.70528, y: 0, z: 89.4281}
+    direction: {x: 104.23262, y: 0, z: 92.4288}
     Changed:
       m_PersistentCalls:
         m_Calls: []
@@ -3836,15 +3838,15 @@ MonoBehaviour:
   curves:
   - n1:
       position: {x: -1.4307709, y: 0, z: 8.76709}
-      direction: {x: -1.2460663, y: 0, z: 42.903}
+      direction: {x: 7.4480286, y: 0, z: 32.03421}
       Changed:
         m_PersistentCalls:
           m_Calls: []
         m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
     n2:
-      position: {x: 13.488002, y: 0, z: 68.21868}
-      direction: {x: 27.577515, y: 0, z: 82.001884}
+      position: {x: 28.704575, y: 0, z: 56.805878}
+      direction: {x: 42.794083, y: 0, z: 70.58908}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -3856,16 +3858,16 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   - n1:
-      position: {x: 13.488002, y: 0, z: 68.21868}
-      direction: {x: 27.577515, y: 0, z: 82.001884}
+      position: {x: 28.704575, y: 0, z: 56.805878}
+      direction: {x: 42.794083, y: 0, z: 70.58908}
       Changed:
         m_PersistentCalls:
           m_Calls: []
         m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
     n2:
-      position: {x: 80.70527, y: 0, z: 89.42811}
-      direction: {x: 105.31915, y: 0, z: 87.5377}
+      position: {x: 80.70528, y: 0, z: 89.4281}
+      direction: {x: 104.23262, y: 0, z: 92.4288}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -3876,7 +3878,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  Length: 135.6706
+  Length: 119.94981
   NodeCountChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3934,15 +3936,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodes:
-  - position: {x: 77.91852, y: 0, z: 205.02606}
-    direction: {x: 101.86115, y: 0, z: 205.18132}
+  - position: {x: 82.07123, y: 0, z: 197.9083}
+    direction: {x: 103.04712, y: 0, z: 204.58835}
     Changed:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  - position: {x: 245.15182, y: 0, z: 203.47794}
-    direction: {x: 270.2858, y: 0, z: 203.18448}
+  - position: {x: 245.15182, y: 0, z: 198.13919}
+    direction: {x: 268.50674, y: 0, z: 190.72714}
     Changed:
       m_PersistentCalls:
         m_Calls: []
@@ -3950,16 +3952,16 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   curves:
   - n1:
-      position: {x: 77.91852, y: 0, z: 205.02606}
-      direction: {x: 101.86115, y: 0, z: 205.18132}
+      position: {x: 82.07123, y: 0, z: 197.9083}
+      direction: {x: 103.04712, y: 0, z: 204.58835}
       Changed:
         m_PersistentCalls:
           m_Calls: []
         m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
     n2:
-      position: {x: 245.15182, y: 0, z: 203.47794}
-      direction: {x: 270.2858, y: 0, z: 203.18448}
+      position: {x: 245.15182, y: 0, z: 198.13919}
+      direction: {x: 268.50674, y: 0, z: 190.72714}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -3970,7 +3972,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  Length: 167.24129
+  Length: 163.7307
   NodeCountChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4299,14 +4301,14 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   - position: {x: 397.5768, y: 255.97559, z: -490.2875}
-    direction: {x: 403.42136, y: 270.95148, z: -519.03406}
+    direction: {x: 430.63156, y: 270.95148, z: -610.45715}
     Changed:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  - position: {x: 242.99966, y: 216.88968, z: -645.9767}
-    direction: {x: 84.258545, y: 165.96994, z: -633.5769}
+  - position: {x: 255.33951, y: 216.88968, z: -629.9342}
+    direction: {x: 199.43753, y: 165.96994, z: -607.93713}
     Changed:
       m_PersistentCalls:
         m_Calls: []
@@ -4330,7 +4332,7 @@ MonoBehaviour:
           Culture=neutral, PublicKeyToken=null
     n2:
       position: {x: 397.5768, y: 255.97559, z: -490.2875}
-      direction: {x: 403.42136, y: 270.95148, z: -519.03406}
+      direction: {x: 430.63156, y: 270.95148, z: -610.45715}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -4343,15 +4345,15 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   - n1:
       position: {x: 397.5768, y: 255.97559, z: -490.2875}
-      direction: {x: 403.42136, y: 270.95148, z: -519.03406}
+      direction: {x: 430.63156, y: 270.95148, z: -610.45715}
       Changed:
         m_PersistentCalls:
           m_Calls: []
         m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
     n2:
-      position: {x: 242.99966, y: 216.88968, z: -645.9767}
-      direction: {x: 84.258545, y: 165.96994, z: -633.5769}
+      position: {x: 255.33951, y: 216.88968, z: -629.9342}
+      direction: {x: 199.43753, y: 165.96994, z: -607.93713}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -4363,8 +4365,8 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   - n1:
-      position: {x: 242.99966, y: 216.88968, z: -645.9767}
-      direction: {x: 84.258545, y: 165.96994, z: -633.5769}
+      position: {x: 255.33951, y: 216.88968, z: -629.9342}
+      direction: {x: 199.43753, y: 165.96994, z: -607.93713}
       Changed:
         m_PersistentCalls:
           m_Calls: []
@@ -4383,7 +4385,7 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  Length: 1157.9319
+  Length: 1130.5894
   NodeCountChanged:
     m_PersistentCalls:
       m_Calls: []
