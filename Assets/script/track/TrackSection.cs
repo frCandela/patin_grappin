@@ -8,7 +8,14 @@ public class TrackSection : MonoBehaviour
     public Vector3 trackPosition { get; private set; }
     public bool endTrackReached { get; private set; }
 
+
+    [Header("Track tree")]
+    public List<TrackSection> prevSections = new List<TrackSection>();
+    public List<TrackSection> nextSections = new List<TrackSection>();
+    
+
     //Components references
+    [Header("Section parameters")]
     [SerializeField]  private Spline spline;
     [SerializeField] bool invertDirection = false;
 

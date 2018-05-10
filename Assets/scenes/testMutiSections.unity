@@ -157,6 +157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 2086503976}
+  - {fileID: 2088517516}
+  nextSections:
+  - {fileID: 1862464146}
+  - {fileID: 1638834253}
   spline: {fileID: 35999942}
   invertDirection: 0
 --- !u!114 &35999942
@@ -964,7 +970,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 563637638}
   m_LocalRotation: {x: 0.16096255, y: -0, z: -0, w: 0.9869605}
-  m_LocalPosition: {x: 0, y: 4.92, z: -4.24}
+  m_LocalPosition: {x: -2, y: 5.3, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 578082954}
@@ -1192,7 +1198,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 578082953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 233.53, y: 0, z: -320.13}
+  m_LocalPosition: {x: 245, y: 19.1, z: -264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 563637639}
@@ -1916,16 +1922,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usePlayerPosition: 1
-  maxIntersections: 3
-  currentTrackIndex: 0
-  trackSections:
-  - {fileID: 35999941}
-  - {fileID: 1862464146}
-  - {fileID: 1638834253}
-  - {fileID: 1910485859}
-  - {fileID: 1350896474}
-  - {fileID: 2086503976}
-  - {fileID: 2088517516}
+  currentSection: {fileID: 35999941}
+  checkPreviousSections: 1
+  checkParallelSections: 1
 --- !u!1 &940626022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2476,7 +2475,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1252013027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc864ea29b8f3a4fa26eee7e87c73bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e3bc340fda478747b470b0fe7f519e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ropePrefab: {fileID: 1693350964795942, guid: 3d15b4131ff3d864680348bbfecd8ea4, type: 2}
@@ -2943,6 +2942,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 1910485859}
+  nextSections:
+  - {fileID: 2086503976}
+  - {fileID: 2088517516}
   spline: {fileID: 1350896475}
   invertDirection: 0
 --- !u!114 &1350896475
@@ -3347,6 +3351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 35999941}
+  nextSections:
+  - {fileID: 1910485859}
   spline: {fileID: 1638834252}
   invertDirection: 0
 --- !u!1 &1644643697
@@ -3752,8 +3760,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1862464145}
-  - component: {fileID: 1862464147}
   - component: {fileID: 1862464146}
+  - component: {fileID: 1862464147}
   m_Layer: 0
   m_Name: section2.1
   m_TagString: Untagged
@@ -3786,6 +3794,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 35999941}
+  nextSections:
+  - {fileID: 1910485859}
   spline: {fileID: 1862464147}
   invertDirection: 0
 --- !u!114 &1862464147
@@ -3903,6 +3915,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 1862464146}
+  - {fileID: 1638834253}
+  nextSections:
+  - {fileID: 1350896474}
   spline: {fileID: 1910485860}
   invertDirection: 0
 --- !u!114 &1910485860
@@ -4166,6 +4183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 1350896474}
+  nextSections:
+  - {fileID: 35999941}
   spline: {fileID: 2086503977}
   invertDirection: 0
 --- !u!114 &2086503977
@@ -4384,6 +4405,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 1350896474}
+  nextSections:
+  - {fileID: 35999941}
   spline: {fileID: 2088517515}
   invertDirection: 0
 --- !u!1 &2107860253

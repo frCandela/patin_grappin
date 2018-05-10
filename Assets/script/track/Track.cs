@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+
 [ExecuteInEditMode]
 public class Track : MonoBehaviour
 {
@@ -9,12 +11,12 @@ public class Track : MonoBehaviour
 
     [Header("Track parameters: ")]
     [SerializeField, Tooltip("If false use camera position instead")] private bool usePlayerPosition = true;
-    [SerializeField] private int maxIntersections = 3;
-    [SerializeField] private int currentTrackIndex;
 
     [Header("Track Section: ")]
-    [SerializeField] private List<TrackSection> trackSections = new List<TrackSection>();
+    [SerializeField] private TrackSection currentSection = null;
 
+    [SerializeField] private bool checkPreviousSections = true;
+    [SerializeField] private bool checkParallelSections = true;
 
     //Private members
     Transform targetTransform = null;
@@ -24,19 +26,18 @@ public class Track : MonoBehaviour
 
     public TrackSection trackSection
     {
-        get { return trackSections[currentTrackIndex]; }
-        set { }
+        get { return currentSection; }
+        private set { }
     }
 
     private void Awake()
     {
-        Util.EditorAssert(trackSections.Count != 0, "Track.Awake: no track set"); 
     }
 
     private void Start()
     {
-        if (trackSections.Count > 0)
-            trackSections[currentTrackIndex].UpdateTrack(Camera.main.transform.position);
+        if (currentSection)
+            currentSection.UpdateTrack(Camera.main.transform.position);    
 
         SetupTarget();
     }
@@ -50,17 +51,12 @@ public class Track : MonoBehaviour
     {
         //Use the closest track section
         float t1 = Time.realtimeSinceStartup;
-        currentTrackIndex = GetClosestTrackIndex();
+        UpdateClosestSection();
         splineUpdateMs = 1000 * (Time.realtimeSinceStartup - t1);
 
-
-        //if end track reached go to the next track
-        if (trackSections[currentTrackIndex].endTrackReached)
-            currentTrackIndex = (currentTrackIndex + 1) % trackSections.Count;
-
         //Update track
-        if (trackSections.Count > 0)
-             trackSections[currentTrackIndex].UpdateTrack(targetTransform.position);
+        if (currentSection)
+            currentSection.UpdateTrack(targetTransform.position);
     }
 
     private void SetupTarget()
@@ -71,49 +67,45 @@ public class Track : MonoBehaviour
             targetTransform = Camera.main.transform;
     }
 
-    public int GetClosestTrackIndex()
+    public void UpdateClosestSection()
     {
-        int bestTrackIndex = currentTrackIndex;
+        //Variables and lambda used to find the best section
+        TrackSection bestTrackSection = null;
         float bestDistance = float.MaxValue;
-
-        //Iterates throught all next tracks to find the closest one
-        for ( int i = currentTrackIndex - maxIntersections; i < currentTrackIndex + maxIntersections; ++i)
+        Action<TrackSection> LookupSection = (section) =>
         {
-            //Get looped index and update the corresponding track section
-            int loopedIndex = (i + trackSections.Count) % trackSections.Count;
-            trackSections[loopedIndex].UpdateTrack(targetTransform.position);
-
-            //Test if we have a closer track position
-            float dist = Vector3.SqrMagnitude(targetTransform.position - trackSections[loopedIndex].trackPosition);
+            section.UpdateTrack(targetTransform.position);
+            float dist = Vector3.SqrMagnitude(targetTransform.position - section.trackPosition);
             if (dist < bestDistance)
             {
                 bestDistance = dist;
-                bestTrackIndex = loopedIndex;
+                bestTrackSection = section;
             }
-        }
+        };
 
-        return bestTrackIndex;
-
-        //print(currentTrackIndex + " " + bestTrackIndex);
-    }
-
-    public void SetCurrentTrack( int value )
-    {
-        //Regenerate the track when needed
-        value = (int)Mathf.Clamp(value, 0f, trackSections.Count - 0.1f);
-        currentTrackIndex = value;
-        for( int i = 0; i < trackSections.Count; ++i)
+        //LookUp parallel sections
+        foreach (TrackSection prevSection in currentSection.prevSections)
         {
-            if (i == currentTrackIndex)
-                trackSections[i].gameObject.SetActive(true);
-            else
-                trackSections[i].gameObject.SetActive(false);
+            if( checkPreviousSections)
+                LookupSection(prevSection);
+
+            if(checkParallelSections)
+                foreach (TrackSection parallelSection in prevSection.nextSections)
+                    LookupSection(parallelSection);
         }
+
+        //LookUp next sections
+        foreach (TrackSection nextSection in currentSection.nextSections)
+                LookupSection(nextSection);
+
+        currentSection = bestTrackSection;
+
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(trackSections[currentTrackIndex].trackPosition, 4f);
+        if(currentSection)
+            Gizmos.DrawSphere(currentSection.trackPosition, 4f);
     }
 
     private void OnGUI()
