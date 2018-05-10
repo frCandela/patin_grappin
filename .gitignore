@@ -5,7 +5,6 @@
 [Oo]bj/
 Assets/AssetStoreTools*
 UnityPlayer.dll
-[Cc]bj/
 *.exe
 *_Data/
 build/
@@ -17,3 +16,4 @@ Tobii.GameIntegration.dll
 *.sln
 sh.exe.stackdump
 .vscode
+Assets/Wwise/Editor/

@@ -58,8 +58,10 @@ public class CameraController : MonoBehaviour
 
     private void InitCamera()
     {
-        m_baseTranslation = targetRb.transform.position - transform.position;
-        m_baseRotationSelf = transform.rotation;
+        m_baseTranslation = targetRb.transform.localPosition - transform.localPosition;
+
+        Vector3 euler = transform.rotation.eulerAngles;
+        m_baseRotationSelf = Quaternion.Euler(euler.x,0, euler.z);
     }
 
     public void UpdateCameraTransform()

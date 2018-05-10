@@ -44,7 +44,7 @@ public class RemGrapple : MonoBehaviour
         Util.EditorAssert(ropePrefab != null, "Grapple.Awake: ropePrefab not set");
         GameObject tmpRope = Instantiate(ropePrefab);
         m_rope = tmpRope.GetComponent<Rope>();
-        m_rope.SetRope(gameObject, m_grappleTarget);
+        m_rope.SetRope(transform, m_grappleTarget.transform);
         m_rope.enabled = false;
 
         //Spring joint

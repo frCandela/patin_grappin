@@ -13,14 +13,13 @@ public class feetOnGroundIK : MonoBehaviour {
     public Transform target = null;
 
     Transform lFoot, rFoot;
-
-    Quaternion lFootRotation, rFootRotation;
-    Quaternion lFootBaseRotation, rFootBaseRotation;
     float lFootWeightIK, rFootWeightIK;
     float lFootRotWeight, rFootRotWeight;
     GameObject player;
 
-    public float rayCastOffset, raycastDistance, groundOffset;
+    public float rayCastOffset = 1f;
+    public float raycastDistance = 3f;
+    public float groundOffset = 0.45f;
     public bool leftFootAtGround = false;
 
     void Start () 
@@ -44,8 +43,6 @@ public class feetOnGroundIK : MonoBehaviour {
                 if(lFootWeightIK != 0f){
 
                     lFoot = animator.GetBoneTransform(HumanBodyBones.LeftFoot);
-                    lFootBaseRotation = lFoot.localRotation;
-                    lFootRotation = lFoot.rotation;
 
                     if (Physics.Raycast(
                         (Vector3.up * rayCastOffset) + lFoot.position,
@@ -68,7 +65,6 @@ public class feetOnGroundIK : MonoBehaviour {
                 if(rFootWeightIK != 0f){
 
                     rFoot = animator.GetBoneTransform(HumanBodyBones.RightFoot);
-                    rFootBaseRotation = rFoot.rotation;
 
                     if (Physics.Raycast(
                         (Vector3.up * rayCastOffset) + rFoot.position,

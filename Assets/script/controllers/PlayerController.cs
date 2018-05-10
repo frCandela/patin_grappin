@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -16,20 +17,30 @@ public class PlayerController : MonoBehaviour
     [Header("Other:")]
     [SerializeField] private float gravity = -20;
 
+    [Header("Events:")]
+    public UnityEvent onGrappleLaunch;
+    public UnityEvent onGrappleReset;
+
     //Components references
     private Rigidbody m_rb;
     private Grapple m_grapple;
+    private AnimationController m_animationController;
     private Track m_track = null;
 
     // Use this for initialization
     void Awake ()
     {
+        //Set references
         m_track = FindObjectOfType<Track>();
-
         m_rb = GetComponent<Rigidbody>();
         m_grapple = GetComponent<Grapple>();
+        m_animationController = GetComponent<AnimationController>();
 
         Physics.gravity = new Vector3(0, gravity, 0);
+
+        //Set events
+        onGrappleLaunch = new UnityEvent();
+        onGrappleReset = new UnityEvent();
     }
 
     private void Start()
@@ -42,12 +53,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (Input.GetButtonDown("Grapple") && m_grapple.Throw(m_animationController.rightHand))
+            onGrappleLaunch.Invoke();
 
-        if (Input.GetButtonDown("Grapple"))
-            m_grapple.Toogle( true );
-        if (Input.GetButtonUp("Grapple"))
-            m_grapple.Toogle(false);
-            
+        if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
+            onGrappleReset.Invoke();
     }
 
     // Update is called once per frame
@@ -77,5 +87,14 @@ public class PlayerController : MonoBehaviour
         Vector3 right = Vector3.Cross(Vector3.up, m_track.trackSection.trackDirection).normalized;
         m_rb.AddForce(headAxis * turnForce * right);
 
+    }
+
+    private void OnGUI()
+    {
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.black;
+
+        Vector3 XZVelocity = new Vector3( m_rb.velocity.x,0, m_rb.velocity.z);
+        GUI.Label(new Rect(0, 20, 100, 10), "XZ velocity: " + XZVelocity.magnitude, style);
     }
 }

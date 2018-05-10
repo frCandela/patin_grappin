@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
-    [SerializeField] private GameObject beginRope;
-    [SerializeField] private GameObject endRope;
+    [SerializeField] private Transform beginRope;
+    [SerializeField] private Transform endRope;
 
-    public void SetRope(GameObject begin, GameObject end)
+    public void SetRope(Transform begin, Transform end)
     {
         beginRope = begin;
         endRope = end;
@@ -23,8 +23,8 @@ public class Rope : MonoBehaviour
     {
         if(beginRope && endRope)
         {
-            Vector3 begin = beginRope.transform.position;
-            Vector3 end = endRope.transform.position;
+            Vector3 begin = beginRope.position;
+            Vector3 end = endRope.position;
             Vector3 scale = transform.localScale;
             float distance = (end - begin).magnitude;
 
