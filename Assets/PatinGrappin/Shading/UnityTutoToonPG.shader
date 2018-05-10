@@ -7,6 +7,8 @@ Shader "Custom/UnityTutoToonPG" {
 	{
 		_ToonTex ("Toon Sampler", 2D) = "White" {}
 		_Color ("Main Color", Color) = (0,0,0,0)
+		_PointerColor ("Pointer Color", Color) = (1,0,0,1)
+		_PointerRadius ("Pointer Radius", float) = 3
 	}
 	SubShader {
 
@@ -26,9 +28,15 @@ Shader "Custom/UnityTutoToonPG" {
 		sampler2D _ToonTex;
 		fixed4 _Color;
 
+		// pointeur
+		float3 _AimTargetPos;
+		fixed4 _PointerColor;
+		float _PointerRadius;
+
 		struct vertInput
 		{
 			float4 position : POSITION;
+			float3 worldPos : TEXCOORD01;
 			float3 normal : NORMAL;
 			float2 uv : TEXCOORD0;
 		};
@@ -36,6 +44,7 @@ Shader "Custom/UnityTutoToonPG" {
 		struct vertOutput
 		{
 			float4 position : SV_POSITION;
+			float3 worldPos : TEXCOORD01;
 			float3 normal : NORMAL;
 			float2 uv : TEXCOORD0;
 		};
@@ -46,6 +55,7 @@ Shader "Custom/UnityTutoToonPG" {
 			UNITY_INITIALIZE_OUTPUT(vertOutput, o);
 			o.position = UnityObjectToClipPos(v.position);
 			o.normal = normalize(mul(float4(v.normal.x, v.normal.y, v.normal.z, 0.0), unity_WorldToObject).xyz);
+			o.worldPos = mul(unity_ObjectToWorld, v.position).xyz;
 			return o;
 		}
 
@@ -57,7 +67,16 @@ Shader "Custom/UnityTutoToonPG" {
 			float toonUVX = (diffIntensity * 0.5) + 0.5;
 			float4 toonCol = tex2D(_ToonTex, toonUVX);
 
-			return float4(toonCol.rgb * _Color.rgb, 1.0);
+			// pointeur shader
+			float distToAim = distance(psIn.worldPos, _AimTargetPos);
+			// step(a,x) = 0 if x < a   or   1 if x >= a
+			// isInRadius = 1 si dans le ridus, sinon 0
+			float isInRadius = 1 - step(_PointerRadius, distToAim);
+
+
+			fixed4 col = fixed4(toonCol.rgb * _Color.rgb, 1.0);
+			col = ((1 - isInRadius) * col) + (isInRadius * _PointerColor);
+			return col;
 		}
 
 
