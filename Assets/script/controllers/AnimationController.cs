@@ -25,11 +25,11 @@ public class AnimationController : MonoBehaviour
     private PlayerController m_playerController = null;
     private Rigidbody m_playerRb = null;
     private Animator m_animator = null;
-    private armIK m_armIK = null;
+    private spineOrientationIK m_spineOrientationIK = null;
 
     //privates members
     private float prevYVelocity = 0f;
-    private int m_currentState = 2;
+    private int m_currentState = 2  ;
 
     // Use this for initialization
     void Awake ()
@@ -52,9 +52,9 @@ public class AnimationController : MonoBehaviour
         rightHand = m_animator.GetBoneTransform(HumanBodyBones.RightHand);
 
         //Set IKanim scipts
-        m_armIK = GetComponentInChildren<armIK>();
-        m_armIK.targetIK = GetComponent<Grapple>().grappleTarget.transform;
-        m_armIK.isIK = false;
+        m_spineOrientationIK = GetComponentInChildren<spineOrientationIK>();
+        m_spineOrientationIK.spineTarget = GetComponent<Grapple>().grappleTarget;
+        m_spineOrientationIK.isOriented = false;
     }
 
     private void Update()
@@ -104,14 +104,14 @@ public class AnimationController : MonoBehaviour
     {
         m_animator.SetTrigger("launchGrappin");
         m_animator.SetBool("isGrounded", false);
-        m_armIK.isIK = true;
+        m_spineOrientationIK.isOriented = true;
     }
 
 
     private void ResetGrapple()
     {
         m_animator.SetBool("isGrounded", true);
-        m_armIK.isIK = false;
+        m_spineOrientationIK.isOriented = false;
     }
 
 }
