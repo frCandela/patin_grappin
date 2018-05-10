@@ -90,7 +90,7 @@ public class Grapple : MonoBehaviour
         m_aimTarget.transform.position = GazeManager.GetGazeWorldPoint();
 
         /// Variable pour le shader
-        Shader.SetGlobalVector("_AimTargetPos", grappleTarget.transform.position);
+        Shader.SetGlobalVector("_AimTargetPos", m_aimTarget.transform.position);
     }
 
     void FixedUpdate ()
