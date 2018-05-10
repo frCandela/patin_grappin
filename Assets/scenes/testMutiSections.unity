@@ -938,7 +938,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &563637638
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,7 +1922,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usePlayerPosition: 1
-  fallFromTrackHeight: 50
+  fallFromTrackHeight: 150
+  respawnHeight: 250
   currentSection: {fileID: 1862464146}
   checkPreviousSections: 1
   checkParallelSections: 1
@@ -2456,7 +2457,7 @@ MonoBehaviour:
   forwardForce: 30
   turnForce: 300
   maxheadYAngle: 20
-  gravity: -20
+  gravity: -60
   onGrappleLaunch:
     m_PersistentCalls:
       m_Calls: []
@@ -2482,7 +2483,7 @@ MonoBehaviour:
   ropePrefab: {fileID: 1693350964795942, guid: 3d15b4131ff3d864680348bbfecd8ea4, type: 2}
   targetPrefab: {fileID: 1386341600016514, guid: 827e4a84c9c39c640b3e3d3b04bbf41b,
     type: 2}
-  attractionForce: 50
+  attractionForce: 200
   minDistance: 1
   maxDistance: 3.4028235e+38
   elasticity: 1

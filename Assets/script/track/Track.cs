@@ -11,7 +11,8 @@ public class Track : MonoBehaviour
 
     [Header("Track parameters: ")]
     [SerializeField, Tooltip("If false use camera position instead")] private bool usePlayerPosition = true;
-    [SerializeField] private float fallFromTrackHeight = 10f;
+    [SerializeField] private float fallFromTrackHeight = 50;
+    [SerializeField] private float respawnHeight = 100f;
 
     [Header("Track Sections Tree: ")]
     [SerializeField] private TrackSection currentSection = null;
@@ -69,7 +70,7 @@ public class Track : MonoBehaviour
     {
         Vector3 diff = currentSection.trackPosition - targetTransform.transform.position;
         if (diff.y > fallFromTrackHeight)
-            targetTransform.parent.transform.position = targetTransform.parent.transform.position + diff + fallFromTrackHeight * Vector3.up;   
+            targetTransform.parent.transform.position = targetTransform.parent.transform.position + diff + respawnHeight * Vector3.up;   
     }
 
 
