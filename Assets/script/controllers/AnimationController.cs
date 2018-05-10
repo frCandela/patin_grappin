@@ -89,7 +89,7 @@ public class AnimationController : MonoBehaviour
 
         // Update in-air velocity and animator's float "airVelocity" [RAOUL qui fout sa merde]
         float playerVerticalVelocity = Mathf.Clamp(m_playerRb.velocity.y, minAirVelocity, maxAirVelocity);
-        float airLerpParam = Mathf.InverseLerp(playerVerticalVelocity, minAirVelocity, maxAirVelocity);
+        float airLerpParam = Mathf.InverseLerp(minAirVelocity, maxAirVelocity, playerVerticalVelocity);
         // set airVelocity entre -1 et 1 selon la velocité verticale du joueur entre la min et max
         m_animator.SetFloat("airVelocity", (airLerpParam * 2) - 1);
     }
