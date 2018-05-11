@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/PatinGrappin/anime/playerAnimator.controller.meta
 guid: 3226d7c77542ca749869974768224ada
 timeCreated: 1523545082
+=======
+guid: a50fd898d30b0aa4d8aa855e949a17db
+folderAsset: yes
+timeCreated: 1525713625
+>>>>>>> Stashed changes:Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/DecodedBanks/English(US).meta
 licenseType: Free
 NativeFormatImporter:
   externalObjects: {}

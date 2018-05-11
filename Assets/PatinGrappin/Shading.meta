@@ -1,7 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/PatinGrappin/Shading.meta
 guid: b4d237050704efa4896b3501a7e80421
 folderAsset: yes
 timeCreated: 1525265891
+=======
+<<<<<<< Updated upstream
+guid: a50fd898d30b0aa4d8aa855e949a17db
+folderAsset: yes
+timeCreated: 1524751344
+=======
+guid: 4e4eb38893ee13d478f005e3fbe88b47
+folderAsset: yes
+timeCreated: 1525209477
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes:Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/DecodedBanks/English(US).meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
