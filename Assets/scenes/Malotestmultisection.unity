@@ -161,7 +161,6 @@ Transform:
   m_Children:
   - {fileID: 643758012}
   - {fileID: 361861318}
-  - {fileID: 1094861376}
   m_Father: {fileID: 880786759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -176,8 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections: []
+  nextSections:
+  - {fileID: 1591036323}
   spline: {fileID: 35999942}
-  invertDirection: 0
+  respawnTrackSection: {fileID: 0}
+  respawnTransform: {fileID: 0}
 --- !u!114 &35999942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,68 +816,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62b5fd1861e5e2045967315a649992fa, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &168340466
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 35999940}
-    m_Modifications:
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 8.399994
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -4.3530045
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 67.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0.6080828
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0.36088115
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.36088064
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.60808337
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 61.376003
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 130.06311
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 130.06299
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 118.36248
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: c325638035a41ef4b82903094fdb3496, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &170638444
 Prefab:
@@ -2372,8 +2313,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 1591036323}
+  nextSections:
+  - {fileID: 1154566843}
+  - {fileID: 1583649849}
   spline: {fileID: 778198623}
-  invertDirection: 0
+  respawnTrackSection: {fileID: 0}
+  respawnTransform: {fileID: 0}
 --- !u!4 &674621654
 Transform:
   m_ObjectHideFlags: 0
@@ -2689,16 +2636,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06147b651b7cfc4468df5c3efe6910cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usePlayerPosition: 1
-  maxIntersections: 3
-  currentTrackIndex: 0
-  trackSections:
-  - {fileID: 35999941}
-  - {fileID: 1591036323}
-  - {fileID: 674621653}
-  - {fileID: 1583649849}
-  - {fileID: 1154566843}
-  - {fileID: 1324015316}
+  fallFromTrackHeight: 50
+  respawnHeight: 100
+  alignVelocityOnRespawn: 0
+  currentSection: {fileID: 35999941}
+  checkPreviousSections: 1
+  checkParallelSections: 1
 --- !u!1 &903069233 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1790985661226860, guid: 62b5fd1861e5e2045967315a649992fa,
@@ -3485,35 +3428,6 @@ Prefab:
     - {fileID: 114186835767876972, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0e657f307cb4c324895dfeeefab46c01, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1094861375
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 168340466}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1094861376}
-  m_Layer: 0
-  m_Name: Missing Prefab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1094861376
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 168340466}
-  m_GameObject: {fileID: 1094861375}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1176589464}
-  m_Father: {fileID: 35999940}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1101885087
 Prefab:
   m_ObjectHideFlags: 0
@@ -3556,21 +3470,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e25153fa881cb964d9a66592d699414e, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1107029621
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 168340466}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1176589464}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1107484050
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,8 +3957,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 674621653}
+  nextSections:
+  - {fileID: 1324015316}
   spline: {fileID: 1154566842}
-  invertDirection: 0
+  respawnTrackSection: {fileID: 0}
+  respawnTransform: {fileID: 0}
 --- !u!4 &1154566844
 Transform:
   m_ObjectHideFlags: 0
@@ -4309,20 +4213,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!4 &1176589464
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4308634834125744, guid: c325638035a41ef4b82903094fdb3496,
-    type: 2}
-  m_PrefabInternal: {fileID: 168340466}
-  m_GameObject: {fileID: 1107029621}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1094861376}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1201653424
 Prefab:
   m_ObjectHideFlags: 0
@@ -4767,6 +4657,8 @@ MonoBehaviour:
   velocityDelta: 5
   MinXYVelocityIdle: 48
   MaxXYVelocityIdle: 65
+  minAirVelocity: -5
+  maxAirVelocity: 5
 --- !u!4 &1252013032
 Transform:
   m_ObjectHideFlags: 0
@@ -4941,8 +4833,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections: []
+  nextSections: []
   spline: {fileID: 1324015315}
-  invertDirection: 0
+  respawnTrackSection: {fileID: 0}
+  respawnTransform: {fileID: 0}
 --- !u!4 &1324015317
 Transform:
   m_ObjectHideFlags: 0
@@ -5774,8 +5669,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections: []
+  nextSections: []
   spline: {fileID: 243196790}
-  invertDirection: 0
+  respawnTrackSection: {fileID: 0}
+  respawnTransform: {fileID: 0}
 --- !u!4 &1583649850
 Transform:
   m_ObjectHideFlags: 0
@@ -5988,8 +5886,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f96d5428f9f5694cb6755be4f611e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prevSections:
+  - {fileID: 35999941}
+  nextSections:
+  - {fileID: 1591036323}
   spline: {fileID: 1591036322}
-  invertDirection: 0
+  respawnTrackSection: {fileID: 0}
+  respawnTransform: {fileID: 0}
 --- !u!1 &1606690346 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1572483284953746, guid: a3b6af6ec6b27a549b5eab2d943bb0d9,
