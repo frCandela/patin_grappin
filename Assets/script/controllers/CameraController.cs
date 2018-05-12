@@ -8,7 +8,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [Header("References:")]
-    [SerializeField] private Rigidbody targetRb = null;
+    private Rigidbody targetRb = null;
     private Track m_track = null;
 
     [Header("Head rotation:")]
@@ -38,7 +38,10 @@ public class CameraController : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
+
         m_track = FindObjectOfType<Track>();
+
+        targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
 
         Util.EditorAssert(m_track != null, "HeadCameraController.Awake(): no track in the level");
         Util.EditorAssert(targetRb != null, "HeadCameraController.Awake(): no playerRb set");
