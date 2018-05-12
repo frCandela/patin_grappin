@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float initialVelocity = 2f;
     [SerializeField] private float forwardForce = 30f;
     [SerializeField] private float turnForce = 300f;
-
     [SerializeField] private float maxheadYAngle = 20f;
+    [SerializeField] private bool trackForceWhenGrappling = false;
 
     [Header("Other:")]
     [SerializeField] private float gravity = -20;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        if (Input.GetButtonDown("Grapple") && m_grapple.Throw(m_animationController.rightHand))
+        if (Input.GetButtonDown("Grapple") && m_grapple.Throw(m_animationController.grappleHand))
             onGrappleLaunch.Invoke();
 
         if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
@@ -63,7 +63,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        m_rb.AddForce(forwardForce * m_track.trackSection.trackDirection);
+
+        if( trackForceWhenGrappling || ! m_grapple.grappling)
+            m_rb.AddForce(forwardForce * m_track.trackSection.trackDirection);
+
+
         m_rb.transform.rotation = Quaternion.LookRotation(m_rb.velocity);
 
         float headAxis = 0;

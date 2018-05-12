@@ -32,7 +32,7 @@ public class armIK : MonoBehaviour {
 		{
 			targetPos = targetIK.position;
 
-			Vector3 toTarget = targetPos - transform.position;
+			/*Vector3 toTarget = targetPos - transform.position;
 			Vector3 rightVec = transform.parent.transform.right;
 			float tDotF = Vector3.Dot(rightVec, toTarget);
 
@@ -43,7 +43,7 @@ public class armIK : MonoBehaviour {
 			else if(tDotF > 0)
 			{
 				whichHand = Hands.right;
-			}
+			}*/
 
 			if(whichHand == Hands.left)
 			{
