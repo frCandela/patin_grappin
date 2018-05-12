@@ -11,8 +11,7 @@ public class Grapple : MonoBehaviour
 
     [Header("Parameters")]
     [SerializeField, Range(0f, 1000f)] private float attractionForce = 50f;
-    [SerializeField, Range(0f, 1000f)] private float minDistance = 1;
-    [SerializeField, Range(0f, 1000f)] private float maxDistance = float.MaxValue;
+    [SerializeField, Range(0f, 1000f)] private float minDistance = 5;
     [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
 
     //Public properties
@@ -20,7 +19,6 @@ public class Grapple : MonoBehaviour
     public GameObject grappleTarget { get; private set; }
 
     private Rigidbody m_rigidbody;
-
     
     private GameObject m_aimTarget;
     private Rope m_rope = null;
@@ -98,7 +96,7 @@ public class Grapple : MonoBehaviour
         if(grappling)
         {
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
-            if(sqrDist > minDistance * minDistance && sqrDist < maxDistance*maxDistance)
+            if(sqrDist > minDistance * minDistance)
             {
                 //Force in the good direction
                 Vector3 direction = (m_target - transform.position).normalized;
