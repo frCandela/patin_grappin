@@ -6,6 +6,7 @@ public class AnimationController : MonoBehaviour
 {
     [Header("Trigger anims:")]
     [SerializeField] private float landingVelocityChangeThreshold = 15f;
+    [SerializeField] private float heightNotGrounded = 0.2f;
 
     [Header("Velocity anims:")]
     [SerializeField] private float velocityDelta = 5f;
@@ -18,14 +19,29 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private float maxAirVelocity = 5f;
 
     //Public properties
-    public Transform leftHand { get; private set; }
-    public Transform rightHand { get; private set; }
+    public Transform grappleHand {
+        get
+        {
+            if (m_animator.GetBool("side"))
+                return m_animator.GetBoneTransform(HumanBodyBones.RightHand);
+            else
+                return m_animator.GetBoneTransform(HumanBodyBones.LeftHand);
+        }
+        private set
+        { }
+    }
 
     //private references
     private PlayerController m_playerController = null;
     private Rigidbody m_playerRb = null;
     private Animator m_animator = null;
     private spineOrientationIK m_spineOrientationIK = null;
+    private armIK m_armIK = null;
+    private Transform m_leftFoot;
+    private Transform m_rightFoot;
+
+    //private properties
+    public bool grounded { get; private set; }
 
     //privates members
     private float prevYVelocity = 0f;
@@ -48,22 +64,32 @@ public class AnimationController : MonoBehaviour
 
         //Init values
         prevYVelocity = m_playerRb.velocity.y;
-        leftHand = m_animator.GetBoneTransform(HumanBodyBones.LeftHand);
-        rightHand = m_animator.GetBoneTransform(HumanBodyBones.RightHand);
+        grounded = true;
+        grappleHand = m_animator.GetBoneTransform(HumanBodyBones.RightHand);
+        m_leftFoot = m_animator.GetBoneTransform(HumanBodyBones.LeftFoot);
+        m_rightFoot = m_animator.GetBoneTransform(HumanBodyBones.RightFoot);
 
-        //Set IKanim scipts
+        //Set IKanim scripts
         m_spineOrientationIK = GetComponentInChildren<spineOrientationIK>();
         m_spineOrientationIK.spineTarget = GetComponent<Grapple>().grappleTarget;
         m_spineOrientationIK.isOriented = false;
+
+        m_armIK = GetComponentInChildren<armIK>();
+        m_armIK.targetIK = GetComponent<Grapple>().grappleTarget.transform;
+        m_armIK.isIK = false;
     }
 
     private void Update()
     {
         //Launch landing animation
-        float velocityChange = m_playerRb.velocity.y - prevYVelocity;
-        if ( velocityChange > 0f && velocityChange > landingVelocityChangeThreshold)
-            m_animator.SetTrigger("landing");   
-        prevYVelocity = m_playerRb.velocity.y;
+        /*float velocityChange = m_playerRb.velocity.y - prevYVelocity;
+        if ( ! grounded &&  velocityChange > 0f && velocityChange > landingVelocityChangeThreshold)
+        {
+            grounded = true;
+            m_animator.SetBool("isGrounded", true);
+            m_animator.SetTrigger("landing");
+        }
+        prevYVelocity = m_playerRb.velocity.y;*/
 
         //Speed animations
         Vector3 XZVelocity = new Vector3(m_playerRb.velocity.x, 0, m_playerRb.velocity.z);
@@ -92,6 +118,27 @@ public class AnimationController : MonoBehaviour
         float airLerpParam = Mathf.InverseLerp(minAirVelocity, maxAirVelocity, playerVerticalVelocity);
         // set airVelocity entre -1 et 1 selon la velocité verticale du joueur entre la min et max
         m_animator.SetFloat("airVelocity", (airLerpParam * 2) - 1);
+
+        //Set grounded parameter
+        Ray rayLeft = new Ray(m_leftFoot.position, Vector3.down);
+        Ray rayRight = new Ray(m_rightFoot.position, Vector3.down);
+        RaycastHit raycastHit;
+        if ( Physics.Raycast(rayLeft,  out raycastHit, heightNotGrounded, LayerMask.GetMask("Track"))
+             || Physics.Raycast(rayRight, out raycastHit, heightNotGrounded, LayerMask.GetMask("Track")))
+        {
+            if( !grounded)
+            {
+                grounded = true;
+                m_animator.SetBool("isGrounded", true);
+                m_animator.SetTrigger("landing");
+            }
+        }
+        else if( grounded)
+        {
+            grounded = false;
+            m_animator.SetBool("isGrounded", false);
+            
+        }
     }
 
     private void SetAnim(int state)
@@ -103,15 +150,21 @@ public class AnimationController : MonoBehaviour
     private void LaunchGrapple()
     {
         m_animator.SetTrigger("launchGrappin");
-        m_animator.SetBool("isGrounded", false);
+
+        if (m_animator.GetBool("side"))
+            m_armIK.whichHand = armIK.Hands.right;  
+        else
+            m_armIK.whichHand = armIK.Hands.left;
+            
+
         m_spineOrientationIK.isOriented = true;
+        m_armIK.isIK = true;
     }
 
 
     private void ResetGrapple()
     {
-        m_animator.SetBool("isGrounded", true);
         m_spineOrientationIK.isOriented = false;
+        m_armIK.isIK = false;
     }
-
 }
