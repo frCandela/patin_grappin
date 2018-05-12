@@ -57,10 +57,12 @@ public class GazeManager : MonoBehaviour
         foreach (GazePoint point in m_samples)
             AverageGazePoint += point.Viewport;
         AverageGazePoint /= m_samples.Count;
-
-
         Rect rect = m_camera.pixelRect;
         AverageGazePoint = new Vector2(rect.width * AverageGazePoint.x, rect.height * AverageGazePoint.y);
+
+        //If out of screen use mouse position instead
+        if (TobiiAPI.GetUserPresence() != UserPresence.Present)
+            AverageGazePoint = Input.mousePosition;
 
         GameObject currendGazedObject = null;
         //Gets the gazed object
@@ -104,7 +106,6 @@ public class GazeManager : MonoBehaviour
         }
     }
 
-
     public static Vector3 GetGazeWorldPoint()
     {
         //Gets the gazed object
@@ -113,7 +114,10 @@ public class GazeManager : MonoBehaviour
             Ray ray = m_camera.ScreenPointToRay(AverageGazePoint);
             RaycastHit raycastHit;
             if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
-                return raycastHit.point;
+            {
+                if (raycastHit.collider.gameObject.tag != "noGrab")
+                    return raycastHit.point;
+            }  
         }
         return Vector3.zero;
     }
