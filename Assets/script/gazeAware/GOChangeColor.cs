@@ -12,6 +12,7 @@ public class GOChangeColor : GazeObject
     [SerializeField] private Color fadeColor = Color.green;
     [SerializeField] private Color finalColor = Color.yellow;
     [SerializeField] private float duration = 1f;
+    [SerializeField] private float resetTime = 1f;
 
     //Public
     public UnityEvent onColorChanged;
@@ -63,6 +64,11 @@ public class GOChangeColor : GazeObject
         m_material.color = finalColor;
         m_fixed = true;
         onColorChanged.Invoke();
+
+
+        StopAllCoroutines();
+        StartCoroutine(FadeOut());
+        StartCoroutine(Reset());
     }
 
     //Coroutine for fading thhe color out
@@ -75,5 +81,11 @@ public class GOChangeColor : GazeObject
             m_material.color = Color.Lerp(m_baseColor, fadeColor, m_ratio);
             yield return new WaitForSeconds(delta);
         }
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(resetTime);
+        m_fixed = false;
     }
 }

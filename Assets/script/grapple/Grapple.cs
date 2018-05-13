@@ -47,7 +47,7 @@ public class Grapple : MonoBehaviour
         {
             //Get the grapple target : first with the GetGazeWorldPoint else with the mouse position
             m_target = GazeManager.GetGazeWorldPoint();
-            if (m_target == Vector3.zero)
+           /* if (m_target == Vector3.zero)
             {
                 if (Input.mousePosition.x >= 0 && Input.mousePosition.x <= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)
                 {
@@ -56,7 +56,7 @@ public class Grapple : MonoBehaviour
                     if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
                         m_target = raycastHit.point;
                 }
-            }
+            }*/
 
             //Launch the grapple if the target is valid
             if (m_target != Vector3.zero)
