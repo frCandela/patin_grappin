@@ -46,7 +46,7 @@ public class feetOnGroundIK : MonoBehaviour {
 
                     if (Physics.Raycast(
                         (Vector3.up * rayCastOffset) + lFoot.position,
-                        Vector3.down,out leftHit, raycastDistance))
+                        Vector3.down,out leftHit, raycastDistance, LayerMask.GetMask("Track")))
                     {
                         Quaternion leftNormalOffset = Quaternion.FromToRotation(transform.up, leftHit.normal);
                         Quaternion leftIKrotation = animator.GetIKRotation(AvatarIKGoal.LeftFoot);
@@ -68,7 +68,7 @@ public class feetOnGroundIK : MonoBehaviour {
 
                     if (Physics.Raycast(
                         (Vector3.up * rayCastOffset) + rFoot.position,
-                        Vector3.down,out rightHit, raycastDistance))
+                        Vector3.down,out rightHit, raycastDistance, LayerMask.GetMask("Track")))
                     {
                         Quaternion rightNormalOffset = Quaternion.FromToRotation(transform.up, rightHit.normal);
                         Quaternion rightIKrotation = animator.GetIKRotation(AvatarIKGoal.RightFoot);

@@ -143,6 +143,7 @@ ModelImporter:
     7400026: Armature|Idle_P
     7400028: Armature|GrappineAir_P
     7400030: Armature|Tpose
+    7400032: Armature|Accelerate_A (1)
     9500000: //RootNode
     13700000: Plane
   externalObjects:

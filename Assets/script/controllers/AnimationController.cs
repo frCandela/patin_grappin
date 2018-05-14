@@ -74,6 +74,15 @@ public class AnimationController : MonoBehaviour
         m_armIK = GetComponentInChildren<armIK>();
         m_armIK.targetIK = GetComponent<Grap>().grappleTarget.transform;
         m_armIK.isIK = false;
+
+        foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+            rb.isKinematic = true;
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+            col.enabled = false;
+
+        GetComponent<Rigidbody>().isKinematic = false;
+        foreach (Collider col in GetComponents<Collider>())
+            col.enabled = true;
     }
 
     private void Update()
