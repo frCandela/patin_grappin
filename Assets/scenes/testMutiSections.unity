@@ -3339,13 +3339,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1252013027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e3bc340fda478747b470b0fe7f519e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fc864ea29b8f3a4fa26eee7e87c73bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ropePrefab: {fileID: 1693350964795942, guid: 3d15b4131ff3d864680348bbfecd8ea4, type: 2}
   targetPrefab: {fileID: 1386341600016514, guid: 827e4a84c9c39c640b3e3d3b04bbf41b,
     type: 2}
-  attractionForce: 100
+  attractionForce: 50
   minDistance: 5
   elasticity: 1
 --- !u!114 &1252013030

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: iceShards
-  m_Shader: {fileID: 4800000, guid: b5058b5d02a238d43a1d8076404c00fc, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8e2b797a957f86540a2ddddbaee63742, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -72,11 +72,12 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaxShadowDist: 1.75
+    - _MaxShadowDist: 0.1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PointerRadius: 2
     - _ReflectIntensity: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -95,5 +96,6 @@ Material:
     - _Color: {r: 0.78676474, g: 0.9735294, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OverColor: {r: 1, g: 1, b: 1, a: 0}
+    - _PointerColor: {r: 1, g: 0, b: 0, a: 1}
     - _VolumeInfo: {r: 0.18382353, g: 0.25699776, b: 1, a: 0}
     - _shadowColor: {r: 0.1906695, g: 1, b: 0.16176468, a: 0}
