@@ -1609,13 +1609,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056880383286086}
-  m_LocalRotation: {x: 0.16096255, y: -0, z: -0, w: 0.9869605}
-  m_LocalPosition: {x: 0, y: 5.3, z: -7}
+  m_LocalRotation: {x: 0.095976, y: 0, z: 0, w: 0.9953837}
+  m_LocalPosition: {x: 1.09, y: 2.29, z: -5.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4506486959086250}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 18.526001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 11.015, y: 0, z: 0}
 --- !u!4 &4666538892413794
 Transform:
   m_ObjectHideFlags: 1
@@ -1884,7 +1884,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 2500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -2258,15 +2258,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a4b78ec6ab67340a680aef3f5dae80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headRotLerpX: 0.1
+  headRotLerpX: 0.03
   headRotLerpY: 0.1
-  headRotLerpZ: 0.1
-  headRotMultiX: 0.5
+  headRotLerpZ: 0.004
+  headRotMultiX: 1.5
   headRotMultiY: 0.5
-  headRotMultiZ: 0
+  headRotMultiZ: 0.2
   lerpPosition: 0.2
   lerpRotationY: 0.5
-  lerpRotationXZ: 0.1
+  lerpRotationXZ: 0
 --- !u!114 &114685360712612220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2303,8 +2303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a35a7d424176b4db7505a7a3352b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostMultiplier: 4
-  boostDuration: 2
+  boostMultiplier: 2.5
+  boostDuration: 2.5
 --- !u!114 &114868938507788248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2361,9 +2361,9 @@ MonoBehaviour:
   ropePrefab: {fileID: 1693350964795942, guid: 3d15b4131ff3d864680348bbfecd8ea4, type: 2}
   targetPrefab: {fileID: 1386341600016514, guid: 827e4a84c9c39c640b3e3d3b04bbf41b,
     type: 2}
-  attractionForce: 50
+  attractionForce: 70
   minDistance: 5
-  elasticity: 1
+  elasticity: 0.9
 --- !u!124 &124431261164259460
 Behaviour:
   m_ObjectHideFlags: 1
