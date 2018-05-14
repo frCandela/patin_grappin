@@ -903,6 +903,7 @@ GameObject:
   - component: {fileID: 114641354269897728}
   - component: {fileID: 114040531644885996}
   - component: {fileID: 114891676119901916}
+  - component: {fileID: 136377003963511974}
   m_Layer: 10
   m_Name: player
   m_TagString: Untagged
@@ -2136,15 +2137,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1961998215248532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e3bc340fda478747b470b0fe7f519e3, type: 3}
+  m_Script: {fileID: 11500000, guid: ecbf4a7d8d5c32f4ea18d6ca3a2ed073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ropePrefab: {fileID: 1693350964795942, guid: 3d15b4131ff3d864680348bbfecd8ea4, type: 2}
   targetPrefab: {fileID: 1386341600016514, guid: 827e4a84c9c39c640b3e3d3b04bbf41b,
     type: 2}
-  attractionForce: 70
+  attractionForce: 50
   minDistance: 5
-  elasticity: 0.9
+  elasticity: 1
 --- !u!124 &124672642993387798
 Behaviour:
   m_ObjectHideFlags: 1
@@ -2152,6 +2153,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1990983247713556}
   m_Enabled: 1
+--- !u!136 &136377003963511974
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1961998215248532}
+  m_Material: {fileID: 13400000, guid: d9738f96055e66e4c9d0d82b10546415, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136806440713350394
 CapsuleCollider:
   m_ObjectHideFlags: 1
