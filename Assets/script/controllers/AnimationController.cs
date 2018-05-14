@@ -68,12 +68,21 @@ public class AnimationController : MonoBehaviour
 
         //Set IKanim scripts
         m_spineOrientationIK = GetComponentInChildren<spineOrientationIK>();
-        m_spineOrientationIK.spineTarget = GetComponent<Grapple>().grappleTarget;
+        m_spineOrientationIK.spineTarget = GetComponent<Grap>().grappleTarget;
         m_spineOrientationIK.isOriented = false;
 
         m_armIK = GetComponentInChildren<armIK>();
-        m_armIK.targetIK = GetComponent<Grapple>().grappleTarget.transform;
+        m_armIK.targetIK = GetComponent<Grap>().grappleTarget.transform;
         m_armIK.isIK = false;
+
+        foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+            rb.isKinematic = true;
+        foreach (Collider col in GetComponentsInChildren<Collider>())
+            col.enabled = false;
+
+        GetComponent<Rigidbody>().isKinematic = false;
+        foreach (Collider col in GetComponents<Collider>())
+            col.enabled = true;
     }
 
     private void Update()

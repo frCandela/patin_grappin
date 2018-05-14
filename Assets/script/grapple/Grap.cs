@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Grapple : MonoBehaviour
+public class Grap : MonoBehaviour
 {
     [Header("Prefabs")]
-    [SerializeField] private GameObject ropePrefab;
+    [SerializeField]
+    private GameObject ropePrefab;
     [SerializeField] private GameObject targetPrefab;
 
     [Header("Parameters")]
-    [SerializeField, Range(0f, 1000f)] private float attractionForce = 50f;
+    [SerializeField, Range(0f, 1000f)]
+    private float attractionForce = 50f;
     [SerializeField, Range(0f, 1000f)] private float minDistance = 5;
     [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
 
@@ -19,7 +21,7 @@ public class Grapple : MonoBehaviour
     public GameObject grappleTarget { get; private set; }
 
     private Rigidbody m_rigidbody;
-    
+
     private GameObject m_aimTarget;
     private Rope m_rope = null;
     private Vector3 m_target;
@@ -41,22 +43,22 @@ public class Grapple : MonoBehaviour
         grappling = false;
     }
 
-    public bool Throw( Transform origin )
+    public bool Throw(Transform origin)
     {
         if (!grappling)
         {
             //Get the grapple target : first with the GetGazeWorldPoint else with the mouse position
             m_target = GazeManager.GetGazeWorldPoint();
-           /* if (m_target == Vector3.zero)
-            {
-                if (Input.mousePosition.x >= 0 && Input.mousePosition.x <= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    RaycastHit raycastHit;
-                    if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
-                        m_target = raycastHit.point;
-                }
-            }*/
+            /* if (m_target == Vector3.zero)
+             {
+                 if (Input.mousePosition.x >= 0 && Input.mousePosition.x <= Screen.width && Input.mousePosition.y >= 0 && Input.mousePosition.y <= Screen.height)
+                 {
+                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                     RaycastHit raycastHit;
+                     if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
+                         m_target = raycastHit.point;
+                 }
+             }*/
 
             //Launch the grapple if the target is valid
             if (m_target != Vector3.zero)
@@ -91,12 +93,12 @@ public class Grapple : MonoBehaviour
         Shader.SetGlobalVector("_AimTargetPos", m_aimTarget.transform.position);
     }
 
-    void FixedUpdate ()
+    void FixedUpdate()
     {
-        if(grappling)
+        if (grappling)
         {
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
-            if(sqrDist > minDistance * minDistance)
+            if (sqrDist > minDistance * minDistance)
             {
                 //Force in the good direction
                 Vector3 direction = (m_target - transform.position).normalized;
@@ -108,5 +110,5 @@ public class Grapple : MonoBehaviour
                     m_rigidbody.velocity = m_rigidbody.velocity - elasticity * wrongVelocity * direction;
             }
         }
-	}
+    }
 }

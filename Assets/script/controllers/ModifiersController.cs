@@ -8,14 +8,12 @@ public class ModifiersController : MonoBehaviour
     [SerializeField] private float boostMultiplier = 2;
     [SerializeField] private float boostDuration = 2f;
 
-    private Rigidbody m_rb = null;
     private PlayerController m_playerController = null;
 
     private float m_boostTimeRemaining = 0f;
 
     private void Awake()
     {
-        m_rb = GetComponent<Rigidbody>();
         m_playerController = GetComponent<PlayerController>();
     }
 
