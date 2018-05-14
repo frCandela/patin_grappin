@@ -68,11 +68,11 @@ public class AnimationController : MonoBehaviour
 
         //Set IKanim scripts
         m_spineOrientationIK = GetComponentInChildren<spineOrientationIK>();
-        m_spineOrientationIK.spineTarget = GetComponent<Grapple>().grappleTarget;
+        m_spineOrientationIK.spineTarget = GetComponent<Grap>().grappleTarget;
         m_spineOrientationIK.isOriented = false;
 
         m_armIK = GetComponentInChildren<armIK>();
-        m_armIK.targetIK = GetComponent<Grapple>().grappleTarget.transform;
+        m_armIK.targetIK = GetComponent<Grap>().grappleTarget.transform;
         m_armIK.isIK = false;
     }
 

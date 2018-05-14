@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     //Components references
     private Rigidbody m_rb;
-    private Grapple m_grapple;
+    private Grap m_grapple;
     private AnimationController m_animationController;
     private Track m_track = null;
 
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         //Set references
         m_track = FindObjectOfType<Track>();
         m_rb = GetComponent<Rigidbody>();
-        m_grapple = GetComponent<Grapple>();
+        m_grapple = GetComponent<Grap>();
         m_animationController = GetComponent<AnimationController>();
 
         Physics.gravity = new Vector3(0, gravity, 0);
