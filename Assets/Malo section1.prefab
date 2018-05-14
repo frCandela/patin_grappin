@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114167638825145300}
   - component: {fileID: 114537701048374176}
   m_Layer: 0
-  m_Name: section1
+  m_Name: Malo section1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
