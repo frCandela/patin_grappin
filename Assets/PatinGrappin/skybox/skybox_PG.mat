@@ -6,9 +6,9 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: iceShards
-  m_Shader: {fileID: 4800000, guid: 8e2b797a957f86540a2ddddbaee63742, type: 3}
-  m_ShaderKeywords: 
+  m_Name: skybox_PG
+  m_Shader: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _MAPPING_LATITUDE_LONGITUDE_LAYOUT _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -38,12 +38,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _FresnelToonTex:
-        m_Texture: {fileID: 2800000, guid: e4476d2efffa4174f893463a8415cb9c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: a40b54331b4b5d04b890f7315d2fc38e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -58,44 +54,40 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _ToonTex:
-        m_Texture: {fileID: 2800000, guid: e582878f85e57f140a122d3a2a650b99, type: 3}
+    - _Tex:
+        m_Texture: {fileID: 8900000, guid: b0072934fc500004281bab17b49a3ad2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AtmosphereThickness: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FresnelIntensity: 0.66
-    - _FresnelValue: 2.31
+    - _Exposure: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaxShadowDist: 0.1
+    - _ImageType: 0
+    - _Layout: 0
+    - _Mapping: 1
     - _Metallic: 0
+    - _MirrorOnBack: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PointerRadius: 0.7
-    - _ReflectIntensity: 0
+    - _Rotation: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SunDisk: 2
+    - _SunSize: 0.04
+    - _SunSizeConvergence: 5
     - _UVSec: 0
     - _ZWrite: 1
-    - _depthFactor: 1
-    - _maxDepth: 2028.71
-    - _minDepth: 477.8
-    - _shadowFactor: 1
     m_Colors:
-    - _BlueColor: {r: 0.3602941, g: 0.6558824, b: 1, a: 0}
-    - _BlueVector: {r: 2, g: 0, b: 0, a: 0}
-    - _BobbyColor: {r: 0.31617647, g: 0.60385376, b: 1, a: 0}
-    - _BobbyVector: {r: 0, g: 0, b: 1, a: 0}
-    - _Color: {r: 0.78676474, g: 0.9735294, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OverColor: {r: 1, g: 1, b: 1, a: 0}
-    - _PointerColor: {r: 1, g: 0, b: 0, a: 1}
-    - _VolumeInfo: {r: 0.18382353, g: 0.25699776, b: 1, a: 0}
-    - _shadowColor: {r: 0.1906695, g: 1, b: 0.16176468, a: 0}
+    - _GroundColor: {r: 0.369, g: 0.349, b: 0.341, a: 1}
+    - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

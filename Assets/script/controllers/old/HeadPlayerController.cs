@@ -20,7 +20,7 @@ public class HeadPlayerController : MonoBehaviour
 
     //Components references
     private Rigidbody m_rb;
-    private Grapple m_grapple;
+    private Grap m_grapple;
 
     private Vector3 m_previousPosition;
 
@@ -28,7 +28,7 @@ public class HeadPlayerController : MonoBehaviour
     void Awake ()
     {
         m_rb = GetComponent<Rigidbody>();
-        m_grapple = GetComponent<Grapple>();
+        m_grapple = GetComponent<Grap>();
 
         Physics.gravity = new Vector3(0, gravity, 0);
 
