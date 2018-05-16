@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: speedEffectMat
-  m_Shader: {fileID: 4800000, guid: 46d45884cdf94e44b8942d99572463d2, type: 3}
+  m_Name: boostMat
+  m_Shader: {fileID: 4800000, guid: 5fdb9500846a6fa4eb86f2cfd6dc95fc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,6 +20,10 @@ Material:
     m_TexEnvs:
     - _BumpMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColTex:
+        m_Texture: {fileID: 2800000, guid: e4ef66a60d3b37e4b855ca2849355b21, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -35,6 +39,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FresnelToonTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -54,30 +62,31 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SpeedTex:
-        m_Texture: {fileID: 2800000, guid: 7460254cb123389469fd3fa0117557fd, type: 3}
+    - _ToonTex:
+        m_Texture: {fileID: 2800000, guid: 6a13b96d52dda1e4c9ab61d36f6428bd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistPowFactor: 2
     - _DstBlend: 0
+    - _FresnelIntensity: 0
+    - _FresnelValue: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset: 0.433
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TexFactor: 0.3
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _ColOne: {r: 1, g: 0, b: 0, a: 0}
+    - _ColTwo: {r: 0.9862069, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
