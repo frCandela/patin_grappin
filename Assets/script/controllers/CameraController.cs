@@ -25,6 +25,12 @@ public class CameraController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float lerpRotationY = 0.5f;
     [SerializeField, Range(0f, 1f)] private float lerpRotationXZ = 0.1f;
 
+    [Header("Camera switch:")]
+    [SerializeField] private float lerpPositionSwitch = 0.05f;
+    [SerializeField] private float lerpRotationSwitch = 0.05f;
+    [SerializeField] private float switchDuration = 1f;
+    public float m_switchState = 0f; //Between 0 and 1
+
     //Initial camera position and rotation parameters
     Vector3 m_baseTranslation;
     Quaternion m_baseRotationSelf;
@@ -35,10 +41,12 @@ public class CameraController : MonoBehaviour
     private float m_prevPoseZ = 0;
     private Quaternion m_prevRot = Quaternion.identity;
 
+    //other
+   
+
     // Use this for initialization
     void Awake ()
     {
-
         m_track = FindObjectOfType<Track>();
 
         targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
@@ -51,12 +59,19 @@ public class CameraController : MonoBehaviour
     {
         InitCamera();
         UpdateCameraTransform();
+
+        AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
 
     // Update is called once per frame
     void FixedUpdate ()
     {
         UpdateCameraTransform();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(SwitchCamera());
     }
 
     private void InitCamera()
@@ -69,13 +84,17 @@ public class CameraController : MonoBehaviour
 
     public void UpdateCameraTransform()
     {
-        //movement direction
-        Vector3 direction = new Vector3(targetRb.velocity.x, 0, targetRb.velocity.z).normalized;
-        if (direction.magnitude < 0.1f)
-            direction = targetRb.transform.forward;
+        //Calculate effective lerp values
+        float effectiveLerpPosition = Mathf.Lerp(lerpPosition, lerpPositionSwitch, m_switchState);
+        float effectiveLerpRotationY = Mathf.Lerp(lerpRotationY, lerpRotationSwitch, m_switchState);
+        float effectiveLerpRotationXZ = Mathf.Lerp(lerpRotationXZ, lerpRotationSwitch, m_switchState);
+
+        //Calculate effective target rotations and positions
+
+
 
         //Apply position
-        transform.position = Vector3.Lerp(transform.position, targetRb.transform.position - targetRb.transform.rotation *  m_baseTranslation, lerpPosition) ;
+        transform.position = Vector3.Lerp(transform.position, targetRb.transform.position - targetRb.transform.rotation *  m_baseTranslation, effectiveLerpPosition) ;
 
         //Apply rotation with two lerp values for Y and XZ rotations
         Quaternion newRot = (targetRb.transform.rotation * m_baseRotationSelf);
@@ -87,8 +106,9 @@ public class CameraController : MonoBehaviour
         Vector3 eulerXZ = new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
         Vector3 newEulerXZ = new Vector3(newRot.eulerAngles.x, 0, newRot.eulerAngles.z);
 
-        Quaternion rotY = Quaternion.Lerp(Quaternion.Euler(eulerY), Quaternion.Euler(newEulerY), lerpRotationY);
-        Quaternion rotXZ = Quaternion.Lerp(Quaternion.Euler(eulerXZ), Quaternion.Euler(newEulerXZ), lerpRotationXZ);
+
+        Quaternion rotY = Quaternion.Lerp(Quaternion.Euler(eulerY), Quaternion.Euler(newEulerY), effectiveLerpRotationY);
+        Quaternion rotXZ = Quaternion.Lerp(Quaternion.Euler(eulerXZ), Quaternion.Euler(newEulerXZ), effectiveLerpRotationXZ);
 
         transform.rotation = rotY * rotXZ;
         m_prevRot = transform.rotation;
@@ -108,5 +128,17 @@ public class CameraController : MonoBehaviour
             
             transform.rotation = transform.rotation;
         }
+    }
+
+    IEnumerator SwitchCamera()
+    {
+        m_switchState = 1;
+        float delta = switchDuration / 20f;
+        while (m_switchState > 0f)
+        {
+            m_switchState -= 0.05f;
+            yield return new WaitForSeconds(delta);
+        }
+        m_switchState = 0f;
     }
 }

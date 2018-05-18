@@ -18,6 +18,8 @@ public class RagdollController : MonoBehaviour
 
     public bool ragdollActivated { get; private set; }
 
+    private Transform bone;
+
     private void Awake()
     {
         m_animator = GetComponentInChildren<Animator>();
@@ -31,6 +33,8 @@ public class RagdollController : MonoBehaviour
         m_playerController = GetComponent<PlayerController>();
         m_ragdollCameraController = FindObjectOfType<RagdollCameraController>();
         m_cameraControler = FindObjectOfType<CameraController>();
+
+        bone = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
     }
 
 
@@ -48,7 +52,7 @@ public class RagdollController : MonoBehaviour
             SetRagdoll(false);
 
         if(ragdollActivated)
-            m_mainRb.position = m_ragdollRbs[1].transform.position;
+            m_mainRb.position = bone.position;
     }
 
     public void SetRagdoll(bool state)
