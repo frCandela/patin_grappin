@@ -155,7 +155,7 @@
 			float distToAim = distance(psIn.worldPos, _AimTargetPos);
 			// step(a,x) = 0 if x < a   or   1 if x >= a
 			// isInRadius = 1 si dans le ridus, sinon 0
-			float isInRadius = 1 - step(_AimTargetPos, distToAim);
+			float isInRadius = 1 - step(_PointerRadius, distToAim);
 
 
 			//Return
