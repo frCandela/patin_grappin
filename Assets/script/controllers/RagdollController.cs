@@ -12,7 +12,11 @@ public class RagdollController : MonoBehaviour
     private Rigidbody[] m_ragdollRbs;
     private Collider[] m_ragdollColliders;
 
-    
+    private PlayerController m_playerController;
+    private RagdollCameraController m_ragdollCameraController;
+    private CameraController m_cameraControler;
+
+    public bool ragdollActivated { get; private set; }
 
     private void Awake()
     {
@@ -23,6 +27,10 @@ public class RagdollController : MonoBehaviour
 
         m_ragdollRbs = GetComponentsInChildren<Rigidbody>();
         m_ragdollColliders = GetComponentsInChildren<Collider>();
+
+        m_playerController = GetComponent<PlayerController>();
+        m_ragdollCameraController = FindObjectOfType<RagdollCameraController>();
+        m_cameraControler = FindObjectOfType<CameraController>();
     }
 
 
@@ -38,10 +46,15 @@ public class RagdollController : MonoBehaviour
             SetRagdoll(true);
         if (Input.GetKeyUp(KeyCode.A))
             SetRagdoll(false);
+
+        if(ragdollActivated)
+            m_mainRb.position = m_ragdollRbs[1].transform.position;
     }
 
     public void SetRagdoll(bool state)
     {
+        ragdollActivated = state;
+
         if (state)//Activates ragdoll
         {
             //Activates ragdoll colliders and rigidbodies
@@ -58,6 +71,9 @@ public class RagdollController : MonoBehaviour
             m_mainCollider.enabled = false;
             m_mainRb.isKinematic = true;
             m_animator.enabled = false;
+            m_playerController.enabled = false;
+            m_ragdollCameraController.enabled = true;
+            m_cameraControler.enabled = false;
         }
         else//Desactivate ragdoll
         {
@@ -72,6 +88,9 @@ public class RagdollController : MonoBehaviour
             m_mainCollider.enabled = true;
             m_mainRb.isKinematic = false;
             m_animator.enabled = true;
+            m_playerController.enabled = true;
+            m_ragdollCameraController.enabled = false;
+            m_cameraControler.enabled = true;
         }
     }
 }

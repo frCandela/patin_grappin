@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public UnityEvent onGrappleLaunch;
     public UnityEvent onGrappleReset;
 
-    [HideInInspector]public float boostMultiplier = 1f;
+    [HideInInspector] public float boostMultiplier = 1f;
 
     //Components references
     private Rigidbody m_rb;
@@ -57,20 +57,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+
+        //Launch or reset grapple
         if (Input.GetButtonDown("Grapple") && m_grapple.Throw(m_animationController.grappleHand))
             onGrappleLaunch.Invoke();
-
         if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
             onGrappleReset.Invoke();
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        if( trackForceWhenGrappling || ! m_grapple.grappling)
+        if (trackForceWhenGrappling || !m_grapple.grappling)
             m_rb.AddForce(boostMultiplier * forwardForce * m_track.trackSection.trackDirection);
-
 
         m_rb.transform.rotation = Quaternion.LookRotation(m_rb.velocity);
 
@@ -94,7 +95,6 @@ public class PlayerController : MonoBehaviour
         //Turn right
         Vector3 right = Vector3.Cross(Vector3.up, m_track.trackSection.trackDirection).normalized;
         m_rb.AddForce(boostMultiplier * headAxis * turnForce * right);
-
     }
 
     private void OnGUI()

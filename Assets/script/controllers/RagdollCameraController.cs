@@ -11,42 +11,28 @@ public class RagdollCameraController : MonoBehaviour
 {
     private PlayerController m_playerController;
     private Rigidbody m_targetRb;
-    CameraController m_cameraController;
 
-    bool used = false;
+    private Vector3 m_translation;
 
     private void Awake()
     {
         m_playerController = FindObjectOfType<PlayerController>();
-        m_targetRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Head).GetComponent<Rigidbody>();
-        m_cameraController = GetComponent<CameraController>();
+        m_targetRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Head).GetComponent<Rigidbody>();;
     }
 
     private void Start()
     {
+
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            used = true;
-            m_cameraController.enabled = false;
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {//SetRagdoll(false);
-            used = false;
-            m_cameraController.enabled = true;
-        }
-
-        //if (false)
-        {
-            transform.position = m_targetRb.transform.position - 15 * Vector3.forward + 5 * Vector3.up;
-            transform.LookAt(m_targetRb.transform.position);
-        }
-
+        m_translation = transform.position - m_targetRb.transform.position;
     }
 
-
-
+    private void LateUpdate()
+    {
+        transform.position = m_targetRb.transform.position + m_translation ;
+        transform.LookAt(m_targetRb.transform.position);
+    }
 }
