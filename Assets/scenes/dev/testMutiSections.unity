@@ -1194,7 +1194,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4506486959086250, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 260.65192
+      value: 245.5
       objectReference: {fileID: 0}
     - target: {fileID: 4506486959086250, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1202,7 +1202,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4506486959086250, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -139.97513
+      value: -301.5
       objectReference: {fileID: 0}
     - target: {fileID: 4506486959086250, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1222,7 +1222,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4506486959086250, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 136005566397714602, guid: 7f568843f5c88884298b55cf58e7b6a1,
         type: 2}
@@ -1465,6 +1465,12 @@ Prefab:
       propertyPath: forwardRagdoll
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 114935045757514892, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: fxPrefab
+      value: 
+      objectReference: {fileID: 1283106272420526, guid: 855a07705a9320f4890b81e09a06d714,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}
   m_IsPrefabParent: 0
@@ -2632,7 +2638,7 @@ MonoBehaviour:
   fallFromTrackHeight: 50
   respawnHeight: 100
   alignVelocityOnRespawn: 0
-  currentSection: {fileID: 1862464146}
+  currentSection: {fileID: 35999941}
   checkPreviousSections: 1
   checkParallelSections: 1
 --- !u!1 &940626022
@@ -4962,7 +4968,7 @@ Transform:
   - {fileID: 861447032}
   - {fileID: 1840623768}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1894729890 stripped
 GameObject:

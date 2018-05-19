@@ -8,6 +8,7 @@ public class Grap : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private GameObject ropePrefab = null;
     [SerializeField] private GameObject targetPrefab = null;
+    [SerializeField] private GameObject fxPrefab = null;
 
     [Header("Parameters")]
     [SerializeField, Range(0f, 1000f)]
@@ -17,11 +18,16 @@ public class Grap : MonoBehaviour
 
     //Public properties
     public bool grappling { get; private set; }
+
+    //Instances
     public GameObject grappleTarget { get; private set; }
+    private GameObject m_aimTarget;
+    private GameObject m_grabFX;
 
     //References
     private Rigidbody m_rigidbody;
-    private GameObject m_aimTarget;
+    private ParticleSystem m_particleSystem;
+
     private Rope m_rope = null;
     private Vector3 m_target;
     private RagdollController m_ragdollController;
@@ -31,14 +37,18 @@ public class Grap : MonoBehaviour
 
     private void Awake()
     {
+        //Instances
+        grappleTarget = GameObject.Instantiate(targetPrefab);
+        m_aimTarget = GameObject.Instantiate(targetPrefab);
+        m_grabFX = GameObject.Instantiate(fxPrefab);
+        m_grabFX.transform.parent = grappleTarget.transform;
+        m_grabFX.transform.localPosition = Vector3.zero;
+        
         //Get components
         m_rigidbody = GetComponent<Rigidbody>();
         m_ragdollController = FindObjectOfType<RagdollController>();
         m_animationController = FindObjectOfType<AnimationController>();
-
-        //Target world point
-        grappleTarget = GameObject.Instantiate(targetPrefab);
-        m_aimTarget = GameObject.Instantiate(targetPrefab);
+        m_particleSystem = m_grabFX.GetComponent<ParticleSystem>();
 
         //Set Rope
         Util.EditorAssert(ropePrefab != null, "Grapple.Awake: ropePrefab not set");
@@ -63,6 +73,7 @@ public class Grap : MonoBehaviour
                 grappling = true;
                 m_rope.enabled = true;
                 grappleTarget.transform.position = m_target;
+                m_particleSystem.Emit(1);
                 return true;
             }
         }
