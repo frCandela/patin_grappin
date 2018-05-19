@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4464404744922526}
   - component: {fileID: 198362206678321778}
   - component: {fileID: 199334976479173878}
+  - component: {fileID: 95192911095993764}
+  - component: {fileID: 114748443990129244}
   m_Layer: 0
   m_Name: boostEyeCharge
   m_TagString: Untagged
@@ -98,13 +100,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1343976819771436}
-  m_LocalRotation: {x: -0.5337288, y: -0.46382493, z: -0.46382487, w: 0.5337289}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7253611, y: 1.7253613, z: 1.7253613}
   m_Children: []
   m_Father: {fileID: 4857044601382266}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!4 &4833189798345152
 Transform:
   m_ObjectHideFlags: 1
@@ -175,6 +177,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993503934686440}
   m_Mesh: {fileID: 4300000, guid: 2bb74433a528da04f9a93b1d245e61a9, type: 3}
+--- !u!95 &95192911095993764
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1125011957721040}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c0ad6b723a066f42b0268ab69947cc4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95221439267954560
 Animator:
   serializedVersion: 3
@@ -201,6 +220,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b64e14b2824b294e8954886224575d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114748443990129244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1125011957721040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d439255da1d2d4a499a3b9a6b0ad3ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!198 &198362206678321778
@@ -263,7 +293,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -459167679
+  randomSeed: 926123076
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3636,7 +3666,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1559933220
+  randomSeed: -1865417299
   InitialModule:
     serializedVersion: 3
     enabled: 1

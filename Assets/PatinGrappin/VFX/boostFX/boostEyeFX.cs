@@ -8,12 +8,10 @@ public class boostEyeFX : MonoBehaviour {
 
 private GameObject depopFX, chargeFX;
 private ParticleSystem chargePS, depopPS;
-private Transform parent;
 private Animator animator;
 
 	void Start()
 	{
-		parent = this.transform.parent.transform;
 		animator = GetComponent<Animator>();
 
 		depopFX = transform.parent.GetChild(1).gameObject;
@@ -25,12 +23,10 @@ private Animator animator;
 		else Debug.LogError("No GameObject for Particle System DEPOP");
 
 		chargePS.Stop();
-		//depopPS.Stop();
 	}
 
 	void StartCharge ()
     {
-        //chargeFX.SetActive(true);
 		chargePS.Play();
     }
 
@@ -42,7 +38,8 @@ private Animator animator;
 
 	void DisableGO ()
 	{
-		if(animator.GetBool("isLookedAt")) gameObject.SetActive(false);
+		// DEPOP DU BOOST DESACTIVÉ ICI
+	//	if(animator.GetBool("isLookedAt")) gameObject.SetActive(false);
 		
 	}
 
@@ -50,8 +47,6 @@ private Animator animator;
 	{
 		if(!animator.GetBool("isLookedAt"))
 		{
-			//chargeFX.SetActive(false);
-			//depopFX.SetActive(false);
 			chargePS.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 		}
 	}
