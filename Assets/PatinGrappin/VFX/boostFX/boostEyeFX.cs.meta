@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0b64e14b2824b294e8954886224575d6
+timeCreated: 1526571555
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - depopFX: {instanceID: 0}
+  - chargeFX: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
