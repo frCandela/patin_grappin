@@ -19,6 +19,8 @@ public class RagdollController : MonoBehaviour
     public Vector3 averageVelocity { get; private set; }
     public Rigidbody rightArmRb { get; private set; }
     public Rigidbody leftArmRb { get; private set; }
+    public Rigidbody mainRb { get; private set; }
+
 
     private Transform spineTransform;
 
@@ -31,12 +33,14 @@ public class RagdollController : MonoBehaviour
 
         m_ragdollRbs = GetComponentsInChildren<Rigidbody>();
         m_ragdollColliders = GetComponentsInChildren<Collider>();
-
         m_playerController = GetComponent<PlayerController>();
 
         spineTransform = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
         leftArmRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.LeftLowerArm).GetComponent<Rigidbody>();
         rightArmRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.RightLowerArm).GetComponent<Rigidbody>();
+
+        mainRb =  m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
+
     }
 
 
@@ -58,9 +62,6 @@ public class RagdollController : MonoBehaviour
             m_mainRb.position = spineTransform.position;
             UpdateAverageRagdollVelocity();
         }
-            
-
-
     }
 
     public void SetRagdoll(bool state)

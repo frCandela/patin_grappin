@@ -14,10 +14,8 @@ public class AnimationController : MonoBehaviour
 
     //RAOUL qui fout sa merde
     [Header("Air Pose Manager:")]
-    [SerializeField] private float minAirVelocity = -5f;
-    [SerializeField] private float maxAirVelocity = 5f;
-
-
+    [SerializeField] private float minAirVelocity = -10f;
+    [SerializeField] private float maxAirVelocity = 10f;
 
     //Public properties
     public bool rightHandUsed
