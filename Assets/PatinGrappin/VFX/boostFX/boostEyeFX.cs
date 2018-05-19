@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-[ExecuteInEditMode]
+public class boostEyeFX : GazeObject
+{ 
+    private GameObject depopFX, chargeFX;
+    private ParticleSystem chargePS, depopPS;
+    private Animator animator;
 
-public class boostEyeFX : MonoBehaviour {
+    public UnityEvent onBoost;
 
-private GameObject depopFX, chargeFX;
-private ParticleSystem chargePS, depopPS;
-private Animator animator;
-
-	void Start()
+    void Start()
 	{
 		animator = GetComponent<Animator>();
 
@@ -34,6 +35,7 @@ private Animator animator;
     {
         if(animator.GetBool("isLookedAt")) depopPS.Emit(1);
 		chargePS.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        onBoost.Invoke();
     }
 
 	void DisableGO ()
@@ -51,5 +53,13 @@ private Animator animator;
 		}
 	}
 
+    public override void SetGazed()
+    {
+        animator.SetBool("isLookedAt", true);
+    }
 
+    public override void SetNotGazed()
+    {
+        animator.SetBool("isLookedAt", false);        
+    }
 }

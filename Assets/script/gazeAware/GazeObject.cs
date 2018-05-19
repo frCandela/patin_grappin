@@ -5,7 +5,7 @@ using UnityEngine;
 //Base Class for objects the player can gaze at
 public abstract class GazeObject : MonoBehaviour
 {
-    public void Start () 
+    public void Awake () 
     {
         gameObject.layer = LayerMask.NameToLayer("GazeObject");
     }

@@ -40,12 +40,6 @@ public class RemPlayerController : MonoBehaviour
 
     private void Start()
     {
-        object[] objArray = GameObject.FindObjectsOfType(typeof(GOChangeColor));
-        foreach(object obj in objArray)
-        {
-            GOChangeColor boost = (GOChangeColor)obj;
-            boost.onColorChanged.AddListener(StartBoost);
-        }
     }
 
     private void Update()

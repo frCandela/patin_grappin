@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 114009121412175904}
   - component: {fileID: 114521968241778002}
   - component: {fileID: 114665815430408534}
+  - component: {fileID: 114243444057736330}
   m_Layer: 0
   m_Name: main Camera
   m_TagString: MainCamera
@@ -883,6 +884,7 @@ GameObject:
   - component: {fileID: 114803292332163412}
   - component: {fileID: 114935045757514892}
   - component: {fileID: 136005566397714602}
+  - component: {fileID: 114568818208787664}
   m_Layer: 10
   m_Name: player
   m_TagString: Untagged
@@ -1511,7 +1513,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1803452835411966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 260.65192, y: 0.82, z: -139.97513}
+  m_LocalPosition: {x: 245.5, y: 0.82, z: -301.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4653058651975286}
@@ -2089,7 +2091,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1374810026936170}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2101,7 +2103,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1746474349610592}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2166,6 +2168,18 @@ MonoBehaviour:
   raycastDistance: 3
   groundOffset: 0.45
   leftFootAtGround: 0
+--- !u!114 &114243444057736330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056880383286086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49402972dea52264c91cc57120b27296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: dd42db2d7050abc4eb356779463ffc36, type: 2}
 --- !u!114 &114338075330464052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2247,6 +2261,17 @@ MonoBehaviour:
   saveDecodedBank: 0
   unloadTriggerList: 
   valueGuid: f1ae1732672a734e81b5460347d99e19
+--- !u!114 &114568818208787664
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873471877760110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f48546ffc396c94ea03e563f52b0bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114665815430408534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2267,6 +2292,11 @@ MonoBehaviour:
   lerpPosition: 0.2
   lerpRotationY: 0.5
   lerpRotationXZ: 0
+  lerpPositionSwitch: 0.01
+  lerpRotationSwitch: 0.01
+  switchDuration: 2
+  m_switchState: 0
+  activateMusic: 0
 --- !u!114 &114685360712612220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2303,8 +2333,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a35a7d424176b4db7505a7a3352b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostMultiplier: 2.5
+  boostMaterial: {fileID: 2100000, guid: dd42db2d7050abc4eb356779463ffc36, type: 2}
+  boostMultiplier: 2
   boostDuration: 2.5
+  minSpeed: 55
+  maxSpeed: 120
+  maxDeformation: 0.393
+  maxSpeedTex: 0.5
 --- !u!114 &114868938507788248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2318,7 +2353,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialVelocity: 2
   forwardForce: 30
+  forwardRagdoll: 50
   turnForce: 300
+  turnForceRagdoll: 1500
   maxheadYAngle: 20
   trackForceWhenGrappling: 0
   gravity: -30
@@ -2361,6 +2398,7 @@ MonoBehaviour:
   ropePrefab: {fileID: 1693350964795942, guid: 3d15b4131ff3d864680348bbfecd8ea4, type: 2}
   targetPrefab: {fileID: 1386341600016514, guid: 827e4a84c9c39c640b3e3d3b04bbf41b,
     type: 2}
+  fxPrefab: {fileID: 1283106272420526, guid: 855a07705a9320f4890b81e09a06d714, type: 2}
   attractionForce: 70
   minDistance: 5
   elasticity: 0.9
@@ -2377,7 +2415,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1765385659338214}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2389,7 +2427,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1765385659338214}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2401,7 +2439,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1698722114721434}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2413,7 +2451,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1698722114721434}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2425,7 +2463,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873471877760110}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d9738f96055e66e4c9d0d82b10546415, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.8617859
@@ -2438,7 +2476,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863751481857886}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.004
@@ -2451,7 +2489,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1613953609372544}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.003
@@ -2464,7 +2502,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1456044610767812}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.003
@@ -2477,7 +2515,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1461814462744318}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.0052028312
@@ -2490,7 +2528,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1698722114721434}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.004
@@ -2503,7 +2541,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1765385659338214}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.004
@@ -2516,7 +2554,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997849317307556}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.003
@@ -2529,7 +2567,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1154593640641190}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.004
@@ -2542,7 +2580,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1329136131971360}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ef6a24463811eb43b3f7fc17a6beaa4, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.003
@@ -2675,7 +2713,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -2694,7 +2732,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000347267, y: 0.03054361, z: -0.00000003725292}
+  m_ConnectedAnchor: {x: 0.00000014586843, y: 0.030543575, z: -0.00000014901168}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2719,7 +2757,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -2763,7 +2801,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -2807,7 +2845,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -2826,7 +2864,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000032363468, y: 0.030543648, z: 0.00000009499496}
+  m_ConnectedAnchor: {x: -0.00000017229472, y: 0.030543612, z: -0.00000001490117}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2851,7 +2889,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -2895,7 +2933,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -2914,7 +2952,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000012991956, y: 0.020465989, z: -0.000000053085387}
+  m_ConnectedAnchor: {x: 0.00000011920935, y: 0.020465484, z: -0.000000049360096}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2939,7 +2977,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -2958,7 +2996,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000011175869, y: 0.020465994, z: -0.000000026077023}
+  m_ConnectedAnchor: {x: 0.00000049453223, y: 0.0204655, z: 0.00000008288768}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2983,7 +3021,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -3027,7 +3065,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
@@ -3071,7 +3109,7 @@ CharacterJoint:
     limit: 0
     bounciness: 0
     contactDistance: 0
-  m_EnableProjection: 0
+  m_EnableProjection: 1
   m_ProjectionDistance: 0.1
   m_ProjectionAngle: 180
   m_BreakForce: Infinity
