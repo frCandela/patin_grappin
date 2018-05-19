@@ -1165,20 +1165,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114803292332163412, guid: 7f568843f5c88884298b55cf58e7b6a1,
+    - target: {fileID: 114370533453767362, guid: 7f568843f5c88884298b55cf58e7b6a1,
         type: 2}
-      propertyPath: maxSpeedTex
-      value: 0.5
+      propertyPath: MinXYVelocityIdle
+      value: 45
       objectReference: {fileID: 0}
-    - target: {fileID: 114803292332163412, guid: 7f568843f5c88884298b55cf58e7b6a1,
+    - target: {fileID: 114370533453767362, guid: 7f568843f5c88884298b55cf58e7b6a1,
         type: 2}
-      propertyPath: maxDeformation
-      value: 0.393
-      objectReference: {fileID: 0}
-    - target: {fileID: 114803292332163412, guid: 7f568843f5c88884298b55cf58e7b6a1,
-        type: 2}
-      propertyPath: boostMultiplier
-      value: 2
+      propertyPath: MaxXYVelocityIdle
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}

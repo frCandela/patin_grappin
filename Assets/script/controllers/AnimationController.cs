@@ -123,8 +123,10 @@ public class AnimationController : MonoBehaviour
             if( !grounded)
             {
                 grounded = true;
-                m_animator.SetBool("isGrounded", true);
                 m_animator.SetTrigger("landing");
+                m_animator.SetBool("isGrounded", true);
+                
+                print("zob");
             }
         }
         else if( grounded)
