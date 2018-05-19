@@ -8,12 +8,12 @@ public class boostEyeFX : MonoBehaviour {
 
 private GameObject depopFX, chargeFX;
 private ParticleSystem chargePS, depopPS;
-private Transform parent;
+//private Transform parent;
 private Animator animator;
 
 	void Start()
 	{
-		parent = this.transform.parent.transform;
+		//parent = this.transform.parent.transform;
 		animator = GetComponent<Animator>();
 
 		depopFX = transform.parent.GetChild(1).gameObject;

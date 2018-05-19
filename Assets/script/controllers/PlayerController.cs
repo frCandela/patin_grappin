@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour
     [Header("Movement:")]
     [SerializeField] private float initialVelocity = 2f;
     [SerializeField] private float forwardForce = 30f;
+    [SerializeField] private float forwardRagdoll = 50f;
     [SerializeField] private float turnForce = 300f;
+    [SerializeField] private float turnForceRagdoll = 1500;
     [SerializeField] private float maxheadYAngle = 20f;
     [SerializeField] private bool trackForceWhenGrappling = false;
 
     [Header("Other:")]
-    [SerializeField] private float gravity = -20;
+    [SerializeField] private float gravity = -30;
 
     [Header("Events:")]
     public UnityEvent onGrappleLaunch;
@@ -68,13 +70,27 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+
+        Rigidbody targetRB;
+        if (m_ragdollController.ragdollActivated)
+            targetRB = m_ragdollController.mainRb;
+        else
+            targetRB = m_rb;            
+
         //Forward force in the track direction
         if (trackForceWhenGrappling || !m_grapple.grappling)
-            m_rb.AddForce(boostMultiplier * forwardForce * m_track.trackSection.trackDirection);
+        {
+            if( m_ragdollController.ragdollActivated)
+                targetRB.AddForce(boostMultiplier * forwardRagdoll * m_track.trackSection.trackDirection, ForceMode.Acceleration);
+            else
+                targetRB.AddForce(boostMultiplier * forwardForce * m_track.trackSection.trackDirection, ForceMode.Acceleration);
+        }
+           
 
         //Orientation towards the player speed
         if(  ! m_ragdollController.ragdollActivated)
-            m_rb.transform.rotation = Quaternion.LookRotation(m_rb.velocity);
+            targetRB.transform.rotation = Quaternion.LookRotation(targetRB.velocity);
 
         
         float headAxis = 0;
@@ -97,7 +113,11 @@ public class PlayerController : MonoBehaviour
 
         //Turn right
         Vector3 right = Vector3.Cross(Vector3.up, m_track.trackSection.trackDirection).normalized;
-        m_rb.AddForce(boostMultiplier * headAxis * turnForce * right);
+
+        if (m_ragdollController.ragdollActivated)
+            targetRB.AddForce(boostMultiplier * headAxis * turnForceRagdoll * right, ForceMode.Acceleration);
+        else
+            targetRB.AddForce(boostMultiplier * headAxis * turnForce * right, ForceMode.Acceleration);
     }
 
     private void OnGUI()
