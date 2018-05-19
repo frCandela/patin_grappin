@@ -57,7 +57,7 @@ public class HeadPlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (Input.GetButtonDown("Grapple"))
-            m_grapple.Throw( transform );
+            m_grapple.Throw();
         if (Input.GetButtonUp("Grapple"))
             m_grapple.Cancel();
     }

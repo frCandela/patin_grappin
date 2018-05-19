@@ -13,12 +13,14 @@ public class RagdollController : MonoBehaviour
     private Collider[] m_ragdollColliders;
 
     private PlayerController m_playerController;
-    private RagdollCameraController m_ragdollCameraController;
-    private CameraController m_cameraControler;
 
+    //Properties
     public bool ragdollActivated { get; private set; }
+    public Vector3 averageVelocity { get; private set; }
+    public Rigidbody rightArmRb { get; private set; }
+    public Rigidbody leftArmRb { get; private set; }
 
-    private Transform bone;
+    private Transform spineTransform;
 
     private void Awake()
     {
@@ -31,10 +33,10 @@ public class RagdollController : MonoBehaviour
         m_ragdollColliders = GetComponentsInChildren<Collider>();
 
         m_playerController = GetComponent<PlayerController>();
-        m_ragdollCameraController = FindObjectOfType<RagdollCameraController>();
-        m_cameraControler = FindObjectOfType<CameraController>();
 
-        bone = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
+        spineTransform = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
+        leftArmRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.LeftLowerArm).GetComponent<Rigidbody>();
+        rightArmRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.RightLowerArm).GetComponent<Rigidbody>();
     }
 
 
@@ -52,7 +54,13 @@ public class RagdollController : MonoBehaviour
             SetRagdoll(false);
 
         if(ragdollActivated)
-            m_mainRb.position = bone.position;
+        {
+            m_mainRb.position = spineTransform.position;
+            UpdateAverageRagdollVelocity();
+        }
+            
+
+
     }
 
     public void SetRagdoll(bool state)
@@ -75,9 +83,9 @@ public class RagdollController : MonoBehaviour
             m_mainCollider.enabled = false;
             m_mainRb.isKinematic = true;
             m_animator.enabled = false;
-            m_playerController.enabled = false;
-            m_ragdollCameraController.enabled = true;
-            m_cameraControler.enabled = false;
+            //m_playerController.enabled = false;
+           // m_ragdollCameraController.enabled = true;
+            //m_cameraControler.enabled = false;
         }
         else//Desactivate ragdoll
         {
@@ -92,9 +100,23 @@ public class RagdollController : MonoBehaviour
             m_mainCollider.enabled = true;
             m_mainRb.isKinematic = false;
             m_animator.enabled = true;
-            m_playerController.enabled = true;
-            m_ragdollCameraController.enabled = false;
-            m_cameraControler.enabled = true;
+
+            m_mainRb.velocity = averageVelocity;
+            //m_playerController.enabled = true;
+            //m_ragdollCameraController.enabled = false;
+            //m_cameraControler.enabled = true;
         }
     }
+
+    //Calculates the average velocity of all the ragdoll rigidbodies
+   public void UpdateAverageRagdollVelocity()
+    {
+        averageVelocity = Vector3.zero;
+        foreach (Rigidbody rb in m_ragdollRbs)
+            if (rb != m_mainRb)
+                averageVelocity += rb.velocity;
+
+        averageVelocity /= m_ragdollRbs.Length - 1;
+    }
+
 }

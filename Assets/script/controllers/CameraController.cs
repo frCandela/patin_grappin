@@ -7,10 +7,6 @@ using UnityEngine;
 [RequireComponent( typeof(  Camera ))]
 public class CameraController : MonoBehaviour
 {
-    [Header("References:")]
-    private Rigidbody targetRb = null;
-    private Track m_track = null;
-
     [Header("Head rotation:")]
     [SerializeField, Range(0f, 1f)] private float headRotLerpX = 0.1f;
     [SerializeField, Range(0f, 1f)] private float headRotLerpY = 0.1f;
@@ -31,6 +27,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float switchDuration = 1f;
     public float m_switchState = 0f; //Between 0 and 1
 
+    //References
+    private Rigidbody targetRb = null;
+    private Transform targetRagdoll = null;
+    private Track m_track = null;
+    RagdollController m_ragdollController = null;
+
     //Initial camera position and rotation parameters
     Vector3 m_baseTranslation;
     Quaternion m_baseRotationSelf;
@@ -42,14 +44,16 @@ public class CameraController : MonoBehaviour
     private Quaternion m_prevRot = Quaternion.identity;
 
     //other
-   
+    public bool activateMusic = true;
 
     // Use this for initialization
     void Awake ()
     {
+        //Get references
         m_track = FindObjectOfType<Track>();
-
+        m_ragdollController = FindObjectOfType<RagdollController>();
         targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
+        targetRagdoll = FindObjectOfType<PlayerController>().GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
 
         Util.EditorAssert(m_track != null, "HeadCameraController.Awake(): no track in the level");
         Util.EditorAssert(targetRb != null, "HeadCameraController.Awake(): no playerRb set");
@@ -60,7 +64,8 @@ public class CameraController : MonoBehaviour
         InitCamera();
         UpdateCameraTransform();
 
-        AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+        if(activateMusic)
+            AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
 
     // Update is called once per frame
@@ -90,14 +95,27 @@ public class CameraController : MonoBehaviour
         float effectiveLerpRotationXZ = Mathf.Lerp(lerpRotationXZ, lerpRotationSwitch, m_switchState);
 
         //Calculate effective target rotations and positions
+        Vector3 targetPosition = targetRagdoll.transform.position;
 
+        //Get target rotation
+        Quaternion targetRotation;
+        if ( ! m_ragdollController.ragdollActivated)
+        {
+            if(targetRb.velocity != Vector3.zero)
+                targetRotation = Quaternion.LookRotation(targetRb.velocity);
+            else
+                targetRotation = Quaternion.LookRotation(targetRb.transform.forward);
+        }
+        else
+            targetRotation = Quaternion.LookRotation(m_ragdollController.averageVelocity);
 
+        //Quaternion targetRotation = targetRb.transform.rotation;
 
         //Apply position
-        transform.position = Vector3.Lerp(transform.position, targetRb.transform.position - targetRb.transform.rotation *  m_baseTranslation, effectiveLerpPosition) ;
+        transform.position = Vector3.Lerp(transform.position, targetPosition - targetRotation *  m_baseTranslation, effectiveLerpPosition) ;
 
         //Apply rotation with two lerp values for Y and XZ rotations
-        Quaternion newRot = (targetRb.transform.rotation * m_baseRotationSelf);
+        Quaternion newRot = (targetRotation * m_baseRotationSelf);
         transform.rotation = m_prevRot;
 
         Vector3 eulerY = new Vector3(0, transform.rotation.eulerAngles.y, 0);
@@ -105,7 +123,6 @@ public class CameraController : MonoBehaviour
 
         Vector3 eulerXZ = new Vector3(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
         Vector3 newEulerXZ = new Vector3(newRot.eulerAngles.x, 0, newRot.eulerAngles.z);
-
 
         Quaternion rotY = Quaternion.Lerp(Quaternion.Euler(eulerY), Quaternion.Euler(newEulerY), effectiveLerpRotationY);
         Quaternion rotXZ = Quaternion.Lerp(Quaternion.Euler(eulerXZ), Quaternion.Euler(newEulerXZ), effectiveLerpRotationXZ);

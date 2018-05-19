@@ -17,8 +17,16 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private float minAirVelocity = -5f;
     [SerializeField] private float maxAirVelocity = 5f;
 
+
+
     //Public properties
-    public Transform grappleHand {
+    public bool rightHandUsed
+    {
+        get{return m_animator.GetBool("side");}
+        private set{ }
+    }
+
+    public Transform grappleHandTransform {
         get
         {
             if (m_animator.GetBool("side"))
@@ -62,7 +70,7 @@ public class AnimationController : MonoBehaviour
 
         //Init values
         grounded = true;
-        grappleHand = m_animator.GetBoneTransform(HumanBodyBones.RightHand);
+        grappleHandTransform = m_animator.GetBoneTransform(HumanBodyBones.RightHand);
         m_leftFoot = m_animator.GetBoneTransform(HumanBodyBones.LeftFoot);
         m_rightFoot = m_animator.GetBoneTransform(HumanBodyBones.RightFoot);
 
@@ -103,6 +111,7 @@ public class AnimationController : MonoBehaviour
         // Update in-air velocity and animator's float "airVelocity" [RAOUL qui fout sa merde]
         float playerVerticalVelocity = Mathf.Clamp(m_playerRb.velocity.y, minAirVelocity, maxAirVelocity);
         float airLerpParam = Mathf.InverseLerp(minAirVelocity, maxAirVelocity, playerVerticalVelocity);
+
         // set airVelocity entre -1 et 1 selon la velocité verticale du joueur entre la min et max
         m_animator.SetFloat("airVelocity", (airLerpParam * 2) - 1);
 
@@ -124,7 +133,6 @@ public class AnimationController : MonoBehaviour
         {
             grounded = false;
             m_animator.SetBool("isGrounded", false);
-            
         }
     }
 
@@ -144,7 +152,7 @@ public class AnimationController : MonoBehaviour
             m_armIK.whichHand = armIK.Hands.left;
             
 
-        m_spineOrientationIK.isOriented = true;
+        m_spineOrientationIK.isOriented = false;
         m_armIK.isIK = true;
     }
 

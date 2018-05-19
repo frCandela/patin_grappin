@@ -1400,6 +1400,61 @@ Prefab:
       propertyPath: lerpPositionSwitch
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 114665815430408534, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: activateMusic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 144266096318756396, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144046660358862546, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144099289342999728, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144220266771976728, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144546100778164792, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144002652705787440, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144203526202521336, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144368371760495688, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144979004420771266, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144280854493833682, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: m_EnableProjection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}
   m_IsPrefabParent: 0
@@ -3674,24 +3729,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 1b2b8a2fd21fdb04682a7fade6fe1f90, type: 3}
---- !u!1 &1350592832 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1056880383286086, guid: 7f568843f5c88884298b55cf58e7b6a1,
-    type: 2}
-  m_PrefabInternal: {fileID: 497003689}
---- !u!114 &1350592833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1350592832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b947cf4ababa7c84cb3ab76906fb7560, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpPosition: 0.1
-  lerpRotation: 0.1
 --- !u!1 &1350896473
 GameObject:
   m_ObjectHideFlags: 0

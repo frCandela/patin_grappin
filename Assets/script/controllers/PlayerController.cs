@@ -26,17 +26,17 @@ public class PlayerController : MonoBehaviour
     //Components references
     private Rigidbody m_rb;
     private Grap m_grapple;
-    private AnimationController m_animationController;
     private Track m_track = null;
+    RagdollController m_ragdollController = null;
 
     // Use this for initialization
     void Awake ()
     {
-        //Set references
+        //Get references
         m_track = FindObjectOfType<Track>();
+        m_ragdollController = FindObjectOfType<RagdollController>();
         m_rb = GetComponent<Rigidbody>();
         m_grapple = GetComponent<Grap>();
-        m_animationController = GetComponent<AnimationController>();
 
         Physics.gravity = new Vector3(0, gravity, 0);
 
@@ -51,8 +51,6 @@ public class PlayerController : MonoBehaviour
         m_rb.velocity = initialVelocity * m_track.trackSection.trackDirection;
     }
 
-
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -60,7 +58,7 @@ public class PlayerController : MonoBehaviour
 
 
         //Launch or reset grapple
-        if (Input.GetButtonDown("Grapple") && m_grapple.Throw(m_animationController.grappleHand))
+        if (Input.GetButtonDown("Grapple") && m_grapple.Throw())
             onGrappleLaunch.Invoke();
         if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
             onGrappleReset.Invoke();
@@ -70,11 +68,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Forward force in the track direction
         if (trackForceWhenGrappling || !m_grapple.grappling)
             m_rb.AddForce(boostMultiplier * forwardForce * m_track.trackSection.trackDirection);
 
-        m_rb.transform.rotation = Quaternion.LookRotation(m_rb.velocity);
+        //Orientation towards the player speed
+        if(  ! m_ragdollController.ragdollActivated)
+            m_rb.transform.rotation = Quaternion.LookRotation(m_rb.velocity);
 
+        
         float headAxis = 0;
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
         if (pose.IsValid)
@@ -88,6 +90,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //Calculates keyboard input if no head connected
             headAxis = Input.GetAxis("Horizontal");
             headAxis = Mathf.Clamp(headAxis, -maxheadYAngle / 90, maxheadYAngle / 90);
         }
