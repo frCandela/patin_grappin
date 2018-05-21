@@ -35,6 +35,10 @@ public class Track : MonoBehaviour
 
     private void Start()
     {
+        if (!currentSection)
+        {
+            currentSection = GetComponent<TrackSection>();
+        }
         SetupTarget();
         if (currentSection)
             currentSection.UpdateTrack(m_targetRb.position);    
@@ -44,7 +48,7 @@ public class Track : MonoBehaviour
 
     private void OnValidate()
     {
-        SetupTarget();
+        //SetupTarget();
     }
 
     private void Update()
@@ -64,64 +68,74 @@ public class Track : MonoBehaviour
 
     private void DetectPlayerFall()
     {
-        //Detects the player fall
-        Vector3 diff = currentSection.trackPosition - m_targetRb.transform.position;
-        if (diff.y > fallFromTrackHeight)
+
+        if (currentSection)
         {
-            TrackSection respawnTrack = currentSection.respawnTrackSection ? currentSection.respawnTrackSection : currentSection;
-
-            //If respawn set, change the respawn point
-            if ( respawnTrack.respawnTransform)
-                diff = currentSection.respawnTrackSection.respawnTransform.position - m_targetRb.transform.position;
-
-            //Translate the player
-            m_targetRb.transform.parent.transform.position = m_targetRb.transform.parent.transform.position + diff + respawnHeight * Vector3.up;
-
-            //Changes his velocity to match the direction of the track
-            if(alignVelocityOnRespawn)
+            //Detects the player fall
+            Vector3 diff = currentSection.trackPosition - m_targetRb.transform.position;
+            if (diff.y > fallFromTrackHeight)
             {
-                respawnTrack.UpdateTrack(m_targetRb.position);
-                float prevVelY = m_targetRb.velocity.y;
-                float prevVelXZ = new Vector2(m_targetRb.velocity.x, m_targetRb.velocity.z).magnitude;
-                m_targetRb.velocity = prevVelXZ * new Vector3(respawnTrack.trackDirection.x, 0, respawnTrack.trackDirection.z) + new Vector3(0, prevVelY, 0);
+                TrackSection respawnTrack = currentSection.respawnTrackSection ? currentSection.respawnTrackSection : currentSection;
+
+                //If respawn set, change the respawn point
+                if (respawnTrack.respawnTransform)
+                    diff = currentSection.respawnTrackSection.respawnTransform.position - m_targetRb.transform.position;
+
+                //Translate the player
+                m_targetRb.transform.parent.transform.position = m_targetRb.transform.parent.transform.position + diff + respawnHeight * Vector3.up;
+
+                //Changes his velocity to match the direction of the track
+                if (alignVelocityOnRespawn)
+                {
+                    respawnTrack.UpdateTrack(m_targetRb.position);
+                    float prevVelY = m_targetRb.velocity.y;
+                    float prevVelXZ = new Vector2(m_targetRb.velocity.x, m_targetRb.velocity.z).magnitude;
+                    m_targetRb.velocity = prevVelXZ * new Vector3(respawnTrack.trackDirection.x, 0, respawnTrack.trackDirection.z) + new Vector3(0, prevVelY, 0);
+                }
             }
+
         }
+
     }
 
 
     public void UpdateClosestSection()
     {
-        //Variables and lambda used to find the best section
-        TrackSection bestTrackSection = null;
-        float bestDistance = float.MaxValue;
-        Action<TrackSection> LookupSection = (section) =>
+        if(currentSection)
         {
-            section.UpdateTrack(m_targetRb.position);
-            float dist = Vector3.SqrMagnitude(m_targetRb.position - section.trackPosition);
-            if (dist < bestDistance)
+
+            //Variables and lambda used to find the best section
+            TrackSection bestTrackSection = null;
+            float bestDistance = float.MaxValue;
+            Action<TrackSection> LookupSection = (section) =>
             {
-                bestDistance = dist;
-                bestTrackSection = section;
+                section.UpdateTrack(m_targetRb.position);
+                float dist = Vector3.SqrMagnitude(m_targetRb.position - section.trackPosition);
+                if (dist < bestDistance)
+                {
+                    bestDistance = dist;
+                    bestTrackSection = section;
+                }
+            };
+
+            //LookUp parallel sections
+
+            foreach (TrackSection prevSection in currentSection.prevSections)
+            {
+                if (checkPreviousSections)
+                    LookupSection(prevSection);
+
+                if (checkParallelSections)
+                    foreach (TrackSection parallelSection in prevSection.nextSections)
+                        LookupSection(parallelSection);
             }
-        };
 
-        //LookUp parallel sections
-        foreach (TrackSection prevSection in currentSection.prevSections)
-        {
-            if( checkPreviousSections)
-                LookupSection(prevSection);
-
-            if(checkParallelSections)
-                foreach (TrackSection parallelSection in prevSection.nextSections)
-                    LookupSection(parallelSection);
-        }
-
-        //LookUp next sections
-        foreach (TrackSection nextSection in currentSection.nextSections)
+            //LookUp next sections
+            foreach (TrackSection nextSection in currentSection.nextSections)
                 LookupSection(nextSection);
 
-        currentSection = bestTrackSection;
-
+            currentSection = bestTrackSection;
+        }
     }
 
     private void OnDrawGizmos()
