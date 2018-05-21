@@ -13,7 +13,8 @@ public class Grap : MonoBehaviour
     [Header("Parameters")]
     [SerializeField, Range(0f, 1000f)]
     private float attractionForce = 50f;
-    [SerializeField, Range(0f, 1000f)] private float minDistance = 5;
+    [SerializeField, Range(0f, 1000f)] private float maxDistance = 150;
+    [SerializeField, Range(0f, 1000f)] private float minDistance = 20;
     [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
 
     //Public properties
@@ -63,9 +64,11 @@ public class Grap : MonoBehaviour
         if (!grappling)
         {
             m_target = GazeManager.GetGazeWorldPoint();
+            float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
+            print("max: " + maxDistance + " " + Mathf.Sqrt(sqrDist));
 
             //Launch the grapple if the target is valid
-            if (m_target != Vector3.zero)
+            if (m_target != Vector3.zero && sqrDist < maxDistance* maxDistance)
             {
                 m_rightHandUsed = m_animationController.rightHandUsed;
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
@@ -105,6 +108,8 @@ public class Grap : MonoBehaviour
     {
         if (grappling)
         {
+            
+
             //Change the target rigidbody if the ragdoll is activated
             Rigidbody targetRb;
             if ( ! m_ragdollController.ragdollActivated)
@@ -119,6 +124,7 @@ public class Grap : MonoBehaviour
                
 
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
+            
             if (sqrDist > minDistance * minDistance)
             {
                 //Force in the good direction
