@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     [Header("Movement:")]
     [SerializeField] private float initialVelocity = 2f;
     [SerializeField] private float forwardForce = 30f;
-    [SerializeField] private float forwardRagdoll = 50f;
+    [SerializeField] private float forwardForceGrapple = 30f;
+    [SerializeField] private float forwardForceRagdoll = 50f;
     [SerializeField] private float turnForce = 300f;
     [SerializeField] private float turnForceRagdoll = 1500;
     [SerializeField] private float maxheadYAngle = 20f;
@@ -70,8 +71,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-
         Rigidbody targetRB;
         if (m_ragdollController.ragdollActivated)
             targetRB = m_ragdollController.mainRb;
@@ -82,14 +81,17 @@ public class PlayerController : MonoBehaviour
         if (trackForceWhenGrappling || !m_grapple.grappling)
         {
             if( m_ragdollController.ragdollActivated)
-                targetRB.AddForce(boostMultiplier * forwardRagdoll * m_track.trackSection.trackDirection, ForceMode.Acceleration);
+                targetRB.AddForce(boostMultiplier * forwardForceRagdoll * m_track.trackSection.trackDirection, ForceMode.Acceleration);
             else
                 targetRB.AddForce(boostMultiplier * forwardForce * m_track.trackSection.trackDirection, ForceMode.Acceleration);
         }
-           
+
+        //forward force when grappling
+        if (m_grapple.grappling)
+            targetRB.AddForce(forwardForceGrapple * transform.forward, ForceMode.Acceleration);
 
         //Orientation towards the player speed
-        if(  ! m_ragdollController.ragdollActivated && targetRB.velocity != Vector3.zero)
+        if (  ! m_ragdollController.ragdollActivated && targetRB.velocity != Vector3.zero)
             targetRB.transform.rotation = Quaternion.LookRotation(targetRB.velocity);
 
         
