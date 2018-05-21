@@ -65,7 +65,6 @@ public class Grap : MonoBehaviour
         {
             m_target = GazeManager.GetGazeWorldPoint();
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
-            print("max: " + maxDistance + " " + Mathf.Sqrt(sqrDist));
 
             //Launch the grapple if the target is valid
             if (m_target != Vector3.zero && sqrDist < maxDistance* maxDistance)
