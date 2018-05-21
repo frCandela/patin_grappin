@@ -19,8 +19,6 @@ public class Track : MonoBehaviour
     [SerializeField] private bool checkPreviousSections = true;
     [SerializeField] private bool checkParallelSections = true;
 
-
-
     //Private members
     private Rigidbody m_targetRb = null;
 
@@ -42,8 +40,6 @@ public class Track : MonoBehaviour
         SetupTarget();
         if (currentSection)
             currentSection.UpdateTrack(m_targetRb.position);    
-
-        
     }
 
     private void OnValidate()
@@ -57,7 +53,6 @@ public class Track : MonoBehaviour
         float t1 = Time.realtimeSinceStartup;
         UpdateClosestSection();
         splineUpdateMs = 1000 * (Time.realtimeSinceStartup - t1);
-
         DetectPlayerFall();
     }
 
@@ -68,8 +63,7 @@ public class Track : MonoBehaviour
 
     private void DetectPlayerFall()
     {
-
-        if (currentSection)
+        if (currentSection != null)
         {
             //Detects the player fall
             Vector3 diff = currentSection.trackPosition - m_targetRb.transform.position;
@@ -95,15 +89,14 @@ public class Track : MonoBehaviour
             }
 
         }
-
+        else
+            Debug.LogError("no section set");
     }
-
 
     public void UpdateClosestSection()
     {
-        if(currentSection)
+        if (currentSection != null)
         {
-
             //Variables and lambda used to find the best section
             TrackSection bestTrackSection = null;
             float bestDistance = float.MaxValue;
@@ -119,7 +112,6 @@ public class Track : MonoBehaviour
             };
 
             //LookUp parallel sections
-
             foreach (TrackSection prevSection in currentSection.prevSections)
             {
                 if (checkPreviousSections)
@@ -134,8 +126,15 @@ public class Track : MonoBehaviour
             foreach (TrackSection nextSection in currentSection.nextSections)
                 LookupSection(nextSection);
 
-            currentSection = bestTrackSection;
+            //Update new section
+            if (bestTrackSection)
+                currentSection = bestTrackSection;
+            else
+                currentSection.UpdateTrack(m_targetRb.position);
         }
+        else
+            Debug.LogError("no section set");
+
     }
 
     private void OnDrawGizmos()

@@ -43,12 +43,17 @@ public class AnimSfxTrigger : MonoBehaviour {
 
 		else if(stringParam == "softPush")
 		{
-			AkSoundEngine.PostEvent("Play_Ice_Skate_Move", gameObject);
+			AkSoundEngine.PostEvent("Play_Slow", gameObject);
+		}
+
+		else if(stringParam == "normalPush")
+		{
+			AkSoundEngine.PostEvent("Play_Normal", gameObject);
 		}
 
 		else if(stringParam == "hardPush")
 		{
-			//AkSoundEngine.PostEvent("Play_Ice_Skate_Dirt", gameObject);
+			AkSoundEngine.PostEvent("Play_Fast", gameObject);
 		}
 
 

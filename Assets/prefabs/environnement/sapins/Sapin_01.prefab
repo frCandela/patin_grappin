@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4628785941270524}
   - component: {fileID: 33846453564887608}
   - component: {fileID: 23391754727203460}
+  - component: {fileID: 64600780595489878}
   m_Layer: 0
   m_Name: Sapin_01
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1139888882553124}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.5802526, y: -0.3, z: 119.87346}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,4 +84,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1139888882553124}
+  m_Mesh: {fileID: 4300012, guid: 4eeda0d007a9c3044bb283e8ba639bd9, type: 3}
+--- !u!64 &64600780595489878
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1139888882553124}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300012, guid: 4eeda0d007a9c3044bb283e8ba639bd9, type: 3}

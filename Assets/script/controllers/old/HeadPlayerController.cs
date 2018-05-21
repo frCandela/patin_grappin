@@ -38,14 +38,6 @@ public class HeadPlayerController : MonoBehaviour
 
     private void Start()
     {
-        //Looks for every boosts and connects the events
-        object[] objArray = GameObject.FindObjectsOfType(typeof(GOChangeColor));
-        foreach (object obj in objArray)
-        {
-            GOChangeColor boost = (GOChangeColor)obj;
-            boost.onColorChanged.AddListener(StartBoost);
-        }
-
         //Initial parameters
         m_rb.velocity = 5f * Vector3.forward;
         m_previousPosition = transform.position - transform.forward;
@@ -57,7 +49,7 @@ public class HeadPlayerController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (Input.GetButtonDown("Grapple"))
-            m_grapple.Throw( transform );
+            m_grapple.Throw();
         if (Input.GetButtonUp("Grapple"))
             m_grapple.Cancel();
     }

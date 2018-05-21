@@ -554,14 +554,14 @@ ModelImporter:
       events:
       - time: 0
         functionName: OnTriggerSFX
-        data: softPush
+        data: normalPush
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 1
         intParameter: 0
         messageOptions: 0
       - time: 0.493007
         functionName: OnTriggerSFX
-        data: softPush
+        data: normalPush
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 1
         intParameter: 0
