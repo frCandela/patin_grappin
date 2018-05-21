@@ -89,12 +89,10 @@ public class PlayerController : MonoBehaviour
             Vector3 forwardXZ = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
             targetRB.AddForce(forwardForceGrapple * forwardXZ, ForceMode.Acceleration);
         }
-            
 
         //Orientation towards the player speed
         if (  ! m_ragdollController.ragdollActivated && targetRB.velocity != Vector3.zero)
             targetRB.transform.rotation = Quaternion.LookRotation(targetRB.velocity);
-
         
         float headAxis = 0;
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
