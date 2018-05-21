@@ -88,7 +88,11 @@ public class PlayerController : MonoBehaviour
 
         //forward force when grappling
         if (m_grapple.grappling)
-            targetRB.AddForce(forwardForceGrapple * transform.forward, ForceMode.Acceleration);
+        {
+            Vector3 forwardXZ = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+            targetRB.AddForce(forwardForceGrapple * forwardXZ, ForceMode.Acceleration);
+        }
+            
 
         //Orientation towards the player speed
         if (  ! m_ragdollController.ragdollActivated && targetRB.velocity != Vector3.zero)
