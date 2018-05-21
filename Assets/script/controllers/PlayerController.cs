@@ -44,16 +44,11 @@ public class PlayerController : MonoBehaviour
         m_grapple = GetComponent<Grap>();
 
         Physics.gravity = new Vector3(0, gravity, 0);
+        m_rb.velocity = initialVelocity * m_track.trackSection.trackDirection;
 
         //Set events
         onGrappleLaunch = new UnityEvent();
         onGrappleReset = new UnityEvent();
-    }
-
-    private void Start()
-    {
-        //Initial parameters
-        m_rb.velocity = initialVelocity * m_track.trackSection.trackDirection;
     }
 
     private void Update()

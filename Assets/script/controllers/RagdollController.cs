@@ -8,7 +8,7 @@ public class RagdollController : MonoBehaviour
     [SerializeField] private float m_ragdollDuration = 2f;
 
     [Header("Triggers")]
-    [SerializeField] private float m_minVelocityTrigger = 30f;
+    [SerializeField] private float m_minVelocity = 30f;
     [SerializeField] private float m_VelocityDeltaTrigger = 5f;
 
 
@@ -28,17 +28,10 @@ public class RagdollController : MonoBehaviour
     public Rigidbody mainRb { get; private set; }
     private Transform spineTransform;
 
+    private float startTime = 0;
+
     //private 
     float prevXZvelocity = 1000f;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-       
-       /* if (!ragdollActivated && m_mainRb.velocity.sqrMagnitude < m_minVelocityTrigger * m_minVelocityTrigger)
-            StartCoroutine(StartRagdoll());*/
-    }
-
-
 
     private void Awake()
     {
@@ -57,6 +50,8 @@ public class RagdollController : MonoBehaviour
 
         mainRb =  m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
 
+
+
     }
 
 
@@ -64,15 +59,14 @@ public class RagdollController : MonoBehaviour
     void Start ()
     {
         SetRagdoll(false, true);
-	}
+        startTime = Time.realtimeSinceStartup;
+    }
 
     private void Update()
     {
         //Ragdoll input
         if (Input.GetKeyDown(KeyCode.A))
-            SetRagdoll(true);
-        if (Input.GetKeyUp(KeyCode.A))
-            SetRagdoll(false);
+            StartCoroutine(StartRagdoll());
 
         //Ragdoll updates
         if (ragdollActivated)
@@ -82,10 +76,11 @@ public class RagdollController : MonoBehaviour
         }
         else
         {
+            //Impact triggers ragdoll
             Vector3 XZVelocityVec = new Vector3(m_mainRb.velocity.x, 0, m_mainRb.velocity.z);
             float XZVelocity = XZVelocityVec.magnitude;
 
-            if (prevXZvelocity - XZVelocity > m_VelocityDeltaTrigger)
+            if (prevXZvelocity - XZVelocity > m_VelocityDeltaTrigger && Time.realtimeSinceStartup > startTime + 3)
                 StartCoroutine(StartRagdoll());
 
             prevXZvelocity = XZVelocity;
@@ -156,7 +151,7 @@ public class RagdollController : MonoBehaviour
         SetRagdoll(true);
         yield return new WaitForSeconds(m_ragdollDuration);
 
-        while (averageVelocity.sqrMagnitude < m_minVelocityTrigger * m_minVelocityTrigger)
+        while (averageVelocity.sqrMagnitude < m_minVelocity * m_minVelocity)
         {
             yield return new WaitForSeconds(m_ragdollDuration / 2f);
 
