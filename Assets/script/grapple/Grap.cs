@@ -11,11 +11,11 @@ public class Grap : MonoBehaviour
     [SerializeField] private GameObject fxPrefab = null;
 
     [Header("Parameters")]
-    [SerializeField, Range(0f, 1000f)]
-    private float attractionForce = 50f;
+    [SerializeField, Range(0f, 1000f)] private float attractionForce = 50f;
+    [SerializeField, Range(0f, 2000f)] private float attractionForceRagdoll = 1000;
     [SerializeField, Range(0f, 1000f)] private float maxDistance = 150;
     [SerializeField, Range(0f, 1000f)] private float minDistance = 20;
-    [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
+    [SerializeField, Range(0f, 1f)] private float elasticity = 1f;  
 
     //Public properties
     public bool grappling { get; private set; }
@@ -28,7 +28,6 @@ public class Grap : MonoBehaviour
     //References
     private Rigidbody m_rigidbody;
     private ParticleSystem m_particleSystem;
-
     private Rope m_rope = null;
     private Vector3 m_target;
     private RagdollController m_ragdollController;
@@ -128,7 +127,11 @@ public class Grap : MonoBehaviour
             {
                 //Force in the good direction
                 Vector3 direction = (m_target - transform.position).normalized;
-                targetRb.AddForce(attractionForce * direction, ForceMode.Acceleration);
+
+                if(m_ragdollController.ragdollActivated)
+                    targetRb.AddForce(attractionForceRagdoll * direction, ForceMode.Acceleration);
+                else
+                    targetRb.AddForce(attractionForce * direction, ForceMode.Acceleration);
 
                 //Remove velocity in the wrong direction
                 float wrongVelocity = Vector3.Dot(targetRb.velocity, direction);

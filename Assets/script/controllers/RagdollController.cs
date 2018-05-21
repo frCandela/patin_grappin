@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class RagdollController : MonoBehaviour
 {
-    private Animator m_animator;
+    [Header("Triggers")]
+    [SerializeField] private float m_ragdollDuration = 2f;
 
+    [Header("Triggers")]
+    [SerializeField] private float m_minVelocityTrigger = 30f;
+    [SerializeField] private float m_VelocityDeltaTrigger = 5f;
+
+
+    //References
+    private Animator m_animator;
     private Rigidbody m_mainRb;
     private Collider m_mainCollider;
-
     private Rigidbody[] m_ragdollRbs;
     private Collider[] m_ragdollColliders;
-
     private PlayerController m_playerController;
 
     //Properties
@@ -20,9 +26,19 @@ public class RagdollController : MonoBehaviour
     public Rigidbody rightArmRb { get; private set; }
     public Rigidbody leftArmRb { get; private set; }
     public Rigidbody mainRb { get; private set; }
-
-
     private Transform spineTransform;
+
+    //private 
+    float prevXZvelocity = 1000f;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+       
+       /* if (!ragdollActivated && m_mainRb.velocity.sqrMagnitude < m_minVelocityTrigger * m_minVelocityTrigger)
+            StartCoroutine(StartRagdoll());*/
+    }
+
+
 
     private void Awake()
     {
@@ -47,27 +63,42 @@ public class RagdollController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        SetRagdoll(false);
+        SetRagdoll(false, true);
 	}
 
     private void Update()
     {
+        //Ragdoll input
         if (Input.GetKeyDown(KeyCode.A))
             SetRagdoll(true);
         if (Input.GetKeyUp(KeyCode.A))
             SetRagdoll(false);
 
-        if(ragdollActivated)
+        //Ragdoll updates
+        if (ragdollActivated)
         {
             m_mainRb.position = spineTransform.position;
             UpdateAverageRagdollVelocity();
         }
+        else
+        {
+            Vector3 XZVelocityVec = new Vector3(m_mainRb.velocity.x, 0, m_mainRb.velocity.z);
+            float XZVelocity = XZVelocityVec.magnitude;
+
+            if (prevXZvelocity - XZVelocity > m_VelocityDeltaTrigger)
+                StartCoroutine(StartRagdoll());
+
+            prevXZvelocity = XZVelocity;
+        }
     }
 
-    public void SetRagdoll(bool state)
+    public void SetRagdoll(bool state, bool force = false)
     {
-        ragdollActivated = state;
+        //Return if we are already in the same state
+        if (ragdollActivated == state && !force)
+            return;
 
+        ragdollActivated = state;
         if (state)//Activates ragdoll
         {
             //Activates ragdoll colliders and rigidbodies
@@ -120,4 +151,16 @@ public class RagdollController : MonoBehaviour
         averageVelocity /= m_ragdollRbs.Length - 1;
     }
 
+    IEnumerator StartRagdoll()
+    {
+        SetRagdoll(true);
+        yield return new WaitForSeconds(m_ragdollDuration);
+
+        while (averageVelocity.sqrMagnitude < m_minVelocityTrigger * m_minVelocityTrigger)
+        {
+            yield return new WaitForSeconds(m_ragdollDuration / 2f);
+
+        }
+        SetRagdoll(false);
+    }
 }

@@ -10,14 +10,16 @@ public class PlayerController : MonoBehaviour
     [Header("Movement:")]
     [SerializeField] private float initialVelocity = 2f;
     [SerializeField] private float forwardForce = 30f;
-    [SerializeField] private float forwardForceGrapple = 30f;
-    [SerializeField] private float forwardForceRagdoll = 50f;
+    [SerializeField] private float forwardForceGrapple = 30f;  
     [SerializeField] private float turnForce = 300f;
-    [SerializeField] private float turnForceRagdoll = 1500;
     [SerializeField] private float maxheadYAngle = 20f;
-    [SerializeField] private bool trackForceWhenGrappling = false;
+
+    [Header("Ragdoll Movement:")]
+    [SerializeField] private float forwardForceRagdoll = 50f;
+    [SerializeField] private float turnForceRagdoll = 1500;
 
     [Header("Other:")]
+    [SerializeField] private bool trackForceWhenGrappling = false;
     [SerializeField] private float gravity = -30;
 
     [Header("Events:")]
@@ -131,7 +133,12 @@ public class PlayerController : MonoBehaviour
         GUIStyle style = new GUIStyle();
         style.normal.textColor = Color.black;
 
-        Vector3 XZVelocity = new Vector3( m_rb.velocity.x,0, m_rb.velocity.z);
+        Vector3 XZVelocity;
+        if( m_ragdollController.ragdollActivated)
+            XZVelocity = new Vector3(m_ragdollController.averageVelocity.x,0, m_ragdollController.averageVelocity.z);
+        else
+            XZVelocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
+
         GUI.Label(new Rect(0, 20, 100, 10), "XZ velocity: " + XZVelocity.magnitude, style);
     }
 }
