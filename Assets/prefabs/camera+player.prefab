@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4905265125855228}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Index_02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4535688563077234}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Shoulder_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4741262563477252}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Shoulder_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4049058363043850}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pole_Elbow_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 54493184377240544}
   - component: {fileID: 144099289342999728}
   - component: {fileID: 136816259624634130}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4978510309328638}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: CTRL_Hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4224066468661732}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4882399839363164}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Patin_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4789580661946284}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pole_Elbow_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4082039061404114}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Thumb_02_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4122046966084840}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Thumb_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 114450708905014230}
   - component: {fileID: 114094775272383702}
   - component: {fileID: 114902815652433340}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: playerAvatarT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4735856279143440}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pole_Elbow_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4733170515867692}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: CTRL_Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4054892913541322}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 54636726345178630}
   - component: {fileID: 144203526202521336}
   - component: {fileID: 136879374935969920}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Arm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4361711422825270}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pole_Knee_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 4431934979552122}
   - component: {fileID: 54492739388455386}
   - component: {fileID: 65036498735595142}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: MasterHip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4804815089076262}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Patin_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4096967980652082}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Patin_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4552065859013266}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Patin_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 54920996077689676}
   - component: {fileID: 144368371760495688}
   - component: {fileID: 136186606269056028}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ForeArm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +390,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4225804841652562}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Finger_02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 54565214295844050}
   - component: {fileID: 144002652705787440}
   - component: {fileID: 136258322942683382}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4010959556173810}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +438,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4425885538509764}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Thumb_02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4162647678479530}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Spine_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4557020468010058}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Thumb_02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4736292974814958}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Index_02_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 54865065746396164}
   - component: {fileID: 144979004420771266}
   - component: {fileID: 136176659105793732}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Arm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4043246082163888}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pole_Knee_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4727629604627812}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: CTRL_Foot_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4123684109987642}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +561,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4086852808467090}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Index_02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4910202160300712}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Index_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4097134090925116}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +606,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4148120247561264}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Finger_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4553484269385378}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pole_Knee_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 136348560397085942}
   - component: {fileID: 135752221077662252}
   - component: {fileID: 135574050295026124}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Tibia_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4263115576178180}
   - component: {fileID: 137108364986362022}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -672,7 +672,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4062174472162302}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Finger_02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -687,7 +687,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4094832367280190}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Finger_02_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +702,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4666538892413794}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4001930508624652}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Index_02_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4693938996922790}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Thumb_02_R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 54745565234498724}
   - component: {fileID: 144546100778164792}
   - component: {fileID: 65327733987436896}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Spine_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +770,7 @@ GameObject:
   - component: {fileID: 136573637087773212}
   - component: {fileID: 135512688999930866}
   - component: {fileID: 135395718657009602}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Tibia_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,7 +785,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4866701977529626}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pole_Elbow_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,7 +800,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4306143580966012}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Hip_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +815,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4374630296207810}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Thumb_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -845,7 +845,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4210697707464470}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Finger_02_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 54702459094969946}
   - component: {fileID: 144266096318756396}
   - component: {fileID: 136030337998845064}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,7 +900,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4673458508122098}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Index_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,7 +915,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4439943360115802}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Spine_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -930,7 +930,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4729250940963426}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Hip_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +945,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4336349784756316}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Pole_Knee_L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,7 +960,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4872342673271518}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Finger_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 54179610085234034}
   - component: {fileID: 144280854493833682}
   - component: {fileID: 136689856339285240}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ForeArm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -993,7 +993,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4350986572878638}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: CTRL_Foot_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1513,7 +1513,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1803452835411966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 260.65192, y: 0.82, z: -139.97513}
+  m_LocalPosition: {x: 143.66, y: 12.23, z: -2591.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4653058651975286}
@@ -1669,7 +1669,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873471877760110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.33, y: -2.5, z: 5.07}
+  m_LocalPosition: {x: 0.09785461, y: -2.707535, z: 0.0847168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4520358037677030}
@@ -1919,7 +1919,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54480837373122030
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1934,7 +1934,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54492739388455386
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1949,7 +1949,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54493184377240544
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1964,7 +1964,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54565214295844050
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1979,7 +1979,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54636726345178630
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1994,7 +1994,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54700880524976742
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2009,7 +2009,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54702459094969946
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2024,7 +2024,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54717090361967470
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2039,7 +2039,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!54 &54745565234498724
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2054,7 +2054,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54865065746396164
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2069,7 +2069,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!54 &54920996077689676
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2084,7 +2084,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &65036498735595142
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2272,8 +2272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f48546ffc396c94ea03e563f52b0bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_minVelocityTrigger: 30
-  m_minVelocityDelta: 5
+  m_ragdollDuration: 2
+  m_minVelocity: 30
+  m_VelocityDeltaTrigger: 5
 --- !u!114 &114665815430408534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2356,10 +2357,10 @@ MonoBehaviour:
   initialVelocity: 2
   forwardForce: 30
   forwardForceGrapple: 30
-  forwardForceRagdoll: 150
   turnForce: 300
-  turnForceRagdoll: 1000
   maxheadYAngle: 20
+  forwardForceRagdoll: 150
+  turnForceRagdoll: 1000
   trackForceWhenGrappling: 0
   gravity: -30
   onGrappleLaunch:
@@ -2403,6 +2404,7 @@ MonoBehaviour:
     type: 2}
   fxPrefab: {fileID: 1283106272420526, guid: 855a07705a9320f4890b81e09a06d714, type: 2}
   attractionForce: 70
+  attractionForceRagdoll: 1000
   maxDistance: 150
   minDistance: 10
   elasticity: 0.9
@@ -2692,7 +2694,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000004388124, y: 0.017624618, z: -0.00015435148}
+  m_ConnectedAnchor: {x: -0.000000008637382, y: 0.017624743, z: -0.00015107567}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2736,7 +2738,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000026228378, y: 0.03054357, z: 0.00000009872024}
+  m_ConnectedAnchor: {x: 0.00000037031722, y: 0.030543564, z: 0.0000008381907}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2780,7 +2782,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0023378606, y: 0.00000007473864, z: -0.0029414743}
+  m_ConnectedAnchor: {x: 0.0023383081, y: 0.0000028463546, z: -0.0029414669}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2824,7 +2826,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.011625137, y: -0.0047643976, z: -0.0012353094}
+  m_ConnectedAnchor: {x: 0.011625703, y: -0.004764453, z: -0.0012365896}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2868,7 +2870,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000061932965, y: 0.030543616, z: -0.00000023096814}
+  m_ConnectedAnchor: {x: 0.000000051688414, y: 0.030543607, z: -0.0000010039663}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2912,7 +2914,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0023377493, y: 0.00000007473864, z: -0.0029414752}
+  m_ConnectedAnchor: {x: -0.0023383151, y: 0.0000028463546, z: -0.0029414678}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -2956,7 +2958,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000014086261, y: 0.02046555, z: 0.000000006519258}
+  m_ConnectedAnchor: {x: 0.0000011108356, y: 0.020465462, z: -0.00000025704503}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3000,7 +3002,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000023329628, y: 0.020465426, z: -0.000000073574455}
+  m_ConnectedAnchor: {x: -0.0000014824325, y: 0.020465458, z: -0.00000035949037}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3044,7 +3046,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000045533233, y: 0.0015638489, z: 0.017942525}
+  m_ConnectedAnchor: {x: -0.0000000078814475, y: 0.0015671272, z: 0.01794254}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -3088,7 +3090,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.01162526, y: -0.004764382, z: -0.001235303}
+  m_ConnectedAnchor: {x: -0.011625707, y: -0.00476443, z: -0.0012365837}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
