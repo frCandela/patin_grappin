@@ -33,6 +33,10 @@ public class Track : MonoBehaviour
 
     private void Start()
     {
+        if (!currentSection)
+        {
+            currentSection = GetComponent<TrackSection>();
+        }
         SetupTarget();
         if (currentSection)
             currentSection.UpdateTrack(m_targetRb.position);    
@@ -40,7 +44,7 @@ public class Track : MonoBehaviour
 
     private void OnValidate()
     {
-        SetupTarget();
+        //SetupTarget();
     }
 
     private void Update()
@@ -83,6 +87,7 @@ public class Track : MonoBehaviour
                     m_targetRb.velocity = prevVelXZ * new Vector3(respawnTrack.trackDirection.x, 0, respawnTrack.trackDirection.z) + new Vector3(0, prevVelY, 0);
                 }
             }
+
         }
         else
             Debug.LogError("no section set");
