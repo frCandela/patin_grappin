@@ -12,7 +12,9 @@ public class Track : MonoBehaviour
     [Header("Track parameters: ")]
     [SerializeField] private float fallFromTrackHeight = 50;
     [SerializeField] private float respawnHeight = 100f;
+    [SerializeField] private float updateDelta = 0.2f;
     [SerializeField] private bool alignVelocityOnRespawn = false;
+
 
     [Header("Track Sections Tree: ")]
     [SerializeField] private TrackSection currentSection = null;
@@ -38,23 +40,33 @@ public class Track : MonoBehaviour
             currentSection = GetComponent<TrackSection>();
         }
         SetupTarget();
+
         if (currentSection)
-            currentSection.UpdateTrack(m_targetRb.position);    
+            currentSection.UpdateTrack(m_targetRb.position);
+
+        StartCoroutine(UpdateTrack());
     }
 
-    private void OnValidate()
+    IEnumerator UpdateTrack()
     {
-        //SetupTarget();
+        while( true )
+        {
+            //Use the closest track section
+            float t1 = Time.realtimeSinceStartup;
+            UpdateClosestSection();
+            splineUpdateMs = 1000 * (Time.realtimeSinceStartup - t1);
+            yield return new WaitForSeconds(updateDelta);
+        }
+        
     }
 
     private void Update()
     {
-        //Use the closest track section
-        float t1 = Time.realtimeSinceStartup;
-        UpdateClosestSection();
-        splineUpdateMs = 1000 * (Time.realtimeSinceStartup - t1);
+
         DetectPlayerFall();
     }
+
+
 
     private void SetupTarget()
     {

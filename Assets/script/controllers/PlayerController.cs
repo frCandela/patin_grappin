@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-
         //Launch or reset grapple
         if (Input.GetButtonDown("Grapple") && m_grapple.Throw())
             onGrappleLaunch.Invoke();
