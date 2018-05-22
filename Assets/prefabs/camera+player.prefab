@@ -2335,6 +2335,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbSamples: 10
+  gazeRemanance: 1
+  gazeDistance: 650
 --- !u!114 &114803292332163412
 MonoBehaviour:
   m_ObjectHideFlags: 1

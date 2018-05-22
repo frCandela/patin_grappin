@@ -8,7 +8,11 @@ using UnityEngine;
 public class GazeManager : MonoBehaviour
 {
     [Header("Sampling:")]
-    [SerializeField] public int nbSamples = 50;
+    [SerializeField] private int nbSamples = 50;
+    [SerializeField] private float gazeRemanance = 1f;
+    private static float staticGazeRemanance = 1f;
+    [SerializeField] private float gazeDistance = 650f;
+    private static float staticGazeDistance = 1f;
 
     //Read only 
     public static Vector2 AverageGazePoint { get; private set; }
@@ -19,6 +23,10 @@ public class GazeManager : MonoBehaviour
     private static Queue<GazePoint> m_samples;
     private static GazePoint m_lastHandledPoint = GazePoint.Invalid;
     private static Camera m_camera = null;
+
+    //Grap remanence
+    private static Vector3 m_lastGazeWorldPoint;
+    private static float lastGazeWorldPointTime = 0f;
 
     // Use this for initialization
     private void Awake()
@@ -31,6 +39,8 @@ public class GazeManager : MonoBehaviour
             m_camera = GetComponent<Camera>();
             Util.EditorAssert(m_camera != null, "GazeManager.Awake(): No camera component ");
             GazedObject = null;
+            staticGazeRemanance = gazeRemanance;
+            staticGazeDistance = gazeDistance;
         }
         else
             Destroy(gameObject);
@@ -70,7 +80,7 @@ public class GazeManager : MonoBehaviour
         {
             Ray ray = m_camera.ScreenPointToRay(AverageGazePoint);
             RaycastHit raycastHit;
-            if (Physics.Raycast(ray, out raycastHit, 650, LayerMask.GetMask("GazeObject")))
+            if (Physics.Raycast(ray, out raycastHit, staticGazeDistance, LayerMask.GetMask("GazeObject")))
             {
                 currendGazedObject = raycastHit.collider.gameObject;
             }
@@ -113,13 +123,21 @@ public class GazeManager : MonoBehaviour
         {
             Ray ray = m_camera.ScreenPointToRay(AverageGazePoint);
             RaycastHit raycastHit;
-            if (Physics.Raycast(ray, out raycastHit, 650))
+            if (Physics.Raycast(ray, out raycastHit, staticGazeDistance))
             {
                 if (raycastHit.collider.gameObject.tag != "noGrab")
-                    return raycastHit.point;
+                {
+                    m_lastGazeWorldPoint = raycastHit.point;
+                    lastGazeWorldPointTime = Time.realtimeSinceStartup;
+                }
+                    
             }  
         }
-        return Vector3.zero;
+
+        if (Time.realtimeSinceStartup - lastGazeWorldPointTime < staticGazeRemanance)
+            return m_lastGazeWorldPoint;
+        else
+            return Vector3.zero;
     }
 
 }

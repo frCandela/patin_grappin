@@ -13918,7 +13918,7 @@ MonoBehaviour:
   fallFromTrackHeight: 150
   respawnHeight: 50
   updateDelta: 0.2
-  alignVelocityOnRespawn: 0
+  alignVelocityOnRespawn: 1
   currentSection: {fileID: 1591036323}
   checkPreviousSections: 1
   checkParallelSections: 1
