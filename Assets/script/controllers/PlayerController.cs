@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-
         //Launch or reset grapple
         if (Input.GetButtonDown("Grapple") && m_grapple.Throw())
             onGrappleLaunch.Invoke();
@@ -124,7 +123,7 @@ public class PlayerController : MonoBehaviour
     private void OnGUI()
     {
         GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.black;
+        style.normal.textColor = Color.red;
 
         Vector3 XZVelocity;
         if( m_ragdollController.ragdollActivated)

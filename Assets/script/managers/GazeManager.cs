@@ -70,7 +70,7 @@ public class GazeManager : MonoBehaviour
         {
             Ray ray = m_camera.ScreenPointToRay(AverageGazePoint);
             RaycastHit raycastHit;
-            if (Physics.Raycast(ray, out raycastHit, 100f, LayerMask.GetMask("GazeObject")))
+            if (Physics.Raycast(ray, out raycastHit, 650, LayerMask.GetMask("GazeObject")))
             {
                 currendGazedObject = raycastHit.collider.gameObject;
             }
@@ -113,7 +113,7 @@ public class GazeManager : MonoBehaviour
         {
             Ray ray = m_camera.ScreenPointToRay(AverageGazePoint);
             RaycastHit raycastHit;
-            if (Physics.Raycast(ray, out raycastHit, float.PositiveInfinity))
+            if (Physics.Raycast(ray, out raycastHit, 650))
             {
                 if (raycastHit.collider.gameObject.tag != "noGrab")
                     return raycastHit.point;
