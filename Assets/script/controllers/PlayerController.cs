@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     private void OnGUI()
     {
         GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.black;
+        style.normal.textColor = Color.red;
 
         Vector3 XZVelocity;
         if( m_ragdollController.ragdollActivated)
