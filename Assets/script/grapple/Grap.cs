@@ -11,10 +11,11 @@ public class Grap : MonoBehaviour
     [SerializeField] private GameObject fxPrefab = null;
 
     [Header("Parameters")]
-    [SerializeField, Range(0f, 1000f)]
-    private float attractionForce = 50f;
-    [SerializeField, Range(0f, 1000f)] private float minDistance = 5;
-    [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
+    [SerializeField, Range(0f, 1000f)] private float attractionForce = 50f;
+    [SerializeField, Range(0f, 2000f)] private float attractionForceRagdoll = 1000;
+    [SerializeField, Range(0f, 1000f)] private float maxDistance = 150;
+    [SerializeField, Range(0f, 1000f)] private float minDistance = 20;
+    [SerializeField, Range(0f, 1f)] private float elasticity = 1f;  
 
     //Public properties
     public bool grappling { get; private set; }
@@ -27,7 +28,6 @@ public class Grap : MonoBehaviour
     //References
     private Rigidbody m_rigidbody;
     private ParticleSystem m_particleSystem;
-
     private Rope m_rope = null;
     private Vector3 m_target;
     private RagdollController m_ragdollController;
@@ -63,9 +63,10 @@ public class Grap : MonoBehaviour
         if (!grappling)
         {
             m_target = GazeManager.GetGazeWorldPoint();
+            float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
 
             //Launch the grapple if the target is valid
-            if (m_target != Vector3.zero)
+            if (m_target != Vector3.zero && sqrDist < maxDistance* maxDistance)
             {
                 m_rightHandUsed = m_animationController.rightHandUsed;
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
@@ -105,6 +106,8 @@ public class Grap : MonoBehaviour
     {
         if (grappling)
         {
+            
+
             //Change the target rigidbody if the ragdoll is activated
             Rigidbody targetRb;
             if ( ! m_ragdollController.ragdollActivated)
@@ -119,11 +122,16 @@ public class Grap : MonoBehaviour
                
 
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
+            
             if (sqrDist > minDistance * minDistance)
             {
                 //Force in the good direction
                 Vector3 direction = (m_target - transform.position).normalized;
-                targetRb.AddForce(attractionForce * direction, ForceMode.Acceleration);
+
+                if(m_ragdollController.ragdollActivated)
+                    targetRb.AddForce(attractionForceRagdoll * direction, ForceMode.Acceleration);
+                else
+                    targetRb.AddForce(attractionForce * direction, ForceMode.Acceleration);
 
                 //Remove velocity in the wrong direction
                 float wrongVelocity = Vector3.Dot(targetRb.velocity, direction);

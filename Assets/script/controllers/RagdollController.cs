@@ -1,17 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RagdollController : MonoBehaviour
 {
-    private Animator m_animator;
+    [Header("Triggers")]
+    [SerializeField] private float m_ragdollDuration = 2f;
 
+    [Header("Triggers")]
+    [SerializeField] private float m_minVelocity = 30f;
+    [SerializeField] private float m_VelocityDeltaTrigger = 5f;
+
+    //Events
+    public UnityEvent onRagdollStart;
+    public UnityEvent onRagdollStop;
+
+    //References
+    private Animator m_animator;
     private Rigidbody m_mainRb;
     private Collider m_mainCollider;
-
     private Rigidbody[] m_ragdollRbs;
     private Collider[] m_ragdollColliders;
-
     private PlayerController m_playerController;
 
     //Properties
@@ -20,54 +30,74 @@ public class RagdollController : MonoBehaviour
     public Rigidbody rightArmRb { get; private set; }
     public Rigidbody leftArmRb { get; private set; }
     public Rigidbody mainRb { get; private set; }
-
-
     private Transform spineTransform;
+
+    private float startTime = 0;
+
+    //private 
+    float prevXZvelocity = 1000f;
 
     private void Awake()
     {
-        m_animator = GetComponentInChildren<Animator>();
+        //Set events
+        onRagdollStart = new UnityEvent();
+        onRagdollStop = new UnityEvent();
 
+        //Get references
+        m_animator = GetComponentInChildren<Animator>();
         m_mainRb = GetComponent<Rigidbody>();
         m_mainCollider = GetComponent<Collider>();
-
         m_ragdollRbs = GetComponentsInChildren<Rigidbody>();
         m_ragdollColliders = GetComponentsInChildren<Collider>();
         m_playerController = GetComponent<PlayerController>();
 
+        //Set properties
         spineTransform = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
         leftArmRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.LeftLowerArm).GetComponent<Rigidbody>();
         rightArmRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.RightLowerArm).GetComponent<Rigidbody>();
-
         mainRb =  m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
-
     }
 
 
     // Use this for initialization
     void Start ()
     {
-        SetRagdoll(false);
-	}
+        SetRagdoll(false, true);
+        startTime = Time.realtimeSinceStartup;
+    }
 
     private void Update()
     {
+        //Ragdoll input
         if (Input.GetKeyDown(KeyCode.A))
-            SetRagdoll(true);
-        if (Input.GetKeyUp(KeyCode.A))
-            SetRagdoll(false);
+            StartCoroutine(StartRagdoll());
 
-        if(ragdollActivated)
+        //Ragdoll updates
+        if (ragdollActivated)
         {
             m_mainRb.position = spineTransform.position;
             UpdateAverageRagdollVelocity();
         }
+        else
+        {
+            //Impact triggers ragdoll
+            Vector3 XZVelocityVec = new Vector3(m_mainRb.velocity.x, 0, m_mainRb.velocity.z);
+            float XZVelocity = XZVelocityVec.magnitude;
+
+            if (prevXZvelocity - XZVelocity > m_VelocityDeltaTrigger && Time.realtimeSinceStartup > startTime + 3)
+                StartCoroutine(StartRagdoll());
+
+            prevXZvelocity = XZVelocity;
+        }
     }
 
-    public void SetRagdoll(bool state)
+    public void SetRagdoll(bool state, bool force = false)
     {
-        ragdollActivated = state;
+        //Return if we are already in the same state
+        if (ragdollActivated == state && !force)
+            return;
 
+        ragdollActivated = state;
         if (state)//Activates ragdoll
         {
             //Activates ragdoll colliders and rigidbodies
@@ -84,9 +114,8 @@ public class RagdollController : MonoBehaviour
             m_mainCollider.enabled = false;
             m_mainRb.isKinematic = true;
             m_animator.enabled = false;
-            //m_playerController.enabled = false;
-           // m_ragdollCameraController.enabled = true;
-            //m_cameraControler.enabled = false;
+
+            onRagdollStart.Invoke();
         }
         else//Desactivate ragdoll
         {
@@ -101,11 +130,9 @@ public class RagdollController : MonoBehaviour
             m_mainCollider.enabled = true;
             m_mainRb.isKinematic = false;
             m_animator.enabled = true;
-
             m_mainRb.velocity = averageVelocity;
-            //m_playerController.enabled = true;
-            //m_ragdollCameraController.enabled = false;
-            //m_cameraControler.enabled = true;
+
+            onRagdollStop.Invoke();
         }
     }
 
@@ -120,4 +147,16 @@ public class RagdollController : MonoBehaviour
         averageVelocity /= m_ragdollRbs.Length - 1;
     }
 
+    IEnumerator StartRagdoll()
+    {
+        SetRagdoll(true);
+        yield return new WaitForSeconds(m_ragdollDuration);
+
+        while (averageVelocity.sqrMagnitude < m_minVelocity * m_minVelocity)
+        {
+            yield return new WaitForSeconds(m_ragdollDuration / 2f);
+
+        }
+        SetRagdoll(false);
+    }
 }

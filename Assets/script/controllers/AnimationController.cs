@@ -12,10 +12,22 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private float MinXYVelocityIdle = 50;
     [SerializeField] private float MaxXYVelocityIdle = 60;
 
-    //RAOUL qui fout sa merde
     [Header("Air Pose Manager:")]
     [SerializeField] private float minAirVelocity = -10f;
     [SerializeField] private float maxAirVelocity = 10f;
+
+    //private references
+    private PlayerController m_playerController = null;
+    private Rigidbody m_playerRb = null;
+    private Animator m_animator = null;
+    private spineOrientationIK m_spineOrientationIK = null;
+    private RagdollController m_ragdollController = null;
+    private armIK m_armIK = null;
+    private Transform m_leftFoot;
+    private Transform m_rightFoot;
+
+    //privates members
+    private int m_currentState = 2;
 
     //Public properties
     public bool rightHandUsed
@@ -23,7 +35,6 @@ public class AnimationController : MonoBehaviour
         get{return m_animator.GetBool("side");}
         private set{ }
     }
-
     public Transform grappleHandTransform {
         get
         {
@@ -35,21 +46,8 @@ public class AnimationController : MonoBehaviour
         private set
         { }
     }
-
-    //private references
-    private PlayerController m_playerController = null;
-    private Rigidbody m_playerRb = null;
-    private Animator m_animator = null;
-    private spineOrientationIK m_spineOrientationIK = null;
-    private armIK m_armIK = null;
-    private Transform m_leftFoot;
-    private Transform m_rightFoot;
-
-    //private properties
     public bool grounded { get; private set; }
 
-    //privates members
-    private int m_currentState = 2  ;
 
     // Use this for initialization
     void Awake ()
@@ -57,6 +55,7 @@ public class AnimationController : MonoBehaviour
         //Get and set references
         m_animator = GetComponentInChildren<Animator>();
         m_playerController = FindObjectOfType<PlayerController>();
+        m_ragdollController = FindObjectOfType<RagdollController>();
         m_playerRb = m_playerController.GetComponent<Rigidbody>();
     }
 
@@ -65,6 +64,7 @@ public class AnimationController : MonoBehaviour
         //Connect events
         m_playerController.onGrappleLaunch.AddListener(LaunchGrapple);
         m_playerController.onGrappleReset.AddListener(ResetGrapple);
+        m_ragdollController.onRagdollStop.AddListener(Land);
 
         //Init values
         grounded = true;
@@ -125,8 +125,6 @@ public class AnimationController : MonoBehaviour
                 grounded = true;
                 m_animator.SetTrigger("landing");
                 m_animator.SetBool("isGrounded", true);
-                
-                print("zob");
             }
         }
         else if( grounded)
@@ -156,10 +154,14 @@ public class AnimationController : MonoBehaviour
         m_armIK.isIK = true;
     }
 
-
     private void ResetGrapple()
     {
         m_spineOrientationIK.isOriented = false;
         m_armIK.isIK = false;
+    }
+
+    private void Land()
+    {
+        m_animator.SetTrigger("landing");
     }
 }
