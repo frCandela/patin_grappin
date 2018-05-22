@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RagdollController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class RagdollController : MonoBehaviour
     [SerializeField] private float m_minVelocity = 30f;
     [SerializeField] private float m_VelocityDeltaTrigger = 5f;
 
+    //Events
+    public UnityEvent onRagdollStart;
+    public UnityEvent onRagdollStop;
 
     //References
     private Animator m_animator;
@@ -35,23 +39,23 @@ public class RagdollController : MonoBehaviour
 
     private void Awake()
     {
-        m_animator = GetComponentInChildren<Animator>();
+        //Set events
+        onRagdollStart = new UnityEvent();
+        onRagdollStop = new UnityEvent();
 
+        //Get references
+        m_animator = GetComponentInChildren<Animator>();
         m_mainRb = GetComponent<Rigidbody>();
         m_mainCollider = GetComponent<Collider>();
-
         m_ragdollRbs = GetComponentsInChildren<Rigidbody>();
         m_ragdollColliders = GetComponentsInChildren<Collider>();
         m_playerController = GetComponent<PlayerController>();
 
+        //Set properties
         spineTransform = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
         leftArmRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.LeftLowerArm).GetComponent<Rigidbody>();
         rightArmRb = m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.RightLowerArm).GetComponent<Rigidbody>();
-
         mainRb =  m_playerController.GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
-
-
-
     }
 
 
@@ -110,9 +114,8 @@ public class RagdollController : MonoBehaviour
             m_mainCollider.enabled = false;
             m_mainRb.isKinematic = true;
             m_animator.enabled = false;
-            //m_playerController.enabled = false;
-           // m_ragdollCameraController.enabled = true;
-            //m_cameraControler.enabled = false;
+
+            onRagdollStart.Invoke();
         }
         else//Desactivate ragdoll
         {
@@ -127,11 +130,9 @@ public class RagdollController : MonoBehaviour
             m_mainCollider.enabled = true;
             m_mainRb.isKinematic = false;
             m_animator.enabled = true;
-
             m_mainRb.velocity = averageVelocity;
-            //m_playerController.enabled = true;
-            //m_ragdollCameraController.enabled = false;
-            //m_cameraControler.enabled = true;
+
+            onRagdollStop.Invoke();
         }
     }
 
