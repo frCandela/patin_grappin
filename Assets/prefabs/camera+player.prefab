@@ -2272,7 +2272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f48546ffc396c94ea03e563f52b0bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ragdollDuration: 40
+  m_ragdollDuration: 2
   m_minVelocity: 30
   m_VelocityDeltaTrigger: 20
   onRagdollStart:

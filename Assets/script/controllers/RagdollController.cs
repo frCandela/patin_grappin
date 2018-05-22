@@ -113,6 +113,7 @@ public class RagdollController : MonoBehaviour
             //Desactivate main collider, main rigidbody and animator
             m_mainCollider.enabled = false;
             m_mainRb.isKinematic = true;
+           // m_animator.playableGraph
             m_animator.enabled = false;
 
             onRagdollStart.Invoke();

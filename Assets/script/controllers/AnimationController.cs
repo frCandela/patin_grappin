@@ -64,7 +64,7 @@ public class AnimationController : MonoBehaviour
         //Connect events
         m_playerController.onGrappleLaunch.AddListener(LaunchGrapple);
         m_playerController.onGrappleReset.AddListener(ResetGrapple);
-        m_ragdollController.onRagdollStop.AddListener(Land);
+        m_ragdollController.onRagdollStop.AddListener(RagdollStop);
 
         //Init values
         grounded = true;
@@ -160,8 +160,10 @@ public class AnimationController : MonoBehaviour
         m_armIK.isIK = false;
     }
 
-    private void Land()
+    private void RagdollStop()
     {
-        m_animator.SetTrigger("landing");
+        if(grounded)
+            m_animator.Play("Armature|ReceptionL_P");
+        //m_animator.SetTrigger("landing");
     }
 }
