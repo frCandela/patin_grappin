@@ -55,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpeedTex:
-        m_Texture: {fileID: 2800000, guid: 7460254cb123389469fd3fa0117557fd, type: 3}
+        m_Texture: {fileID: 2800000, guid: 14085d88e0c23414081c6ba84960ad1b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -70,7 +70,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset: 0.029775182
+    - _Offset: 0
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
