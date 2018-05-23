@@ -44,6 +44,7 @@
 			sampler2D _MainTex, _SpeedTex;
 			float2 _CenterPos;
 			float _Offset, _DistPowFactor, _TexFactor;
+			float _SpeedTexAnim;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
@@ -54,7 +55,7 @@
 				float dist = distance(i.uv, _CenterPos) / distance(_CenterPos, float2(1,1));
 				dirVec *= pow(dist, _DistPowFactor);
 
-				float texOffset = 1 + (tex2D(_SpeedTex, i.uv) * _TexFactor);
+				float texOffset = (1 + (tex2D(_SpeedTex, i.uv) * _TexFactor) * _SpeedTexAnim);
 
 				float2 finalOffset = dirVec * _Offset * texOffset;
 
