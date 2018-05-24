@@ -36,12 +36,14 @@ public class boostEyeFX : GazeObject
         if(animator.GetBool("isLookedAt")) depopPS.Emit(1);
 		chargePS.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         onBoost.Invoke();
+        AkSoundEngine.PostEvent("Play_Boost_Go", gameObject);
     }
 
 	void DisableGO ()
 	{
 		// DEPOP DU BOOST DESACTIVÉ ICI
-		if(animator.GetBool("isLookedAt")) gameObject.SetActive(false);
+		if(animator.GetBool("isLookedAt"))
+            gameObject.SetActive(false);
 		
 	}
 
@@ -56,10 +58,12 @@ public class boostEyeFX : GazeObject
     public override void SetGazed()
     {
         animator.SetBool("isLookedAt", true);
+        AkSoundEngine.PostEvent("Play_Boost_Load", gameObject); 
     }
 
     public override void SetNotGazed()
     {
-        animator.SetBool("isLookedAt", false);        
+        animator.SetBool("isLookedAt", false);
+        AkSoundEngine.PostEvent("Stop_Boost_Load", gameObject);
     }
 }

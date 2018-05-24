@@ -16,9 +16,6 @@ public class GazeTrace : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-
-
-
         Vector2 pos = GazeManager.AverageGazePoint;
         if (!float.IsNaN(pos.x))
             m_recTrans.position = new Vector3(pos.x, pos.y, 0);

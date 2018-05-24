@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="patin_grappin.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PatinGrappin\anime\IKhandling.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Wwise\Editor\WwiseWindows\AkWwisePicker.cs">
     <Files>
       <File FileName="Assets\PatinGrappin\anime\IKhandling.cs" Line="18" Column="1" />
+      <File FileName="Assets\Wwise\Editor\WwiseWindows\AkWwisePicker.cs" Line="67" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
