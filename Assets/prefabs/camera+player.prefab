@@ -2230,8 +2230,8 @@ MonoBehaviour:
   velocityDelta: 5
   MinXYVelocityIdle: 45
   MaxXYVelocityIdle: 50
-  minAirVelocity: -5
-  maxAirVelocity: 5
+  minAirVelocity: -20
+  maxAirVelocity: 20
 --- !u!114 &114450708905014230
 MonoBehaviour:
   m_ObjectHideFlags: 1
