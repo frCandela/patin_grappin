@@ -8,8 +8,9 @@
 		_VolumeInfo ("Color of volume (Lambert)", Color) = (0,0,0,0)
 		_shadowFactor ("Factor of toon shadow", float) = 0
 		_depthFactor ("Factor of depth color", float) = 0
-		_maxDepth ("MAX distance of depth", float) = 0
-		_minDepth ("MIN distance of depth", float) = 0
+	//	_depthCol ("Depth Color", Color) = (0,0,0,0)
+	//	_maxDepth ("MAX distance of depth", float) = 0 //current 2028.71
+	//	_minDepth ("MIN distance of depth", float) = 0 //current 477.8
 		_FresnelToonTex ("Fresnel Toon Sampler", 2D) = "White" {}
 		_FresnelValue ("Factor of Fresnel", float) = 0
 		_FresnelIntensity ("Fresnel Intensity", Range(0,2)) = 0
@@ -46,6 +47,7 @@
 		//Depth fade
 		float _camDist;
 		float _depthFactor, _maxDepth, _minDepth;
+		float4 _depthCol;
 
 		//Blue variation
 		float3 _BlueVector;
@@ -130,6 +132,10 @@
 
 
 			//Depth Fade
+			_maxDepth = 2028.71;
+			_minDepth = 477.8;
+			_depthCol = float4(0.27, 0.314, 0.349, 1);
+			//_depthCol = float4(70.0/255.0, 80.0/255.0, 89.0/255.0, 1);
 			_camDist = distance(psIn.worldPos, _WorldSpaceCameraPos);
 			float depth = 1 - ( (clamp(_camDist, _minDepth, _maxDepth) - _minDepth) / (_maxDepth - _minDepth) );
 
@@ -147,10 +153,17 @@
 
 
 			//Return
-			fixed3 col = (toonCol.rgb * finalColor.rgb * depth) + toonFresnel;
+			//fixed3 col = (toonCol.rgb * finalColor.rgb * depth) + toonFresnel;
+			fixed3 col = (toonCol.rgb * finalColor.rgb) + toonFresnel;
+			
 			//col *= playerReflect;
 			col *= shadowValue;
-			return float4(col * _OverColor.xyz * volumeInfo, 1.0);
+
+			col = col * _OverColor.xyz * volumeInfo;
+
+			col = lerp(_depthCol, col, depth);
+
+			return float4(col, 1.0);
 		}
 
 

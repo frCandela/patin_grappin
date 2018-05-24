@@ -7,8 +7,13 @@ using UnityEngine;
 public class PostEffect : MonoBehaviour {
 
 [SerializeField] private Material mat;
+[SerializeField] private float deformationValue = 0;
 	
-	// Update is called once per frame
+	void Update ()
+	{
+		//donne la valeur du boost qui est animé
+		//Shader.SetGlobalFloat("_SpeedTexAnim", deformationValue);
+	}
 	void OnRenderImage (RenderTexture src, RenderTexture dest) {
 		Graphics.Blit(src, dest, mat);
 	}
