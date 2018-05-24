@@ -52,7 +52,7 @@ public class TrackSection : MonoBehaviour
         float bestT = 0f;
         float bestDistance = float.MaxValue;
 
-        float[] searchDeltas = new float[] { 50f, 5f, 1, 0.1f};
+        float[] searchDeltas = new float[] { 10, 1, 0.1f};
 
         //First search on the whole spline
         for (float t = 0; t < spline.Length; t += searchDeltas[0])
