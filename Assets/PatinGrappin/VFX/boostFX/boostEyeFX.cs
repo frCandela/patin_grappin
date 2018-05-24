@@ -41,7 +41,7 @@ public class boostEyeFX : GazeObject
 	void DisableGO ()
 	{
 		// DEPOP DU BOOST DESACTIVÉ ICI
-	//	if(animator.GetBool("isLookedAt")) gameObject.SetActive(false);
+		if(animator.GetBool("isLookedAt")) gameObject.SetActive(false);
 		
 	}
 

@@ -9,6 +9,11 @@ Shader "Custom/UnityTutoToonPG" {
 		_Color ("Main Color", Color) = (0,0,0,0)
 		_PointerColor ("Pointer Color", Color) = (1,0,0,1)
 		_PointerRadius ("Pointer Radius", float) = 3
+
+		_depthFactor ("Factor of depth color", float) = 0
+	//	_depthCol ("Depth Color", Color) = (0,0,0,0)
+	//	_maxDepth ("MAX distance of depth", float) = 2028.71 //current 2028.71
+	//	_minDepth ("MIN distance of depth", float) = 477.8 //current 477.8
 	}
 	SubShader {
 
@@ -32,6 +37,10 @@ Shader "Custom/UnityTutoToonPG" {
 		float3 _AimTargetPos;
 		fixed4 _PointerColor;
 		float _PointerRadius;
+
+		//depth fade
+		float _depthFactor, _camDist, _maxDepth, _minDepth;
+		float4 _depthCol;
 
 		struct vertInput
 		{
@@ -67,6 +76,14 @@ Shader "Custom/UnityTutoToonPG" {
 			float toonUVX = (diffIntensity * 0.5) + 0.5;
 			float4 toonCol = tex2D(_ToonTex, toonUVX);
 
+			//Depth Fade
+			_maxDepth = 2028.71;
+			_minDepth = 477.8;
+			_depthCol = float4(0.27, 0.314, 0.349, 1);
+			//_depthCol = float4(70/255, 80/255, 89/255, 1);
+			_camDist = distance(psIn.worldPos, _WorldSpaceCameraPos);
+			float depth = 1 - ( (clamp(_camDist, _minDepth, _maxDepth) - _minDepth) / (_maxDepth - _minDepth) );
+
 			// pointeur shader
 			float distToAim = distance(psIn.worldPos, _AimTargetPos);
 			// step(a,x) = 0 if x < a   or   1 if x >= a
@@ -76,6 +93,7 @@ Shader "Custom/UnityTutoToonPG" {
 
 			fixed4 col = fixed4(toonCol.rgb * _Color.rgb, 1.0);
 			col = ((1 - isInRadius) * col) + (isInRadius * _PointerColor);
+			col = lerp(_depthCol, col, depth);
 			return col;
 		}
 
