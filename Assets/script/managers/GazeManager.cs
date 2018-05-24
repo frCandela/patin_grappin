@@ -100,7 +100,6 @@ public class GazeManager : MonoBehaviour
         //Gaze at something
         else
         {
-
             if (currendGazedObject != GazedObject)
             {
                 //Reset previous gazed object
@@ -139,5 +138,4 @@ public class GazeManager : MonoBehaviour
         else
             return Vector3.zero;
     }
-
 }

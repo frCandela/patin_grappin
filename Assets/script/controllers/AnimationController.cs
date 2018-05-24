@@ -164,6 +164,5 @@ public class AnimationController : MonoBehaviour
     {
         if(grounded)
             m_animator.Play("Armature|ReceptionL_P");
-        //m_animator.SetTrigger("landing");
     }
 }
