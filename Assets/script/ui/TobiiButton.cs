@@ -28,7 +28,6 @@ public class TobiiButton : MonoBehaviour
 		if( Input.GetButtonDown("Grapple") && highlighted)
         {
             onButtonPressed.Invoke();
-            print(gameObject.name);
         }
 	}
 
