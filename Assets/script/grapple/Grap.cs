@@ -39,7 +39,7 @@ public class Grap : MonoBehaviour
     {
         //Instances
         grappleTarget = GameObject.Instantiate(targetPrefab);
-        m_aimTarget = GameObject.Instantiate(targetPrefab);
+        m_aimTarget = new GameObject();
         m_grabFX = GameObject.Instantiate(fxPrefab);
         m_grabFX.transform.parent = grappleTarget.transform;
         m_grabFX.transform.localPosition = Vector3.zero;
@@ -59,20 +59,40 @@ public class Grap : MonoBehaviour
 
     public bool Throw()
     {
-        if (!grappling)
+        GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
+        if (!grappling && result != null)
         {
-            m_target = GazeManager.GetGazeWorldPoint();
+            m_target  = result.position;
+            
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
 
             //Launch the grapple if the target is valid
             if (m_target != Vector3.zero && sqrDist < maxDistance* maxDistance)
-            {
+            {    
                 m_rightHandUsed = m_animationController.rightHandUsed;
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
                 m_rope.SetRope(m_animationController.grappleHandTransform, grappleTarget.transform);
                 grappling = true;
-                grappleTarget.transform.position = m_target;
+
+
+                //Set hook
+                Vector3 direction = m_aimTarget.transform.position - m_animationController.grappleHandTransform.position;
+                grappleTarget.transform.position = m_target - 1.5f * direction.normalized;
+                grappleTarget.transform.LookAt(grappleTarget.transform.position - direction);
+
+                //Particle system
                 m_particleSystem.Emit(1);
+
+                //Cloud
+                if(result.gameobject.tag == "cloud")
+                {
+                    Animator cloudAnimator = result.gameobject.GetComponent<Animator>();
+                    cloudAnimator.Play("cloud_take",-1,0f);
+
+                }
+
+
+
                 return true;
             }
         }
@@ -94,10 +114,15 @@ public class Grap : MonoBehaviour
     private void Update()
     {
         //Update the grapple target position
-        m_aimTarget.transform.position = GazeManager.GetGazeWorldPoint();
+        GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
+
+        if(result != null)
+            m_aimTarget.transform.position = result.position;
 
         //Shader variable
         Shader.SetGlobalVector("_AimTargetPos", m_aimTarget.transform.position);
+        
+
     }
 
     void FixedUpdate()

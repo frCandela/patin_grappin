@@ -25,7 +25,7 @@ public class GazeManager : MonoBehaviour
     private static Camera m_camera = null;
 
     //Grap remanence
-    private static Vector3 m_lastGazeWorldPoint;
+    private static GazeInfo m_lastGazeInfo;
     private static float lastGazeWorldPointTime = 0f;
 
     // Use this for initialization
@@ -41,6 +41,8 @@ public class GazeManager : MonoBehaviour
             GazedObject = null;
             staticGazeRemanance = gazeRemanance;
             staticGazeDistance = gazeDistance;
+
+            m_lastGazeInfo = new GazeInfo();
         }
         else
             Destroy(gameObject);
@@ -115,7 +117,13 @@ public class GazeManager : MonoBehaviour
         }
     }
 
-    public static Vector3 GetGazeWorldPoint()
+    public class GazeInfo
+    {
+        public GameObject gameobject = null;
+        public Vector3 position = Vector3.zero;
+    }
+
+    public static GazeInfo GetGazeWorldPoint()
     {
         //Gets the gazed object
         if (AverageGazePoint.x >= 0 && AverageGazePoint.x <= Screen.width && AverageGazePoint.y >= 0 && AverageGazePoint.y <= Screen.height)
@@ -126,16 +134,17 @@ public class GazeManager : MonoBehaviour
             {
                 if (raycastHit.collider.gameObject.tag != "noGrab")
                 {
-                    m_lastGazeWorldPoint = raycastHit.point;
+                    m_lastGazeInfo.position = raycastHit.point;
+                    m_lastGazeInfo.gameobject = raycastHit.collider.gameObject;
                     lastGazeWorldPointTime = Time.realtimeSinceStartup;
-                }
                     
+                }                    
             }  
         }
 
-        if (Time.realtimeSinceStartup - lastGazeWorldPointTime < staticGazeRemanance)
-            return m_lastGazeWorldPoint;
+        if (Time.realtimeSinceStartup - lastGazeWorldPointTime < staticGazeRemanance )
+            return m_lastGazeInfo;
         else
-            return Vector3.zero;
+            return null;
     }
 }

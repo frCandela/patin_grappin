@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AnimationController : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class AnimationController : MonoBehaviour
     [Header("Air Pose Manager:")]
     [SerializeField] private float minAirVelocity = -10f;
     [SerializeField] private float maxAirVelocity = 10f;
+
+    [Header("Events")]
+    public UnityEvent onLanding;
 
     //private references
     private PlayerController m_playerController = null;
@@ -125,6 +129,7 @@ public class AnimationController : MonoBehaviour
                 grounded = true;
                 m_animator.SetTrigger("landing");
                 m_animator.SetBool("isGrounded", true);
+                onLanding.Invoke();
             }
         }
         else if( grounded)

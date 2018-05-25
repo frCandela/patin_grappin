@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
-    float multi = 100f;
 
     private Transform beginRope;
     private Transform endRope;
@@ -24,14 +23,14 @@ public class Rope : MonoBehaviour
         beginRope = begin;
         endRope = end;
         UpdateRopeTransform();
-        m_animator.Play("grappin_rope_anim");
         gameObject.SetActive(true);
+        m_animator.Play("grappin_rope_anim");
     }
 
     public void ResetRope()
     {
+        m_animator.Play("grappin_rope_base");
         gameObject.SetActive(false);
-        m_animator.Play("grappin_rope_base");  
     }
 
     // Update is called once per frame

@@ -43,3 +43,6 @@ sysinfo.txt
 Assets/Wwise/Editor/ProjectData/
 Assets/StreamingAssets/Audio.meta
 Assets/StreamingAssets/GeneratedSoundBanks.meta
+Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/DecodedBanks/English\(US\)\.meta
+
+Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/English\(US\)\.meta

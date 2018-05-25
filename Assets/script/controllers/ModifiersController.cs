@@ -17,14 +17,18 @@ public class ModifiersController : MonoBehaviour
     [SerializeField, Range(0, 0.6f)] private float maxDeformation = 0.6f;
     [SerializeField, Range(0, 1f)] private float maxSpeedTex = 0.5f;
 
-
+    //References
+    private AnimationController m_animationController = null;
     private PlayerController m_playerController = null;
     private Rigidbody m_rb = null;
+    private ParticleSystem m_particleSystem = null;
 
     private float m_boostTimeRemaining = 0f;
 
     private void Awake()
     {
+        m_animationController = FindObjectOfType<AnimationController>();
+        m_particleSystem = GetComponentInChildren<ParticleSystem>();
         m_playerController = GetComponent<PlayerController>();
         m_rb = GetComponent<Rigidbody>();
     }
@@ -32,6 +36,10 @@ public class ModifiersController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        //Events
+        m_animationController.onLanding.AddListener(Land);
+
+        //Boost eye fx
         boostEyeFX[] boosts = FindObjectsOfType<boostEyeFX>();
         foreach (boostEyeFX boost in boosts)
             boost.onBoost.AddListener(Boost);
@@ -66,5 +74,10 @@ public class ModifiersController : MonoBehaviour
     public void Boost()
     {
         m_boostTimeRemaining = boostDuration;
+    }
+
+    public void Land()
+    {
+        m_particleSystem.Emit(6);
     }
 }
