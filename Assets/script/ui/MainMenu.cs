@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         ShowMainMenu();
-        AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+        
         AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
 
