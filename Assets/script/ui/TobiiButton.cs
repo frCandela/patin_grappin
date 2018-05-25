@@ -28,20 +28,31 @@ public class TobiiButton : MonoBehaviour
 		if( Input.GetButtonDown("Grapple") && highlighted)
         {
             onButtonPressed.Invoke();
+            SetHidden();
         }
 	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void SetHighlighted()
     {
         m_highlight.gameObject.SetActive(false);
         m_noHighlight.gameObject.SetActive(true);
         highlighted = true;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void SetHidden()
     {
         m_highlight.gameObject.SetActive(true);
         m_noHighlight.gameObject.SetActive(false);
         highlighted = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        SetHighlighted();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        SetHidden();
     }
 }
