@@ -22,8 +22,25 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         ShowMainMenu();
+        
+        AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
 
+    public void MuteFx( bool state )
+    {
+        if(state)
+            AkSoundEngine.PostEvent("Mute_FX_Mix", gameObject);
+        else
+            AkSoundEngine.PostEvent("UnMute_FX_Mix", gameObject);
+    }
+
+    public void MuteMusic(bool state)
+    {
+        if (state)
+            AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+        else
+            AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+    }
 
     public void PlayTrackScene ()
     {

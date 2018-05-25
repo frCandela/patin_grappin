@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4925679975301294}
   - component: {fileID: 137947450465534230}
   - component: {fileID: 95999068034489812}
+  - component: {fileID: 114348605226140658}
   m_Layer: 0
   m_Name: grappin_rope_01
   m_TagString: Untagged
@@ -58,6 +59,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114348605226140658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1879209362551000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486786fe9c5168142bad15298fa21993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beginRope: {fileID: 0}
+  endRope: {fileID: 0}
 --- !u!137 &137947450465534230
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

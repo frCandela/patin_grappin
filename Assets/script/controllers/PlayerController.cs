@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
             onGrappleLaunch.Invoke();
         if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
             onGrappleReset.Invoke();
-
     }
 
     // Update is called once per frame

@@ -65,8 +65,12 @@ public class CameraController : MonoBehaviour
         InitCamera();
         UpdateCameraTransform();
 
-        if(activateMusic)
-            AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+        //AkSoundEngine.PostEvent("Mute_FX_Mix", gameObject);
+        AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
+
+        //AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+        //if (activateMusic)
+        //AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
 
     // Update is called once per frame

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Rope : MonoBehaviour
 {
-    [SerializeField] private Transform beginRope;
-    [SerializeField] private Transform endRope;
+    float multi = 100f;
+
+    private Transform beginRope;
+    private Transform endRope;
 
     public void SetRope(Transform begin, Transform end)
     {

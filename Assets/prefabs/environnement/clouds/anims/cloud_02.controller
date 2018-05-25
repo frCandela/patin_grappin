@@ -48,7 +48,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: cloud_base 0
+  m_Name: cloud_take
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -61,7 +61,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 963252a9fade5e946ad06a528dc1d786, type: 2}
+  m_Motion: {fileID: 7400000, guid: 35a9a2680c480c5478198128257b44a2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

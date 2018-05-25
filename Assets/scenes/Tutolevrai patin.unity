@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11753238, g: 0.13943964, b: 0.16788438, a: 1}
+  m_IndirectSpecularColor: {r: 0.11720752, g: 0.1392355, b: 0.16745853, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -7814,6 +7814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallFromTrackHeight: 150
   respawnHeight: 50
+  updateDelta: 0.2
   alignVelocityOnRespawn: 1
   currentSection: {fileID: 1591036323}
   checkPreviousSections: 1

@@ -54,7 +54,6 @@ GameObject:
   - component: {fileID: 114686156717858772}
   - component: {fileID: 114338075330464052}
   - component: {fileID: 114009121412175904}
-  - component: {fileID: 114521968241778002}
   - component: {fileID: 114665815430408534}
   - component: {fileID: 114243444057736330}
   - component: {fileID: 114281305645535544}
@@ -2256,25 +2255,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spineTarget: {fileID: 0}
   isOriented: 0
---- !u!114 &114521968241778002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056880383286086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930bc97ef207e2e48838e5f617660c8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: f7e1664c
-  useOtherObject: 0
-  bankName: soundbank
-  decodeBank: 0
-  loadAsynchronous: 0
-  saveDecodedBank: 0
-  unloadTriggerList: 
-  valueGuid: f1ae1732672a734e81b5460347d99e19
 --- !u!114 &114568818208787664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2321,7 +2301,7 @@ MonoBehaviour:
   lerpRotationXZ: 0
   m_YCorrection: 1
   m_lowerAngleCorrection: 25
-  activateMusic: 0
+  activateMusic: 1
 --- !u!114 &114685360712612220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2364,7 +2344,7 @@ MonoBehaviour:
   boostMultiplier: 2.5
   boostDuration: 4
   minSpeed: 55
-  maxSpeed: 120
+  maxSpeed: 140
   maxDeformation: 0.393
   maxSpeedTex: 0.5
 --- !u!114 &114868938507788248

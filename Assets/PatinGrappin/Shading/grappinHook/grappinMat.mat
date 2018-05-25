@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: speedEffectMat
-  m_Shader: {fileID: 4800000, guid: 46d45884cdf94e44b8942d99572463d2, type: 3}
+  m_Name: grappinMat
+  m_Shader: {fileID: 4800000, guid: 8e2b797a957f86540a2ddddbaee63742, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -54,15 +54,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SpeedTex:
-        m_Texture: {fileID: 2800000, guid: 14085d88e0c23414081c6ba84960ad1b, type: 3}
+    - _ToonTex:
+        m_Texture: {fileID: 2800000, guid: ee35e48014d6ac546bea30a684164dc4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistPowFactor: 2
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -70,14 +69,15 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Offset: 0.35046682
     - _Parallax: 0.02
+    - _PointerRadius: 3
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TexFactor: 0
     - _UVSec: 0
     - _ZWrite: 1
+    - _depthFactor: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.47512713, b: 0.13235295, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _PointerColor: {r: 1, g: 0, b: 0, a: 1}

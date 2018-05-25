@@ -3,10 +3,10 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
-		_SpeedTex ("Speed Effect Texture", 2D) = "white" {}
+		//_SpeedTex ("Speed Effect Texture", 2D) = "white" {}
 		_Offset ("Deformation Offset", Range(0, 0.6)) = 0
 		_DistPowFactor ("factor pow", float) = 2
-		_TexFactor ("SpeedTex Factor", Range(-1,1)) = 0
+		//_TexFactor ("SpeedTex Factor", Range(-1,1)) = 0
 	}
 	SubShader
 	{
@@ -55,9 +55,10 @@
 				float dist = distance(i.uv, _CenterPos) / distance(_CenterPos, float2(1,1));
 				dirVec *= pow(dist, _DistPowFactor);
 
-				float texOffset = (1 + (tex2D(_SpeedTex, i.uv) * _TexFactor) * _SpeedTexAnim);
+				//float texOffset = (1 + (tex2D(_SpeedTex, i.uv) * _TexFactor) * _SpeedTexAnim);
 
-				float2 finalOffset = dirVec * _Offset * texOffset;
+				//float2 finalOffset = dirVec * _Offset * texOffset;
+				float2 finalOffset = dirVec * _Offset;
 
 				fixed4 col = tex2D(_MainTex, i.uv - finalOffset);
 				return col;
