@@ -65,7 +65,8 @@ public class CameraController : MonoBehaviour
         InitCamera();
         UpdateCameraTransform();
 
-        if(activateMusic)
+        AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+        if (activateMusic)
             AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
 
