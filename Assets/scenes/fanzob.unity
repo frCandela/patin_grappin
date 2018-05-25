@@ -15811,6 +15811,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114935045757514892, guid: 7f568843f5c88884298b55cf58e7b6a1,
+        type: 2}
+      propertyPath: ropePrefab
+      value: 
+      objectReference: {fileID: 1879209362551000, guid: 40d400538dcf8e149b2b1b1357a7ab7b,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f568843f5c88884298b55cf58e7b6a1, type: 2}
   m_IsPrefabParent: 0

@@ -53,7 +53,6 @@ public class Grap : MonoBehaviour
         //Set Rope
         Util.EditorAssert(ropePrefab != null, "Grapple.Awake: ropePrefab not set");
         m_rope = Instantiate(ropePrefab).GetComponent<Rope>();
-        m_rope.enabled = false;
 
         grappling = false;
     }
@@ -72,7 +71,6 @@ public class Grap : MonoBehaviour
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
                 m_rope.SetRope(m_animationController.grappleHandTransform, grappleTarget.transform);
                 grappling = true;
-                m_rope.enabled = true;
                 grappleTarget.transform.position = m_target;
                 m_particleSystem.Emit(1);
                 return true;
@@ -87,7 +85,7 @@ public class Grap : MonoBehaviour
         if (grappling)
         {
             grappling = false;
-            m_rope.enabled = false;
+            m_rope.ResetRope();
             return true;
         }
         return false;
@@ -106,8 +104,6 @@ public class Grap : MonoBehaviour
     {
         if (grappling)
         {
-            
-
             //Change the target rigidbody if the ragdoll is activated
             Rigidbody targetRb;
             if ( ! m_ragdollController.ragdollActivated)

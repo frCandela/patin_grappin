@@ -3652,8 +3652,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "MALO DAMIER - GAME DESIGN\r\nRAOUL DESMAREST - GRAPHIC DESIGN\r\nFRANCOIS
-    CANDELA - PROGAMMER\r\nANTOINE DANIELOU - UX DESIGN\r\nROBIN CUGNIET - SOUND DESIGN\r"
+  m_Text: "MALO DAMIER - GAME DESIGN\r\nRAOUL DESMAREST - GRAPHIC DESIGN\r\nVal\xE9rie
+    Galchynska - 2D Artist\nFRANCOIS CANDELA - PROGAMMER\r\nANTOINE DANIELOU - UX
+    DESIGN\r\nROBIN CUGNIET - SOUND DESIGN\r"
 --- !u!222 &2127277057
 CanvasRenderer:
   m_ObjectHideFlags: 0

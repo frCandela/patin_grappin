@@ -8,31 +8,51 @@ public class Rope : MonoBehaviour
 
     private Transform beginRope;
     private Transform endRope;
+    private Animator m_animator;
+
+
+    Vector3 m_baseScale;
+
+    private void Awake()
+    {
+        m_animator = GetComponent<Animator>();
+        m_baseScale = transform.localScale;
+    }
 
     public void SetRope(Transform begin, Transform end)
     {
         beginRope = begin;
         endRope = end;
+        UpdateRopeTransform();
+        m_animator.Play("grappin_rope_anim");
+        gameObject.SetActive(true);
     }
 
-    private void OnDisable()
+    public void ResetRope()
     {
-        transform.localScale = new Vector3(transform.localScale.x , transform.localScale.y ,0) ;
+        gameObject.SetActive(false);
+        m_animator.Play("grappin_rope_base");  
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(beginRope && endRope)
-        {
-            Vector3 begin = beginRope.position;
-            Vector3 end = endRope.position;
-            Vector3 scale = transform.localScale;
-            float distance = (end - begin).magnitude;
+        if (beginRope && endRope)
+            UpdateRopeTransform();
+    }
 
-            transform.position = begin + (end - begin) / 2f;
-            transform.rotation = Quaternion.LookRotation(end - begin);
-            transform.localScale = new Vector3(scale.x, scale.y, distance);
-        }
+    private void UpdateRopeTransform()
+    {
+        Vector3 begin = beginRope.position;
+        Vector3 end = endRope.position;
+
+        float distance = (end - begin).magnitude;
+
+        transform.position = begin + (end - begin) / 2f;
+
+        Quaternion correction = Quaternion.FromToRotation(Vector3.forward, Vector3.up);
+        transform.rotation = Quaternion.LookRotation(begin - end) * correction;
+
+        transform.localScale = new Vector3(5f * m_baseScale.x, 50 * distance, 5f * m_baseScale.z);
     }
 }

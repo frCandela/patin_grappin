@@ -61,7 +61,6 @@ public class ModifiersController : MonoBehaviour
         //Wind fx
         float rtpc =  100f * Mathf.Clamp( (m_rb.velocity.magnitude)/ maxSpeed, 0f,1f);
         AkSoundEngine.SetRTPCValue("Speed_RTPC", rtpc);
-        print(rtpc);
     }
 
     public void Boost()
