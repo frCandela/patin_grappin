@@ -12,6 +12,17 @@ TextureImporter:
     21300010: credits2
     21300012: quit1
     21300014: quit2
+    21300016: mainMenu1
+    21300018: mainMenu2
+    21300020: track1
+    21300022: track2
+    21300024: arcade2
+    21300026: arcade1
+    21300028: music1
+    21300030: music2
+    21300032: sfx1
+    21300034: sfx2
+    21300036: ui_cross
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -107,7 +118,7 @@ TextureImporter:
         width: 300
         height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -121,7 +132,7 @@ TextureImporter:
         width: 300
         height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -135,7 +146,7 @@ TextureImporter:
         width: 300
         height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,7 +160,7 @@ TextureImporter:
         width: 300
         height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,7 +174,7 @@ TextureImporter:
         width: 300
         height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,7 +188,7 @@ TextureImporter:
         width: 300
         height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,7 +202,7 @@ TextureImporter:
         width: 300
         height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,6 +214,160 @@ TextureImporter:
         x: 6
         y: 323
         width: 300
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainMenu1
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 234
+        width: 300
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mainMenu2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 146
+        width: 300
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: track1
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 884
+        width: 248
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: track2
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 744
+        width: 248
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: arcade2
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 744
+        width: 248
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: arcade1
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 882
+        width: 248
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: music1
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 649
+        width: 353
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: music2
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 571
+        width: 353
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sfx1
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 484
+        width: 353
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: sfx2
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 409
+        width: 354
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ui_cross
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 586
+        width: 83
         height: 81
       alignment: 0
       pivot: {x: 0, y: 0}

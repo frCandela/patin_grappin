@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/scenes/menu.unity
+    guid: b22efaf3a2ceb7d45b703bbda9e087e3
+  - enabled: 1
+    path: Assets/scenes/Malotestmultisection.unity
+    guid: 5907d7636207c284eada60d4b0aa8f6d
+  - enabled: 1
+    path: Assets/scenes/Tutolevrai patin.unity
+    guid: 0ab78f01126c0dd4da2b27b91e187ade

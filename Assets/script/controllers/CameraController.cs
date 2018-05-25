@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float lerpRotationXZ = 0.1f;
 
     [Header("Y correction:")]
-    [SerializeField] private bool m_YCorrection = true;
+    [SerializeField] private bool m_YCorrection = false;
     [SerializeField, Range(10f, 40f)] private float m_lowerAngleCorrection = 30;
 
 
