@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ModifiersController : MonoBehaviour
 {
-    [Header("Prefabs:")]
+    [Header("References:")]
     [SerializeField] private Material boostMaterial = null;
+    [SerializeField] private Material patinMaterial = null;
+
+    [Header("Prefabs:")]
     [SerializeField] private GameObject traceBase = null;
     [SerializeField] private GameObject traceBoost = null;
 
@@ -17,7 +20,6 @@ public class ModifiersController : MonoBehaviour
     [SerializeField, Range(0, 200)] private float minSpeed = 55f;
     [SerializeField, Range(0, 200)] private float maxSpeed = 100f;
     [SerializeField, Range(0, 0.6f)] private float maxDeformation = 0.6f;
-    [SerializeField, Range(0, 1f)] private float maxSpeedTex = 0.5f;
 
     //References
     private AnimationController m_animationController = null;
@@ -45,6 +47,9 @@ public class ModifiersController : MonoBehaviour
         m_particleSystemTraceBaseR = Instantiate(traceBase);
         m_particleSystemTraceBoostL = Instantiate(traceBoost);
         m_particleSystemTraceBoostR = Instantiate(traceBoost);
+
+        m_particleSystemTraceBaseL.GetComponent<ParticleSystem>().Play();
+        m_particleSystemTraceBaseR.GetComponent<ParticleSystem>().Play();
 
         //Get references
         m_animationController = FindObjectOfType<AnimationController>();
@@ -84,10 +89,16 @@ public class ModifiersController : MonoBehaviour
             velocity = m_rb.velocity;
         Vector2 velXZ = new Vector2(m_rb.velocity.x, m_rb.velocity.z);
 
+        //base boost foot speed effect
+        m_particleSystemTraceBaseL.transform.position = m_leftFoot.transform.position;
+        m_particleSystemTraceBaseR.transform.position = m_rightFoot.transform.position;
+        m_particleSystemTraceBaseL.transform.LookAt(m_leftFoot.transform.position - velocity);
+        m_particleSystemTraceBaseR.transform.LookAt(m_rightFoot.transform.position - velocity);
+
         //Boost
         if (m_boostTimeRemaining > 0f)
         {
-            //Set boost FX position
+            //Set feets boost FX position and direction
             m_particleSystemTraceBoostL.transform.position = m_leftFoot.transform.position;
             m_particleSystemTraceBoostR.transform.position = m_rightFoot.transform.position;
             m_particleSystemTraceBoostL.transform.LookAt(m_leftFoot.transform.position - velocity);
@@ -97,11 +108,13 @@ public class ModifiersController : MonoBehaviour
             m_playerController.boostMultiplier = boostMultiplier;
             m_boostTimeRemaining -= Time.deltaTime;
         }
-        else
+        else if(m_boostTimeRemaining != -42f)
         {
+            m_boostTimeRemaining = -42f;
             m_particleSystemBoost.Stop();
             m_playerController.boostMultiplier = 1f;
             boostMaterial.SetFloat("_TexFactor", 0f);
+            patinMaterial.SetFloat("_Shiness", 0f);
         }
 
         //Speed postprocess
@@ -120,6 +133,9 @@ public class ModifiersController : MonoBehaviour
         m_particleSystemBoost.Play();
         m_particleSystemTraceBoostL.GetComponent<ParticleSystem>().Play();
         m_particleSystemTraceBoostR.GetComponent<ParticleSystem>().Play();
+
+        //Effects
+        patinMaterial.SetFloat("_Shiness", 1f);
     }
 
     public void Land()

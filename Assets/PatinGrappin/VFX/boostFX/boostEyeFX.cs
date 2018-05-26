@@ -68,7 +68,7 @@ public class boostEyeFX : GazeObject
 
     public override void SetNotGazed()
     {
-        if (enabled)
+        if (gameObject.activeSelf)
         {
             animator.SetBool("isLookedAt", false);
             AkSoundEngine.PostEvent("Stop_Boost_Load", gameObject);
