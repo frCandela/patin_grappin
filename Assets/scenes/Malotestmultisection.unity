@@ -18090,10 +18090,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 92
       objectReference: {fileID: 0}
-    - target: {fileID: 1754416436467014, guid: 0d529a97c561cb346a4745af6494e9bc, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d529a97c561cb346a4745af6494e9bc, type: 2}
   m_IsPrefabParent: 0
@@ -20972,7 +20968,7 @@ MonoBehaviour:
   respawnHeight: 0
   updateDelta: 0.05
   alignVelocityOnRespawn: 1
-  currentSection: {fileID: 1772873782}
+  currentSection: {fileID: 940646491}
   checkPreviousSections: 1
   checkParallelSections: 1
 --- !u!1 &881849441 stripped
