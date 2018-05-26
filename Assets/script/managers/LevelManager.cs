@@ -46,14 +46,14 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         //Restarts the level
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonDown("Restart"))
         {
             AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
         //Pauses the level
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetButtonDown("Pause"))
             TooglePause();
     }
 
