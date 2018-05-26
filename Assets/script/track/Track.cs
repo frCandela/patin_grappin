@@ -62,7 +62,6 @@ public class Track : MonoBehaviour
 
     private void Update()
     {
-
         DetectPlayerFall();
     }
 
@@ -90,10 +89,13 @@ public class Track : MonoBehaviour
                 //Translate the player
                 m_targetRb.transform.parent.transform.position = m_targetRb.transform.parent.transform.position + diff + respawnHeight * Vector3.up;
 
+                //Change track and update it
+                currentSection = respawnTrack;
+                respawnTrack.UpdateTrack(m_targetRb.transform.position);
+
                 //Changes his velocity to match the direction of the track
                 if (alignVelocityOnRespawn)
                 {
-                    respawnTrack.UpdateTrack(m_targetRb.position);
                     float prevVelY = m_targetRb.velocity.y;
                     float prevVelXZ = new Vector2(m_targetRb.velocity.x, m_targetRb.velocity.z).magnitude;
                     m_targetRb.velocity = prevVelXZ * new Vector3(respawnTrack.trackDirection.x, 0, respawnTrack.trackDirection.z) + new Vector3(0, prevVelY, 0);
