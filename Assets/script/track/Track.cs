@@ -23,6 +23,7 @@ public class Track : MonoBehaviour
 
     //Private members
     private Rigidbody m_targetRb = null;
+    private Grap m_grap = null;
 
     //Debug
     float splineUpdateMs = 0f;
@@ -36,10 +37,10 @@ public class Track : MonoBehaviour
     private void Start()
     {
         if (!currentSection)
-        {
             currentSection = GetComponent<TrackSection>();
-        }
-        SetupTarget();
+
+        m_targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
+        m_grap = FindObjectOfType<Grap>();
 
         if (currentSection)
             currentSection.UpdateTrack(m_targetRb.position);
@@ -65,16 +66,9 @@ public class Track : MonoBehaviour
         DetectPlayerFall();
     }
 
-
-
-    private void SetupTarget()
-    {
-        m_targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
-    }
-
     private void DetectPlayerFall()
     {
-        if (currentSection != null)
+        if (currentSection != null && ! m_grap.grappling)
         {
             //Detects the player fall
             Vector3 diff = currentSection.trackPosition - m_targetRb.transform.position;
@@ -101,10 +95,7 @@ public class Track : MonoBehaviour
                     m_targetRb.velocity = prevVelXZ * new Vector3(respawnTrack.trackDirection.x, 0, respawnTrack.trackDirection.z) + new Vector3(0, prevVelY, 0);
                 }
             }
-
         }
-        else
-            Debug.LogError("no section set");
     }
 
     public void UpdateClosestSection()

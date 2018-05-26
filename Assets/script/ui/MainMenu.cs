@@ -21,8 +21,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        ShowMainMenu();
-        
+        ShowMainMenu(); 
         AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
 
