@@ -62,13 +62,13 @@ public class Grap : MonoBehaviour
         GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
         if (!grappling && result != null)
         {
-            m_target  = result.position;
-            
+            m_target = result.position;
+
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
 
             //Launch the grapple if the target is valid
-            if (m_target != Vector3.zero && sqrDist < maxDistance* maxDistance)
-            {    
+            if (m_target != Vector3.zero && sqrDist < maxDistance * maxDistance)
+            {
                 m_rightHandUsed = m_animationController.rightHandUsed;
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
                 m_rope.SetRope(m_animationController.grappleHandTransform, grappleTarget.transform);
@@ -85,17 +85,16 @@ public class Grap : MonoBehaviour
                 m_particleSystem.Emit(1);
 
                 //Cloud
-                if(result.gameobject.tag == "cloud")
+                if (result.gameobject.tag == "cloud")
                 {
                     Animator cloudAnimator = result.gameobject.GetComponent<Animator>();
                     //cloudAnimator.Play("cloud_take",-1,0f);
                 }
-
-
-
                 return true;
             }
         }
+        else
+            m_aimTarget.transform.position = Vector3.zero;
         return false;
     }
 
@@ -116,8 +115,10 @@ public class Grap : MonoBehaviour
         //Update the grapple target position
         GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
 
-        if(result != null)
+        if (result != null)
             m_aimTarget.transform.position = result.position;
+        else
+            m_aimTarget.transform.position = Vector3.zero;
 
         //Shader variable
         Shader.SetGlobalVector("_AimTargetPos", m_aimTarget.transform.position);
