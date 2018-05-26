@@ -20,6 +20,7 @@ public class ModifiersController : MonoBehaviour
     //References
     private AnimationController m_animationController = null;
     private PlayerController m_playerController = null;
+    private RagdollController m_ragdollController = null;
     private Rigidbody m_rb = null;
     private ParticleSystem m_particleSystem = null;
 
@@ -28,6 +29,7 @@ public class ModifiersController : MonoBehaviour
     private void Awake()
     {
         m_animationController = FindObjectOfType<AnimationController>();
+        m_ragdollController = GetComponent<RagdollController>();
         m_particleSystem = GetComponentInChildren<ParticleSystem>();
         m_playerController = GetComponent<PlayerController>();
         m_rb = GetComponent<Rigidbody>();
@@ -67,7 +69,12 @@ public class ModifiersController : MonoBehaviour
         boostMaterial.SetFloat("_Offset", Mathf.Lerp(0, maxDeformation, (velXZ.magnitude - minSpeed) / (maxSpeed - minSpeed)));
 
         //Wind fx
-        float rtpc =  100f * Mathf.Clamp( (m_rb.velocity.magnitude)/ maxSpeed, 0f,1f);
+        Vector3 velocity;
+        if (m_ragdollController.ragdollActivated)
+            velocity = m_ragdollController.averageVelocity;
+        else
+            velocity = m_rb.velocity;
+        float rtpc = 100f * Mathf.Clamp((velocity.magnitude) / maxSpeed, 0f, 1f);
         AkSoundEngine.SetRTPCValue("Speed_RTPC", rtpc);
     }
 
