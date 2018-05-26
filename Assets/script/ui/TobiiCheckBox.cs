@@ -18,6 +18,9 @@ public class TobiiCheckBox : MonoBehaviour
     private Transform m_noHighlight;
     private Transform m_cross;
 
+    //Private references
+    private Collider2D m_collider;
+
     // Use this for initialization
     void Awake ()
     {
@@ -34,6 +37,9 @@ public class TobiiCheckBox : MonoBehaviour
         //Set highlights
         isHighlighted = false;
         isChecked = true;
+
+        //Get references
+        m_collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -41,6 +47,12 @@ public class TobiiCheckBox : MonoBehaviour
     {
         if (Input.GetButtonDown("Grapple") && isHighlighted)
             Toogle();
+
+        //Higlighted
+        if (m_collider.bounds.Contains(GazeManager.AverageGazePoint))
+            SetHighlighted();
+        else
+            SetHidden();
     }
 
     private void Toogle()
@@ -71,15 +83,5 @@ public class TobiiCheckBox : MonoBehaviour
         m_highlight.gameObject.SetActive(true);
         m_noHighlight.gameObject.SetActive(false);
         isHighlighted = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        SetHighlighted();
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        SetHidden();
     }
 }

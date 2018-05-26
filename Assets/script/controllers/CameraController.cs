@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent( typeof(  Camera ))]
 public class CameraController : MonoBehaviour
@@ -25,8 +24,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private bool m_YCorrection = false;
     [SerializeField, Range(10f, 40f)] private float m_lowerAngleCorrection = 30;
 
-
-
     //References
     private Rigidbody targetRb = null;
     private Transform targetRagdoll = null;
@@ -44,8 +41,7 @@ public class CameraController : MonoBehaviour
     private Quaternion m_prevRot = Quaternion.identity;
     private float m_yOffset = 0f;
 
-    //other
-    public bool activateMusic = true;
+
 
     // Use this for initialization
     void Awake ()
@@ -64,22 +60,6 @@ public class CameraController : MonoBehaviour
     {
         InitCamera();
         UpdateCameraTransform();
-
-        //AkSoundEngine.PostEvent("Mute_FX_Mix", gameObject);
-        AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
-
-        //AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
-        if (activateMusic)
-            AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
     }
 
     // Update is called once per frame
