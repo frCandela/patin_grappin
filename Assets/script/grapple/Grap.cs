@@ -88,8 +88,7 @@ public class Grap : MonoBehaviour
                 if(result.gameobject.tag == "cloud")
                 {
                     Animator cloudAnimator = result.gameobject.GetComponent<Animator>();
-                    cloudAnimator.Play("cloud_take",-1,0f);
-
+                    //cloudAnimator.Play("cloud_take",-1,0f);
                 }
 
 
