@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,8 +54,11 @@ public class LevelManager : MonoBehaviour
         }
 
         //Pauses the level
-        if (Input.GetButtonDown("Pause"))
+        UserPresence userPresence = TobiiAPI.GetUserPresence();
+        HeadPose headPose = TobiiAPI.GetHeadPose();
+        if ( ! m_paused && (Input.GetButtonDown("Pause") || userPresence != UserPresence.Present || ! headPose.IsValid) )
             TooglePause();
+
     }
 
     private void TooglePause()
