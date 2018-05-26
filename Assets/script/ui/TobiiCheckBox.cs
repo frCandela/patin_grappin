@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class TobiiCheckBox : MonoBehaviour
 {
+    [SerializeField] private bool m_defaultState = true;
+
     //Events
     public UnityEvent onChecked;
     public UnityEvent onUnChecked;
@@ -32,11 +34,16 @@ public class TobiiCheckBox : MonoBehaviour
         //Set graphic components
         m_highlight.gameObject.SetActive(true);
         m_noHighlight.gameObject.SetActive(false);
-        m_cross.gameObject.SetActive(true);
+        
 
         //Set highlights
         isHighlighted = false;
-        isChecked = true;
+        isChecked = m_defaultState;
+
+        if (isChecked)
+            m_cross.gameObject.SetActive(true);
+        else
+            m_cross.gameObject.SetActive(false);
 
         //Get references
         m_collider = GetComponent<Collider2D>();

@@ -8,7 +8,9 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private bool m_activateMusic = true;
+    [SerializeField] private bool betaAutoSwitchKeyboard = true;
     [SerializeField] private string m_menuSceneString = "menu";
+
 
     //References
     private PauseMenu m_pauseMenu;
@@ -16,6 +18,7 @@ public class LevelManager : MonoBehaviour
 
     //Private members
     private bool m_paused = false;
+    private bool m_usingKeyboard = false;
 
     private void Awake()
     {
@@ -31,11 +34,25 @@ public class LevelManager : MonoBehaviour
         //Link events
         m_pauseMenu.onGameQuit.AddListener(QuitToMenu);
         m_pauseMenu.onGameResumed.AddListener(TooglePause);
+        m_pauseMenu.onUseKeyboard.AddListener(UseKeyboard);
+        m_pauseMenu.onUnUseKeyboard.AddListener(UnUseKeyboard);
+
 
         //Set music and sounds
         AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
         if (m_activateMusic)
             AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+    }
+
+    private void UnUseKeyboard()
+    {
+        m_usingKeyboard = false;
+    }
+
+    private void UseKeyboard()
+    {
+        betaAutoSwitchKeyboard = false;
+        m_usingKeyboard = true;
     }
 
     private void QuitToMenu()
@@ -53,11 +70,16 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
+        //Switch to keyboard control if no tobii is connected
+        if(betaAutoSwitchKeyboard)
+            m_usingKeyboard = ! Tobii.GameIntegration.Interop.IsConnected();
+
         //Pauses the level
         UserPresence userPresence = TobiiAPI.GetUserPresence();
         HeadPose headPose = TobiiAPI.GetHeadPose();
-        if ( ! m_paused && (Input.GetButtonDown("Pause") || userPresence != UserPresence.Present || ! headPose.IsValid) )
-            TooglePause();
+        if ( ! m_paused )
+            if(Input.GetButtonDown("Pause") || ( ! m_usingKeyboard && ( userPresence != UserPresence.Present || !headPose.IsValid)))
+                TooglePause();
 
     }
 
