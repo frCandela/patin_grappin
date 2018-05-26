@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 95562739973932816}
   m_Layer: 12
   m_Name: cloud_03_mesh
-  m_TagString: Untagged
+  m_TagString: cloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
