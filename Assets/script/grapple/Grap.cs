@@ -41,8 +41,6 @@ public class Grap : MonoBehaviour
         grappleTarget = GameObject.Instantiate(targetPrefab);
         m_aimTarget = new GameObject();
         m_grabFX = GameObject.Instantiate(fxPrefab);
-        //m_grabFX.transform.parent = grappleTarget.transform;
-        //m_grabFX.transform.localPosition = Vector3.zero;
         
         //Get components
         m_rigidbody = GetComponent<Rigidbody>();
@@ -88,7 +86,7 @@ public class Grap : MonoBehaviour
                 if (result.gameobject.tag == "cloud")
                 {
                     Animator cloudAnimator = result.gameobject.GetComponent<Animator>();
-                    //cloudAnimator.Play("cloud_take",-1,0f);
+                    cloudAnimator.Play("cloud_take",-1,0f);
                 }
                 return true;
             }
