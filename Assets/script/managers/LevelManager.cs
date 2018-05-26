@@ -16,13 +16,8 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerController pc = FindObjectOfType<PlayerController>();
-        m_pausedScripts = new List<MonoBehaviour>();
-        m_pausedScripts.Add(pc);
-
-
-        foreach (MonoBehaviour m in m_pausedScripts)
-            print(m.name);
+        m_pausedScripts = new List<MonoBehaviour>(FindObjectsOfType<boostEyeFX>());
+        m_pausedScripts.Add(FindObjectOfType<PlayerController>());
     }
 
     void Start ()
@@ -54,12 +49,15 @@ public class LevelManager : MonoBehaviour
         if( m_paused)
         {
             Time.timeScale = 0f;
-           
 
+            foreach(MonoBehaviour m in m_pausedScripts)
+                m.enabled = false;
         }
         else
         {
             Time.timeScale = 1f;
+            foreach (MonoBehaviour m in m_pausedScripts)
+                m.enabled = true;
         }
     }
 
