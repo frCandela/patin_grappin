@@ -44,11 +44,13 @@ public class MainMenu : MonoBehaviour
 
     public void PlayTrackScene ()
     {
+        AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
         SceneManager.LoadScene(m_trackSceneName, LoadSceneMode.Single);
     }
 
     public void PlayArcadeScene()
     {
+        AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
         SceneManager.LoadScene(m_arcadeSceneName, LoadSceneMode.Single);
     }
 

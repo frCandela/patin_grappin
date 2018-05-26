@@ -41,8 +41,8 @@ public class Grap : MonoBehaviour
         grappleTarget = GameObject.Instantiate(targetPrefab);
         m_aimTarget = new GameObject();
         m_grabFX = GameObject.Instantiate(fxPrefab);
-        m_grabFX.transform.parent = grappleTarget.transform;
-        m_grabFX.transform.localPosition = Vector3.zero;
+        //m_grabFX.transform.parent = grappleTarget.transform;
+        //m_grabFX.transform.localPosition = Vector3.zero;
         
         //Get components
         m_rigidbody = GetComponent<Rigidbody>();
@@ -81,6 +81,7 @@ public class Grap : MonoBehaviour
                 grappleTarget.transform.LookAt(grappleTarget.transform.position - direction);
 
                 //Particle system
+                m_particleSystem.transform.position = m_aimTarget.transform.position;
                 m_particleSystem.Emit(1);
 
                 //Cloud

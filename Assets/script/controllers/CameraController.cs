@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 [RequireComponent( typeof(  Camera ))]
 public class CameraController : MonoBehaviour
@@ -69,8 +69,17 @@ public class CameraController : MonoBehaviour
         AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
 
         //AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
-        //if (activateMusic)
-        //AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+        if (activateMusic)
+            AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
     // Update is called once per frame

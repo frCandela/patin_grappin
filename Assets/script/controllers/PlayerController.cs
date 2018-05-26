@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 { 
@@ -53,8 +52,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+
 
         //Launch or reset grapple
         if (Input.GetButtonDown("Grapple") && m_grapple.Throw())
