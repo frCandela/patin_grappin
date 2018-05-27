@@ -20,11 +20,16 @@ public class CameraController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float lerpRotationY = 0.5f;
     [SerializeField, Range(0f, 1f)] private float lerpRotationXZ = 0.1f;
 
-    [Header("Y correction:")]
-    [SerializeField] private bool m_YCorrection = false;
-    [SerializeField, Range(10f, 40f)] private float m_lowerAngleCorrection = 30;
+    [Header("Corrections:")]
+    [SerializeField] private bool m_DownYCorrection = true;
+    [SerializeField] private bool m_UpYCorrection = true;
+    [SerializeField] private bool m_lerpLagCorrection = true;
+    [SerializeField, Range(0,10f)] private float m_downOffset = 2f;
+    [SerializeField, Range(0, 10f)] private float m_upOffset = 5f;
+    private float m_baseDistance = 0f;
 
     //References
+    private Camera m_camera = null;
     private Rigidbody targetRb = null;
     private Transform targetRagdoll = null;
     private Track m_track = null;
@@ -41,8 +46,6 @@ public class CameraController : MonoBehaviour
     private Quaternion m_prevRot = Quaternion.identity;
     private float m_yOffset = 0f;
 
-
-
     // Use this for initialization
     void Awake ()
     {
@@ -51,15 +54,20 @@ public class CameraController : MonoBehaviour
         m_ragdollController = FindObjectOfType<RagdollController>();
         targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
         targetRagdoll = FindObjectOfType<PlayerController>().GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
+        m_camera = GetComponent<Camera>();
 
         Util.EditorAssert(m_track != null, "HeadCameraController.Awake(): no track in the level");
         Util.EditorAssert(targetRb != null, "HeadCameraController.Awake(): no playerRb set");
+
+        m_baseDistance = Vector3.Distance(targetRb.transform.position, transform.position);
     }
 
     private void Start()
     {
         InitCamera();
         UpdateCameraTransform();
+
+        
     }
 
     // Update is called once per frame
@@ -96,10 +104,15 @@ public class CameraController : MonoBehaviour
                 targetRotation = Quaternion.LookRotation(targetRb.transform.forward);
         }
 
-        //Apply position
-        transform.position = Vector3.Lerp(transform.position, targetPosition - targetRotation *  m_baseTranslation, lerpPosition) ;
-        transform.position += new Vector3(0, m_yOffset, 0);
+        //Caalculates the ratio between the target distance (base distance) and the current one
+        float distanceRatio = Vector3.Distance(targetRb.transform.position, transform.position) / m_baseDistance;
+        float lerpcorrection = 1f;
+        if (m_lerpLagCorrection)
+            lerpcorrection = distanceRatio;
 
+        //Apply position
+        transform.position = Vector3.Lerp(transform.position, targetPosition - targetRotation *  m_baseTranslation, lerpcorrection * lerpPosition) ;
+        transform.position += new Vector3(0, m_yOffset, 0);
 
         //Apply rotation with two lerp values for Y and XZ rotations
         Quaternion newRot = (targetRotation * m_baseRotationSelf);
@@ -117,22 +130,39 @@ public class CameraController : MonoBehaviour
         transform.rotation = rotY * rotXZ;
         m_prevRot = transform.rotation;
 
-        //character below frame y correction
-        if(m_YCorrection)
+
+        float scaledDistanceRatio = Mathf.Clamp(distanceRatio, 0f, 1f);
+        m_yOffset = 0;
+        //down Y correction
+        if (m_DownYCorrection)
         {
-            float angle = Vector3.Angle(transform.forward, targetPosition - transform.position);
-            float correctionDelta = angle / m_lowerAngleCorrection / 100;
-
-            if (angle > 90)
-                m_yOffset = 0;
-            if (angle > m_lowerAngleCorrection)
-                m_yOffset -= correctionDelta;
-            else if (angle < m_lowerAngleCorrection - 5)
-                m_yOffset = 0f;
-            else
-                m_yOffset += correctionDelta;
+            Vector3 newTarget = new Vector3(targetPosition.x, targetPosition.y - scaledDistanceRatio * m_downOffset, targetPosition.z);
+            if (newTarget.y < transform.position.y)
+            {
+                Vector3 lowForward = Quaternion.AngleAxis(m_camera.fieldOfView / 2, transform.right) * transform.forward;
+                Vector3 planeUp = Vector3.Cross(lowForward, transform.right);
+                Plane lowFtrustrumPlane = new Plane(planeUp, transform.position);
+                float enter;
+                Ray ray = new Ray(newTarget, Vector3.up);
+                if (lowFtrustrumPlane.Raycast(ray, out enter))
+                    m_yOffset -= enter;
+            }
         }
-
+        if( m_UpYCorrection )
+        {
+            Vector3 newTarget = new Vector3(targetPosition.x, targetPosition.y + scaledDistanceRatio * m_upOffset, targetPosition.z);
+            if (newTarget.y > transform.position.y)
+            {
+                Vector3 upForward = Quaternion.AngleAxis( - m_camera.fieldOfView / 2, transform.right) * transform.forward;
+                Vector3 planeUp = Vector3.Cross(upForward, transform.right); 
+                
+                 Plane lowFtrustrumPlane = new Plane(planeUp, transform.position);
+                float enter;
+                Ray ray = new Ray(newTarget, - Vector3.up);
+                if (lowFtrustrumPlane.Raycast(ray, out enter))
+                    m_yOffset += enter;
+            }
+        }
 
         //Head rotation 
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
