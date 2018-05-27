@@ -2243,6 +2243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nbSamples: 10
+  gazeRemanance: 1
+  gazeDistance: 650
 --- !u!114 &114595184586957540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2305,6 +2307,11 @@ MonoBehaviour:
   MaxXYVelocityIdle: 65
   minAirVelocity: -5
   maxAirVelocity: 5
+  onLanding:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114874484598078490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2375,11 +2382,8 @@ MonoBehaviour:
   lerpPosition: 0.2
   lerpRotationY: 0.5
   lerpRotationXZ: 0
-  lerpPositionSwitch: 0.05
-  lerpRotationSwitch: 0.05
-  switchDuration: 1
-  m_switchState: 0.95
-  activateMusic: 1
+  m_YCorrection: 0
+  m_lowerAngleCorrection: 30
 --- !u!124 &124512051414674192
 Behaviour:
   m_ObjectHideFlags: 1

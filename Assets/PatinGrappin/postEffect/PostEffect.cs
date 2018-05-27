@@ -7,7 +7,7 @@ using UnityEngine;
 public class PostEffect : MonoBehaviour {
 
 [SerializeField] private Material mat;
-[SerializeField] private float deformationValue = 0;
+//[SerializeField] private float deformationValue = 0;
 	
 	void Update ()
 	{

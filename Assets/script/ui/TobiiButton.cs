@@ -11,6 +11,9 @@ public class TobiiButton : MonoBehaviour
     private Transform m_highlight;
     private Transform m_noHighlight;
 
+    private Collider2D m_collider;
+
+
     // Use this for initialization
     void Awake ()
     {
@@ -20,17 +23,27 @@ public class TobiiButton : MonoBehaviour
         m_highlight.gameObject.SetActive(true);
         m_noHighlight.gameObject.SetActive(false);
         highlighted = false;
+
+        m_collider = GetComponent<Collider2D>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
+        //Pressed
 		if( Input.GetButtonDown("Grapple") && highlighted)
         {
             onButtonPressed.Invoke();
             SetHidden();
         }
-	}
+
+        //Higlighted
+        if (m_collider.bounds.Contains(GazeManager.AverageGazePoint))
+            SetHighlighted();
+        else
+            SetHidden();
+
+    }
 
     private void SetHighlighted()
     {
@@ -44,15 +57,5 @@ public class TobiiButton : MonoBehaviour
         m_highlight.gameObject.SetActive(true);
         m_noHighlight.gameObject.SetActive(false);
         highlighted = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        SetHighlighted();
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        SetHidden();
     }
 }

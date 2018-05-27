@@ -20,10 +20,12 @@ public class AnimationController : MonoBehaviour
     [Header("Events")]
     public UnityEvent onLanding;
 
+
+
     //private references
     private PlayerController m_playerController = null;
     private Rigidbody m_playerRb = null;
-    private Animator m_animator = null;
+    
     private spineOrientationIK m_spineOrientationIK = null;
     private RagdollController m_ragdollController = null;
     private armIK m_armIK = null;
@@ -34,18 +36,19 @@ public class AnimationController : MonoBehaviour
     private int m_currentState = 2;
 
     //Public properties
+    public Animator animator { get; private set; }
     public bool rightHandUsed
     {
-        get{return m_animator.GetBool("side");}
+        get{return animator.GetBool("side");}
         private set{ }
     }
     public Transform grappleHandTransform {
         get
         {
-            if (m_animator.GetBool("side"))
-                return m_animator.GetBoneTransform(HumanBodyBones.RightHand);
+            if (animator.GetBool("side"))
+                return animator.GetBoneTransform(HumanBodyBones.RightHand);
             else
-                return m_animator.GetBoneTransform(HumanBodyBones.LeftHand);
+                return animator.GetBoneTransform(HumanBodyBones.LeftHand);
         }
         private set
         { }
@@ -57,7 +60,7 @@ public class AnimationController : MonoBehaviour
     void Awake ()
     {
         //Get and set references
-        m_animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
         m_playerController = FindObjectOfType<PlayerController>();
         m_ragdollController = FindObjectOfType<RagdollController>();
         m_playerRb = m_playerController.GetComponent<Rigidbody>();
@@ -72,9 +75,9 @@ public class AnimationController : MonoBehaviour
 
         //Init values
         grounded = true;
-        grappleHandTransform = m_animator.GetBoneTransform(HumanBodyBones.RightHand);
-        m_leftFoot = m_animator.GetBoneTransform(HumanBodyBones.LeftFoot);
-        m_rightFoot = m_animator.GetBoneTransform(HumanBodyBones.RightFoot);
+        grappleHandTransform = animator.GetBoneTransform(HumanBodyBones.RightHand);
+        m_leftFoot = animator.GetBoneTransform(HumanBodyBones.LeftFoot);
+        m_rightFoot = animator.GetBoneTransform(HumanBodyBones.RightFoot);
 
         //Set IKanim scripts
         m_spineOrientationIK = GetComponentInChildren<spineOrientationIK>();
@@ -115,7 +118,7 @@ public class AnimationController : MonoBehaviour
         float airLerpParam = Mathf.InverseLerp(minAirVelocity, maxAirVelocity, playerVerticalVelocity);
 
         // set airVelocity entre -1 et 1 selon la velocité verticale du joueur entre la min et max
-        m_animator.SetFloat("airVelocity", (airLerpParam * 2) - 1);
+        animator.SetFloat("airVelocity", (airLerpParam * 2) - 1);
 
         //Set grounded parameter
         Ray rayLeft = new Ray(m_leftFoot.position, Vector3.down);
@@ -127,29 +130,29 @@ public class AnimationController : MonoBehaviour
             if( !grounded)
             {
                 grounded = true;
-                m_animator.SetTrigger("landing");
-                m_animator.SetBool("isGrounded", true);
+                animator.SetTrigger("landing");
+                animator.SetBool("isGrounded", true);
                 onLanding.Invoke();
             }
         }
         else if( grounded)
         {
             grounded = false;
-            m_animator.SetBool("isGrounded", false);
+            animator.SetBool("isGrounded", false);
         }
     }
 
     private void SetAnim(int state)
     {
-        m_animator.SetInteger("animationControl", state);
+        animator.SetInteger("animationControl", state);
         m_currentState = state;
     }
 
     private void LaunchGrapple()
     {
-        m_animator.SetTrigger("launchGrappin");
+        animator.SetTrigger("launchGrappin");
 
-        if (m_animator.GetBool("side"))
+        if (animator.GetBool("side"))
             m_armIK.whichHand = armIK.Hands.right;  
         else
             m_armIK.whichHand = armIK.Hands.left;
@@ -168,6 +171,6 @@ public class AnimationController : MonoBehaviour
     private void RagdollStop()
     {
         if(grounded)
-            m_animator.Play("Armature|ReceptionL_P");
+            animator.Play("Armature|ReceptionL_P");
     }
 }
