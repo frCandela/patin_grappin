@@ -19,6 +19,7 @@ public class Grap : MonoBehaviour
 
     //Public properties
     public bool grappling { get; private set; }
+    public bool m_rightHandUsed { get; private set; }
 
     //Instances
     public GameObject grappleTarget { get; private set; }
@@ -33,7 +34,8 @@ public class Grap : MonoBehaviour
     private RagdollController m_ragdollController;
     private AnimationController m_animationController;
 
-    bool m_rightHandUsed = true;
+    //Members
+    
 
     private void Awake()
     {
@@ -67,14 +69,25 @@ public class Grap : MonoBehaviour
             //Launch the grapple if the target is valid
             if (m_target != Vector3.zero && sqrDist < maxDistance * maxDistance)
             {
-                m_rightHandUsed = m_animationController.rightHandUsed;
+                //Selects the right hand if the target is at the right of the character
+                Transform hand;
+                if (Vector3.Dot(m_target - transform.position, transform.right) > 0f)
+                {
+                    hand = m_animationController.rightHand;
+                    m_rightHandUsed = true;
+                }
+                else
+                {
+                    hand = m_animationController.leftHand;
+                    m_rightHandUsed = false;
+                }
+
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
-                m_rope.SetRope(m_animationController.grappleHandTransform, grappleTarget.transform);
+                m_rope.SetRope(hand, grappleTarget.transform);
                 grappling = true;
 
-
                 //Set hook
-                Vector3 direction = m_aimTarget.transform.position - m_animationController.grappleHandTransform.position;
+                Vector3 direction = m_aimTarget.transform.position - hand.position;
                 grappleTarget.transform.position = m_target - 1.5f * direction.normalized;
                 grappleTarget.transform.LookAt(grappleTarget.transform.position - direction);
 
@@ -82,7 +95,7 @@ public class Grap : MonoBehaviour
                 m_particleSystem.transform.position = m_aimTarget.transform.position;
                 m_particleSystem.Emit(1);
 
-                //Cloud
+                //Cloud anim
                 if (result.gameobject.tag == "cloud")
                 {
                     Animator cloudAnimator = result.gameobject.GetComponent<Animator>();
