@@ -57,12 +57,11 @@ public class Grap : MonoBehaviour
         grappling = false;
     }
 
-    public bool Throw()
+    public bool Throw( Vector3 targetPosition, GameObject targetGameObject)
     {
-        GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
-        if (!grappling && result != null)
+        if (!grappling)
         {
-            m_target = result.position;
+            m_target = targetPosition;
 
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
 
@@ -96,9 +95,9 @@ public class Grap : MonoBehaviour
                 m_particleSystem.Emit(1);
 
                 //Cloud anim
-                if (result.gameobject.tag == "cloud")
+                if (targetGameObject.tag == "cloud")
                 {
-                    Animator cloudAnimator = result.gameobject.GetComponent<Animator>();
+                    Animator cloudAnimator = targetGameObject.GetComponent<Animator>();
                     cloudAnimator.Play("cloud_take",-1,0f);
                 }
                 return true;
