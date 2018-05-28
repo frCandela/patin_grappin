@@ -25429,8 +25429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodes:
-  - position: {x: -0.93666553, y: -29.29673, z: 23.563292}
-    direction: {x: -2.2592645, y: -29.29673, z: 50.734406}
+  - position: {x: -0.93666077, y: -29.29673, z: 23.563232}
+    direction: {x: -2.2592597, y: -29.29673, z: 50.734344}
     Changed:
       m_PersistentCalls:
         m_Calls: []

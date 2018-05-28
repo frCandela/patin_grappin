@@ -15,13 +15,18 @@ public class boostEyeFX : GazeObject
 	{
 		animator = GetComponent<Animator>();
 
-		depopFX = transform.parent.GetChild(1).gameObject;
-		chargeFX =  transform.parent.GetChild(0).gameObject;
+        chargeFX = transform.parent.GetChild(0).gameObject;
+        depopFX = transform.parent.GetChild(1).gameObject;
+		
+		if(chargeFX)
+            chargePS = chargeFX.GetComponent<ParticleSystem>();
+		else
+            Debug.LogError("No GameObject for Particle System CHARGE");
 
-		if(chargeFX) chargePS = chargeFX.GetComponent<ParticleSystem>();
-		else Debug.LogError("No GameObject for Particle System CHARGE");
-		if(depopFX) depopPS = depopFX.GetComponent<ParticleSystem>();
-		else Debug.LogError("No GameObject for Particle System DEPOP");
+		if(depopFX)
+            depopPS = depopFX.GetComponent<ParticleSystem>();
+		else
+            Debug.LogError("No GameObject for Particle System DEPOP");
 
 		chargePS.Stop();
 	}
@@ -33,9 +38,7 @@ public class boostEyeFX : GazeObject
 
 	void StartDepop ()
     {
-        if(animator.GetBool("isLookedAt")) depopPS.Emit(1);
-		chargePS.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        onBoost.Invoke();        
+        chargePS.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 
 	void DisableGO ()
@@ -43,8 +46,10 @@ public class boostEyeFX : GazeObject
 		// DEPOP DU BOOST DESACTIVÉ ICI
 		if(animator.GetBool("isLookedAt"))
         {
+            depopPS.Emit(1);
             gameObject.SetActive(false);
             AkSoundEngine.PostEvent("Play_Boost_Go", gameObject);
+            onBoost.Invoke();
         }
 	}
 
