@@ -4,6 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_Radius ("Pointer Radius (px)", float) = 0
+		_Attenuation ("Pointer Attenuation", Range(-1,1)) = 0
 	}
 	SubShader
 	{
@@ -40,7 +41,7 @@
 
 			//Pointer
 			float2 _MouseScreenPos, _ScreenSize;
-			float _Radius;
+			float _Radius, _Attenuation;
 			
 			v2f vert (appdata v)
 			{
@@ -70,7 +71,7 @@
 				fixed4 col = tex2D(_MainTex, i.uv);
 
 				//Grey of current color
-				float medianCol = (col.r + col.g + col.b) / 3.0;
+				float medianCol = ((col.r + col.g + col.b) / 3.0) / (_Attenuation + 1);
 
 				//Apply pointer
 				col.rgb = ((1 - isInRadius) * col) + (isInRadius * float3(medianCol, medianCol, medianCol));

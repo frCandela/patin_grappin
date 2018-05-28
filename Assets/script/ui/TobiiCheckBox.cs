@@ -16,9 +16,7 @@ public class TobiiCheckBox : MonoBehaviour
     public bool isChecked { get; private set; }
 
     //Graphic components references
-    private Transform m_highlight;
-    private Transform m_noHighlight;
-    private Transform m_cross;
+    private Transform m_checkedBox, m_unCheckedBox;
 
     //Private references
     private Collider2D m_collider;
@@ -26,24 +24,31 @@ public class TobiiCheckBox : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
-        //Get graphic components references
-        m_highlight = transform.GetChild(0);
-        m_noHighlight = transform.GetChild(1);
-        m_cross = transform.GetChild(2);
+        /* 
+        Ordre des childs
+            - name sprite
+            - checked box
+            - unchecked box
+        */
 
-        //Set graphic components
-        m_highlight.gameObject.SetActive(true);
-        m_noHighlight.gameObject.SetActive(false);
-        
+        //Get graphic components references
+        m_checkedBox = transform.GetChild(1);
+        m_unCheckedBox = transform.GetChild(2);
 
         //Set highlights
         isHighlighted = false;
         isChecked = m_defaultState;
 
         if (isChecked)
-            m_cross.gameObject.SetActive(true);
+        {
+            m_checkedBox.gameObject.SetActive(true);
+            m_unCheckedBox.gameObject.SetActive(false);
+        }
         else
-            m_cross.gameObject.SetActive(false);
+        {
+            m_checkedBox.gameObject.SetActive(false);
+            m_unCheckedBox.gameObject.SetActive(true);
+        }
 
         //Get references
         m_collider = GetComponent<Collider2D>();
@@ -67,12 +72,14 @@ public class TobiiCheckBox : MonoBehaviour
         if(isChecked)
         {
             onUnChecked.Invoke();
-            m_cross.gameObject.SetActive(false);
+            m_checkedBox.gameObject.SetActive(false);
+            m_unCheckedBox.gameObject.SetActive(true);
         }
         else
         {
             onChecked.Invoke();
-            m_cross.gameObject.SetActive(true);
+            m_checkedBox.gameObject.SetActive(true);
+            m_unCheckedBox.gameObject.SetActive(false);
         }
 
         isChecked = ! isChecked;
@@ -80,15 +87,11 @@ public class TobiiCheckBox : MonoBehaviour
 
     private void SetHighlighted()
     {
-        m_highlight.gameObject.SetActive(false);
-        m_noHighlight.gameObject.SetActive(true);
         isHighlighted = true;
     }
 
     private void SetHidden()
     {
-        m_highlight.gameObject.SetActive(true);
-        m_noHighlight.gameObject.SetActive(false);
         isHighlighted = false;
     }
 }
