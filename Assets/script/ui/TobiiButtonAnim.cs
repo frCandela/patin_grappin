@@ -8,23 +8,17 @@ public class TobiiButtonAnim : MonoBehaviour
     public UnityEvent onButtonPressed;
 
     public bool highlighted { get; private set;}
-    private Transform m_highlight;
-    private Transform m_noHighlight;
 
     private Collider2D m_collider;
-    private Animator m_noHighlightAnim, m_highlightAnim;
+    private Animator m_buttonAnim;
 
 
     // Use this for initialization
     void Awake ()
     {
-        m_highlight = transform.GetChild(1);
-        m_noHighlight = transform.GetChild(0);
 
-        m_noHighlightAnim = m_noHighlight.GetComponent<Animator>();
+        m_buttonAnim = GetComponent<Animator>();
 
-        m_highlight.gameObject.SetActive(true);
-        m_noHighlight.gameObject.SetActive(false);
         highlighted = false;
 
         m_collider = GetComponent<Collider2D>();
@@ -41,25 +35,28 @@ public class TobiiButtonAnim : MonoBehaviour
         }
 
         //Higlighted
-        if (m_collider.bounds.Contains(GazeManager.AverageGazePoint))
-            SetHighlighted();
+        if(m_collider.bounds.Contains(GazeManager.AverageGazePoint))
+        {
+            if(!highlighted)
+                SetHighlighted();
+        }
         else
-            SetHidden();
+        {
+            if(highlighted)
+                SetHidden();
+        }
 
     }
 
     private void SetHighlighted()
     {
-        m_highlight.gameObject.SetActive(true);
-        m_noHighlight.gameObject.SetActive(false);
+        m_buttonAnim.Play("ON_anim", -1, 0f);
         highlighted = true;
     }
 
     private void SetHidden()
     {
-        m_highlight.gameObject.SetActive(false);
-        m_noHighlight.gameObject.SetActive(true);
-        m_noHighlightAnim.Play("play_ON");
+        m_buttonAnim.Play("OFF_anim", -1, 0f);
         highlighted = false;
 
 

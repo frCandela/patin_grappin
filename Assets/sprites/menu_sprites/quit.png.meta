@@ -1,16 +1,23 @@
 fileFormatVersion: 2
-guid: bc718b4405e34f54f8fdbccf07aa10c2
-timeCreated: 1527439218
+guid: ed43eeb7e22270946acf5919e3331ac2
+timeCreated: 1527506166
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: play_ON_0
-    21300002: play_ON_1
-    21300004: play_ON_2
-    21300006: play_ON_3
-    21300008: play_ON_4
-    21300010: play_ON_5
-    21300012: play_ON_6
+    21300000: quit_0
+    21300002: quit_1
+    21300004: quit_2
+    21300006: quit_3
+    21300008: quit_4
+    21300010: quit_5
+    21300012: quit_6
+    21300014: quit_7
+    21300016: quit_8
+    21300018: quit_9
+    21300020: quit_10
+    21300022: quit_11
+    21300024: quit_12
+    21300026: quit_13
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -98,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: play_ON_0
+      name: quit_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,7 +119,21 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: play_ON_1
+      name: quit_1
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 798
+        width: 641
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: quit_2
       rect:
         serializedVersion: 2
         x: 0
@@ -126,7 +147,21 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: play_ON_2
+      name: quit_3
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 665
+        width: 641
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: quit_4
       rect:
         serializedVersion: 2
         x: 0
@@ -140,7 +175,21 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: play_ON_3
+      name: quit_5
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 532
+        width: 641
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: quit_6
       rect:
         serializedVersion: 2
         x: 0
@@ -154,7 +203,21 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: play_ON_4
+      name: quit_7
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 399
+        width: 641
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: quit_8
       rect:
         serializedVersion: 2
         x: 0
@@ -168,7 +231,21 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: play_ON_5
+      name: quit_9
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 266
+        width: 641
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: quit_10
       rect:
         serializedVersion: 2
         x: 0
@@ -182,10 +259,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: play_ON_6
+      name: quit_11
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 133
+        width: 641
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: quit_12
       rect:
         serializedVersion: 2
         x: 0
+        y: 0
+        width: 641
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: quit_13
+      rect:
+        serializedVersion: 2
+        x: 641
         y: 0
         width: 641
         height: 133
