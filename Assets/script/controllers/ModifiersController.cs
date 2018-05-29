@@ -121,7 +121,7 @@ public class ModifiersController : MonoBehaviour
         boostMaterial.SetFloat("_Offset", Mathf.Lerp(0, maxDeformation, (velXZ.magnitude - minSpeed) / (maxSpeed - minSpeed)));
 
         //Wind fx
-        float rtpc = 100f * Mathf.Clamp((velocity.magnitude) / maxSpeed, 0f, 1f);
+        float rtpc = Mathf.Clamp((velocity.magnitude) / maxSpeed, 0f, 1f);
         AkSoundEngine.SetRTPCValue("Speed_RTPC", rtpc);
     }
 

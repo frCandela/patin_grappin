@@ -40,9 +40,9 @@ public class MainMenu : MonoBehaviour
     public void MuteMusic(bool state)
     {
         if (state)
-            AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+            AkSoundEngine.PostEvent("Mute_Music_Mix", gameObject);
         else
-            AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+            AkSoundEngine.PostEvent("UnMute_Music_Mix", gameObject);
     }
 
     public void PlayTrackScene ()
