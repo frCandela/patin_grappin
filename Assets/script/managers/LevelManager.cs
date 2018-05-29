@@ -37,7 +37,6 @@ public class LevelManager : MonoBehaviour
         m_pauseMenu.onUseKeyboard.AddListener(UseKeyboard);
         m_pauseMenu.onUnUseKeyboard.AddListener(UnUseKeyboard);
 
-
         //Set music and sounds
         AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
         if (m_activateMusic)
@@ -58,6 +57,7 @@ public class LevelManager : MonoBehaviour
     private void QuitToMenu()
     {
         AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+        TooglePause();
         SceneManager.LoadScene(m_menuSceneString, LoadSceneMode.Single);
     }
 
