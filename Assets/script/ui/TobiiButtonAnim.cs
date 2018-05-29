@@ -16,12 +16,10 @@ public class TobiiButtonAnim : MonoBehaviour
     // Use this for initialization
     void Awake ()
     {
-
+        m_collider = GetComponent<Collider2D>();
         m_buttonAnim = GetComponent<Animator>();
 
         highlighted = false;
-
-        m_collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -30,6 +28,7 @@ public class TobiiButtonAnim : MonoBehaviour
         //Pressed
 		if( Input.GetButtonDown("Grapple") && highlighted)
         {
+            AkSoundEngine.PostEvent("Play_UI_Select", gameObject); 
             onButtonPressed.Invoke();
             SetHidden();
         }
@@ -50,15 +49,16 @@ public class TobiiButtonAnim : MonoBehaviour
 
     private void SetHighlighted()
     {
+        AkSoundEngine.PostEvent("Play_UI_On", gameObject);
+        
         m_buttonAnim.Play("ON_anim", -1, 0f);
         highlighted = true;
     }
 
     private void SetHidden()
     {
+        AkSoundEngine.PostEvent("Play_UI_Off", gameObject);
         m_buttonAnim.Play("OFF_anim", -1, 0f);
         highlighted = false;
-
-
     }
 }
