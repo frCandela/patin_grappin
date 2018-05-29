@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
         ShowMainMenu(); 
         AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
-
+        
     public void MuteFx( bool state )
     {
         if(state)
