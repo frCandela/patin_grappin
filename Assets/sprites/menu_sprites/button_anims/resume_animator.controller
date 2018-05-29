@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: track_animator
+  m_Name: resume_animator
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -40,7 +40,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d433de52cbf19544fbd19d0459eaf1ba, type: 2}
+  m_Motion: {fileID: 7400000, guid: ea8a31c88c1e38b419a17e7eb97fd8bb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -65,7 +65,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b4d873780d4eab94c86c7988d808b37e, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7a81c36809fc5624cbb0e9afaf2b758a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -90,7 +90,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a4a31a5fd473d2644a8e1f1fefc7dd5a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3768d609d09d91e42bd8361c8b95afbb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
