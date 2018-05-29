@@ -730,6 +730,11 @@ Prefab:
       propertyPath: m_AnchoredPosition.x
       value: 192
       objectReference: {fileID: 0}
+    - target: {fileID: 114623417498128598, guid: 7887fc0fc6e423f4da4c7d1a20fe3d85,
+        type: 2}
+      propertyPath: m_trackSceneName
+      value: Malotestmultisection
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7887fc0fc6e423f4da4c7d1a20fe3d85, type: 2}
   m_IsPrefabParent: 0
