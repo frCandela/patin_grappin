@@ -208,8 +208,8 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{21482B35-49C5-492A-9258-62C92B85A1C6}'
-    m_lastTimePart2: -1999256869
-    m_lastTimePsrt1: 520334359
+    m_lastTimePart2: -1999256222
+    m_lastTimePsrt1: -690844736
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
@@ -393,6 +393,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: 74462c7de544fa42ba568eb7140f9a50
+      ID: -1502992331
+      Name: Play_UI_Check
+      Path: Default Work Unit\Play_UI_Check
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_UI_Check
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: b78d78d3a484b8438604a1c5e4e28fe0
       ID: 249738436
       Name: Play_UI_Move
@@ -413,6 +425,42 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: Play_UI_Move_01
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 889a7cd7729d62459d0d4eb772773cfc
+      ID: -1721855882
+      Name: Play_UI_Off
+      Path: Default Work Unit\Play_UI_Off
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_UI_Off
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 6d2d8849f605fa479dc957779f39689d
+      ID: 340097464
+      Name: Play_UI_On
+      Path: Default Work Unit\Play_UI_On
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_UI_On
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 0027d8766738d747a0cd13905060cba1
+      ID: -986418793
+      Name: Play_UI_Select
+      Path: Default Work Unit\Play_UI_Select
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_UI_Select
         ObjectType: 3
       maxAttenuation: 0
       maxDuration: 0
@@ -441,6 +489,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: 071f435139b172429967b76f2d6a4e36
+      ID: -624397787
+      Name: Stop_Speed_RTPC
+      Path: Default Work Unit\Stop_Speed_RTPC
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stop_Speed_RTPC
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: 6821735859d4ea43bd412283b7e99837
       ID: 128514151
       Name: UnMute_FX_Mix
@@ -453,10 +513,7 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
-  ExpandedItems:
-  - /Patin Grappin Wwise
-  - /Patin Grappin Wwise/Events
-  - /Patin Grappin Wwise/Events/Default Work Unit
+  ExpandedItems: []
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
@@ -465,11 +522,20 @@ MonoBehaviour:
   preparePoolSize: 0
   RtpcWwu:
   - Guid: '{D68EE52A-5695-4F6F-996B-84D0B0E5D342}'
-    m_lastTimePart2: -1999256869
-    m_lastTimePsrt1: 520299255
+    m_lastTimePart2: -1999256222
+    m_lastTimePsrt1: -691353388
     ParentPhysicalPath: 
     PhysicalPath: Game Parameters\Default Work Unit.wwu
     List:
+    - Guid: 8e6573aa9b9b0b4c82e1d975740f2853
+      ID: -303024426
+      Name: Music
+      Path: Default Work Unit\Music
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Music
+        ObjectType: 13
     - Guid: 9bbb0bba290be645b525d2b9acecddfa
       ID: -1893793976
       Name: Speed_RTPC
@@ -577,11 +643,36 @@ MonoBehaviour:
         ObjectType: 13
   StateWwu:
   - Guid: '{3C81AD0E-2795-4DE0-ACB4-9CDD94ABB382}'
-    m_lastTimePart2: -1999263092
-    m_lastTimePsrt1: -701043198
+    m_lastTimePart2: -1999256222
+    m_lastTimePsrt1: -690675174
     ParentPhysicalPath: 
     PhysicalPath: States\Default Work Unit.wwu
-    List: []
+    List:
+    - Guid: 488271198cde334cb5da474b2c471e0f
+      ID: -303024426
+      Name: Music
+      Path: Default Work Unit\Music
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Music
+        ObjectType: 9
+      ValueGuids:
+      - bytes: fc3c89ca7193514c99475b71dc0be4c8
+      - bytes: 5841928c18fe3044a25aa39cc2a280a9
+      - bytes: 1bfc5af5af7c1b4f849cf85b5e772e58
+      ValueIcons:
+      - ElementName: in_game
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      - ElementName: off_game
+        ObjectType: 8
+      valueIDs: 892ae1b0db3ba32c11a417ea
+      values:
+      - in_game
+      - None
+      - off_game
   streamingPoolSize: 1024
   SwitchWwu:
   - Guid: '{CB3C1780-7043-44FC-8EB1-6A577B9767F8}'

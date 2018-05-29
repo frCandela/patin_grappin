@@ -30,7 +30,11 @@ public class MainMenu : MonoBehaviour
         if(state)
             AkSoundEngine.PostEvent("Mute_FX_Mix", gameObject);
         else
+        {
             AkSoundEngine.PostEvent("UnMute_FX_Mix", gameObject);
+            print("UnMute_FX_Mix ??");
+        }
+            
     }
 
     public void MuteMusic(bool state)

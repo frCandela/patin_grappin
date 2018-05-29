@@ -62,9 +62,17 @@ public class TobiiCheckBox : MonoBehaviour
 
         //Higlighted
         if (m_collider.bounds.Contains(GazeManager.AverageGazePoint))
-            SetHighlighted();
+        {
+            if( ! isHighlighted)
+                SetHighlighted();
+        }
         else
-            SetHidden();
+        {
+            if (isHighlighted)
+                SetHidden();
+        }
+
+            
     }
 
     private void Toogle()
@@ -81,17 +89,19 @@ public class TobiiCheckBox : MonoBehaviour
             m_checkedBox.gameObject.SetActive(true);
             m_unCheckedBox.gameObject.SetActive(false);
         }
-
+        AkSoundEngine.PostEvent("Play_UI_Select", gameObject);
         isChecked = ! isChecked;
     }
 
     private void SetHighlighted()
     {
+        AkSoundEngine.PostEvent("Play_UI_On", gameObject);
         isHighlighted = true;
     }
 
     private void SetHidden()
     {
+        AkSoundEngine.PostEvent("Play_UI_Off", gameObject);
         isHighlighted = false;
     }
 }
