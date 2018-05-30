@@ -40,3 +40,6 @@ sysinfo.txt
 # Wwise
 .cache/
 *.akd
+Assets/data\.json
+
+Assets/data\.json\.meta
