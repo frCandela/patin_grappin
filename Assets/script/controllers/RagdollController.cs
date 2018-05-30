@@ -81,8 +81,6 @@ public class RagdollController : MonoBehaviour
         }
         else
         {
-            AkSoundEngine.PostEvent("Play_Body_fall", gameObject);
-
             //Impact triggers ragdoll
             Vector3 XZVelocityVec = new Vector3(m_mainRb.velocity.x, 0, m_mainRb.velocity.z);
             float XZVelocity = XZVelocityVec.magnitude;
@@ -154,6 +152,7 @@ public class RagdollController : MonoBehaviour
 
     IEnumerator StartRagdoll()
     {
+        AkSoundEngine.PostEvent("Play_Body_fall", gameObject);
         SetRagdoll(true);
         yield return new WaitForSeconds(m_ragdollDuration);
 
