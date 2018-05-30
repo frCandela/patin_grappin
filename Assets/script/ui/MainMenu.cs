@@ -19,22 +19,30 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Transform m_playMenu;
     [SerializeField] private Transform m_optionsMenu;
 
+    [Header("Dirty references")]
+    [SerializeField] private TobiiCheckBox m_MusicCheckBox;
+    [SerializeField] private TobiiCheckBox m_FXCheckBox;
+
+
     private void Start()
     {
         ShowMainMenu(); 
         AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+
+        MuteMusic(DataManager.gameData.music_muted);
+        MuteFx(DataManager.gameData.fx_muted);
     }
         
     public void MuteFx( bool state )
     {
-        if(state)
+        
+        if (state)
             AkSoundEngine.PostEvent("Mute_FX_Mix", gameObject);
         else
-        {
             AkSoundEngine.PostEvent("UnMute_FX_Mix", gameObject);
-            print("UnMute_FX_Mix ??");
-        }
-            
+
+        DataManager.gameData.fx_muted = state;
+
     }
 
     public void MuteMusic(bool state)
@@ -43,6 +51,13 @@ public class MainMenu : MonoBehaviour
             AkSoundEngine.PostEvent("Mute_Music_Mix", gameObject);
         else
             AkSoundEngine.PostEvent("UnMute_Music_Mix", gameObject);
+
+        DataManager.gameData.music_muted = state;
+    }
+
+    public void ApplySettings()
+    {
+        DataManager.SaveGameData();
     }
 
     public void PlayTrackScene ()
@@ -81,7 +96,12 @@ public class MainMenu : MonoBehaviour
         m_playMenu.gameObject.SetActive(false);
         m_creditsMenu.gameObject.SetActive(false);
 
-        m_optionsMenu.gameObject.SetActive(true);  
+        m_optionsMenu.gameObject.SetActive(true);
+
+        if (m_MusicCheckBox.isChecked != !DataManager.gameData.music_muted)
+            m_MusicCheckBox.Toogle();
+        if (m_FXCheckBox.isChecked != !DataManager.gameData.fx_muted)
+            m_FXCheckBox.Toogle();
     }
 
     public void ShowCredits()
