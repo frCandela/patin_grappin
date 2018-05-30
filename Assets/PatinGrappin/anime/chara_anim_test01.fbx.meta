@@ -1050,7 +1050,7 @@ ModelImporter:
       name: Armature|AirDown_P
       takeName: Armature|AirDown_P
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1154,7 +1154,7 @@ ModelImporter:
       name: Armature|AirUp_P
       takeName: Armature|AirUp_P
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
