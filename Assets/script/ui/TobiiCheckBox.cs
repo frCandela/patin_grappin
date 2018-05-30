@@ -75,7 +75,7 @@ public class TobiiCheckBox : MonoBehaviour
             
     }
 
-    private void Toogle()
+    public void Toogle()
     {
         if(isChecked)
         {

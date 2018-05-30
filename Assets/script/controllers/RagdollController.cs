@@ -152,6 +152,7 @@ public class RagdollController : MonoBehaviour
 
     IEnumerator StartRagdoll()
     {
+        AkSoundEngine.PostEvent("Play_Body_fall", gameObject);
         SetRagdoll(true);
         yield return new WaitForSeconds(m_ragdollDuration);
 

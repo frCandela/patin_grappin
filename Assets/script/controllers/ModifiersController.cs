@@ -140,6 +140,10 @@ public class ModifiersController : MonoBehaviour
 
     public void Land()
     {
-        m_particleSystemPofPof.Emit(6);
+        if( ! m_ragdollController.ragdollActivated )
+        {
+            AkSoundEngine.PostEvent("Play_Ice_Skate_Reception", gameObject);
+            m_particleSystemPofPof.Emit(6);
+        }
     }
 }
