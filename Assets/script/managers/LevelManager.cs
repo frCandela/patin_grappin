@@ -11,7 +11,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool betaAutoSwitchKeyboard = true;
     [SerializeField] private string m_menuSceneString = "menu";
 
-
     //References
     private PauseMenu m_pauseMenu;
     private List<MonoBehaviour> m_pausedScripts;
@@ -78,9 +77,12 @@ public class LevelManager : MonoBehaviour
         UserPresence userPresence = TobiiAPI.GetUserPresence();
         HeadPose headPose = TobiiAPI.GetHeadPose();
         if ( ! m_paused )
-            if(Input.GetButtonDown("Pause") || ( ! m_usingKeyboard && ( userPresence != UserPresence.Present || !headPose.IsValid)))
+        {
+            if (Input.GetButtonDown("Pause") || (!m_usingKeyboard && (userPresence != UserPresence.Present || !headPose.IsValid)))
                 TooglePause();
-
+        }
+        else if (Input.GetButtonDown("Pause"))
+                TooglePause();
     }
 
     private void TooglePause()
@@ -90,6 +92,7 @@ public class LevelManager : MonoBehaviour
         //Pause the game
         if( m_paused)
         {
+            AkSoundEngine.SetState("Music","off_game");
             m_pauseMenu.gameObject.SetActive(true);
             Time.timeScale = 0f;
             foreach(MonoBehaviour m in m_pausedScripts)
@@ -98,6 +101,7 @@ public class LevelManager : MonoBehaviour
         //Resumes the game
         else
         {
+            AkSoundEngine.SetState("Music", "in_game");
             m_pauseMenu.gameObject.SetActive(false);
             Time.timeScale = 1f;
             foreach (MonoBehaviour m in m_pausedScripts)
