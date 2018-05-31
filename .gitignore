@@ -43,3 +43,7 @@ sysinfo.txt
 Assets/data\.json
 
 Assets/data\.json\.meta
+
+Assets/game_settings\.json
+
+Assets/game_settings\.json\.meta
