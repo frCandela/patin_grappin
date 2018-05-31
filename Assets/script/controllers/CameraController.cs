@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float lerpRotationXZ = 0.1f;
 
     [Header("Corrections:")]
+    [SerializeField, Range(-30f,30f)] private float m_xAngleHeadCorrection = 0;
     [SerializeField] private bool m_DownYCorrection = true;
     [SerializeField] private bool m_UpYCorrection = true;
     [SerializeField] private bool m_lerpLagCorrection = true;
@@ -168,7 +169,7 @@ public class CameraController : MonoBehaviour
         Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
         if (pose.IsValid)
         {
-            m_prevPoseX = Mathf.LerpAngle(m_prevPoseX, pose.Rotation.eulerAngles.x, headRotLerpX);
+            m_prevPoseX = Mathf.LerpAngle(m_prevPoseX, pose.Rotation.eulerAngles.x + m_xAngleHeadCorrection , headRotLerpX);
             transform.RotateAround(transform.position, transform.right, headRotMultiX * m_prevPoseX);
 
             m_prevPoseY = Mathf.LerpAngle(m_prevPoseY, pose.Rotation.eulerAngles.y, headRotLerpY);

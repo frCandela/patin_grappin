@@ -17,7 +17,6 @@ public class LevelManager : MonoBehaviour
 
     //Private members
     private bool m_paused = false;
-    private bool m_usingKeyboard = false;
 
     private void Awake()
     {
@@ -33,24 +32,11 @@ public class LevelManager : MonoBehaviour
         //Link events
         m_pauseMenu.onGameQuit.AddListener(QuitToMenu);
         m_pauseMenu.onGameResumed.AddListener(TooglePause);
-        m_pauseMenu.onUseKeyboard.AddListener(UseKeyboard);
-        m_pauseMenu.onUnUseKeyboard.AddListener(UnUseKeyboard);
 
         //Set music and sounds
         AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
         if (m_activateMusic)
             AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
-    }
-
-    private void UnUseKeyboard()
-    {
-        m_usingKeyboard = false;
-    }
-
-    private void UseKeyboard()
-    {
-        betaAutoSwitchKeyboard = false;
-        m_usingKeyboard = true;
     }
 
     private void QuitToMenu()
@@ -63,22 +49,18 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         //Restarts the level
-        if (Input.GetButtonDown("Restart"))
+        if (GazeManager.DebugActive && Input.GetButtonDown("Restart"))
         {
             AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        //Switch to keyboard control if no tobii is connected
-        if(betaAutoSwitchKeyboard)
-            m_usingKeyboard = ! Tobii.GameIntegration.Interop.IsConnected();
 
         //Pauses the level
         UserPresence userPresence = TobiiAPI.GetUserPresence();
         HeadPose headPose = TobiiAPI.GetHeadPose();
         if ( ! m_paused )
         {
-            if (Input.GetButtonDown("Pause") || (!m_usingKeyboard && (userPresence != UserPresence.Present || !headPose.IsValid)))
+            if (Input.GetButtonDown("Pause") || (GazeManager.TobiiConnected && (userPresence != UserPresence.Present || !headPose.IsValid)))
                 TooglePause();
         }
         else if (Input.GetButtonDown("Pause"))
