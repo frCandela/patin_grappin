@@ -2263,11 +2263,14 @@ MonoBehaviour:
   patinMaterial: {fileID: 2100000, guid: 68f97e5a1ecdf274892e734489ff78a7, type: 2}
   traceBase: {fileID: 1230385576921002, guid: 0adcb3df838806d4698dce410ee72c4f, type: 2}
   traceBoost: {fileID: 1230385576921002, guid: 06aa6fc608bb297439780080bc557176, type: 2}
+  traceContinuous: {fileID: 1364963740990104, guid: a085249126972a44da7bb61d585d2cad,
+    type: 2}
   boostMultiplier: 2.5
   boostDuration: 4
   minSpeed: 55
   maxSpeed: 140
   maxDeformation: 0.393
+  m_continuousTrailOffset: {x: 0, y: -0.3, z: 0}
   onBoostStart:
     m_PersistentCalls:
       m_Calls: []

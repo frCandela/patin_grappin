@@ -90,10 +90,11 @@ public class PlayerController : MonoBehaviour
             targetRB.transform.rotation = Quaternion.LookRotation(targetRB.velocity);
         
         float headAxis = 0;
-        Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
-        if (pose.IsValid)
+        
+        if ( ! GazeManager.UsingKeyboard)
         {
             //Calculates head input
+            Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
             headAxis = pose.Rotation.eulerAngles.y;
             if (headAxis > 180)
                 headAxis -= 360;
@@ -118,15 +119,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnGUI()
     {
-        GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.red;
+        if( GazeManager.DebugActive )
+        {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
 
-        Vector3 XZVelocity;
-        if( m_ragdollController.ragdollActivated)
-            XZVelocity = new Vector3(m_ragdollController.averageVelocity.x,0, m_ragdollController.averageVelocity.z);
-        else
-            XZVelocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
+            Vector3 XZVelocity;
+            if (m_ragdollController.ragdollActivated)
+                XZVelocity = new Vector3(m_ragdollController.averageVelocity.x, 0, m_ragdollController.averageVelocity.z);
+            else
+                XZVelocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
 
-        GUI.Label(new Rect(0, 20, 100, 10), "XZ velocity: " + XZVelocity.magnitude, style);
+            GUI.Label(new Rect(0, 20, 100, 10), "XZ velocity: " + XZVelocity.magnitude, style);
+        }
     }
 }
