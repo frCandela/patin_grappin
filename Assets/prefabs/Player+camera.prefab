@@ -2268,6 +2268,16 @@ MonoBehaviour:
   minSpeed: 55
   maxSpeed: 140
   maxDeformation: 0.393
+  onBoostStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onBoostStop:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114277787614790622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2469,7 +2479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5012734d2dd1e4d9bb0e1fefb89183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_activateMusic: 0
+  m_activateMusic: 1
   betaAutoSwitchKeyboard: 1
   m_menuSceneString: menu
 --- !u!114 &114966518967251216
