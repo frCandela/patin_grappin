@@ -17,6 +17,14 @@ public class GazeManager : MonoBehaviour
     //Read only 
     public static Vector2 AverageGazePoint { get; private set; }
     public static GameObject GazedObject { get; private set; }
+    public static bool UsingKeyboard { get; private set; }
+    public static bool DebugActive { get; private set; }
+
+    public static bool TobiiConnected
+    {
+        get { return Tobii.GameIntegration.Interop.IsConnected(); }
+        private set { }
+    }   
 
     //Private
     private static GazeManager m_instance = null;
@@ -39,6 +47,8 @@ public class GazeManager : MonoBehaviour
             m_camera = GetComponent<Camera>();
             Util.EditorAssert(m_camera != null, "GazeManager.Awake(): No camera component ");
             GazedObject = null;
+            UsingKeyboard = false;
+            DebugActive = false;
             staticGazeRemanance = gazeRemanance;
             staticGazeDistance = gazeDistance;
 
@@ -51,6 +61,21 @@ public class GazeManager : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        if (Input.GetButtonDown("Debug"))
+            DebugActive = ! DebugActive;
+
+        //Switch keyboard and tobii controll
+        if( ! UsingKeyboard &&  ! TobiiConnected)
+        {
+            UsingKeyboard = true;
+            Cursor.visible = true;
+        }
+        else if(UsingKeyboard && TobiiConnected)
+        {
+            UsingKeyboard = false;
+            Cursor.visible = false;
+        }
+
         //Makes an average of the payer's gaze points
         IEnumerable<GazePoint> pointsSinceLastHandled = TobiiAPI.GetGazePointsSince(m_lastHandledPoint);
         foreach (GazePoint point in pointsSinceLastHandled)
@@ -73,7 +98,8 @@ public class GazeManager : MonoBehaviour
         AverageGazePoint = new Vector2(rect.width * AverageGazePoint.x, rect.height * AverageGazePoint.y);
 
         //If out of screen use mouse position instead
-        if (TobiiAPI.GetUserPresence() != UserPresence.Present)
+        //if (TobiiAPI.GetUserPresence() != UserPresence.Present)
+        if(UsingKeyboard )
             AverageGazePoint = Input.mousePosition;
 
         GameObject currendGazedObject = null;

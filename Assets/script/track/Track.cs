@@ -148,9 +148,12 @@ public class Track : MonoBehaviour
 
     private void OnGUI()
     {
-        GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.red;
+        if( GazeManager.DebugActive)
+        {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
 
-        GUI.Label(new Rect(0, 0, 100, 10), "Spline update ms: " + splineUpdateMs, style);
+            GUI.Label(new Rect(0, 0, 100, 10), "Spline update ms: " + splineUpdateMs, style);
+        }
     }
 }
