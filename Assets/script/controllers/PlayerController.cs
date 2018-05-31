@@ -20,12 +20,16 @@ public class PlayerController : MonoBehaviour
     [Header("Other:")]
     [SerializeField] private bool trackForceWhenGrappling = false;
     [SerializeField] private float gravity = -30;
+    [SerializeField, Range(0f, 1f)] private float grapMinDuration = 0.5f;
 
     [Header("Events:")]
     public UnityEvent onGrappleLaunch;
     public UnityEvent onGrappleReset;
 
     [HideInInspector] public float boostMultiplier = 1f;
+
+    //private members
+    private float m_grapThrowTime = 0;
 
     //Components references
     private Rigidbody m_rb;
@@ -55,8 +59,13 @@ public class PlayerController : MonoBehaviour
         //Launch or reset grapple
         GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
         if (result != null && Input.GetButtonDown("Grapple") && m_grapple.Throw(result.position, result.gameobject))
+        {
             onGrappleLaunch.Invoke();
-        if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
+            m_grapThrowTime = Time.time;
+        }
+            
+        if (m_grapple.grappling && !Input.GetButton("Grapple"))
+            if( Time.time - m_grapThrowTime > grapMinDuration && m_grapple.Cancel())
             onGrappleReset.Invoke();
     }
 

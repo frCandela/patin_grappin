@@ -2505,6 +2505,7 @@ MonoBehaviour:
   lerpPosition: 0.2
   lerpRotationY: 0.5
   lerpRotationXZ: 0
+  m_xAngleHeadCorrection: 0
   m_DownYCorrection: 1
   m_UpYCorrection: 1
   m_lerpLagCorrection: 0
