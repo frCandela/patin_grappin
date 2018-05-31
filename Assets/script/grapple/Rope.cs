@@ -5,16 +5,19 @@ using UnityEngine;
 public class Rope : MonoBehaviour
 {
 
+    //References 
     private Transform beginRope;
     private Transform endRope;
     private Animator m_animator;
+    private SkinnedMeshRenderer m_meshRenderer;
 
-
-    Vector3 m_baseScale;
+    //private 
+    private Vector3 m_baseScale;
 
     private void Awake()
     {
         m_animator = GetComponent<Animator>();
+        m_meshRenderer = GetComponent<SkinnedMeshRenderer>();
         m_baseScale = transform.localScale;
     }
 
@@ -23,20 +26,20 @@ public class Rope : MonoBehaviour
         beginRope = begin;
         endRope = end;
         UpdateRopeTransform();
-        gameObject.SetActive(true);
+        m_meshRenderer.enabled = true;
         m_animator.Play("grappin_rope_anim");
     }
 
     public void ResetRope()
     {
         m_animator.Play("grappin_rope_base");
-        gameObject.SetActive(false);
+        m_meshRenderer.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (beginRope && endRope)
+        if (m_meshRenderer.enabled && beginRope && endRope)
             UpdateRopeTransform();
     }
 

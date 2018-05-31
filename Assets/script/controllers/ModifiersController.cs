@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ModifiersController : MonoBehaviour
 {
@@ -20,6 +21,10 @@ public class ModifiersController : MonoBehaviour
     [SerializeField, Range(0, 200)] private float minSpeed = 55f;
     [SerializeField, Range(0, 200)] private float maxSpeed = 100f;
     [SerializeField, Range(0, 0.6f)] private float maxDeformation = 0.6f;
+
+    [Header("Events:")]
+    public UnityEvent onBoostStart;
+    public UnityEvent onBoostStop;
 
     //References
     private AnimationController m_animationController = null;
@@ -115,13 +120,15 @@ public class ModifiersController : MonoBehaviour
             m_playerController.boostMultiplier = 1f;
             boostMaterial.SetFloat("_TexFactor", 0f);
             patinMaterial.SetFloat("_Shiness", 0f);
+
+            onBoostStop.Invoke();
         }
 
         //Speed postprocess
         boostMaterial.SetFloat("_Offset", Mathf.Lerp(0, maxDeformation, (velXZ.magnitude - minSpeed) / (maxSpeed - minSpeed)));
 
         //Wind fx
-        float rtpc = 100f * Mathf.Clamp((velocity.magnitude) / maxSpeed, 0f, 1f);
+        float rtpc = Mathf.Clamp((velocity.magnitude) / maxSpeed, 0f, 1f);
         AkSoundEngine.SetRTPCValue("Speed_RTPC", rtpc);
     }
 
@@ -136,10 +143,16 @@ public class ModifiersController : MonoBehaviour
 
         //Effects
         patinMaterial.SetFloat("_Shiness", 1f);
+
+        onBoostStart.Invoke();
     }
 
     public void Land()
     {
-        m_particleSystemPofPof.Emit(6);
+        if( ! m_ragdollController.ragdollActivated )
+        {
+            AkSoundEngine.PostEvent("Play_Ice_Skate_Reception", gameObject);
+            m_particleSystemPofPof.Emit(6);
+        }
     }
 }

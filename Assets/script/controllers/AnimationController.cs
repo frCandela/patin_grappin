@@ -20,14 +20,13 @@ public class AnimationController : MonoBehaviour
     [Header("Events")]
     public UnityEvent onLanding;
 
-
-
     //private references
     private PlayerController m_playerController = null;
+    private ModifiersController m_modifiersController = null;
     private Rigidbody m_playerRb = null;
-    
     private spineOrientationIK m_spineOrientationIK = null;
     private RagdollController m_ragdollController = null;
+    private Grap m_grap = null;
     private armIK m_armIK = null;
     private Transform m_leftFoot;
     private Transform m_rightFoot;
@@ -37,33 +36,22 @@ public class AnimationController : MonoBehaviour
 
     //Public properties
     public Animator animator { get; private set; }
-    public bool rightHandUsed
-    {
-        get{return animator.GetBool("side");}
-        private set{ }
-    }
-    public Transform grappleHandTransform {
-        get
-        {
-            if (animator.GetBool("side"))
-                return animator.GetBoneTransform(HumanBodyBones.RightHand);
-            else
-                return animator.GetBoneTransform(HumanBodyBones.LeftHand);
-        }
-        private set
-        { }
-    }
     public bool grounded { get; private set; }
-
+    public Transform leftHand { get; private set; }
+    public Transform rightHand { get; private set; }
 
     // Use this for initialization
     void Awake ()
     {
         //Get and set references
         animator = GetComponentInChildren<Animator>();
+        m_modifiersController = FindObjectOfType<ModifiersController>();
         m_playerController = FindObjectOfType<PlayerController>();
         m_ragdollController = FindObjectOfType<RagdollController>();
         m_playerRb = m_playerController.GetComponent<Rigidbody>();
+        m_grap = m_playerController.GetComponent<Grap>();
+        leftHand = animator.GetBoneTransform(HumanBodyBones.LeftHand);
+        rightHand = animator.GetBoneTransform(HumanBodyBones.RightHand);
     }
 
     private void Start()
@@ -72,10 +60,11 @@ public class AnimationController : MonoBehaviour
         m_playerController.onGrappleLaunch.AddListener(LaunchGrapple);
         m_playerController.onGrappleReset.AddListener(ResetGrapple);
         m_ragdollController.onRagdollStop.AddListener(RagdollStop);
+        m_modifiersController.onBoostStart.AddListener(StartBoost);
+        m_modifiersController.onBoostStop.AddListener(StopBoost);
 
         //Init values
         grounded = true;
-        grappleHandTransform = animator.GetBoneTransform(HumanBodyBones.RightHand);
         m_leftFoot = animator.GetBoneTransform(HumanBodyBones.LeftFoot);
         m_rightFoot = animator.GetBoneTransform(HumanBodyBones.RightFoot);
 
@@ -152,19 +141,16 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetTrigger("launchGrappin");
 
-        if (animator.GetBool("side"))
+        if (m_grap.m_rightHandUsed)
             m_armIK.whichHand = armIK.Hands.right;  
         else
             m_armIK.whichHand = armIK.Hands.left;
             
-
-        m_spineOrientationIK.isOriented = false;
         m_armIK.isIK = true;
     }
 
     private void ResetGrapple()
     {
-        m_spineOrientationIK.isOriented = false;
         m_armIK.isIK = false;
     }
 
@@ -173,4 +159,15 @@ public class AnimationController : MonoBehaviour
         if(grounded)
             animator.Play("Armature|ReceptionL_P");
     }
+
+    private void StartBoost()
+    {
+        animator.SetBool("isBoosting", true);
+    }
+
+    private void StopBoost()
+    {
+        animator.SetBool("isBoosting", false);
+    }
+    
 }

@@ -52,11 +52,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
-
-
         //Launch or reset grapple
-        if (Input.GetButtonDown("Grapple") && m_grapple.Throw())
+        GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
+        if (result != null && Input.GetButtonDown("Grapple") && m_grapple.Throw(result.position, result.gameobject))
             onGrappleLaunch.Invoke();
         if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
             onGrappleReset.Invoke();

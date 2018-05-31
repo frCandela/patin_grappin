@@ -10,7 +10,8 @@ public class RagdollController : MonoBehaviour
 
     [Header("Triggers")]
     [SerializeField] private float m_minVelocity = 30f;
-    [SerializeField] private float m_VelocityDeltaTrigger = 5f;
+
+    [SerializeField, Range(0f,1f )] private float m_VelocityRatioTrigger = 0.5f;
 
     //Events
     public UnityEvent onRagdollStart;
@@ -84,8 +85,9 @@ public class RagdollController : MonoBehaviour
             Vector3 XZVelocityVec = new Vector3(m_mainRb.velocity.x, 0, m_mainRb.velocity.z);
             float XZVelocity = XZVelocityVec.magnitude;
 
-            if (prevXZvelocity - XZVelocity > m_VelocityDeltaTrigger && Time.realtimeSinceStartup > startTime + 3)
-                StartCoroutine(StartRagdoll());
+            if (XZVelocity < prevXZvelocity)
+                if (XZVelocity / prevXZvelocity < 1f - m_VelocityRatioTrigger && Time.realtimeSinceStartup > startTime + 3)                
+                    StartCoroutine(StartRagdoll());                
 
             prevXZvelocity = XZVelocity;
         }
@@ -150,6 +152,7 @@ public class RagdollController : MonoBehaviour
 
     IEnumerator StartRagdoll()
     {
+        AkSoundEngine.PostEvent("Play_Body_fall", gameObject);
         SetRagdoll(true);
         yield return new WaitForSeconds(m_ragdollDuration);
 
