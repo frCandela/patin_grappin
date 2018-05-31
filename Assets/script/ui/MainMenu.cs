@@ -10,14 +10,16 @@ using UnityEditor;
 public class MainMenu : MonoBehaviour
 {
     [Header("Scenes names")]
-    [SerializeField] private string m_trackSceneName;
+    [SerializeField] private string m_tuto1SceneName;
+    [SerializeField] private string m_tuto2SceneName;
+    [SerializeField] private string m_tuto3SceneName;
     [SerializeField] private string m_arcadeSceneName;
 
     [Header("Menus references")]
     [SerializeField] private Transform m_mainMenu;
-    [SerializeField] private Transform m_creditsMenu;
     [SerializeField] private Transform m_playMenu;
     [SerializeField] private Transform m_optionsMenu;
+    [SerializeField] private Transform m_tutoMenu;
 
     [Header("Dirty references")]
     [SerializeField] private TobiiCheckBox m_MusicCheckBox;
@@ -60,10 +62,20 @@ public class MainMenu : MonoBehaviour
         DataManager.SaveGameData();
     }
 
-    public void PlayTrackScene ()
+    public void PlayTuto1 ()
     {
         AkSoundEngine.PostEvent("Stop_Menu", gameObject);
-        SceneManager.LoadScene(m_trackSceneName, LoadSceneMode.Single);
+        SceneManager.LoadScene(m_tuto1SceneName, LoadSceneMode.Single);
+    }
+    public void PlayTuto2()
+    {
+        AkSoundEngine.PostEvent("Stop_Menu", gameObject);
+        SceneManager.LoadScene(m_tuto2SceneName, LoadSceneMode.Single);
+    }
+    public void PlayTuto3()
+    {
+        AkSoundEngine.PostEvent("Stop_Menu", gameObject);
+        SceneManager.LoadScene(m_tuto3SceneName, LoadSceneMode.Single);
     }
 
     public void PlayArcadeScene()
@@ -72,11 +84,20 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(m_arcadeSceneName, LoadSceneMode.Single);
     }
 
+    public void ShowTutosMenu()
+    {
+        m_mainMenu.gameObject.SetActive(false);
+        m_optionsMenu.gameObject.SetActive(false); 
+        m_playMenu.gameObject.SetActive(false);
+
+        m_tutoMenu.gameObject.SetActive(true);
+    }
+
     public void ShowPlayMenu()
     {
         m_mainMenu.gameObject.SetActive(false);
-        m_creditsMenu.gameObject.SetActive(false);
         m_optionsMenu.gameObject.SetActive(false);
+        m_tutoMenu.gameObject.SetActive(false);
 
         m_playMenu.gameObject.SetActive(true);
     }
@@ -84,8 +105,8 @@ public class MainMenu : MonoBehaviour
     public void ShowMainMenu()
     {
         m_playMenu.gameObject.SetActive(false);
-        m_creditsMenu.gameObject.SetActive(false);
         m_optionsMenu.gameObject.SetActive(false);
+        m_tutoMenu.gameObject.SetActive(false);
 
         m_mainMenu.gameObject.SetActive(true);
     }
@@ -94,7 +115,7 @@ public class MainMenu : MonoBehaviour
     {
         m_mainMenu.gameObject.SetActive(false);
         m_playMenu.gameObject.SetActive(false);
-        m_creditsMenu.gameObject.SetActive(false);
+        m_tutoMenu.gameObject.SetActive(false);
 
         m_optionsMenu.gameObject.SetActive(true);
 
@@ -104,16 +125,6 @@ public class MainMenu : MonoBehaviour
             m_FXCheckBox.Toogle();
     }
 
-    public void ShowCredits()
-    {
-        m_mainMenu.gameObject.SetActive(false);
-        m_playMenu.gameObject.SetActive(false);
-        m_optionsMenu.gameObject.SetActive(false);
-
-        m_creditsMenu.gameObject.SetActive(true);
-    }
-
-
     public void Quit()
     {
         Application.Quit();
@@ -121,7 +132,4 @@ public class MainMenu : MonoBehaviour
                 EditorApplication.isPlaying = false;
         #endif
     }
-
-
-
 }

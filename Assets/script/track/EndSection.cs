@@ -71,9 +71,7 @@ public class EndSection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "player")
+        if(!m_endTriggered)
             ShowEnd();
-        else
-            print(other.name);
     }
 }

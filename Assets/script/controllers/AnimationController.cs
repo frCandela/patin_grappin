@@ -22,6 +22,7 @@ public class AnimationController : MonoBehaviour
 
     //private references
     private PlayerController m_playerController = null;
+    private ModifiersController m_modifiersController = null;
     private Rigidbody m_playerRb = null;
     private spineOrientationIK m_spineOrientationIK = null;
     private RagdollController m_ragdollController = null;
@@ -44,6 +45,7 @@ public class AnimationController : MonoBehaviour
     {
         //Get and set references
         animator = GetComponentInChildren<Animator>();
+        m_modifiersController = FindObjectOfType<ModifiersController>();
         m_playerController = FindObjectOfType<PlayerController>();
         m_ragdollController = FindObjectOfType<RagdollController>();
         m_playerRb = m_playerController.GetComponent<Rigidbody>();
@@ -58,6 +60,8 @@ public class AnimationController : MonoBehaviour
         m_playerController.onGrappleLaunch.AddListener(LaunchGrapple);
         m_playerController.onGrappleReset.AddListener(ResetGrapple);
         m_ragdollController.onRagdollStop.AddListener(RagdollStop);
+        m_modifiersController.onBoostStart.AddListener(StartBoost);
+        m_modifiersController.onBoostStop.AddListener(StopBoost);
 
         //Init values
         grounded = true;
@@ -155,4 +159,15 @@ public class AnimationController : MonoBehaviour
         if(grounded)
             animator.Play("Armature|ReceptionL_P");
     }
+
+    private void StartBoost()
+    {
+        animator.SetBool("isBoosting", true);
+    }
+
+    private void StopBoost()
+    {
+        animator.SetBool("isBoosting", false);
+    }
+    
 }
