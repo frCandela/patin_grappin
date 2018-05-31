@@ -8,13 +8,11 @@ using System;
 public class Track : MonoBehaviour
 {
     //Editor parameters
-
     [Header("Track parameters: ")]
     [SerializeField] private float fallFromTrackHeight = 50;
     [SerializeField] private float respawnHeight = 100f;
     [SerializeField] private float updateDelta = 0.2f;
     [SerializeField] private bool alignVelocityOnRespawn = false;
-
 
     [Header("Track Sections Tree: ")]
     [SerializeField] private TrackSection currentSection = null;
@@ -63,7 +61,7 @@ public class Track : MonoBehaviour
 
     private void Update()
     {
-        DetectPlayerFall();
+        //DetectPlayerFall();
     }
 
     private void DetectPlayerFall()
