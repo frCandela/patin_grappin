@@ -11,14 +11,14 @@ public class Track : MonoBehaviour
 {
     //Editor parameters
     [Header("Track parameters: ")]
-    [SerializeField] private float fallFromTrackHeight = 50;
-    [SerializeField, Range(0, 1000f)] public float respawnHeight = 100f;
-    [SerializeField] private float updateDelta = 0.2f;
+    [SerializeField] private float fallFromTrackHeight = -100;
+    [SerializeField, Range(0, 1000f)] public float respawnHeight = 0;
+    [SerializeField] private float updateDelta = 1f;
     [SerializeField] private bool alignVelocityOnRespawn = false;
 
     [Header("Boost: ")]
     [SerializeField] private float boostHeight = 100f;
-    [SerializeField] private float boostDelta = 0.1f;
+    [SerializeField] private float boostDelta = 0.5f;
 
     [Header("Track Sections Tree: ")]
     [SerializeField] private TrackSection currentSection = null;

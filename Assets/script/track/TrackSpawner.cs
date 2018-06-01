@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TrackSpawner : MonoBehaviour
 {
-    [SerializeField, Range(0,1000f)] private float respawnTrackDistance = 150f;
-    [SerializeField, Range(0, 10000)] private float respawnSpeedDelta = 3000;
+    [SerializeField, Range(0,1000f)] private float respawnTrackDistance = 300;
+    [SerializeField, Range(0, 10000)] private float respawnSpeedDelta = 30;
     [SerializeField] private float downOffset = 10000;
     [SerializeField] private float lerpInValue = 0.1f;
     [SerializeField] private float lerpOutValue = 0.1f;
