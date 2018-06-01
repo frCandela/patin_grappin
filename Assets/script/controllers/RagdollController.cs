@@ -70,7 +70,7 @@ public class RagdollController : MonoBehaviour
     private void Update()
     {
         //Ragdoll input
-        if (Input.GetKeyDown(KeyCode.A))
+        if ( GazeManager.DebugActive && Input.GetButtonDown("ActivateRagdoll"))
             StartCoroutine(StartRagdoll());
 
         //Ragdoll updates

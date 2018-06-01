@@ -15,7 +15,7 @@ public class Grap : MonoBehaviour
     [SerializeField, Range(0f, 2000f)] private float attractionForceRagdoll = 1000;
     [SerializeField, Range(0f, 1000f)] private float maxDistance = 150;
     [SerializeField, Range(0f, 1000f)] private float minDistance = 20;
-    [SerializeField, Range(0f, 1f)] private float elasticity = 1f;  
+    [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
 
     //Public properties
     public bool grappling { get; private set; }

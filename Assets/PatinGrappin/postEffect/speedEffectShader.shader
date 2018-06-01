@@ -3,6 +3,8 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		_Vignette ("Vignette", 2D) = "white" {}
+		_VignetteFactor ("Vignette Factor", float) = 1
 		//_SpeedTex ("Speed Effect Texture", 2D) = "white" {}
 		_Offset ("Deformation Offset", Range(0, 0.6)) = 0
 		_DistPowFactor ("factor pow", float) = 2
@@ -41,10 +43,10 @@
 				return o;
 			}
 			
-			sampler2D _MainTex, _SpeedTex;
+			sampler2D _MainTex, _SpeedTex, _Vignette;
 			float2 _CenterPos;
 			float _Offset, _DistPowFactor, _TexFactor;
-			float _SpeedTexAnim;
+			float _SpeedTexAnim, _VignetteFactor;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
@@ -61,6 +63,7 @@
 				float2 finalOffset = dirVec * _Offset;
 
 				fixed4 col = tex2D(_MainTex, i.uv - finalOffset);
+				col *= (tex2D(_Vignette, i.uv) * _VignetteFactor);
 				return col;
 			}
 			ENDCG

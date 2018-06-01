@@ -20,12 +20,16 @@ public class PlayerController : MonoBehaviour
     [Header("Other:")]
     [SerializeField] private bool trackForceWhenGrappling = false;
     [SerializeField] private float gravity = -30;
+    [SerializeField, Range(0f, 1f)] private float grapMinDuration = 0.5f;
 
     [Header("Events:")]
     public UnityEvent onGrappleLaunch;
     public UnityEvent onGrappleReset;
 
     [HideInInspector] public float boostMultiplier = 1f;
+
+    //private members
+    private float m_grapThrowTime = 0;
 
     //Components references
     private Rigidbody m_rb;
@@ -55,8 +59,13 @@ public class PlayerController : MonoBehaviour
         //Launch or reset grapple
         GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
         if (result != null && Input.GetButtonDown("Grapple") && m_grapple.Throw(result.position, result.gameobject))
+        {
             onGrappleLaunch.Invoke();
-        if (Input.GetButtonUp("Grapple") && m_grapple.Cancel())
+            m_grapThrowTime = Time.time;
+        }
+            
+        if (m_grapple.grappling && !Input.GetButton("Grapple"))
+            if( Time.time - m_grapThrowTime > grapMinDuration && m_grapple.Cancel())
             onGrappleReset.Invoke();
     }
 
@@ -90,10 +99,11 @@ public class PlayerController : MonoBehaviour
             targetRB.transform.rotation = Quaternion.LookRotation(targetRB.velocity);
         
         float headAxis = 0;
-        Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
-        if (pose.IsValid)
+        
+        if ( ! GazeManager.UsingKeyboard)
         {
             //Calculates head input
+            Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
             headAxis = pose.Rotation.eulerAngles.y;
             if (headAxis > 180)
                 headAxis -= 360;
@@ -118,15 +128,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnGUI()
     {
-        GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.red;
+        if( GazeManager.DebugActive )
+        {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
 
-        Vector3 XZVelocity;
-        if( m_ragdollController.ragdollActivated)
-            XZVelocity = new Vector3(m_ragdollController.averageVelocity.x,0, m_ragdollController.averageVelocity.z);
-        else
-            XZVelocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
+            Vector3 XZVelocity;
+            if (m_ragdollController.ragdollActivated)
+                XZVelocity = new Vector3(m_ragdollController.averageVelocity.x, 0, m_ragdollController.averageVelocity.z);
+            else
+                XZVelocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
 
-        GUI.Label(new Rect(0, 20, 100, 10), "XZ velocity: " + XZVelocity.magnitude, style);
+            GUI.Label(new Rect(0, 20, 100, 10), "XZ velocity: " + XZVelocity.magnitude, style);
+        }
     }
 }
