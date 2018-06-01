@@ -14,11 +14,6 @@ public class Track : MonoBehaviour
     [SerializeField] private float fallFromTrackHeight = -100;
     [SerializeField, Range(0, 1000f)] public float respawnHeight = 0;
     [SerializeField] private float updateDelta = 1f;
-    [SerializeField] private bool alignVelocityOnRespawn = false;
-
-    [Header("Boost: ")]
-    [SerializeField] private float boostHeight = 100f;
-    [SerializeField] private float boostDelta = 0.5f;
 
     [Header("Track Sections Tree: ")]
     [SerializeField] private TrackSection currentSection = null;
@@ -30,7 +25,9 @@ public class Track : MonoBehaviour
 
     //Private members
     private Rigidbody m_targetRb = null;
+    private TrackSpawner m_trackSpawner = null;
     private Grap m_grap = null;
+
 
     //Debug
     float splineUpdateMs = 0f;
@@ -48,6 +45,7 @@ public class Track : MonoBehaviour
 
         m_targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
         m_grap = FindObjectOfType<Grap>();
+        m_trackSpawner = FindObjectOfType<TrackSpawner>();
 
         if (currentSection)
             currentSection.UpdateTrack(m_targetRb.position);
@@ -69,10 +67,7 @@ public class Track : MonoBehaviour
 
     private void Update()
     {
-        float height =  m_targetRb.transform.position.y - currentSection.trackPosition.y;
-
-        if (height > boostHeight)
-            m_targetRb.transform.parent.position = m_targetRb.transform.parent.position - Time.deltaTime * boostDelta * Vector3.up;           
+        float height =  m_targetRb.transform.position.y - currentSection.trackPosition.y;      
 
         if ( !m_grap.grappling && ( Input.GetKeyDown(KeyCode.T) || height < fallFromTrackHeight))
             RespawnPlayer();

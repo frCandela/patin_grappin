@@ -8,7 +8,6 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private bool m_activateMusic = true;
-    [SerializeField] private bool betaAutoSwitchKeyboard = true;
     [SerializeField] private string m_menuSceneString = "menu";
 
     //References
