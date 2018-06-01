@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class TrackSpawner : MonoBehaviour
 {
-    [SerializeField, Range(0,1000f)] private float respawnTrackDistance = 300;
+    [SerializeField, Range(0,1000f)] private float respawnTrackDistance = 800;
     [SerializeField, Range(0, 10000)] private float respawnSpeedDelta = 30;
 
     [SerializeField] private float lerpInValue = 0.1f;
-    [SerializeField] private float lerpTranslation= 0.01f;
+    [SerializeField] private float lerpTranslation= 0.05f;
 
-
-
-    [Header("Boost: ")]
-    [SerializeField]    private float boostHeight = 100f;
-    [SerializeField] private float boostDelta = 1f;
+    [Header("Accelleration when falling on a distant track: ")]
+    [SerializeField] private float boostHeight = 100f;
     [SerializeField] private float boostlerp = 0.01f;
 
     private Rigidbody m_targetRb = null;

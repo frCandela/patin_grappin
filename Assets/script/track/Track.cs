@@ -12,7 +12,6 @@ public class Track : MonoBehaviour
     //Editor parameters
     [Header("Track parameters: ")]
     [SerializeField] private float fallFromTrackHeight = -100;
-    [SerializeField, Range(0, 1000f)] public float respawnHeight = 0;
     [SerializeField] private float updateDelta = 1f;
 
     [Header("Track Sections Tree: ")]
@@ -25,7 +24,6 @@ public class Track : MonoBehaviour
 
     //Private members
     private Rigidbody m_targetRb = null;
-    private TrackSpawner m_trackSpawner = null;
     private Grap m_grap = null;
 
 
@@ -45,7 +43,6 @@ public class Track : MonoBehaviour
 
         m_targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
         m_grap = FindObjectOfType<Grap>();
-        m_trackSpawner = FindObjectOfType<TrackSpawner>();
 
         if (currentSection)
             currentSection.UpdateTrack(m_targetRb.position);
@@ -77,9 +74,7 @@ public class Track : MonoBehaviour
     {
         //Translate the player
         onRespawn.Invoke();
-
         currentSection = currentSection.respawnTrackSection;
-        updateDelta = 1f;
     }
 
     public void UpdateClosestSection()
