@@ -74,7 +74,7 @@ public class Track : MonoBehaviour
         if (height > boostHeight)
             m_targetRb.transform.parent.position = m_targetRb.transform.parent.position - Time.deltaTime * boostDelta * Vector3.up;           
 
-        if (Input.GetKeyDown(KeyCode.T) || height < fallFromTrackHeight)
+        if ( !m_grap.grappling && ( Input.GetKeyDown(KeyCode.T) || height < fallFromTrackHeight))
             RespawnPlayer();
     }
 
