@@ -171,7 +171,7 @@ public class AnimationController : MonoBehaviour
 
     private void StopBoost()
     {
-        animator.SetBool("isBoosting", false);
+       
     }
     
 }

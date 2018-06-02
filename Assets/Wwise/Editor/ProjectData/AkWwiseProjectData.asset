@@ -599,8 +599,6 @@ MonoBehaviour:
       minDuration: 0
   ExpandedItems:
   - /Patin Grappin Wwise
-  - /Patin Grappin Wwise/Events
-  - /Patin Grappin Wwise/Events/Default Work Unit
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
