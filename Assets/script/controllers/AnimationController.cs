@@ -166,7 +166,6 @@ public class AnimationController : MonoBehaviour
 
     private void StartBoost()
     {
-        animator.SetBool("isBoosting", true);
     }
 
     private void StopBoost()

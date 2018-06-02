@@ -62,6 +62,7 @@ public class LevelManager : MonoBehaviour
         {
             onLevelPaused.Invoke();
             AkSoundEngine.SetState("Music","off_game");
+            AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);
             Time.timeScale = 0f;
             foreach(MonoBehaviour m in m_pausedScripts)
                 m.enabled = false;
@@ -71,6 +72,7 @@ public class LevelManager : MonoBehaviour
         {
             onLevelResumed.Invoke();
             AkSoundEngine.SetState("Music", "in_game");
+            AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
             Time.timeScale = 1f;
             foreach (MonoBehaviour m in m_pausedScripts)
                 m.enabled = true;

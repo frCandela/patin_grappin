@@ -30,15 +30,6 @@ public class TutoMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F2))
-            PopTuto(0);
-        if (Input.GetKeyDown(KeyCode.F3))
-            PopTuto(1);
-        if (Input.GetKeyDown(KeyCode.F4))
-            PopTuto(2);
-        if (Input.GetKeyDown(KeyCode.F5))
-            PopTuto(3);
-
         if(m_active && Input.GetButtonDown("Grapple"))  
         {
             HideTuto();
