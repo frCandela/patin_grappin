@@ -11,7 +11,7 @@ public class Track : MonoBehaviour
 {
     //Editor parameters
     [Header("Track parameters: ")]
-    [SerializeField] private float fallFromTrackHeight = -100;
+    [SerializeField] private float fallFromTrackHeight = -150;
     [SerializeField] private float updateDelta = 1f;
 
     [Header("Track Sections Tree: ")]

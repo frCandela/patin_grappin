@@ -93,16 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5186632bd8bd42d4f880e871ed4caa96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onGameResumed:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onGameQuit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114160690179659028
 MonoBehaviour:
   m_ObjectHideFlags: 1
