@@ -36,11 +36,18 @@ public class LevelManager : MonoBehaviour
             AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
     }
 
-    public void QuitToMenu()
-    {        
+    public void LoadScene( string sceneString )
+    {
         AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
-        TooglePause();
-        SceneManager.LoadScene(m_menuSceneString, LoadSceneMode.Single);
+        AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);
+        if( paused )
+            TooglePause();
+        SceneManager.LoadScene(sceneString, LoadSceneMode.Single);
+    }
+
+    public void QuitToMenu()
+    {
+        LoadScene(m_menuSceneString);
     }
 
     private void Update()
