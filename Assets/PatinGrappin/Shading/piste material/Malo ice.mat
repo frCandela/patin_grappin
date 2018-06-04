@@ -64,6 +64,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _CamDistModif: 70
+    - _CamDistModifE: 70
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -77,12 +79,13 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PointerRadius: 0.7
+    - _PointerRadius: 2
     - _ReflectIntensity: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UseCamDist: 1
     - _ZWrite: 1
     - _depthFactor: 1
     - _maxDepth: 2028.71

@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: cloudMat
   m_Shader: {fileID: 4800000, guid: 8e2b797a957f86540a2ddddbaee63742, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: USE_CAM_DIST
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -60,6 +60,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _CamDistModif: 130
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -72,12 +73,14 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineWidth: 0
     - _Parallax: 0.02
-    - _PointerRadius: 0.7
+    - _PointerRadius: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UseCamDist: 1
     - _ZWrite: 1
+    - _depthFactor: 0
     m_Colors:
     - _Color: {r: 0.9117647, g: 0.9452333, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
