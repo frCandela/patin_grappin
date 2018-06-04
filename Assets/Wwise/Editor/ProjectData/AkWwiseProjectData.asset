@@ -208,8 +208,8 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{21482B35-49C5-492A-9258-62C92B85A1C6}'
-    m_lastTimePart2: -1999255410
-    m_lastTimePsrt1: -1589365588
+    m_lastTimePart2: -1999255049
+    m_lastTimePsrt1: 2143468761
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
@@ -233,6 +233,18 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: Mute_Menu
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 00f825024ef84a4796a08b0863e2a33d
+      ID: -1553317806
+      Name: Mute_music
+      Path: Default Work Unit\Mute_music
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Mute_music
         ObjectType: 3
       maxAttenuation: 0
       maxDuration: 0
@@ -441,6 +453,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: 6c1dbc4c5a658b49ac8edc41cd147b0d
+      ID: -1054464376
+      Name: Play_Tuto
+      Path: Default Work Unit\Play_Tuto
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Tuto
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: 74462c7de544fa42ba568eb7140f9a50
       ID: -1502992331
       Name: Play_UI_Check
@@ -513,6 +537,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: 0e061fc7db4a72459a73cbdf86ce3bfa
+      ID: -1841700000
+      Name: Play_Victory
+      Path: Default Work Unit\Play_Victory
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Victory
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: 189d7fcb799e764c8e9d42f61c74f2f1
       ID: 348109976
       Name: Stop_Boost_Load
@@ -561,6 +597,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: c2eebabbe897204389150270f2da0229
+      ID: -2129125270
+      Name: Stop_Tuto
+      Path: Default Work Unit\Stop_Tuto
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stop_Tuto
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: 6821735859d4ea43bd412283b7e99837
       ID: 128514151
       Name: UnMute_FX_Mix
@@ -585,6 +633,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: 7502558ae5e598408ac34afa2402c7e8
+      ID: 1441918971
+      Name: UnMute_music
+      Path: Default Work Unit\UnMute_music
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: UnMute_music
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: 42a44770d1d0ca40bf3c0c7e8734b6d4
       ID: -54739764
       Name: UnMute_Music_Mix
@@ -599,6 +659,8 @@ MonoBehaviour:
       minDuration: 0
   ExpandedItems:
   - /Patin Grappin Wwise
+  - /Patin Grappin Wwise/Events
+  - /Patin Grappin Wwise/Events/Default Work Unit
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
@@ -728,8 +790,8 @@ MonoBehaviour:
         ObjectType: 13
   StateWwu:
   - Guid: '{3C81AD0E-2795-4DE0-ACB4-9CDD94ABB382}'
-    m_lastTimePart2: -1999255410
-    m_lastTimePsrt1: -1589225966
+    m_lastTimePart2: -1999255049
+    m_lastTimePsrt1: 2144581144
     ParentPhysicalPath: 
     PhysicalPath: States\Default Work Unit.wwu
     List:
@@ -758,6 +820,27 @@ MonoBehaviour:
       - in_game
       - None
       - off_game
+    - Guid: 133689a6e646194d9f80b7772b277d9d
+      ID: 78360149
+      Name: Stinger
+      Path: Default Work Unit\Stinger
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stinger
+        ObjectType: 9
+      ValueGuids:
+      - bytes: 9f09de284bceb04ca91162c6b363be96
+      - bytes: 0da56a5473e0fd4692285f76163d5a66
+      ValueIcons:
+      - ElementName: Music
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      valueIDs: d636f0eddb3ba32c
+      values:
+      - Music
+      - None
   streamingPoolSize: 1024
   SwitchWwu:
   - Guid: '{CB3C1780-7043-44FC-8EB1-6A577B9767F8}'

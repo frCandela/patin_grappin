@@ -929,11 +929,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1744839857404648}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c44c8a85259168746904f910e66d61ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_delayShowStats: 4
   m_inGameInterface: {fileID: 1011294313905094}
   m_finalInterface: {fileID: 1596526468282358}
   m_timeNumber: {fileID: 1738801603408376}
