@@ -2646,7 +2646,6 @@ GameObject:
   m_Component:
   - component: {fileID: 880786759}
   - component: {fileID: 880786760}
-  - component: {fileID: 880786761}
   m_Layer: 8
   m_Name: Track
   m_TagString: Untagged
@@ -2692,33 +2691,6 @@ MonoBehaviour:
   onRespawn:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &880786761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 880786758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc7c34e79d61da4ab6cecc7867bde5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onPlayerEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1839744303}
-        m_MethodName: PopTuto
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &917672658
@@ -6864,6 +6836,78 @@ Prefab:
       objectReference: {fileID: 2100000, guid: ddbea7a12e0d3334cbba47ed8223c651, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc1a840ded765324e941a089391311ad, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1752311512
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4994097232708010, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994097232708010, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 31.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994097232708010, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2459
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994097232708010, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994097232708010, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994097232708010, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994097232708010, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994097232708010, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114601992734285650, guid: deda2171f3d728a4cac6a6f0304afde0,
+        type: 2}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1839744303}
+    - target: {fileID: 114601992734285650, guid: deda2171f3d728a4cac6a6f0304afde0,
+        type: 2}
+      propertyPath: onPlayerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PopTuto
+      objectReference: {fileID: 0}
+    - target: {fileID: 65320718787291962, guid: deda2171f3d728a4cac6a6f0304afde0,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 460.67603
+      objectReference: {fileID: 0}
+    - target: {fileID: 65320718787291962, guid: deda2171f3d728a4cac6a6f0304afde0,
+        type: 2}
+      propertyPath: m_Center.z
+      value: -27.623413
+      objectReference: {fileID: 0}
+    - target: {fileID: 65320718787291962, guid: deda2171f3d728a4cac6a6f0304afde0,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 206.55008
+      objectReference: {fileID: 0}
+    - target: {fileID: 65320718787291962, guid: deda2171f3d728a4cac6a6f0304afde0,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -33.85829
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: deda2171f3d728a4cac6a6f0304afde0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1755929424
 Prefab:
