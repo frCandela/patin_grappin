@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float turnForceRagdoll = 1500;
 
     [Header("Other:")]
+    [SerializeField] private bool m_spamGrapple = true;
     [SerializeField] private bool trackForceWhenGrappling = false;
     [SerializeField] private float gravity = -30;
     [SerializeField, Range(0f, 1f)] private float grapMinDuration = 0.5f;
@@ -60,10 +61,16 @@ public class PlayerController : MonoBehaviour
         
         if ( Input.GetButtonDown("Grapple") )
         {
-            m_grapThrowTime = Time.time;
+            if(m_spamGrapple)
+                m_grapThrowTime = Time.time;
+
             GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
             if (result != null && m_grapple.Throw(result.position, result.gameobject))
-                onGrappleLaunch.Invoke();   
+            {
+                onGrappleLaunch.Invoke();
+                m_grapThrowTime = Time.time;
+            }
+                
             
         }
                    
