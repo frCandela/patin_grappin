@@ -57,6 +57,8 @@ public class EndSection : MonoBehaviour
         m_grap.Cancel();
         m_grap.Throw(m_targetGrap.position, m_targetGrap.gameObject);
         m_ragdollController.SetRagdoll(true);
+
+        AkSoundEngine.PostEvent("Play_Victory", gameObject);
     }
 	
 
