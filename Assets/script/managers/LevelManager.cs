@@ -11,7 +11,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private bool m_activateMusic = true;
     [SerializeField] private bool m_isTuto = false;
 
-
     [SerializeField] private string m_menuSceneString = "menu";
 
     public UnityEvent onLevelPaused;
@@ -27,7 +26,7 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         paused = false;
-          m_pausedScripts = new List<MonoBehaviour>(FindObjectsOfType<boostEyeFX>());
+        m_pausedScripts = new List<MonoBehaviour>(FindObjectsOfType<boostEyeFX>());
         m_pausedScripts.Add(FindObjectOfType<PlayerController>());
     }
 
@@ -41,15 +40,14 @@ public class LevelManager : MonoBehaviour
                 AkSoundEngine.PostEvent("Play_Tuto", gameObject);
             else
                 AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
-        }
-            
+        }            
     }
 
     public void LoadScene(string sceneString)
     {
         AkSoundEngine.PostEvent("Stop_Tuto", gameObject);
         AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
-
+        AkSoundEngine.SetRTPCValue("Speed_RTPC", 0f);
         AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);
         if (paused)
             TooglePause();
@@ -81,6 +79,7 @@ public class LevelManager : MonoBehaviour
             onLevelPaused.Invoke();
             AkSoundEngine.SetState("Music","off_game");
             AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);
+            AkSoundEngine.SetRTPCValue("Speed_RTPC", 0f);
             Time.timeScale = 0f;
             foreach(MonoBehaviour m in m_pausedScripts)
                 m.enabled = false;
@@ -91,6 +90,7 @@ public class LevelManager : MonoBehaviour
             onLevelResumed.Invoke();
             AkSoundEngine.SetState("Music", "in_game");
             AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
+
             Time.timeScale = 1f;
             foreach (MonoBehaviour m in m_pausedScripts)
                 m.enabled = true;
