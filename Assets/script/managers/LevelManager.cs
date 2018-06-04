@@ -9,6 +9,9 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private bool m_activateMusic = true;
+    [SerializeField] private bool m_isTuto = false;
+
+
     [SerializeField] private string m_menuSceneString = "menu";
 
     public UnityEvent onLevelPaused;
@@ -33,14 +36,22 @@ public class LevelManager : MonoBehaviour
         //Set music and sounds
         AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
         if (m_activateMusic)
-            AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+        {
+            if(m_isTuto)
+                AkSoundEngine.PostEvent("Play_Tuto", gameObject);
+            else
+                AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+        }
+            
     }
 
-    public void LoadScene( string sceneString )
+    public void LoadScene(string sceneString)
     {
+        AkSoundEngine.PostEvent("Stop_Tuto", gameObject);
         AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+
         AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);
-        if( paused )
+        if (paused)
             TooglePause();
         SceneManager.LoadScene(sceneString, LoadSceneMode.Single);
     }
