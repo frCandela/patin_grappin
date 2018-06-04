@@ -4,7 +4,9 @@ using UnityEngine;
 
 using System;
 using UnityEngine.Events;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [ExecuteInEditMode]
 public class Track : MonoBehaviour
