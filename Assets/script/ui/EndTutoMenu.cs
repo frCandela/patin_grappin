@@ -16,7 +16,7 @@ public class EndTutoMenu : MonoBehaviour
         Hide();
     }
 
-    public void PopEndTuto(int id)
+    public void PopEndTuto()
     {
         if (!m_levelManager.paused)
             m_levelManager.TooglePause();
