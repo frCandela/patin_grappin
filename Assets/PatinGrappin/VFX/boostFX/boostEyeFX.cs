@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class boostEyeFX : GazeObject
-{ 
+{
+    [SerializeField] private bool m_repop = false;
+    [SerializeField] private float m_respawnDelay = 4f;
+
     private GameObject depopFX, chargeFX;
     private ParticleSystem chargePS, depopPS;
     private Animator animator;
@@ -46,12 +49,24 @@ public class boostEyeFX : GazeObject
 		// DEPOP DU BOOST DESACTIVÉ ICI
 		if(animator.GetBool("isLookedAt"))
         {
-            depopPS.Emit(1);
-            gameObject.SetActive(false);
-            AkSoundEngine.PostEvent("Play_Boost_Go", gameObject);
             onBoost.Invoke();
+            AkSoundEngine.PostEvent("Play_Boost_Go", gameObject);
+            depopPS.Emit(1);
+
+            if (m_repop)
+                StartCoroutine(Respawn());
+
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<Collider>().enabled = false;
         }
 	}
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(m_respawnDelay);
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<Collider>().enabled = true;
+    }
 
 	void Update ()
 	{
