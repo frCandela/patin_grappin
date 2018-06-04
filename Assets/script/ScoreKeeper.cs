@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScoreKeeper : MonoBehaviour
 {
+    private AnimationController m_animationController;
+
 
 	// Use this for initialization
 	void Start () {
