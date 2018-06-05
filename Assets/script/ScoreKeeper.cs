@@ -64,6 +64,7 @@ public class ScoreKeeper : MonoBehaviour
 
     public void ShowStats()
     {
+        m_inGameInterface.SetActive(false);
         UpdateFinalStats();
         StartCoroutine(ShowStatsCor());
     }
@@ -72,7 +73,6 @@ public class ScoreKeeper : MonoBehaviour
     {
         yield return new WaitForSeconds(m_delayShowStats);
         m_finalInterface.SetActive(true);
-        m_inGameInterface.SetActive(false);
         enabled = false;
     }
 
