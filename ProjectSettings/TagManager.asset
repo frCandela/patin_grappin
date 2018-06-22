@@ -6,6 +6,7 @@ TagManager:
   tags:
   - noGrab
   - cloud
+  - player
   layers:
   - Default
   - TransparentFX

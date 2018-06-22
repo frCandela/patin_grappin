@@ -28,6 +28,9 @@ public class TrackSection : MonoBehaviour
 
         trackDirection = Vector3.zero;
         trackPosition = Vector3.zero;
+
+        Util.EditorAssert(respawnTrackSection != null, "Error: no respawnTrackSection " + gameObject.name);
+        Util.EditorAssert(respawnTrackSection.respawnTransform != null, "Error: no respawnTransform " + gameObject.name);
     }
 
     private void OnValidate()

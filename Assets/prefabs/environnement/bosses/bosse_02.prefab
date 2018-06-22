@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4102863310161402}
   - component: {fileID: 33049097274831122}
   - component: {fileID: 23630869255429180}
-  m_Layer: 0
+  - component: {fileID: 64988019981625728}
+  m_Layer: 8
   m_Name: bosse_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,4 +82,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713040537466840}
+  m_Mesh: {fileID: 4300000, guid: d163f7a67708e884082cafe23db9064e, type: 3}
+--- !u!64 &64988019981625728
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713040537466840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: d163f7a67708e884082cafe23db9064e, type: 3}

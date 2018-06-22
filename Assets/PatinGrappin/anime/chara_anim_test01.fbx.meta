@@ -144,6 +144,8 @@ ModelImporter:
     7400028: Armature|GrappineAir_P
     7400030: Armature|Tpose
     7400032: Armature|Accelerate_A (1)
+    7400034: Armature|posey
+    7400036: Armature|poseyPosey
     9500000: //RootNode
     13700000: Plane
   externalObjects:
@@ -176,7 +178,9 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Armature|poseyPosey' has import animation warnings
+      that might lower retargeting quality:\n\t'Neck' has scale animation that will
+      be discarded.\n\t'Head' has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -1047,7 +1051,7 @@ ModelImporter:
       name: Armature|AirDown_P
       takeName: Armature|AirDown_P
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1151,7 +1155,7 @@ ModelImporter:
       name: Armature|AirUp_P
       takeName: Armature|AirUp_P
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1736,6 +1740,34 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|poseyPosey
+      takeName: Armature|poseyPosey
+      firstFrame: 0
+      lastFrame: 336
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

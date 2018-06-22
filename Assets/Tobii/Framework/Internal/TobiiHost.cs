@@ -132,7 +132,7 @@ namespace Tobii.Gaming.Internal
 
 					_gazePointDataProvider.Disconnect();
 					_headPoseDataProvider.Disconnect();
-					_isConnected = true;
+                    _isConnected = true;
 				}
 			}
 

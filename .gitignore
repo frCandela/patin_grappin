@@ -40,17 +40,10 @@ sysinfo.txt
 # Wwise
 .cache/
 *.akd
-Assets/Wwise/Editor/ProjectData/
-Assets/StreamingAssets/Audio.meta
-Assets/StreamingAssets/GeneratedSoundBanks.meta
-Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/English\(US\)\.meta
+Assets/data\.json
 
-Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/DecodedBanks/English\(US\)\.meta
+Assets/data\.json\.meta
 
-Assets/WwiseSettings\.xml
+Assets/game_settings\.json
 
-Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/DecodedBanks/English\(US\)\.meta
-
-Assets/StreamingAssets/Audio/GeneratedSoundBanks/Windows/English\(US\)\.meta
-
-Assets/WwiseSettings\.xml\.meta
+Assets/game_settings\.json\.meta

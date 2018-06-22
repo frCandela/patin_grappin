@@ -64,6 +64,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _CamDistModif: 70
+    - _CamDistModifE: 70
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -77,12 +79,13 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PointerRadius: 0.7
+    - _PointerRadius: 2
     - _ReflectIntensity: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _UseCamDist: 1
     - _ZWrite: 1
     - _depthFactor: 1
     - _maxDepth: 2028.71
@@ -98,4 +101,4 @@ Material:
     - _OverColor: {r: 1, g: 1, b: 1, a: 0}
     - _PointerColor: {r: 1, g: 0, b: 0, a: 1}
     - _VolumeInfo: {r: 0.18382353, g: 0.25699776, b: 1, a: 0}
-    - _shadowColor: {r: 0.1906695, g: 1, b: 0.16176468, a: 0}
+    - _shadowColor: {r: 0.16078432, g: 0.58431375, b: 1, a: 0}

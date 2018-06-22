@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4320164042906164}
   - component: {fileID: 33772630096891172}
   - component: {fileID: 23755212319517492}
+  - component: {fileID: 64488753037712612}
   m_Layer: 0
   m_Name: iceShard_01
   m_TagString: Untagged
@@ -81,4 +82,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541628854408826}
+  m_Mesh: {fileID: 4300008, guid: 1b2b8a2fd21fdb04682a7fade6fe1f90, type: 3}
+--- !u!64 &64488753037712612
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1541628854408826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300008, guid: 1b2b8a2fd21fdb04682a7fade6fe1f90, type: 3}

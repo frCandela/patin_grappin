@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ModifiersController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ModifiersController : MonoBehaviour
     [Header("Prefabs:")]
     [SerializeField] private GameObject traceBase = null;
     [SerializeField] private GameObject traceBoost = null;
+    [SerializeField] private GameObject traceContinuous = null;
 
     [Header("Boost Parameters:")]
     [SerializeField] private float boostMultiplier = 2;
@@ -20,6 +22,20 @@ public class ModifiersController : MonoBehaviour
     [SerializeField, Range(0, 200)] private float minSpeed = 55f;
     [SerializeField, Range(0, 200)] private float maxSpeed = 100f;
     [SerializeField, Range(0, 0.6f)] private float maxDeformation = 0.6f;
+
+    [Header("Continuous trail")]
+    [SerializeField] private Vector3 m_continuousTrailOffset;
+
+
+    [Header("Events:")]
+    public UnityEvent onBoostStart;
+    public UnityEvent onBoostStop;
+
+    public bool boosting
+    {
+        get { return m_boostTimeRemaining > 0; }
+        private set { }
+    }
 
     //References
     private AnimationController m_animationController = null;
@@ -34,6 +50,8 @@ public class ModifiersController : MonoBehaviour
     private GameObject m_particleSystemTraceBaseR = null;
     private GameObject m_particleSystemTraceBoostL = null;
     private GameObject m_particleSystemTraceBoostR = null;
+    private GameObject m_particleSystemTraceContinuousL = null;
+    private GameObject m_particleSystemTraceContinuousR = null;
 
     private Transform m_leftFoot;
     private Transform m_rightFoot;
@@ -47,6 +65,8 @@ public class ModifiersController : MonoBehaviour
         m_particleSystemTraceBaseR = Instantiate(traceBase);
         m_particleSystemTraceBoostL = Instantiate(traceBoost);
         m_particleSystemTraceBoostR = Instantiate(traceBoost);
+        m_particleSystemTraceContinuousL = Instantiate(traceContinuous);
+        m_particleSystemTraceContinuousR = Instantiate(traceContinuous);
 
         m_particleSystemTraceBaseL.GetComponent<ParticleSystem>().Play();
         m_particleSystemTraceBaseR.GetComponent<ParticleSystem>().Play();
@@ -95,6 +115,18 @@ public class ModifiersController : MonoBehaviour
         m_particleSystemTraceBaseL.transform.LookAt(m_leftFoot.transform.position - velocity);
         m_particleSystemTraceBaseR.transform.LookAt(m_rightFoot.transform.position - velocity);
 
+
+        //Continous particle system
+        if (m_animationController.animator.GetFloat("rightIK") > 0f)
+            m_particleSystemTraceContinuousR.transform.position = m_rightFoot.transform.position + m_continuousTrailOffset;
+        else
+            m_particleSystemTraceContinuousR.transform.position = new Vector3(0, 0, -5000);
+
+        if (m_animationController.animator.GetFloat("leftIK") > 0f)
+            m_particleSystemTraceContinuousL.transform.position = m_leftFoot.transform.position + m_continuousTrailOffset;
+        else
+            m_particleSystemTraceContinuousL.transform.position = new Vector3(0, 0, -5000);
+
         //Boost
         if (m_boostTimeRemaining > 0f)
         {
@@ -115,13 +147,15 @@ public class ModifiersController : MonoBehaviour
             m_playerController.boostMultiplier = 1f;
             boostMaterial.SetFloat("_TexFactor", 0f);
             patinMaterial.SetFloat("_Shiness", 0f);
+
+            onBoostStop.Invoke();
         }
 
         //Speed postprocess
         boostMaterial.SetFloat("_Offset", Mathf.Lerp(0, maxDeformation, (velXZ.magnitude - minSpeed) / (maxSpeed - minSpeed)));
 
         //Wind fx
-        float rtpc = 100f * Mathf.Clamp((velocity.magnitude) / maxSpeed, 0f, 1f);
+        float rtpc = Mathf.Clamp((velocity.magnitude) / maxSpeed, 0f, 1f);
         AkSoundEngine.SetRTPCValue("Speed_RTPC", rtpc);
     }
 
@@ -136,10 +170,16 @@ public class ModifiersController : MonoBehaviour
 
         //Effects
         patinMaterial.SetFloat("_Shiness", 1f);
+
+        onBoostStart.Invoke();
     }
 
     public void Land()
     {
-        m_particleSystemPofPof.Emit(6);
+        if( ! m_ragdollController.ragdollActivated )
+        {
+            AkSoundEngine.PostEvent("Play_Ice_Skate_Reception", gameObject);
+            m_particleSystemPofPof.Emit(6);
+        }
     }
 }
