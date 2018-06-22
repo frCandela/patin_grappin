@@ -122,23 +122,49 @@ public class AnimationController : MonoBehaviour
         {
             if( !grounded)
             {
-                grounded = true;
+                grounded = true;                
                 animator.SetTrigger("landing");
                 animator.SetBool("isGrounded", true);
                 onLanding.Invoke();
+                SetMusic();
             }
         }
         else if( grounded)
         {
             grounded = false;
             animator.SetBool("isGrounded", false);
+            AkSoundEngine.SetState("Interactive", "Air");
+            SetMusic();
         }
     }
 
-    private void SetAnim(int state)
+    private void SetMusic()
     {
+        if (grounded)
+        {
+            switch (m_currentState)
+            {
+                case 1://idle
+                    AkSoundEngine.SetState("Interactive", "Normal");
+                    break;
+                case 2://speed
+                    AkSoundEngine.SetState("Interactive", "Fast");
+                    break;
+                case 3://accelerate
+                    AkSoundEngine.SetState("Interactive", "Slow");
+                    break;
+
+            }
+        }
+        else
+            AkSoundEngine.SetState("Interactive", "Air");
+    }
+
+    private void SetAnim(int state)
+    { 
         animator.SetInteger("animationControl", state);
         m_currentState = state;
+        SetMusic();
     }
 
     private void LaunchGrapple()

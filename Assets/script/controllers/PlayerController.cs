@@ -57,8 +57,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //Launch or reset grapple
-        
+        //Launch or reset grapple        
         if ( Input.GetButtonDown("Grapple") )
         {
             if(m_spamGrapple)
@@ -69,14 +68,12 @@ public class PlayerController : MonoBehaviour
             {
                 onGrappleLaunch.Invoke();
                 m_grapThrowTime = Time.time;
-            }
-                
-            
+            }  
         }
                    
         if (m_grapple.grappling && !Input.GetButton("Grapple"))
             if( Time.time - m_grapThrowTime > grapMinDuration && m_grapple.Cancel())
-            onGrappleReset.Invoke();
+                onGrappleReset.Invoke();
     }
 
     // Update is called once per frame

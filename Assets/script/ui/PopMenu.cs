@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class PopMenu : MonoBehaviour
 {
-    private LevelManager m_levelManager;
     private bool m_active = false;
 
     private void Awake()
     {
-        m_levelManager = FindObjectOfType<LevelManager>();
         Hide();
     }
 

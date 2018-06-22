@@ -39,14 +39,17 @@ public class LevelManager : MonoBehaviour
             if(m_isTuto)
                 AkSoundEngine.PostEvent("Play_Tuto", gameObject);
             else
-                AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+                //AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+                AkSoundEngine.PostEvent("Play_Interactive", gameObject);
         }            
     }
 
     public void LoadScene(string sceneString)
     {
         AkSoundEngine.PostEvent("Stop_Tuto", gameObject);
-        AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+        // AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+        AkSoundEngine.PostEvent("Stop_Interactive", gameObject);
+
         AkSoundEngine.SetRTPCValue("Speed_RTPC", 0f);
         AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);
         if (paused)
@@ -64,7 +67,8 @@ public class LevelManager : MonoBehaviour
         //Restarts the level
         if (GazeManager.DebugActive && Input.GetButtonDown("Restart"))
         {
-            AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+            //AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
+            AkSoundEngine.PostEvent("Stop_Interactive", gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
