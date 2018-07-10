@@ -140,24 +140,27 @@ public class AnimationController : MonoBehaviour
 
     private void SetMusic()
     {
-        if (grounded)
+        if (LevelManager.s_verticalMusicEnabled)
         {
-            switch (m_currentState)
+            if (grounded)
             {
-                case 1://idle
-                    AkSoundEngine.SetState("Interactive", "Normal");
-                    break;
-                case 2://speed
-                    AkSoundEngine.SetState("Interactive", "Fast");
-                    break;
-                case 3://accelerate
-                    AkSoundEngine.SetState("Interactive", "Slow");
-                    break;
+                switch (m_currentState)
+                {
+                    case 1://idle
+                        AkSoundEngine.SetState("Interactive", "Normal");
+                        break;
+                    case 2://speed
+                        AkSoundEngine.SetState("Interactive", "Fast");
+                        break;
+                    case 3://accelerate
+                        AkSoundEngine.SetState("Interactive", "Slow");
+                        break;
 
+                }
             }
+            else
+                AkSoundEngine.SetState("Interactive", "Air");
         }
-        else
-            AkSoundEngine.SetState("Interactive", "Air");
     }
 
     private void SetAnim(int state)

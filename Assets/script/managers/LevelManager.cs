@@ -7,6 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Music experiments")]
+    public bool verticalMusicEnabled = false;
+    public static bool s_verticalMusicEnabled;
+
+    public bool horizontalMusicEnabled = false;
+    public static bool s_horizontalMusicEnabled;
+    public int nbGrapChangeLayer = 3;
+    public static int s_nbGrapChangeLayer;
+
+
     [Header("Parameters")]
     [SerializeField] private bool m_activateMusic = true;
     [SerializeField] private bool m_isTuto = false;
@@ -25,6 +35,10 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        s_verticalMusicEnabled = verticalMusicEnabled;
+        s_horizontalMusicEnabled = horizontalMusicEnabled;
+        s_nbGrapChangeLayer = nbGrapChangeLayer;
+
         paused = false;
         m_pausedScripts = new List<MonoBehaviour>(FindObjectsOfType<boostEyeFX>());
         m_pausedScripts.Add(FindObjectOfType<PlayerController>());
@@ -39,16 +53,30 @@ public class LevelManager : MonoBehaviour
             if(m_isTuto)
                 AkSoundEngine.PostEvent("Play_Tuto", gameObject);
             else
-                //AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
-                AkSoundEngine.PostEvent("Play_Interactive", gameObject);
+            {
+                if(s_verticalMusicEnabled)
+                {
+                    AkSoundEngine.PostEvent("Play_Interactive", gameObject);
+                }
+                else if (s_horizontalMusicEnabled)
+                {
+                    AkSoundEngine.PostEvent("Play_Interactive", gameObject);
+                    AkSoundEngine.SetState("Interactive", "Begin");
+                }                    
+                else
+                    AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+            }
         }            
     }
 
     public void LoadScene(string sceneString)
     {
         AkSoundEngine.PostEvent("Stop_Tuto", gameObject);
-        // AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
-        AkSoundEngine.PostEvent("Stop_Interactive", gameObject);
+
+        if (s_verticalMusicEnabled || s_horizontalMusicEnabled)
+            AkSoundEngine.PostEvent("Stop_Interactive", gameObject);
+        else
+            AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
 
         AkSoundEngine.SetRTPCValue("Speed_RTPC", 0f);
         AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);

@@ -35,7 +35,7 @@ public class Grap : MonoBehaviour
     private AnimationController m_animationController;
 
     //Members
-    
+    private int nbGrap = 0;
 
     private void Awake()
     {
@@ -68,6 +68,17 @@ public class Grap : MonoBehaviour
             //Launch the grapple if the target is valid
             if (m_target != Vector3.zero && sqrDist < maxDistance * maxDistance)
             {
+                if(LevelManager.s_horizontalMusicEnabled)
+                {
+                    ++nbGrap;
+                    if (nbGrap % LevelManager.s_nbGrapChangeLayer == 0 && nbGrap != 0)
+                    {
+                        AkSoundEngine.SetState("Interactive", "Linear 1");
+                        print(nbGrap);
+                    }
+                }
+
+
                 //Selects the right hand if the target is at the right of the character
                 Transform hand;
                 if (Vector3.Dot(m_target - transform.position, transform.right) > 0f)
