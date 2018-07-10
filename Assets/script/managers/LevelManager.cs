@@ -13,8 +13,12 @@ public class LevelManager : MonoBehaviour
 
     public bool horizontalMusicEnabled = false;
     public static bool s_horizontalMusicEnabled;
+
     public int nbGrapChangeLayer = 3;
     public static int s_nbGrapChangeLayer;
+
+    public int nbMusicLevels = 5;
+    public static int s_nbMusicLevels;
 
 
     [Header("Parameters")]
@@ -38,6 +42,7 @@ public class LevelManager : MonoBehaviour
         s_verticalMusicEnabled = verticalMusicEnabled;
         s_horizontalMusicEnabled = horizontalMusicEnabled;
         s_nbGrapChangeLayer = nbGrapChangeLayer;
+        s_nbMusicLevels = nbMusicLevels;
 
         paused = false;
         m_pausedScripts = new List<MonoBehaviour>(FindObjectsOfType<boostEyeFX>());

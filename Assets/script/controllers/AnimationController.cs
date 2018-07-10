@@ -139,8 +139,10 @@ public class AnimationController : MonoBehaviour
 
     private void SetMusic()
     {
+        
         if (LevelManager.s_verticalMusicEnabled)
         {
+            print("SetMusic");
             if (grounded)
             {
                 switch (m_currentState)
