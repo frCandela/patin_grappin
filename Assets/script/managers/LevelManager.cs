@@ -56,15 +56,21 @@ public class LevelManager : MonoBehaviour
             {
                 if(s_verticalMusicEnabled)
                 {
+                    print("s_verticalMusicEnabled");
                     AkSoundEngine.PostEvent("Play_Interactive", gameObject);
                 }
                 else if (s_horizontalMusicEnabled)
                 {
+                    print("s_horizontalMusicEnabled");
                     AkSoundEngine.PostEvent("Play_Interactive", gameObject);
-                    AkSoundEngine.SetState("Interactive", "Begin");
+                    AkSoundEngine.SetState("Interactive", "Level0");
                 }                    
                 else
+                {
+                    print("Play_Music_Placeholder");
                     AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+                }
+                    
             }
         }            
     }

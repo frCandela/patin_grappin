@@ -73,7 +73,7 @@ public class Grap : MonoBehaviour
                     ++nbGrap;
                     if (nbGrap % LevelManager.s_nbGrapChangeLayer == 0 && nbGrap != 0)
                     {
-                        AkSoundEngine.SetState("Interactive", "Linear 1");
+                        AkSoundEngine.SetState("Interactive", "Level1");
                         print(nbGrap);
                     }
                 }
