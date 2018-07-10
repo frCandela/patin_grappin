@@ -133,7 +133,6 @@ public class AnimationController : MonoBehaviour
         {
             grounded = false;
             animator.SetBool("isGrounded", false);
-            AkSoundEngine.SetState("Interactive", "Air");
             SetMusic();
         }
     }
