@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 { 
     [Header("Movement:")]
     [SerializeField] private float initialVelocity = 2f;
-    [SerializeField] private float forwardForce = 30f;
+    [SerializeField] private float forwardVelocity = 30f;
     [SerializeField] private float forwardForceGrapple = 30f;  
     [SerializeField] private float turnForce = 300f;
     [SerializeField] private float maxheadYAngle = 20f;
@@ -55,8 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //Launch or reset grapple
-        
+        //Launch or reset grapple        
         if ( Input.GetButtonDown("Grapple") )
         {
             //HERE
@@ -65,52 +65,64 @@ public class PlayerController : MonoBehaviour
                    
         if (m_grapple.grappling && !Input.GetButton("Grapple"))
             if( Time.time - m_grapThrowTime > grapMinDuration && m_grapple.Cancel())
-            onGrappleReset.Invoke();
+                onGrappleReset.Invoke();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Rigidbody targetRB;
-            targetRB = m_rb;            
+        m_rb.rotation = Quaternion.Euler(0, InputTracking.GetLocalRotation(XRNode.Head).eulerAngles.y, 0);
 
-        //Forward force in the track direction
-        if (trackForceWhenGrappling || !m_grapple.grappling)
-        {
-                targetRB.AddForce(boostMultiplier * forwardForce * m_track.trackSection.trackDirection, ForceMode.Acceleration);
-        }
+        Vector3 forward = InputTracking.GetLocalRotation(XRNode.Head) * Vector3.forward;
+        forward *= forwardVelocity;
+        forward.y = m_rb.velocity.y;
 
-        //forward force when grappling
-        if (m_grapple.grappling)
-        {
-            Vector3 forwardXZ = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
-            targetRB.AddForce(forwardForceGrapple * forwardXZ, ForceMode.Acceleration);
-        }
+        m_rb.velocity = forward;
 
 
-        float headAxis = 0;
+       // m_rb.AddForce(boostMultiplier * forwardForce * m_rb.transform.forward, ForceMode.Acceleration);
 
-        //HERE
-        /*if ( ! GazeManager.UsingKeyboard)
-        {
-            //Calculates head input
-            Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
-            headAxis = pose.Rotation.eulerAngles.y;
-            if (headAxis > 180)
-                headAxis -= 360;
-            headAxis = Mathf.Clamp(headAxis, -maxheadYAngle, maxheadYAngle);
-            headAxis /= 90;
-        }
-        else
-        {
-            //Calculates keyboard input if no head connected
-            headAxis = Input.GetAxis("Horizontal");
-            headAxis = Mathf.Clamp(headAxis, -maxheadYAngle / 90, maxheadYAngle / 90);
-        }*/
+
+        /* Rigidbody targetRB;
+         targetRB = m_rb;            
+
+         //Forward force in the track direction
+         if (trackForceWhenGrappling || !m_grapple.grappling)
+         {
+              targetRB.AddForce(boostMultiplier * forwardForce * m_track.trackSection.trackDirection, ForceMode.Acceleration);
+         }
+
+         //forward force when grappling
+         if (m_grapple.grappling)
+         {
+             Vector3 forwardXZ = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
+             targetRB.AddForce(forwardForceGrapple * forwardXZ, ForceMode.Acceleration);
+         }
+
+
+         float headAxis = 0;
+
+         //HERE
+         if ( ! GazeManager.UsingKeyboard)
+         {
+             //Calculates head input
+             Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
+             headAxis = pose.Rotation.eulerAngles.y;
+             if (headAxis > 180)
+                 headAxis -= 360;
+             headAxis = Mathf.Clamp(headAxis, -maxheadYAngle, maxheadYAngle);
+             headAxis /= 90;
+         }
+         else
+         {
+             //Calculates keyboard input if no head connected
+             headAxis = Input.GetAxis("Horizontal");
+             headAxis = Mathf.Clamp(headAxis, -maxheadYAngle / 90, maxheadYAngle / 90);
+         }
 
         //Turn right
         Vector3 right = Vector3.Cross(Vector3.up, m_track.trackSection.trackDirection).normalized;
-        targetRB.AddForce(boostMultiplier * headAxis * turnForce * right, ForceMode.Acceleration);
+        targetRB.AddForce(boostMultiplier * headAxis * turnForce * right, ForceMode.Acceleration);*/
     }
 
     private void OnGUI()
