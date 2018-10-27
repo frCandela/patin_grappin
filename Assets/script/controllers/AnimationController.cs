@@ -25,7 +25,6 @@ public class AnimationController : MonoBehaviour
     private ModifiersController m_modifiersController = null;
     private Rigidbody m_playerRb = null;
     private spineOrientationIK m_spineOrientationIK = null;
-    private RagdollController m_ragdollController = null;
     private Grap m_grap = null;
     private armIK m_armIK = null;
     private Transform m_leftFoot;
@@ -47,7 +46,6 @@ public class AnimationController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         m_modifiersController = FindObjectOfType<ModifiersController>();
         m_playerController = FindObjectOfType<PlayerController>();
-        m_ragdollController = FindObjectOfType<RagdollController>();
         m_playerRb = m_playerController.GetComponent<Rigidbody>();
         m_grap = m_playerController.GetComponent<Grap>();
         leftHand = animator.GetBoneTransform(HumanBodyBones.LeftHand);
@@ -59,7 +57,6 @@ public class AnimationController : MonoBehaviour
         //Connect events
         m_playerController.onGrappleLaunch.AddListener(LaunchGrapple);
         m_playerController.onGrappleReset.AddListener(ResetGrapple);
-        m_ragdollController.onRagdollStop.AddListener(RagdollStop);
         m_modifiersController.onBoostStart.AddListener(StartBoost);
         m_modifiersController.onBoostStop.AddListener(StopBoost);
 

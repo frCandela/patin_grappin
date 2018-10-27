@@ -20,7 +20,6 @@ public class EndSection : MonoBehaviour
 
     //References
     private PlayerController m_playerController;
-    private RagdollController m_ragdollController;
     private Grap m_grap;
     private CameraController m_cameraController;
 
@@ -32,7 +31,6 @@ public class EndSection : MonoBehaviour
     {
         m_cameraController = FindObjectOfType<CameraController>();
         m_playerController = FindObjectOfType<PlayerController>();
-        m_ragdollController = FindObjectOfType<RagdollController>();
         m_grap = FindObjectOfType<Grap>();
 
         m_popupObjects.gameObject.SetActive(false);
@@ -61,7 +59,6 @@ public class EndSection : MonoBehaviour
         //Set the player
         m_grap.Cancel();
         m_grap.Throw(m_targetGrap.position, m_targetGrap.gameObject);
-        m_ragdollController.SetRagdoll(true);
 
         AkSoundEngine.PostEvent("Play_Victory", gameObject);
         onEndTriggered.Invoke();

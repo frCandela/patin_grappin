@@ -40,7 +40,6 @@ public class ModifiersController : MonoBehaviour
     //References
     private AnimationController m_animationController = null;
     private PlayerController m_playerController = null;
-    private RagdollController m_ragdollController = null;
     private Rigidbody m_rb = null;
 
     private ParticleSystem m_particleSystemPofPof = null;
@@ -73,7 +72,6 @@ public class ModifiersController : MonoBehaviour
 
         //Get references
         m_animationController = FindObjectOfType<AnimationController>();
-        m_ragdollController = GetComponent<RagdollController>();
         m_particleSystemPofPof = GetComponentInChildren<ParticleSystem>();
         m_particleSystemBoost = Camera.main.GetComponentInChildren<ParticleSystem>();
         m_playerController = GetComponent<PlayerController>();
@@ -103,9 +101,6 @@ public class ModifiersController : MonoBehaviour
     {
         //Get velocity (ragdoll or not)
         Vector3 velocity;
-        if (m_ragdollController.ragdollActivated)
-            velocity = m_ragdollController.averageVelocity;
-        else
             velocity = m_rb.velocity;
         Vector2 velXZ = new Vector2(m_rb.velocity.x, m_rb.velocity.z);
 
@@ -176,10 +171,8 @@ public class ModifiersController : MonoBehaviour
 
     public void Land()
     {
-        if( ! m_ragdollController.ragdollActivated )
-        {
             AkSoundEngine.PostEvent("Play_Ice_Skate_Reception", gameObject);
             m_particleSystemPofPof.Emit(6);
-        }
+        
     }
 }

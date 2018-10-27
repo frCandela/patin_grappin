@@ -11,7 +11,9 @@ public class MouseScreenPosToShader : MonoBehaviour {
 	void Update ()
     {
         //m_UVMouseScreenPos = new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height);
-        m_UVMouseScreenPos = new Vector2(GazeManager.AverageGazePoint.x / Screen.width, GazeManager.AverageGazePoint.y / Screen.height);
+
+        //HERE
+        m_UVMouseScreenPos = new Vector2(0, 0);//GazeManager.AverageGazePoint.x / Screen.width, GazeManager.AverageGazePoint.y / Screen.height);
 
         m_screenSize = new Vector2(Screen.width, Screen.height);
 

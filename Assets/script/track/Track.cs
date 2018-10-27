@@ -133,8 +133,6 @@ public class Track : MonoBehaviour
 
     private void OnGUI()
     {
-        if( GazeManager.DebugActive)
-        {
             GUIStyle style = new GUIStyle();
             style.normal.textColor = Color.red;
 
@@ -142,6 +140,6 @@ public class Track : MonoBehaviour
 
             float height = m_targetRb.transform.position.y - currentSection.trackPosition.y;
             GUI.Label(new Rect(0, 40, 100, 10), "Player height: " + height, style);
-        }
+        
     }
 }

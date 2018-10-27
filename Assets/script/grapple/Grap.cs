@@ -31,7 +31,6 @@ public class Grap : MonoBehaviour
     private ParticleSystem m_particleSystem;
     private Rope m_rope = null;
     private Vector3 m_target;
-    private RagdollController m_ragdollController;
     private AnimationController m_animationController;
 
     //Members
@@ -46,7 +45,6 @@ public class Grap : MonoBehaviour
         
         //Get components
         m_rigidbody = GetComponent<Rigidbody>();
-        m_ragdollController = FindObjectOfType<RagdollController>();
         m_animationController = FindObjectOfType<AnimationController>();
         m_particleSystem = m_grabFX.GetComponent<ParticleSystem>();
 
@@ -123,18 +121,18 @@ public class Grap : MonoBehaviour
     }
 
     private void Update()
-    {
-        //Update the grapple target position
-        GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
+    {//HERE
+     //Update the grapple target position
+     /* GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
 
-        if (result != null)
-            m_aimTarget.transform.position = result.position;
-        else
-            m_aimTarget.transform.position = Vector3.zero;
+      if (result != null)
+          m_aimTarget.transform.position = result.position;
+      else
+          m_aimTarget.transform.position = Vector3.zero;
 
-        //Shader variable
-        Shader.SetGlobalVector("_AimTargetPos", m_aimTarget.transform.position);
-        
+      //Shader variable
+      Shader.SetGlobalVector("_AimTargetPos", m_aimTarget.transform.position);*/
+
 
     }
 
@@ -144,15 +142,8 @@ public class Grap : MonoBehaviour
         {
             //Change the target rigidbody if the ragdoll is activated
             Rigidbody targetRb;
-            if ( ! m_ragdollController.ragdollActivated)
                 targetRb = m_rigidbody;
-            else
-            {
-                if(m_rightHandUsed)
-                    targetRb = m_ragdollController.rightArmRb;
-                else
-                    targetRb = m_ragdollController.leftArmRb;
-            }
+
                
 
             float sqrDist = Vector3.SqrMagnitude(m_target - transform.position);
@@ -161,10 +152,6 @@ public class Grap : MonoBehaviour
             {
                 //Force in the good direction
                 Vector3 direction = (m_target - transform.position).normalized;
-
-                if(m_ragdollController.ragdollActivated)
-                    targetRb.AddForce(attractionForceRagdoll * direction, ForceMode.Acceleration);
-                else
                     targetRb.AddForce(attractionForce * direction, ForceMode.Acceleration);
 
                 //Remove velocity in the wrong direction

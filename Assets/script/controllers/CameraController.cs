@@ -34,7 +34,6 @@ public class CameraController : MonoBehaviour
     private Rigidbody targetRb = null;
     private Transform targetRagdoll = null;
     private Track m_track = null;
-    RagdollController m_ragdollController = null;
 
     //Initial camera position and rotation parameters
     Vector3 m_baseTranslation;
@@ -52,7 +51,6 @@ public class CameraController : MonoBehaviour
     {
         //Get references
         m_track = FindObjectOfType<Track>();
-        m_ragdollController = FindObjectOfType<RagdollController>();
         targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
         targetRagdoll = FindObjectOfType<PlayerController>().GetComponentInChildren<Animator>().GetBoneTransform(HumanBodyBones.Spine);
         m_camera = GetComponent<Camera>();
@@ -90,12 +88,13 @@ public class CameraController : MonoBehaviour
         //Get target position and rotation
         Vector3 targetPosition;
         Quaternion targetRotation;
-        if (m_ragdollController.ragdollActivated)
+
+        /*if (m_ragdollController.ragdollActivated)
         {
             targetPosition = targetRagdoll.transform.position;
             targetRotation = Quaternion.LookRotation(m_ragdollController.averageVelocity);
         }
-        else
+        else*/
         {
             targetPosition = targetRb.transform.position;
 

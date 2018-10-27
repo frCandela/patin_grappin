@@ -25,7 +25,6 @@ public class ScoreKeeper : MonoBehaviour
 
     private AnimationController m_animationController;
     private ModifiersController m_modifiersController;
-    private RagdollController m_ragdollController;
     private Track m_track;
 
     private float m_time;
@@ -39,7 +38,6 @@ public class ScoreKeeper : MonoBehaviour
     {
         m_animationController = FindObjectOfType<AnimationController>();
         m_modifiersController = FindObjectOfType<ModifiersController>();
-        m_ragdollController = FindObjectOfType<RagdollController>();
         m_track = FindObjectOfType<Track>();
 
         m_timeNumberText = m_timeNumber.GetComponent<Text>();
@@ -114,9 +112,6 @@ public class ScoreKeeper : MonoBehaviour
             m_airTime += Time.deltaTime;
         else
             m_groundTime += Time.deltaTime;
-
-        if(m_ragdollController.ragdollActivated)
-            m_ragdollTime += Time.deltaTime;
 
         m_timeNumberText.text = RoundFloat(m_time).ToString();
     }

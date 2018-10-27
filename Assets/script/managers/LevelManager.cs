@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         //Restarts the level
-        if (GazeManager.DebugActive && Input.GetButtonDown("Restart"))
+        if (Input.GetButtonDown("Restart"))
         {
             AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
