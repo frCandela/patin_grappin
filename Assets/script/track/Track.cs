@@ -3,27 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System;
+using UnityEngine.Events;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [ExecuteInEditMode]
 public class Track : MonoBehaviour
 {
     //Editor parameters
-
     [Header("Track parameters: ")]
-    [SerializeField] private float fallFromTrackHeight = 50;
-    [SerializeField] private float respawnHeight = 100f;
-    [SerializeField] private float updateDelta = 0.2f;
-    [SerializeField] private bool alignVelocityOnRespawn = false;
-
+    [SerializeField] private float fallFromTrackHeight = -150;
+    [SerializeField] private float updateDelta = 1f;
 
     [Header("Track Sections Tree: ")]
     [SerializeField] private TrackSection currentSection = null;
     [SerializeField] private bool checkPreviousSections = true;
     [SerializeField] private bool checkParallelSections = true;
 
+    [Header("Events")]
+    public UnityEvent onRespawn;
+
     //Private members
     private Rigidbody m_targetRb = null;
     private Grap m_grap = null;
+
 
     //Debug
     float splineUpdateMs = 0f;
@@ -50,7 +54,7 @@ public class Track : MonoBehaviour
 
     IEnumerator UpdateTrack()
     {
-        while( true )
+        while (true)
         {
             //Use the closest track section
             float t1 = Time.realtimeSinceStartup;
@@ -58,44 +62,21 @@ public class Track : MonoBehaviour
             splineUpdateMs = 1000 * (Time.realtimeSinceStartup - t1);
             yield return new WaitForSeconds(updateDelta);
         }
-        
     }
 
     private void Update()
     {
-        DetectPlayerFall();
+        float height =  m_targetRb.transform.position.y - currentSection.trackPosition.y;      
+
+        if ( !m_grap.grappling && ( Input.GetKeyDown(KeyCode.T) || height < fallFromTrackHeight))
+            RespawnPlayer();
     }
 
-    private void DetectPlayerFall()
+    private void RespawnPlayer()
     {
-        if (currentSection != null && ! m_grap.grappling)
-        {
-            //Detects the player fall
-            Vector3 diff = currentSection.trackPosition - m_targetRb.transform.position;
-            if (diff.y > fallFromTrackHeight)
-            {
-                TrackSection respawnTrack = currentSection.respawnTrackSection ? currentSection.respawnTrackSection : currentSection;
-
-                //If respawn set, change the respawn point
-                if (respawnTrack.respawnTransform)
-                    diff = currentSection.respawnTrackSection.respawnTransform.position - m_targetRb.transform.position;
-
-                //Translate the player
-                m_targetRb.transform.parent.transform.position = m_targetRb.transform.parent.transform.position + diff + respawnHeight * Vector3.up;
-
-                //Change track and update it
-                currentSection = respawnTrack;
-                respawnTrack.UpdateTrack(m_targetRb.transform.position);
-
-                //Changes his velocity to match the direction of the track
-                if (alignVelocityOnRespawn)
-                {
-                    float prevVelY = m_targetRb.velocity.y;
-                    float prevVelXZ = new Vector2(m_targetRb.velocity.x, m_targetRb.velocity.z).magnitude;
-                    m_targetRb.velocity = prevVelXZ * new Vector3(respawnTrack.trackDirection.x, 0, respawnTrack.trackDirection.z) + new Vector3(0, prevVelY, 0);
-                }
-            }
-        }
+        //Translate the player
+        onRespawn.Invoke();
+        currentSection = currentSection.respawnTrackSection;
     }
 
     public void UpdateClosestSection()
@@ -108,7 +89,7 @@ public class Track : MonoBehaviour
             Action<TrackSection> LookupSection = (section) =>
             {
                 section.UpdateTrack(m_targetRb.position);
-                float dist = Vector3.SqrMagnitude(m_targetRb.position - section.trackPosition);
+                float dist = Vector3.Magnitude(m_targetRb.position - section.trackPosition);
                 if (dist < bestDistance)
                 {
                     bestDistance = dist;
@@ -130,6 +111,8 @@ public class Track : MonoBehaviour
             //LookUp next sections
             foreach (TrackSection nextSection in currentSection.nextSections)
                 LookupSection(nextSection);
+            
+            LookupSection(currentSection);
 
             //Update new section
             if (bestTrackSection)
@@ -150,9 +133,15 @@ public class Track : MonoBehaviour
 
     private void OnGUI()
     {
-        GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.red;
+        if( GazeManager.DebugActive)
+        {
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.red;
 
-        GUI.Label(new Rect(0, 0, 100, 10), "Spline update ms: " + splineUpdateMs, style);
+            GUI.Label(new Rect(0, 0, 100, 10), "Spline update ms: " + splineUpdateMs, style);
+
+            float height = m_targetRb.transform.position.y - currentSection.trackPosition.y;
+            GUI.Label(new Rect(0, 40, 100, 10), "Player height: " + height, style);
+        }
     }
 }

@@ -16,6 +16,8 @@ public class TrackSection : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private Spline spline;
 
+    public bool errorCheck = false;
+
     [Header("Respawn")]
     [SerializeField] public TrackSection respawnTrackSection = null;
     [SerializeField] public Transform respawnTransform = null;
@@ -28,6 +30,12 @@ public class TrackSection : MonoBehaviour
 
         trackDirection = Vector3.zero;
         trackPosition = Vector3.zero;
+
+        if(errorCheck)
+        {
+            Util.EditorAssert(respawnTrackSection != null, "Error: no respawnTrackSection " + gameObject.name);
+            Util.EditorAssert(respawnTrackSection.respawnTransform != null, "Error: no respawnTransform " + gameObject.name);
+        }
     }
 
     private void OnValidate()

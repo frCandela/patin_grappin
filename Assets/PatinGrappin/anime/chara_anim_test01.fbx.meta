@@ -145,6 +145,7 @@ ModelImporter:
     7400030: Armature|Tpose
     7400032: Armature|Accelerate_A (1)
     7400034: Armature|posey
+    7400036: Armature|poseyPosey
     9500000: //RootNode
     13700000: Plane
   externalObjects:
@@ -177,7 +178,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Armature|posey' has import animation warnings
+    animationImportWarnings: "\nClip 'Armature|poseyPosey' has import animation warnings
       that might lower retargeting quality:\n\t'Neck' has scale animation that will
       be discarded.\n\t'Head' has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
@@ -1756,10 +1757,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|posey
-      takeName: Armature|posey
+      name: Armature|poseyPosey
+      takeName: Armature|poseyPosey
       firstFrame: 0
-      lastFrame: 385
+      lastFrame: 336
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

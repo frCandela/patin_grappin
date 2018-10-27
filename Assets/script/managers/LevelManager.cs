@@ -2,98 +2,84 @@
 using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     [Header("Parameters")]
     [SerializeField] private bool m_activateMusic = true;
-    [SerializeField] private bool betaAutoSwitchKeyboard = true;
+    [SerializeField] private bool m_isTuto = false;
+
     [SerializeField] private string m_menuSceneString = "menu";
 
+    public UnityEvent onLevelPaused;
+    public UnityEvent onLevelResumed;
+
     //References
-    private PauseMenu m_pauseMenu;
     private List<MonoBehaviour> m_pausedScripts;
 
     //Private members
-    private bool m_paused = false;
-    private bool m_usingKeyboard = false;
+
+    public bool paused { get; private set; }
 
     private void Awake()
     {
-        m_pauseMenu = FindObjectOfType<PauseMenu>();
-        m_pauseMenu.gameObject.SetActive(false);
-
+        paused = false;
         m_pausedScripts = new List<MonoBehaviour>(FindObjectsOfType<boostEyeFX>());
         m_pausedScripts.Add(FindObjectOfType<PlayerController>());
     }
 
     void Start ()
     {
-        //Link events
-        m_pauseMenu.onGameQuit.AddListener(QuitToMenu);
-        m_pauseMenu.onGameResumed.AddListener(TooglePause);
-        m_pauseMenu.onUseKeyboard.AddListener(UseKeyboard);
-        m_pauseMenu.onUnUseKeyboard.AddListener(UnUseKeyboard);
-
         //Set music and sounds
         AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
         if (m_activateMusic)
-            AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+        {
+            if(m_isTuto)
+                AkSoundEngine.PostEvent("Play_Tuto", gameObject);
+            else
+                AkSoundEngine.PostEvent("Play_Music_Placeholder", gameObject);
+        }            
     }
 
-    private void UnUseKeyboard()
+    public void LoadScene(string sceneString)
     {
-        m_usingKeyboard = false;
-    }
-
-    private void UseKeyboard()
-    {
-        betaAutoSwitchKeyboard = false;
-        m_usingKeyboard = true;
-    }
-
-    private void QuitToMenu()
-    {
+        AkSoundEngine.PostEvent("Stop_Tuto", gameObject);
         AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
-        TooglePause();
-        SceneManager.LoadScene(m_menuSceneString, LoadSceneMode.Single);
+        AkSoundEngine.SetRTPCValue("Speed_RTPC", 0f);
+        AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);
+        if (paused)
+            TooglePause();
+        SceneManager.LoadScene(sceneString, LoadSceneMode.Single);
+    }
+
+    public void QuitToMenu()
+    {
+        LoadScene(m_menuSceneString);
     }
 
     private void Update()
     {
         //Restarts the level
-        if (Input.GetButtonDown("Restart"))
+        if (GazeManager.DebugActive && Input.GetButtonDown("Restart"))
         {
             AkSoundEngine.PostEvent("Stop_Music_Placeholder", gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
-        //Switch to keyboard control if no tobii is connected
-        if(betaAutoSwitchKeyboard)
-            m_usingKeyboard = ! Tobii.GameIntegration.Interop.IsConnected();
-
-        //Pauses the level
-        UserPresence userPresence = TobiiAPI.GetUserPresence();
-        HeadPose headPose = TobiiAPI.GetHeadPose();
-        if ( ! m_paused )
-        {
-            if (Input.GetButtonDown("Pause") || (!m_usingKeyboard && (userPresence != UserPresence.Present || !headPose.IsValid)))
-                TooglePause();
-        }
-        else if (Input.GetButtonDown("Pause"))
-                TooglePause();
     }
 
-    private void TooglePause()
+    public void TooglePause()
     {
-        m_paused = !m_paused;
+        paused = !paused;
 
         //Pause the game
-        if( m_paused)
+        if(paused)
         {
+            onLevelPaused.Invoke();
             AkSoundEngine.SetState("Music","off_game");
-            m_pauseMenu.gameObject.SetActive(true);
+            AkSoundEngine.PostEvent("Stop_Speed_RTPC", gameObject);
+            AkSoundEngine.SetRTPCValue("Speed_RTPC", 0f);
             Time.timeScale = 0f;
             foreach(MonoBehaviour m in m_pausedScripts)
                 m.enabled = false;
@@ -101,8 +87,10 @@ public class LevelManager : MonoBehaviour
         //Resumes the game
         else
         {
+            onLevelResumed.Invoke();
             AkSoundEngine.SetState("Music", "in_game");
-            m_pauseMenu.gameObject.SetActive(false);
+            AkSoundEngine.PostEvent("Play_Speed_RTPC", gameObject);
+
             Time.timeScale = 1f;
             foreach (MonoBehaviour m in m_pausedScripts)
                 m.enabled = true;

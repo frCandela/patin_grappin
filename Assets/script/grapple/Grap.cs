@@ -15,7 +15,7 @@ public class Grap : MonoBehaviour
     [SerializeField, Range(0f, 2000f)] private float attractionForceRagdoll = 1000;
     [SerializeField, Range(0f, 1000f)] private float maxDistance = 150;
     [SerializeField, Range(0f, 1000f)] private float minDistance = 20;
-    [SerializeField, Range(0f, 1f)] private float elasticity = 1f;  
+    [SerializeField, Range(0f, 1f)] private float elasticity = 1f;
 
     //Public properties
     public bool grappling { get; private set; }
@@ -82,10 +82,11 @@ public class Grap : MonoBehaviour
                 }
 
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
+                grappleTarget.SetActive(true);
                 m_rope.SetRope(hand, grappleTarget.transform);
                 grappling = true;
 
-                //Set hook
+                //Set hook                
                 Vector3 direction = m_aimTarget.transform.position - hand.position;
                 grappleTarget.transform.position = m_target - 1.5f * direction.normalized;
                 grappleTarget.transform.LookAt(grappleTarget.transform.position - direction);
@@ -115,6 +116,7 @@ public class Grap : MonoBehaviour
         {
             grappling = false;
             m_rope.ResetRope();
+            grappleTarget.SetActive(false);
             return true;
         }
         return false;

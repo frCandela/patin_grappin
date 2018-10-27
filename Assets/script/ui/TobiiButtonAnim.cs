@@ -31,6 +31,7 @@ public class TobiiButtonAnim : MonoBehaviour
             AkSoundEngine.PostEvent("Play_UI_Select", gameObject); 
             onButtonPressed.Invoke();
             SetHidden();
+
         }
 
         //Higlighted

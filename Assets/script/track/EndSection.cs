@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EndSection : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class EndSection : MonoBehaviour
     [Header("Lerp")]
     [SerializeField] private float m_cameraLerpPosition = 0.1f;
     [SerializeField] private float m_cameraLerpRotation = 0.1f;
+
+    [Header("Events")]
+    public UnityEvent onEndTriggered;
+
     //References
     private PlayerController m_playerController;
     private RagdollController m_ragdollController;
@@ -57,6 +62,9 @@ public class EndSection : MonoBehaviour
         m_grap.Cancel();
         m_grap.Throw(m_targetGrap.position, m_targetGrap.gameObject);
         m_ragdollController.SetRagdoll(true);
+
+        AkSoundEngine.PostEvent("Play_Victory", gameObject);
+        onEndTriggered.Invoke();
     }
 	
 

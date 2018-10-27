@@ -84,7 +84,11 @@ public class AnimationController : MonoBehaviour
         Vector3 XZVelocity = new Vector3(m_playerRb.velocity.x, 0, m_playerRb.velocity.z);
         float speed = XZVelocity.magnitude;
 
-        if(m_currentState == 1)//Idle
+        if( m_modifiersController.boosting && grounded)
+        {
+            SetAnim(3);//Go to Accelerate
+        }
+        else if(m_currentState == 1)//Idle
         {
             if (speed < MinXYVelocityIdle - velocityDelta)
                 SetAnim(3);//Go to Accelerate
@@ -162,12 +166,11 @@ public class AnimationController : MonoBehaviour
 
     private void StartBoost()
     {
-        animator.SetBool("isBoosting", true);
     }
 
     private void StopBoost()
     {
-        animator.SetBool("isBoosting", false);
+       
     }
     
 }
