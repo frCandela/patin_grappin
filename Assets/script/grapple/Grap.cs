@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Grap : MonoBehaviour
@@ -30,11 +31,11 @@ public class Grap : MonoBehaviour
     private Rigidbody m_rigidbody;
     private ParticleSystem m_particleSystem;
     private Rope m_rope = null;
+
     private Vector3 m_target;
     private AnimationController m_animationController;
 
-    //Members
-    
+    //Members   
 
     private void Awake()
     {
@@ -121,17 +122,22 @@ public class Grap : MonoBehaviour
     }
 
     private void Update()
-    {//HERE
-     //Update the grapple target position
-     /* GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
+    {
+        if (Input.GetButtonDown("Grapple"))
+            print(Input.GetAxis("Grapple"));
 
-      if (result != null)
-          m_aimTarget.transform.position = result.position;
-      else
-          m_aimTarget.transform.position = Vector3.zero;
 
-      //Shader variable
-      Shader.SetGlobalVector("_AimTargetPos", m_aimTarget.transform.position);*/
+        //HERE
+        //Update the grapple target position
+        /* GazeManager.GazeInfo result = GazeManager.GetGazeWorldPoint();
+
+         if (result != null)
+             m_aimTarget.transform.position = result.position;
+         else
+             m_aimTarget.transform.position = Vector3.zero;
+
+         //Shader variable
+         Shader.SetGlobalVector("_AimTargetPos", m_aimTarget.transform.position);*/
 
 
     }

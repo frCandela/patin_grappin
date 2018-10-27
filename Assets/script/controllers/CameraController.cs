@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Tobii.Gaming;
 using UnityEngine;
+using UnityEngine.XR;
 
 [RequireComponent( typeof(  Camera ))]
 public class CameraController : MonoBehaviour
