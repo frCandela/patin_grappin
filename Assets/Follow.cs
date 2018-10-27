@@ -6,11 +6,12 @@ public class Follow : MonoBehaviour
 {
 
     public GameObject follow;
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+    public float offset = 1;
+
+    // Update is called once per frame
+    void FixedUpdate ()
     {
-        transform.position = follow.transform.position;
+        transform.position = follow.transform.position + offset * follow.transform.forward;
 
     }
 }
