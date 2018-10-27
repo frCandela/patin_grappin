@@ -7,11 +7,15 @@ public class HandAim : MonoBehaviour {
 
     [SerializeField] private GameObject aimPrefab = null;
     private GameObject m_aim = null;
+    private Grap grap;
+
+    public bool grappling = false;
+    Vector3 targetGrap;
 
     // Use this for initialization
     void Awake ()
     {
-
+        grap = FindObjectOfType<Grap>();
 
         Util.EditorAssert(aimPrefab != null, "Grapple.Awake: ropePrefab not set");
         m_aim = Instantiate(aimPrefab);
@@ -32,15 +36,44 @@ public class HandAim : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, 1000f))
         {
             length = hit.distance;
-        }   
+        }
 
-        m_aim.transform.rotation = rHandRot;
-        m_aim.transform.localScale = new Vector3(0.01f, 0.01f, length);
-        m_aim.transform.position = rHandPos + 0.5f * length * rHandRotForward;
+        if (Input.GetButtonDown("Grapple"))
+        {
+            if (!grappling && length != 0.1f)
+            {
+                grappling = true;
+                targetGrap = hit.point;
+                m_aim.GetComponent<MeshRenderer>().enabled = true;
+            }
+        }
+        if (Input.GetButtonUp("Grapple"))
+        {
+            if (grappling)
+            {
+                grappling = false;
+            }
+        }
 
-        if (Input.GetButtonDown("GrappleAim"))
-            m_aim.GetComponent<MeshRenderer>().enabled = true;
-        if (Input.GetButtonUp("GrappleAim"))
-            m_aim.GetComponent<MeshRenderer>().enabled = false;
+        if( !grappling)
+        {
+            m_aim.transform.rotation = rHandRot;
+            m_aim.transform.localScale = new Vector3(0.01f, 0.01f, length);
+            m_aim.transform.position = rHandPos + 0.5f * length * rHandRotForward;
+
+            if (Input.GetButtonDown("GrappleAim"))
+                m_aim.GetComponent<MeshRenderer>().enabled = true;
+            if (Input.GetButtonUp("GrappleAim"))
+                m_aim.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            Vector3 dir = targetGrap - rHandPos;
+
+
+            m_aim.transform.localScale = new Vector3(0.05f, 0.05f, dir.magnitude);
+            m_aim.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+            m_aim.transform.position = rHandPos + 0.5f * dir;
+        }
     }
 }

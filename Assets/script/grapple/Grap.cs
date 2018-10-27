@@ -123,8 +123,7 @@ public class Grap : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Grapple"))
-            print(Input.GetAxis("Grapple"));
+
 
 
         //HERE
