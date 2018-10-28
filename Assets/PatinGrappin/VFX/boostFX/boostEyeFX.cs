@@ -16,7 +16,8 @@ public class boostEyeFX : GazeObject
 
     void Start()
 	{
-		animator = GetComponent<Animator>();
+
+        animator = GetComponent<Animator>();
 
         chargeFX = transform.parent.GetChild(0).gameObject;
         depopFX = transform.parent.GetChild(1).gameObject;
@@ -50,6 +51,9 @@ public class boostEyeFX : GazeObject
 		if(animator.GetBool("isLookedAt"))
         {
             onBoost.Invoke();
+
+
+
             AkSoundEngine.PostEvent("Play_Boost_Go", gameObject);
             depopPS.Emit(1);
 

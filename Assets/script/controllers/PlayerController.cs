@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeedRtpc = 150f;
     [SerializeField] private float heightPlayer = 3.5f;
 
+    
     [Header("Other:")]
 
     [SerializeField] private float gravity = -30;
@@ -29,6 +30,20 @@ public class PlayerController : MonoBehaviour
     private Grap m_grapple;
     private Track m_track = null;
     private ParticleSystem m_particleSystemPofPof = null;
+
+
+    float boostEnd = -1f;
+    [SerializeField] private float boostDuration = 3f;
+    [SerializeField] float impulseForce = 100f;
+    [SerializeField] float accelerationForce = 100f;
+
+    void Boost()
+    {
+        Vector3 impulseDir = Camera.main.transform.forward;
+        m_rb.AddForce(impulseForce * impulseDir, ForceMode.VelocityChange);
+
+        boostEnd = Time.time + boostDuration;
+    }
 
     // Use this for initialization
     void Awake ()
@@ -46,6 +61,12 @@ public class PlayerController : MonoBehaviour
         onGrappleReset = new UnityEvent();
 
         m_particleSystemPofPof = GetComponentInChildren<ParticleSystem>();
+
+        foreach( boostEyeFX befx in FindObjectsOfType<boostEyeFX>())
+        {
+            befx.onBoost.AddListener(Boost);
+        }
+
     }
 
     private void Update()
@@ -76,6 +97,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if( boostEnd > Time.time)
+        {
+            //Vector3 impulseDir = m_rb.velocity.normalized;
+            Vector3 impulseDir = Camera.main.transform.forward;
+            //if (impulseDir.y > 0f)
+            impulseDir.y = 0f;
+            m_rb.AddForce(accelerationForce * impulseDir, ForceMode.Acceleration);
+        }
+
         Quaternion rotation = Quaternion.Euler(0, InputTracking.GetLocalRotation(XRNode.Head).eulerAngles.y, 0);
         m_rb.rotation = rotation;
         Vector3 forward = InputTracking.GetLocalRotation(XRNode.Head) * Vector3.forward;
@@ -90,6 +120,7 @@ public class PlayerController : MonoBehaviour
         m_rb.velocity = turnFactor * ( m_rb.velocity - goodVelocity * dir) + goodVelocity*dir;
 
         m_rb.velocity = new Vector3(m_rb.velocity.x, yVel, m_rb.velocity.z);
-
     }
+
+
 }

@@ -13,6 +13,7 @@ public class HandAim : MonoBehaviour {
 
     [Header("Parameters")]
 
+    private boostEyeFX lastByfx = null;
     private Grap grap;
     private PlayerController player;
     private Rigidbody playerRb;
@@ -90,7 +91,34 @@ public class HandAim : MonoBehaviour {
         if (Physics.Raycast(ray, out hit, 1000f))
         {
             length = hit.distance;
+            boostEyeFX byfx = hit.collider.gameObject.GetComponent<boostEyeFX>();
+            if (byfx)
+            {
+                if (lastByfx)
+                    lastByfx.SetNotGazed();
+                byfx.SetGazed();
+                lastByfx = byfx;
+            }
+            else
+            {
+                if (lastByfx)
+                {
+                    lastByfx.SetNotGazed();
+                    lastByfx = null;
+                }
+            }
+
         }
+        else
+        {
+            if (lastByfx)
+            {
+                lastByfx.SetNotGazed();
+                lastByfx = null;
+            }
+        }
+
+
 
         if (Input.GetButtonDown(grapName) || Input.GetAxis(grapAxisName) != 0f)
         {
@@ -107,6 +135,17 @@ public class HandAim : MonoBehaviour {
                     Animator cloudAnimator = hit.collider.gameObject.GetComponent<Animator>();
                     cloudAnimator.Play("cloud_take", -1, 0f);
                 }
+
+
+
+                /*if (Input.GetKey(KeyCode.Space))
+                {
+                    SetGazed();
+                }
+                else
+                {
+                    SetNotGazed();
+                }*/
 
                 //grab fx
                 m_particleSystem.transform.position = targetGrap;
