@@ -51,7 +51,6 @@ GameObject:
   - component: {fileID: 4653058651975286}
   - component: {fileID: 20523562959143462}
   - component: {fileID: 124431261164259460}
-  - component: {fileID: 114686156717858772}
   - component: {fileID: 114338075330464052}
   - component: {fileID: 114009121412175904}
   - component: {fileID: 114665815430408534}
@@ -2213,7 +2212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: dd42db2d7050abc4eb356779463ffc36, type: 2}
-  deformationValue: 0
 --- !u!114 &114281305645535544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2358,8 +2356,12 @@ MonoBehaviour:
   lerpPosition: 0.2
   lerpRotationY: 0.5
   lerpRotationXZ: 0
-  m_YCorrection: 1
-  m_lowerAngleCorrection: 25
+  m_xAngleHeadCorrection: 0
+  m_DownYCorrection: 1
+  m_UpYCorrection: 1
+  m_lerpLagCorrection: 1
+  m_downOffset: 2
+  m_upOffset: 5
 --- !u!114 &114685360712612220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2373,20 +2375,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 0}
   isLookAt: 1
---- !u!114 &114686156717858772
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056880383286086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6090127435a1043b2b68b41c7e4271, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nbSamples: 10
-  gazeRemanance: 0.1
-  gazeDistance: 1000
 --- !u!114 &114788589421731180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2420,12 +2408,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostMaterial: {fileID: 2100000, guid: dd42db2d7050abc4eb356779463ffc36, type: 2}
+  patinMaterial: {fileID: 0}
+  traceBase: {fileID: 0}
+  traceBoost: {fileID: 0}
+  traceContinuous: {fileID: 0}
   boostMultiplier: 2.5
   boostDuration: 4
   minSpeed: 55
   maxSpeed: 140
   maxDeformation: 0.393
-  maxSpeedTex: 0.5
+  m_continuousTrailOffset: {x: 0, y: 0, z: 0}
+  onBoostStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onBoostStop:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114868938507788248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2438,14 +2440,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialVelocity: 2
-  forwardForce: 30
+  forwardVelocity: 30
   forwardForceGrapple: 5
   turnForce: 300
   maxheadYAngle: 20
   forwardForceRagdoll: 150
   turnForceRagdoll: 1000
+  m_spamGrapple: 1
   trackForceWhenGrappling: 0
   gravity: -30
+  grapMinDuration: 0.5
   onGrappleLaunch:
     m_PersistentCalls:
       m_Calls: []

@@ -26,8 +26,6 @@ public class Track : MonoBehaviour
 
     //Private members
     private Rigidbody m_targetRb = null;
-    private Grap m_grap = null;
-
 
     //Debug
     float splineUpdateMs = 0f;
@@ -44,7 +42,6 @@ public class Track : MonoBehaviour
             currentSection = GetComponent<TrackSection>();
 
         m_targetRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
-        m_grap = FindObjectOfType<Grap>();
 
         if (currentSection)
             currentSection.UpdateTrack(m_targetRb.position);
@@ -68,7 +65,7 @@ public class Track : MonoBehaviour
     {
         float height =  m_targetRb.transform.position.y - currentSection.trackPosition.y;      
 
-        if ( !m_grap.grappling && ( Input.GetKeyDown(KeyCode.T) || height < fallFromTrackHeight))
+        if ( Input.GetKeyDown(KeyCode.T) || height < fallFromTrackHeight)
             RespawnPlayer();
     }
 

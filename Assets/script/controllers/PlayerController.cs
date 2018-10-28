@@ -10,33 +10,25 @@ public class PlayerController : MonoBehaviour
     [Header("Movement:")]
     [SerializeField] private float initialVelocity = 2f;
     [SerializeField] private float forwardVelocity = 30f;
-    [SerializeField] private float forwardForceGrapple = 30f;  
-    [SerializeField] private float turnForce = 300f;
-    [SerializeField] private float maxheadYAngle = 20f;
-
-    [Header("Ragdoll Movement:")]
-    [SerializeField] private float forwardForceRagdoll = 50f;
-    [SerializeField] private float turnForceRagdoll = 1500;
+    [SerializeField] private float turnFactor = 0.1f;
+    [SerializeField] private float maxSpeedRtpc = 150f;
+    [SerializeField] private float heightPlayer = 3.5f;
 
     [Header("Other:")]
-    [SerializeField] private bool m_spamGrapple = true;
-    [SerializeField] private bool trackForceWhenGrappling = false;
+
     [SerializeField] private float gravity = -30;
-    [SerializeField, Range(0f, 1f)] private float grapMinDuration = 0.5f;
 
     [Header("Events:")]
     public UnityEvent onGrappleLaunch;
     public UnityEvent onGrappleReset;
-
-    [HideInInspector] public float boostMultiplier = 1f;
-
-    //private members
-    private float m_grapThrowTime = 0;
+    
+    bool grounded = false;
 
     //Components references
     private Rigidbody m_rb;
     private Grap m_grapple;
     private Track m_track = null;
+    private ParticleSystem m_particleSystemPofPof = null;
 
     // Use this for initialization
     void Awake ()
@@ -52,90 +44,52 @@ public class PlayerController : MonoBehaviour
         //Set events
         onGrappleLaunch = new UnityEvent();
         onGrappleReset = new UnityEvent();
+
+        m_particleSystemPofPof = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()
     {
-        //Launch or reset grapple        
-        if ( Input.GetButtonDown("Grapple") )
+        float rtpc = Mathf.Clamp((m_rb.velocity.magnitude) / maxSpeedRtpc, 0f, 1f);
+        AkSoundEngine.SetRTPCValue("Speed_RTPC", rtpc);
+
+        Ray ray = new Ray(transform.position, Vector3.down);
+        RaycastHit raycastHit;
+        if (Physics.Raycast(ray, out raycastHit, heightPlayer, LayerMask.GetMask("Track")))
         {
-            //HERE
-            
+            if( !grounded )
+            {
+                grounded = true;
+                AkSoundEngine.PostEvent("Play_Ice_Skate_Reception", gameObject);
+                m_particleSystemPofPof.Emit(6);
+            }
         }
-                   
-        if (m_grapple.grappling && !Input.GetButton("Grapple"))
-            if( Time.time - m_grapThrowTime > grapMinDuration && m_grapple.Cancel())
-                onGrappleReset.Invoke();
+        else
+        {
+            if (grounded)
+            {
+                grounded = false;
+            }
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        m_rb.rotation = Quaternion.Euler(0, InputTracking.GetLocalRotation(XRNode.Head).eulerAngles.y, 0);
-
+        Quaternion rotation = Quaternion.Euler(0, InputTracking.GetLocalRotation(XRNode.Head).eulerAngles.y, 0);
+        m_rb.rotation = rotation;
         Vector3 forward = InputTracking.GetLocalRotation(XRNode.Head) * Vector3.forward;
-        forward *= forwardVelocity;
-        forward.y = m_rb.velocity.y;
+        m_rb.AddForce(forwardVelocity * forward.normalized, ForceMode.Acceleration);
 
-        m_rb.velocity = forward;
+        Vector3 dir = rotation * Vector3.forward;
 
+        float yVel = m_rb.velocity.y;
+        m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
 
-       // m_rb.AddForce(boostMultiplier * forwardForce * m_rb.transform.forward, ForceMode.Acceleration);
+        float goodVelocity = Vector3.Dot(m_rb.velocity, dir);
+        m_rb.velocity = turnFactor * ( m_rb.velocity - goodVelocity * dir) + goodVelocity*dir;
 
+        m_rb.velocity = new Vector3(m_rb.velocity.x, yVel, m_rb.velocity.z);
 
-        /* Rigidbody targetRB;
-         targetRB = m_rb;            
-
-         //Forward force in the track direction
-         if (trackForceWhenGrappling || !m_grapple.grappling)
-         {
-              targetRB.AddForce(boostMultiplier * forwardForce * m_track.trackSection.trackDirection, ForceMode.Acceleration);
-         }
-
-         //forward force when grappling
-         if (m_grapple.grappling)
-         {
-             Vector3 forwardXZ = new Vector3(transform.forward.x, 0, transform.forward.z).normalized;
-             targetRB.AddForce(forwardForceGrapple * forwardXZ, ForceMode.Acceleration);
-         }
-
-
-         float headAxis = 0;
-
-         //HERE
-         if ( ! GazeManager.UsingKeyboard)
-         {
-             //Calculates head input
-             Tobii.Gaming.HeadPose pose = TobiiAPI.GetHeadPose();
-             headAxis = pose.Rotation.eulerAngles.y;
-             if (headAxis > 180)
-                 headAxis -= 360;
-             headAxis = Mathf.Clamp(headAxis, -maxheadYAngle, maxheadYAngle);
-             headAxis /= 90;
-         }
-         else
-         {
-             //Calculates keyboard input if no head connected
-             headAxis = Input.GetAxis("Horizontal");
-             headAxis = Mathf.Clamp(headAxis, -maxheadYAngle / 90, maxheadYAngle / 90);
-         }
-
-        //Turn right
-        Vector3 right = Vector3.Cross(Vector3.up, m_track.trackSection.trackDirection).normalized;
-        targetRB.AddForce(boostMultiplier * headAxis * turnForce * right, ForceMode.Acceleration);*/
-    }
-
-    private void OnGUI()
-    {
-        /*if( )//HERE
-        {
-            GUIStyle style = new GUIStyle();
-            style.normal.textColor = Color.red;
-
-            Vector3 XZVelocity;
-                XZVelocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
-
-            GUI.Label(new Rect(0, 20, 100, 10), "XZ velocity: " + XZVelocity.magnitude, style);
-        }*/
     }
 }

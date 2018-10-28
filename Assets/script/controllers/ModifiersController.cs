@@ -132,14 +132,12 @@ public class ModifiersController : MonoBehaviour
             m_particleSystemTraceBoostR.transform.LookAt(m_rightFoot.transform.position - velocity);
 
             //Boost timer
-            m_playerController.boostMultiplier = boostMultiplier;
             m_boostTimeRemaining -= Time.deltaTime;
         }
         else if(m_boostTimeRemaining != -42f)
         {
             m_boostTimeRemaining = -42f;
             m_particleSystemBoost.Stop();
-            m_playerController.boostMultiplier = 1f;
             boostMaterial.SetFloat("_TexFactor", 0f);
             patinMaterial.SetFloat("_Shiness", 0f);
 
