@@ -18,8 +18,9 @@ public class HandAim : MonoBehaviour {
     private Rigidbody playerRb;
     [SerializeField, Range(0f, 1000f)] private float attractionForce = 50f;
     [SerializeField, Range(0f, 1f)] private float elasticity = 0.5f;
-    [SerializeField] private string aimName = "GrappleAimR";
     [SerializeField] private string grapName = "GrappleR";
+    [SerializeField] private string grapAxisName = "GripR";
+
     [SerializeField] XRNode hand = XRNode.RightHand;
 
     public GameObject grappleTarget { get; private set; }
@@ -77,6 +78,7 @@ public class HandAim : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+
         Quaternion rHandRot = transform.rotation;
         Vector3 rHandPos = transform.parent.position + InputTracking.GetLocalPosition(hand);
         Vector3 rHandRotForward = transform.forward;
@@ -90,7 +92,7 @@ public class HandAim : MonoBehaviour {
             length = hit.distance;
         }
 
-        if (Input.GetButtonDown(grapName))
+        if (Input.GetButtonDown(grapName) || Input.GetAxis(grapAxisName) != 0f)
         {
             if (!grappling && length != 0.1f)
             {
@@ -120,7 +122,7 @@ public class HandAim : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonUp(grapName))
+        if ( (Input.GetAxis(grapAxisName) == 0f &&  ! Input.GetButton(grapName)))
         {
             if (grappling)
             {
