@@ -96,7 +96,7 @@ public class HandAim : MonoBehaviour {
         {
             if (!grappling && length != 0.1f)
             {
-                m_particleSystem.Emit(1);
+
                 grappling = true;
                 targetGrap = hit.point;
                 m_aim.GetComponent<MeshRenderer>().enabled = true;
@@ -110,6 +110,7 @@ public class HandAim : MonoBehaviour {
 
                 //grab fx
                 m_particleSystem.transform.position = targetGrap;
+                m_particleSystem.Emit(1);
                 AkSoundEngine.PostEvent("Play_Grab_Impact", gameObject);
 
                 //Set hook  
