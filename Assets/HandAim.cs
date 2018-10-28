@@ -12,7 +12,7 @@ public class HandAim : MonoBehaviour {
     [SerializeField] private GameObject targetPrefab = null;
 
     [Header("Parameters")]
-    private GameObject m_aim = null;
+
     private Grap grap;
     private PlayerController player;
     private Rigidbody playerRb;
@@ -24,6 +24,9 @@ public class HandAim : MonoBehaviour {
 
     public GameObject grappleTarget { get; private set; }
     private GameObject m_grabFX;
+    private GameObject m_aim = null;
+    private Material m_aimMat = null;
+
 
     private ParticleSystem m_particleSystem;
 
@@ -41,8 +44,10 @@ public class HandAim : MonoBehaviour {
         Util.EditorAssert(aimPrefab != null, "Grapple.Awake: ropePrefab not set");
         m_aim = Instantiate(aimPrefab);
         m_aim.GetComponent<MeshRenderer>().enabled = false;
+        m_aimMat = m_aim.GetComponent<MeshRenderer>().material;
 
-        m_grabFX = GameObject.Instantiate(fxPrefab);
+
+     m_grabFX = GameObject.Instantiate(fxPrefab);
         m_particleSystem = m_grabFX.GetComponent<ParticleSystem>();
 
         m_rope = Instantiate(ropePrefab).GetComponent<Rope>();
@@ -72,9 +77,9 @@ public class HandAim : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        Quaternion rHandRot = InputTracking.GetLocalRotation(hand);
+        Quaternion rHandRot = transform.rotation;
         Vector3 rHandPos = transform.parent.position + InputTracking.GetLocalPosition(hand);
-        Vector3 rHandRotForward = rHandRot * Vector3.forward;
+        Vector3 rHandRotForward = transform.forward;
 
         // Raycast to aim with the gapple
         float length = 0.1f;
@@ -89,11 +94,17 @@ public class HandAim : MonoBehaviour {
         {
             if (!grappling && length != 0.1f)
             {
-
                 m_particleSystem.Emit(1);
                 grappling = true;
                 targetGrap = hit.point;
                 m_aim.GetComponent<MeshRenderer>().enabled = true;
+
+                //Cloud anim
+                if (hit.collider.gameObject.tag == "cloud")
+                {
+                    Animator cloudAnimator = hit.collider.gameObject.GetComponent<Animator>();
+                    cloudAnimator.Play("cloud_take", -1, 0f);
+                }
 
                 //grab fx
                 m_particleSystem.transform.position = targetGrap;
@@ -124,10 +135,13 @@ public class HandAim : MonoBehaviour {
             m_aim.transform.rotation = rHandRot;
             m_aim.transform.localScale = new Vector3(0.01f, 0.01f, 1000f);
             m_aim.transform.position = rHandPos + 0.5f * 1000f * rHandRotForward;
+            m_aim.GetComponent<MeshRenderer>().enabled = true;
 
-
-                m_aim.GetComponent<MeshRenderer>().enabled = true;
-
+            // color aim 
+            if( length != 0.1f)
+                m_aimMat.color = new Color(1f,0.2f,0.2f, 1f);
+            else
+                m_aimMat.color = new Color(0f, 0f, 0f, 5f);
 
         }
         else
