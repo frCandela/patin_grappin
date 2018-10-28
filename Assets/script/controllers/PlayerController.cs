@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         {
             //Vector3 impulseDir = m_rb.velocity.normalized;
             Vector3 impulseDir = Camera.main.transform.forward;
-            //if (impulseDir.y > 0f)
+            // continuous force stay horizontal
             impulseDir.y = 0f;
             m_rb.AddForce(accelerationForce * impulseDir, ForceMode.Acceleration);
         }

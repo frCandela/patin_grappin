@@ -54,11 +54,6 @@ public class EndSection : MonoBehaviour
         //Disable/enable required scripts
         m_popupObjects.gameObject.SetActive(true);
         m_playerController.enabled = false;
-        m_cameraController.enabled = false;
-
-        //Set the player
-        m_grap.Cancel();
-        m_grap.Throw(m_targetGrap.position, m_targetGrap.gameObject);
 
         AkSoundEngine.PostEvent("Play_Victory", gameObject);
         onEndTriggered.Invoke();

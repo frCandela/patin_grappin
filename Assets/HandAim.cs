@@ -94,10 +94,16 @@ public class HandAim : MonoBehaviour {
             boostEyeFX byfx = hit.collider.gameObject.GetComponent<boostEyeFX>();
             if (byfx)
             {
-                if (lastByfx)
-                    lastByfx.SetNotGazed();
-                byfx.SetGazed();
-                lastByfx = byfx;
+                if(byfx != lastByfx)
+                {
+                    if (lastByfx && lastByfx != byfx)
+                        lastByfx.SetNotGazed();
+
+
+                    byfx.SetGazed();
+                    lastByfx = byfx;
+                }
+
             }
             else
             {
@@ -135,17 +141,6 @@ public class HandAim : MonoBehaviour {
                     Animator cloudAnimator = hit.collider.gameObject.GetComponent<Animator>();
                     cloudAnimator.Play("cloud_take", -1, 0f);
                 }
-
-
-
-                /*if (Input.GetKey(KeyCode.Space))
-                {
-                    SetGazed();
-                }
-                else
-                {
-                    SetNotGazed();
-                }*/
 
                 //grab fx
                 m_particleSystem.transform.position = targetGrap;
@@ -189,11 +184,6 @@ public class HandAim : MonoBehaviour {
         else
         {
             m_aim.GetComponent<MeshRenderer>().enabled = false;
-            /*Vector3 dir = targetGrap - rHandPos;
-
-            m_aim.transform.localScale = new Vector3(0.05f, 0.05f, dir.magnitude);
-            m_aim.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
-            m_aim.transform.position = rHandPos + 0.5f * dir;*/
         }
     }
 }
